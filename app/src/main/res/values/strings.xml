@@ -1,0 +1,39 @@
+<resources>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="app_name">Fluence ZE Spy</string>
+    <string name="title_section2">Driving</string>
+    <string name="title_section1">General</string>
+    <string name="title_section0">Battery</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">     Settings   </string>
+    <string name="title_activity_main">SwipeActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
+
+
+    <string name="task_progress_msg">Progress:</string>
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+    <string name="task_started_msg">Task started!</string>
+    <string name="task_cancelled_msg">Task cancelled!</string>
+    <string name="task_complete_msg">Task complete!</string>
+    <string name="zero_percent">0%</string>
+    <string name="one_hundred_percent">100%</string>
+    <string name="menu_trigger_config_change">Trigger Config Change</string>
+
+
+    <string name="spinner_elm">Choose ELM327 Bluetooth Device</string>
+    <string name="no_bt_support">This device does not seem to have bluetooth support. Sorry&#8230;</string>
+    <string name="pse_turnon_bt">Please turn on Bluetooth.</string>
+    <string name="bt_conn_lost">Bluetooth connection lost!</string>
+    <string name="bt_turned_off">Bluetooth was turned off!</string>
+    <string name="task2_canc">Fluence ZE Spy disconnected.</string>
+    <string name="task2_start">Trying to connect...</string>
+    <string name="click_retry">Click RED icon to retry.</string>
+
+
+
+
+</resources>

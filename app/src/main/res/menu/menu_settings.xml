@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="pt.alexmol.fluencezespy.Settings">
+
+    <item
+        android:id="@+id/action_cancel"
+        android:orderInCategory="100"
+        android:title="Settings"
+        android:visible="true"
+        android:icon="@mipmap/ic_cancelar"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_ok"
+        android:orderInCategory="100"
+        android:title="Settings"
+        android:visible="true"
+        android:icon="@mipmap/ic_aceitar"
+        app:showAsAction="always"
+        />
+
+
+</menu>
