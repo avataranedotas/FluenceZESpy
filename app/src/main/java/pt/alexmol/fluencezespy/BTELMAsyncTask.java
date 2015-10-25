@@ -27,7 +27,7 @@ import java.util.UUID;
  */
 public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
-    private Context mContext;
+    private final Context mContext;
     public BTELMAsyncTask (Context context){
         mContext = context;
     }
@@ -35,17 +35,17 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     private long watchdog = 0L;
     private int detectapausa = 0;
 
-    public static BluetoothSocket mmSocket2 = null;
+    private static BluetoothSocket mmSocket2 = null;
 
-    public ToastHandler mToastHandler = null;
+    private ToastHandler mToastHandler = null;
 
-    public static final UUID MY_UUID2 = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private static final UUID MY_UUID2 = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    public static boolean BTREQ2 = false;
-    public static boolean BTON2 = false;
-    public static boolean READYtoRW2 = false;
-    protected static boolean BTSOCKET2 = false;
-    protected static int ELMREADY2 = 0;
+    private static boolean BTREQ2 = false;
+    private static boolean BTON2 = false;
+    private static boolean READYtoRW2 = false;
+    private static boolean BTSOCKET2 = false;
+    private static int ELMREADY2 = 0;
     private boolean USERLIGOUBT = false;
     private boolean USERRECUSOU = false;
 
@@ -55,20 +55,20 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     private static InputStream inputStream2;
     private static OutputStream outputStream2;
 
-    protected static BluetoothAdapter mBluetoothAdapter2;
+    private static BluetoothAdapter mBluetoothAdapter2;
 
-    public static double socx475 = 0.0;
+    private static double socx475 = 0.0;
 
-    protected static String bluetoothDeviceAddress2 = null;
+    private static String bluetoothDeviceAddress2 = null;
 
     private static boolean PAUSAMAIN = false;
 
-    protected static boolean backGroundMode = false;
-    protected static boolean debugMode = false;
+    private static boolean backGroundMode = false;
+    private static boolean debugMode = false;
 
 
-    public static PowerManager powerManager;
-    public static PowerManager.WakeLock wakeLock;
+    private static PowerManager powerManager;
+    private static PowerManager.WakeLock wakeLock;
 
     //recebe ordem para arrancar
     @Override
@@ -214,7 +214,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
                 if (bluetoothDeviceAddress2 == null) {
                     tostalongax("Please choose remote device in Settings");
                     BTREQ2 = false;
-                    passo = 4;
+                    //passo = 4;
                     return null; //termina a async task
                 }
                 else {
@@ -774,12 +774,12 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     }
 
 
-    public void tostax (String mensagem) {
+    private void tostax(String mensagem) {
 
         mToastHandler.showToast(mensagem, Toast.LENGTH_SHORT);
     }
 
-    public void tostalongax (String mensagem) {
+    private void tostalongax(String mensagem) {
 
         mToastHandler.showToast(mensagem, Toast.LENGTH_LONG);
     }
@@ -867,7 +867,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            //BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
             if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 //Device has disconnected
@@ -939,7 +939,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     }
 
 
-    private int read() throws IOException {
+    private int read() {
 
         try {
             if (mmSocket2.isConnected() && READYtoRW2)

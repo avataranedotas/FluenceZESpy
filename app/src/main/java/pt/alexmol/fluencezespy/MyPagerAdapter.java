@@ -11,12 +11,12 @@ import android.view.ViewGroup;
  * A FragmentPagerAdapter that returns a fragment corresponding to one of
  * the primary sections of the app.
  */
-public class MyPagerAdapter extends FragmentPagerAdapter {
+class MyPagerAdapter extends FragmentPagerAdapter {
 
-    private MainActivity myPagerAdapter;
-    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
+    private final MainActivity myPagerAdapter;
+    private final SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
-    Context c;
+    private final Context c;
 
     public MyPagerAdapter(MainActivity MyPagerAdapter, Context c, FragmentManager fm) {
         super(fm);

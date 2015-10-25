@@ -3,9 +3,9 @@ package pt.alexmol.fluencezespy;
 /**
  * Created by alexandre.moleiro on 24-10-2015.
  */
-public class MainTaskResultEvent {
+class MainTaskResultEvent {
 
-    private int comando;
+    private final int comando;
 
 
     public MainTaskResultEvent(int comando) {

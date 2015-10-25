@@ -17,8 +17,8 @@ import android.widget.Toast;
 public class ToastHandler
 {
     // General attributes
-    private Context mContext;
-    private Handler mHandler;
+    private final Context mContext;
+    private final Handler mHandler;
 
     /**
      * Class constructor.

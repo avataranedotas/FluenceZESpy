@@ -3,10 +3,10 @@ package pt.alexmol.fluencezespy;
 /**
  * Created by alexandre.moleiro on 24-10-2015.
  */
-public class BTELMTaskResultEvent {
+class BTELMTaskResultEvent {
 
-    private long indice;
-    private long dado;
+    private final long indice;
+    private final long dado;
 
     public BTELMTaskResultEvent(long indice, long dado) {
         this.indice = indice;

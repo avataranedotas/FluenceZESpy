@@ -25,17 +25,17 @@ import com.squareup.otto.Subscribe;
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     private static MainActivity instance = null;
-    public final static int SETTINGS_ACTIVITY = 7;
-    public final static int REQUEST_ENABLE_BT = 3;
-    protected static boolean debugModeMain = false;
-    protected static boolean backgroundMain = false;
-    protected static boolean keepscreenMain= false;
-    public static int ELMREADY = 0;
+    private final static int SETTINGS_ACTIVITY = 7;
+    private final static int REQUEST_ENABLE_BT = 3;
+    static boolean debugModeMain = false;
+    static boolean backgroundMain = false;
+    static boolean keepscreenMain= false;
+    private static int ELMREADY = 0;
     private boolean sair = false;
     public static long[] valoresmemorizados;
-    public static NotificationCompat.Builder mBuilder;
-    public static NotificationManager mNotificationManager;
-    public static BTELMAsyncTask tarefa;
+    private static NotificationCompat.Builder mBuilder;
+    private static NotificationManager mNotificationManager;
+    private static BTELMAsyncTask tarefa;
 
 
     /**
@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
      * may be best to switch to a
      * android.support.v4.app.FragmentStatePagerAdapter.
      */
-    MyPagerAdapter mSectionsPagerAdapter;
+    private MyPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The ViewPager that will host the section contents.
      */
-    ViewPager mViewPager;
+    private ViewPager mViewPager;
 
 
     //função para mostrar notificações no ecran
-    public static void toast(final String message)
+    private static void toast(final String message)
     {
         //as notificações correm numa thread à parte
         instance.runOnUiThread(new Runnable() {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
     //função para mostrar notificações no ecran
-    public static void toastlong(final String message)
+    private static void toastlong(final String message)
     {
         //as notificações correm numa thread à parte
         instance.runOnUiThread(new Runnable() {
@@ -513,7 +513,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
     //função para actualizar os botões da barra de acção
-    public static void refresca() {
+    private static void refresca() {
         instance.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
@@ -538,7 +538,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
     //@Override
-    public void actualizapasso(String link) {
+    private void actualizapasso(String link) {
 
 
         Page1 fragmento = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
@@ -555,20 +555,20 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
     //Ligar icone amarelo
-    public void vermelho() {
+    private void vermelho() {
         ELMREADY = 0;
         refresca();
 
     }
 
     //Ligar icone amarelo
-    public void amarelo() {
+    private void amarelo() {
         ELMREADY = 1;
         refresca();
 
     }
     //Ligar icone amarelo
-    public void verde() {
+    private void verde() {
         ELMREADY = 2;
         refresca();
 
@@ -577,7 +577,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
     //actualizar páginas
-    public void actualizarpaginas(long[] arrayd) {
+    private void actualizarpaginas(long[] arrayd) {
 
         try {
 
@@ -608,13 +608,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
-    public void mostranotificacao(int codigo) {
+    private void mostranotificacao(int codigo) {
 
         mNotificationManager.notify(codigo, mBuilder.build());
     }
 
 
-    public void cancelatodasnotif() {
+    private void cancelatodasnotif() {
 
         mNotificationManager.cancelAll();
     }
