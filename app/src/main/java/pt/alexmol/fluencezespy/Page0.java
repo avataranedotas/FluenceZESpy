@@ -55,6 +55,16 @@ public class Page0 extends Fragment {
             view.setText("SOC:" + String.format("%3.2f", temp) + "%");
         }
 
+        if (array0[1]!=-100) {
+            TextView view = (TextView) getView().findViewById(R.id.battemp_0);
+            int temp1 = ((int) array0[1]);
+            int temp2 = ((int) array0[2]);
+            int temp3 = ((int) array0[3]);
+            int temp4 = ((int) array0[4]);
+            view.setText("Battery Temps:" + temp1+"C "+temp2+"C "+temp3+"C "+temp4+"C");
+        }
+
+
     }
 
 }

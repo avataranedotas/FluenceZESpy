@@ -119,6 +119,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
         int passo = 1;
         String resposta = "";
         String resposta2 = "";
+
+
         long longo = 0L;
         int passoanterior = 0;
         boolean ultimavalida = false;
@@ -537,6 +539,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
             if (passo == 21) {
                 publishProgress(0L,21L);
+
                 //passo de ler free frames
                 //espera pelo socket ligado e ready to rw
 
@@ -617,11 +620,131 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
             if (passo == 22) {  //passo de ler iso-tp
                 publishProgress(0L, 22L);
 
+                if (mmSocket2 != null) {
+                    if (mmSocket2.isConnected() && READYtoRW2 && ELMREADY2 == 2) {
+
+
+                        //escolher filtro
+                        write("atcra7bb\r");
+                        ultimavalida = (esperatexto(150, "OK\r\r>")) ;
+
+                        //escolher cabecalhos
+                        write("atsh79b\r");
+                        ultimavalida = ultimavalida && (esperatexto(150, "OK\r\r>")) ;
+
+                        write("atfcsh79b\r");
+                        ultimavalida = ultimavalida && (esperatexto(150, "OK\r\r>")) ;
+
+                        //enviar comando
+                        write("022104\r");
+
+                        //obter 3 linhas
+                        resposta = esperalinha(1500)+esperalinha(1500)+esperalinha(1500);
+
+                        //esperar pelo >
+                        ultimavalida = ultimavalida && (esperatexto(1500, ">")) ;
+
+                        //flushar o restante
+                        flushbytes(50);
+
+                        //retirar os \r da resposta
+                        resposta = resposta.replace("§", "");
+
+                        //tostax("Recebido stripped:"+resposta);
+
+                        //processar resposta
+                        //tostax("tamanho:"+resposta.length());
+
+                        if ((resposta.length() == 48) && ultimavalida) {
+
+                            //temperatura1
+                            resposta2 = resposta.substring(12, 14);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
+                            try {
+                                longo = Long.parseLong(resposta2, 16);
+
+                            } catch (Exception e) {
+                                if (debugMode) tostax("excepcao na 2a conversão para long:" + e);
+                                longo = -100;
+                            }
+                            //validação
+                            if (longo >=0 && longo <=127) {
+                                //tostax("Temperatura1:" + String.valueOf(longo) + "C");
+                                //publica valor
+                                //tempbat1 é o indice 101
+                                publishProgress(101L, longo);
+                            }
+                            else publishProgress(101L, -100L); //valor invalido
+
+                            //temperatura2
+                            resposta2 = resposta.substring(20, 22);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
+                            try {
+                                longo = Long.parseLong(resposta2, 16);
+
+                            } catch (Exception e) {
+                                if (debugMode) tostax("excepcao na 3a conversão para long:" + e);
+                                longo = -100;
+                            }
+                            //validação
+                            if (longo >=0 && longo <=127) {
+                                //tostax("Temperatura2:" + String.valueOf(longo) + "C");
+                                //publica valor
+                                //tempbat1 é o indice 101
+                                publishProgress(102L, longo);
+                            }
+                            else publishProgress(102L, -100L); //valor invalido
+
+
+                            //temperatura3
+                            resposta2 = resposta.substring(26, 28);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
+                            try {
+                                longo = Long.parseLong(resposta2, 16);
+
+                            } catch (Exception e) {
+                                if (debugMode) tostax("excepcao na 4a conversão para long:" + e);
+                                longo = -100;
+                            }
+                            //validação
+                            if (longo >=0 && longo <=127) {
+                                //tostax("Temperatura3:" + String.valueOf(longo) + "C");
+                                //publica valor
+                                //tempbat1 é o indice 101
+                                publishProgress(103L, longo);
+                            }
+                            else publishProgress(103L, -100L); //valor invalido
+
+                            //temperatura4
+                            resposta2 = resposta.substring(34, 36);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
+                            try {
+                                longo = Long.parseLong(resposta2, 16);
+
+                            } catch (Exception e) {
+                                if (debugMode) tostax("excepcao na 5a conversão para long:" + e);
+                                longo = -100;
+                            }
+                            //validação
+                            if (longo >=0 && longo <=127) {
+                                //tostax("Temperatura4:" + String.valueOf(longo) + "C");
+                                //publica valor
+                                //tempbat1 é o indice 101
+                                publishProgress(104L, longo);
+                            }
+                            else publishProgress(104L, -100L); //valor invalido
+
+
+
+                        }
 
 
 
 
-                passo =23;
+                        //SystemClock.sleep(10000L);
+
+
+
+                    }
+                }
+
+                        passo =23;
             }
 
 
@@ -675,7 +798,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
                 catch (Exception y) { if (debugMode) tostax("exception wakelock.aquire:"+y); }
             }
             //se background mode desligado então cancela a tarefa
-            if (detectapausa>30 && !backGroundMode) return null;
+            if (detectapausa>20 && !backGroundMode) return null;
 
 
         }

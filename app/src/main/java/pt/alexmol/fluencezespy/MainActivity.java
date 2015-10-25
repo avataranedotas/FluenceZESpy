@@ -97,8 +97,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //  4, 0 Pedido de ligação de bluetooth
     //
     //100, Socx475 x100
-
-
+    //101, tempbat1
+    //102, tempbat2
+    //103, tempbat3
+    //104, tempbat4
 
 
     @Subscribe
