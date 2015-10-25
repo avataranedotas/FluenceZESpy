@@ -5,17 +5,19 @@ package pt.alexmol.fluencezespy;
  */
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Page1 extends Fragment {
     Context c;
 
-    private pagina1interface listener;
+    //private pagina1interface listener;
 
     public Page1(){
 
@@ -27,10 +29,12 @@ public class Page1 extends Fragment {
     //}
 
 
+    /*
     public interface pagina1interface {
         //public void actualizarTexto(String link);
-        public void onBotaoRandom();
+        //public void onBotaoRandom();
     }
+    */
 
     @Override
     public void onAttach(Context context) {
@@ -38,6 +42,7 @@ public class Page1 extends Fragment {
         super.onAttach(context);
         //MainActivity.toast("onattach");
 
+        /*
         if (context instanceof pagina1interface) {
             listener = (pagina1interface) context;
             //MainActivity.toast("listener");
@@ -47,7 +52,9 @@ public class Page1 extends Fragment {
                     + " must implement MyListFragment.pagina1interface");
 
         }
+        */
 
+        MyBus.getInstance().register(this);
     }
 
 
@@ -58,6 +65,31 @@ public class Page1 extends Fragment {
 
 
         View v = inflater.inflate(R.layout.section1, null);
+
+        //botao para iniciar uma task
+
+
+        /*
+        Button button = (Button) v.findViewById(R.id.buttonxpto);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View va) {
+                //MainActivity.toast("botao carregado");
+
+                //envia pedido para desbloquear idle da BTELMtask (commando =1)
+
+                MyBus.getInstance().post(new Page1TaskResultEvent(1));
+
+
+                //BTELMAsyncTask tarefa  =new BTELMAsyncTask(getActivity());
+                //tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+            }
+        });
+        */
+
+
 
         /*
         Button button = (Button) v.findViewById(R.id.button);
@@ -129,6 +161,13 @@ public class Page1 extends Fragment {
         actpag1(actividademain1.valoresmemorizados);
 
     }
+
+    @Override public void onDestroy() {
+        MyBus.getInstance().unregister(this);
+        super.onDestroy();
+    }
+
+
 
     public void setPasso(String url) {
         TextView view = (TextView) getView().findViewById(R.id.passo);

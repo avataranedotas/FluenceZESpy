@@ -1,5 +1,6 @@
 package pt.alexmol.fluencezespy;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
@@ -7,48 +8,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.*;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.squareup.otto.Subscribe;
 
-public class MainActivity extends AppCompatActivity implements Page1.pagina1interface,ActionBar.TabListener,TaskFragment.TaskCallbacks,TaskFragment2.TaskCallbacks2 {
 
-    private static final boolean DEBUG = true; // Set this to false to disable logs.
-
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     private static MainActivity instance = null;
-
-    private static final String TAG_TASK_FRAGMENT = "task_fragment";
-    private static final String TAG_TASK_FRAGMENT2 = "task_fragment2";
-
     public final static int SETTINGS_ACTIVITY = 7;
-
-    public TaskFragment mTaskFragment;
-    public TaskFragment2 mTaskFragment2;
-
-    private static boolean debugModeMain = false;
-    private static boolean backgroundMain = false;
+    public final static int REQUEST_ENABLE_BT = 3;
+    protected static boolean debugModeMain = false;
+    protected static boolean backgroundMain = false;
+    protected static boolean keepscreenMain= false;
     public static int ELMREADY = 0;
-    private static boolean botaoexit = false;
-    private static boolean pausado = false;
-
-
+    private boolean sair = false;
     public static long[] valoresmemorizados;
-
     public static NotificationCompat.Builder mBuilder;
     public static NotificationManager mNotificationManager;
-
+    public static BTELMAsyncTask tarefa;
 
 
     /**
@@ -66,8 +53,6 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
      */
     ViewPager mViewPager;
 
-    protected static BluetoothAdapter mBluetoothAdapter;
-
 
     //função para mostrar notificações no ecran
     public static void toast(final String message)
@@ -80,6 +65,112 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
             }
         });
     }
+
+    //função para mostrar notificações no ecran
+    public static void toastlong(final String message)
+    {
+        //as notificações correm numa thread à parte
+        instance.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(instance, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    //**********************************************************************
+    // códigos de eventos recebidos
+    //  2, 1 btelmasync started
+    //  2, 2 btelmasync idling
+    //  2, 3 btelmasync running
+    //  2, 4 btelmasync canceled
+    //  2, 5 btelmasync complete
+    //
+    //  1, 0 ELM vermelho
+    //  1, 1 ELM amarelo
+    //  1, 2 ELM verde
+    //
+    //  0, Passo
+    //
+    //  3, 0 Actualizar páginas
+    //
+    //  4, 0 Pedido de ligação de bluetooth
+    //
+    //100, Socx475 x100
+
+
+
+
+    @Subscribe
+    public void recebereventos (BTELMTaskResultEvent event) {
+        //Toast.makeText(this,"Resultado:"+ event.getResult()[0] +"/"+event.getResult()[1], Toast.LENGTH_SHORT).show();
+
+        //evento de actualização de passo
+        if (event.getResult()[0]==0 ) {
+        actualizapasso(  String.valueOf(event.getResult()[1] ));
+
+        }
+
+        //evento de início da btelmtask, liga notificação
+        if (event.getResult()[0]==2 && event.getResult()[1]==1 ) {
+            if(backgroundMain) mostranotificacao(1);
+        }
+
+        //evento de btelmtask cancelada, desliga notificação
+        if (event.getResult()[0]==2 && event.getResult()[1]==4 ) {
+            if(backgroundMain) cancelatodasnotif();
+            if (sair) {
+                finish();
+                return;
+            }
+        }
+
+        //evento de btelmtask completa, desliga notificação
+        if (event.getResult()[0]==2 && event.getResult()[1]==5 ) {
+            if(backgroundMain) cancelatodasnotif();
+            if (sair) {
+                finish();
+                return;
+            }
+        }
+
+        //evento de estado do ELM
+        if (event.getResult()[0]==1 && event.getResult()[1]==0 ) {
+            vermelho();
+        }
+
+        //evento de estado do ELM
+        if (event.getResult()[0]==1 && event.getResult()[1]==1 ) {
+            amarelo();
+        }
+
+        //evento de estado do ELM
+        if (event.getResult()[0]==1 && event.getResult()[1]==2 ) {
+            verde();
+        }
+
+        //evento actualização de páginas
+        if (event.getResult()[0]==3 && event.getResult()[1]==0 ) {
+            actualizarpaginas(valoresmemorizados);
+        }
+
+
+        //evento chamar janela de ligar bluetooth
+        if (event.getResult()[0]==4 && event.getResult()[1]==0 ) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+
+
+        //evento de recepção de valores para memorizar
+        //100 corresponde ao indice 0
+        if (event.getResult()[0]>=100 ) {
+            valoresmemorizados[ (int) ( event.getResult()[0] -100L)  ]=event.getResult()[1];
+
+        }
+
+    }
+
 
 
     @Override
@@ -103,17 +194,16 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
         setContentView(R.layout.main_act);
 
-        SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
-        if (settings.getBoolean("backgroundmodeon",false)) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
-        else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
+
+        MyBus.getInstance().register(this);
 
         //carrega preferências
+        SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+
         debugModeMain = settings.getBoolean("debugmodeon", false);
         backgroundMain = settings.getBoolean("backgroundmodeon",false);
+        keepscreenMain = settings.getBoolean("keepscreenon",false);
+
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -169,32 +259,6 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
         actionBar.setSelectedNavigationItem(1);
 
 
-
-        //Fragmentos headless
-
-        FragmentManager fm = getSupportFragmentManager();
-        //mTaskFragment = (TaskFragment) fm.findFragmentByTag(TAG_TASK_FRAGMENT);
-        mTaskFragment2 = (TaskFragment2) fm.findFragmentByTag(TAG_TASK_FRAGMENT2);
-
-        /*
-        // If the Fragment is non-null, then it is being retained
-        // over a configuration change.
-        if (mTaskFragment == null) {
-            mTaskFragment = new TaskFragment();
-            fm.beginTransaction().add(mTaskFragment, TAG_TASK_FRAGMENT).commit();
-        }
-        */
-
-
-        // If the Fragment is non-null, then it is being retained
-        // over a configuration change.
-        if (mTaskFragment2 == null) {
-            mTaskFragment2 = new TaskFragment2();
-            fm.beginTransaction().add(mTaskFragment2, TAG_TASK_FRAGMENT2).commit();
-        }
-
-
-
     }
 
     @Override
@@ -204,8 +268,13 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
         //toast ("inicio do onresume");
 
 
-        mTaskFragment2.pausamain(false);
-        pausado = false;
+
+        if (keepscreenMain) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+        else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
 
 
         //barra de notificações
@@ -227,30 +296,50 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
         // your application to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(MainActivity.class);
+        //stackBuilder.addParentStack(MainActivity.class);
         // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
 
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
 
         //PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        resultIntent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         mBuilder.setContentIntent(resultPendingIntent);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        //inicia asynctaskelm caso não esteja a correr
+        try {
 
-        cancelatodasnotif();
+            //se a tarefa é null tem de ser criada e arrancada
+            if (tarefa == null) {
+                tarefa = new BTELMAsyncTask(this);
+                tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                if (debugModeMain) toast("tarefa era null, arrancada");
+            }
+            //se não é null verificar se já está a correr
+            else {
+                //se está em run ou pending (pre-execute)
+                if ( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  ) {
+                    if (debugModeMain) toast ("tarefa estava em run ou pre-execute");
+                }
+                //se está já finalizada
+                else {
+                    if (debugModeMain) toast ("tarefa estava finalizada, arrancando novamente");
+                    tarefa = new BTELMAsyncTask(this);
+                    tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-        //iniciar background task de ligação bluetooth
-        if (!(mTaskFragment2.isRunning())) {
-            //mostranotificacao(1);
-            mTaskFragment2.start();
+                }
+            }
+
         }
+        catch (Exception e){  if (debugModeMain) toast ("Exception ao iniciar a thread:"+e); }
 
-        botaoexit = false;
+        //envia informação à tarefa que não está em pausa
+        MyBus.getInstance().post(new MainTaskResultEvent(1));
 
+        sair = false;
     }
 
 
@@ -260,13 +349,8 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
         super.onPause();
 
 
-        mTaskFragment2.pausamain(true);
-        pausado = true;
-
-        // mId 1 allows you to update the notification later on.
-
-        if (mTaskFragment2.isRunning() && backgroundMain) mostranotificacao(1);
-
+        //indica à asynctask que vai entrar em pausa
+        MyBus.getInstance().post(new MainTaskResultEvent(2));
 
     }
 
@@ -283,25 +367,17 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
     @Override
     public void onDestroy() {
+        MyBus.getInstance().unregister(this);
         super.onDestroy();
         if (debugModeMain) toast("Destroy Main");
 
-        if (backgroundMain) {
-            if (isFinishing()) {
-                if (!botaoexit) mTaskFragment2.delay(true);
-                if (debugModeMain) toast("Main beeing finished");
-                if ((mTaskFragment2.isRunning())) {
-                    cancelatodasnotif();
-                    mTaskFragment2.cancel();
-                }
 
 
-            } else {
-                mTaskFragment2.delay(false);
-            }
+        //se estiver isFinishing significa que está a acabar de vez ou que foi chamada pela notificação
+        if (isFinishing()) {
+            if (debugModeMain) toast("Main finishing");
+
         }
-
-
 
     }
 
@@ -321,7 +397,7 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
         MenuItem aviso = menu.findItem(R.id.connected_elm);
 
 
-        //ELMREADY é também actualizado pela task2 via métodos verde,amarelo e vermelho
+        //ELMREADY é também actualizado pela task via métodos verde,amarelo e vermelho
 
         if (ELMREADY == 2 ) {
             ligado.setVisible(true);
@@ -360,13 +436,10 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
         if ((id == R.id.action_settings) && (mBluetoothAdapter != null) && (mBluetoothAdapter.isEnabled()) ){
 
-            //cancela a task2 se estiver a correr
-            if ((mTaskFragment2.isRunning()) ) {
-                cancelatodasnotif();
-                mTaskFragment2.cancel();
-            }
-            Toast.makeText(MainActivity.this,"Please wait for bluetooth disconnection...", Toast.LENGTH_LONG).show();
-            while ((mTaskFragment2.isRunning()));
+            //pára asynctaskelm
+            tarefa.cancel(true);
+
+            Toast.makeText(MainActivity.this,getString(R.string.pse_wait_disc), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(MainActivity.this,Settings.class);
             startActivityForResult(intent, SETTINGS_ACTIVITY);
@@ -376,16 +449,22 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
         if ((id == R.id.action_exit) ){
 
-            //Pára a taskfragment2 caso esteja a correr,o que deve fechar o socket
-            botaoexit = true;
 
-            if ((mTaskFragment2.isRunning()) ) {
-                cancelatodasnotif();
-                mTaskFragment2.cancel();
+            //se está em run ou pending (pre-execute)
+            if ( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  ) {
+                //pára asynctaskelm
+                tarefa.cancel(true);
+                Toast.makeText(MainActivity.this, getString(R.string.pse_wait_disc), Toast.LENGTH_SHORT).show();
+                //liga flag sair
+                sair = true;
+
             }
-
-
-            finish();
+            //se está já finalizada
+            else {
+                if (debugModeMain) toast ("tarefa estava finalizada, saindo");
+                finish();
+                return true;
+            }
 
             return true;
         }
@@ -394,14 +473,33 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
         if ((id == R.id.connected_no) ){
 
-            //Inicia a task2 caso esteja parada
-            if (!(mTaskFragment2.isRunning()) ) {
-                //mostranotificacao(1);
-                mTaskFragment2.start();
+
+            //inicia asynctaskelm caso não esteja a correr
+            try {
+
+                //se a tarefa é null tem de ser criada e arrancada
+                if (tarefa == null) {
+                    tarefa = new BTELMAsyncTask(this);
+                    tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    if (debugModeMain) toast("tarefa era null, arrancada");
+                }
+                //se não é null verificar se já está a correr
+                else {
+                    //se está em run ou pending (pre-execute)
+                    if ( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  ) {
+                        if (debugModeMain) toast ("tarefa estava em run ou pre-execute");
+                    }
+                    //se está já finalizada
+                    else {
+                        if (debugModeMain) toast ("tarefa estava finalizada, arrancando novamente");
+                        tarefa = new BTELMAsyncTask(this);
+                        tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                    }
+                }
+
             }
-
-
-
+            catch (Exception e){  if (debugModeMain) toast ("Exception ao iniciar a thread:"+e); }
 
             return true;
         }
@@ -417,128 +515,6 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
     //função para actualizar os botões da barra de acção
     public static void refresca() {
         instance.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-    }
-
-
-
-    /*********************************/
-    /***** TASK CALLBACK METHODS *****/
-    /*********************************/
-
-    @Override
-    public void onPreExecute() {
-        if (DEBUG) Log.i(TAG, "onPreExecute()");
-        //mButton.setText(getString(R.string.cancel));
-        if (debugModeMain) Toast.makeText(this, R.string.task_started_msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onProgressUpdate(int percent) {
-        if (DEBUG) Log.i(TAG, "onProgressUpdate(" + percent + "%)");
-        if (debugModeMain)  toast("recebido progresso da task1:" + percent);
-        //mProgressBar.setProgress(percent * mProgressBar.getMax() / 100);
-        //actualizarTexto(String.valueOf(percent));
-
-    }
-
-    @Override
-    public void onCancelled() {
-        if (DEBUG) Log.i(TAG, "onCancelled()");
-        //mButton.setText(getString(R.string.start));
-        //mProgressBar.setProgress(0);
-        //mPercent.setText(getString(R.string.zero_percent));
-        if (debugModeMain) Toast.makeText(this, R.string.task_cancelled_msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onPostExecute() {
-        if (DEBUG) Log.i(TAG, "onPostExecute()");
-        //mButton.setText(getString(R.string.start));
-        //mProgressBar.setProgress(mProgressBar.getMax());
-        //mPercent.setText(getString(R.string.one_hundred_percent));
-        if (debugModeMain) Toast.makeText(this, R.string.task_complete_msg, Toast.LENGTH_SHORT).show();
-    }
-
-
-
-
-
-    /*********************************/
-    /***** TASK CALLBACK METHODS 2 *****/
-    /*********************************/
-
-    @Override
-    public void onPreExecute2() {
-        if (DEBUG) Log.i(TAG, "onPreExecute()");
-        //mButton.setText(getString(R.string.cancel));
-        ELMREADY = 0;
-        refresca();
-        if (debugModeMain) Toast.makeText(this, R.string.task2_start, Toast.LENGTH_SHORT).show();
-
-
-
-
-    }
-
-    @Override
-    public void onProgressUpdate2(long indice, long dado) {
-        if (DEBUG) Log.i(TAG, "onProgressUpdate2(" + indice);
-        //indice 0 é actualizar passo no écran
-        if (indice == 0L) actualizapasso(String.valueOf(dado));
-
-        //outros casos
-        int temp = (int) indice;
-
-        switch (temp) {
-
-            case 1: //actualizar icone de estado
-                if (dado == 0L) vermelho();
-                if (dado == 1L) amarelo();
-                if (dado == 2L) verde();
-                break;
-
-            case 2: //actualizar écrans
-                actualizarpaginas(valoresmemorizados);
-                break;
-
-            case 100: //escrever SOCx475 na array de valores actuais
-                valoresmemorizados[0] = dado;
-                break;
-
-
-
-        }
-
-    }
-
-
-    @Override
-    public void onCancelled2() {
-        if (DEBUG) Log.i(TAG, "onCancelled()");
-
-
-        if (pausado)Toast.makeText(this,R.string.task2_canc, Toast.LENGTH_SHORT).show();
-
-        cancelatodasnotif();
-        ELMREADY = 0;
-        refresca();
-
-
-    }
-
-    @Override
-    public void onPostExecute2() {
-        if (DEBUG) Log.i(TAG, "onPostExecute()");
-        //mButton.setText(getString(R.string.start));
-        //mProgressBar.setProgress(mProgressBar.getMax());
-        //mPercent.setText(getString(R.string.one_hundred_percent));
-        Toast.makeText(this, R.string.task2_canc, Toast.LENGTH_SHORT).show();
-
-        cancelatodasnotif();
-        ELMREADY = 0;
-        refresca();
-
-
     }
 
 
@@ -559,28 +535,6 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
-
-
-
-
-    @Override
-    public void onBotaoRandom() {
-
-        if (debugModeMain)toast("onBotaoRandom");
-
-        if (mTaskFragment.isRunning()) {
-            mTaskFragment.cancel();
-        }
-        else {
-            mTaskFragment.start();
-        }
-
-
-    }
-
-
-
-
 
 
     //@Override
@@ -654,7 +608,7 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
 
 
-    public void mostranotificacao (int codigo) {
+    public void mostranotificacao(int codigo) {
 
         mNotificationManager.notify(codigo, mBuilder.build());
     }
@@ -664,5 +618,37 @@ public class MainActivity extends AppCompatActivity implements Page1.pagina1inte
 
         mNotificationManager.cancelAll();
     }
+
+
+
+
+    //função que verifica o resultado do pedido de ligação de bluetooth ao utilizador
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Verificar se o bluetooth foi ligado com sucesso
+        if (requestCode == REQUEST_ENABLE_BT) {
+
+            if (resultCode== Activity.RESULT_OK) {
+                //envia informação à tarefa que bluetooth foi ligado
+                MyBus.getInstance().post(new MainTaskResultEvent(3));
+
+
+            }
+
+            if (resultCode==Activity.RESULT_CANCELED) {
+                toastlong(getString(R.string.pse_turnon_bt));
+                MyBus.getInstance().post(new MainTaskResultEvent(4));
+
+
+
+            }
+        }
+
+
+
+    }
+
 
 }

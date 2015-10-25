@@ -32,10 +32,12 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
+        //não é necessário parar a btelmtask pois foi parada pelo botão de acesso aos settings
+
+
+
+
         //Criar lista de dispositivos bluetooth emparelhados
-
-
-
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
@@ -145,9 +147,11 @@ public class Settings extends AppCompatActivity {
 
             }
             editor.putBoolean("keepscreenon",keepscreenon);
+            MainActivity.keepscreenMain = keepscreenon;
             editor.putBoolean("backgroundmodeon",backgroundmodeon);
+            MainActivity.backgroundMain = backgroundmodeon;
             editor.putBoolean("debugmodeon",debugmodeon);
-
+            MainActivity.debugModeMain = debugmodeon;
 
 
             editor.commit();
