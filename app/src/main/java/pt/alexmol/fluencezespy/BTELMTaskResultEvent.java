@@ -5,16 +5,16 @@ package pt.alexmol.fluencezespy;
  */
 class BTELMTaskResultEvent {
 
-    private final long indice;
-    private final long dado;
+    private final int indice;
+    private final int dado;
 
-    public BTELMTaskResultEvent(long indice, long dado) {
+    public BTELMTaskResultEvent(int indice, int dado) {
         this.indice = indice;
         this.dado = dado;
     }
 
-    public long[] getResult() {
-        long[] resultado = new long[2];
+    public int[] getResult() {
+        int[] resultado = new int[2];
         resultado[0] = indice;
         resultado[1] = dado;
 

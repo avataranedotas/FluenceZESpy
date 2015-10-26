@@ -25,14 +25,14 @@ import java.util.UUID;
 /**
  * Created by alexandre.moleiro on 24-10-2015.
  */
-public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
+public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     private final Context mContext;
     public BTELMAsyncTask (Context context){
         mContext = context;
     }
 
-    private long watchdog = 0L;
+    private int watchdog = 0;
     private int detectapausa = 0;
 
     private static BluetoothSocket mmSocket2 = null;
@@ -66,6 +66,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     private static boolean backGroundMode = false;
     private static boolean debugMode = false;
 
+    private final int invalido = Integer.MAX_VALUE;
 
     private static PowerManager powerManager;
     private static PowerManager.WakeLock wakeLock;
@@ -114,7 +115,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     @Override
     protected Void doInBackground(Void... ignore) {
 
-        publishProgress(2L,2L);
+        publishProgress(2,2);
 
         int passo = 1;
         String resposta = "";
@@ -126,7 +127,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
         boolean ultimavalida = false;
 
         //informa main que começou ciclo
-        publishProgress(2L,3L);
+        publishProgress(2,3);
         if (debugMode) tostax("BTELM task starting");
 
         //ciclo principal
@@ -137,7 +138,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
             if (passo >=11 && (!BTON2 || !BTREQ2)) {
                 passo = 3;
                 ELMREADY2 = 0;
-                publishProgress(1L, 0L); //actualizar icone para vermelho
+                publishProgress(1, 0); //actualizar icone para vermelho
             }
 
 
@@ -145,12 +146,15 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
             if (passo >= 20 && !BTSOCKET2) {
                 passo = 11;
                 ELMREADY2 = 0;
-                publishProgress(1L, 0L); //actualizar icone para vermelho
+                publishProgress(1, 0); //actualizar icone para vermelho
             }
 
             if (passo == 1) {
 
-                publishProgress(0L, 1L);
+                publishProgress(0, 1);
+
+                ELMREADY2 = 0;
+                publishProgress(1, 0); //actualizar icone para vermelho
 
                 passo = 2;
 
@@ -158,7 +162,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo ==2) {
-                publishProgress(0L, 2L);
+                publishProgress(0, 2);
 
                 //verificar se bluetooth existe
                 mBluetoothAdapter2 = BluetoothAdapter.getDefaultAdapter();
@@ -174,7 +178,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo == 3) {
-                publishProgress(0L, 3L);
+                publishProgress(0, 3);
 
                 //verificar se bluetooth está ligado
                 //se não estiver chamar a janela de sistema a pedir para ligar
@@ -182,7 +186,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
                     //se veio de outro passo que não o próprio 3 chama a janela
                     if (passoanterior != 3) {
                         if (debugMode) tostax("pedir ligar");
-                        publishProgress(4L,0L);
+                        publishProgress(4,0);
 
                     }
                     //se veio deste passo está à espera que o utilizador se decida
@@ -205,7 +209,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
             }
 
             if (passo==4) {
-                publishProgress(0L,4L);
+                publishProgress(0,4);
 
 
                 //carrega preferências
@@ -227,7 +231,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
             }
 
             if (passo == 11) {
-                publishProgress(0L,11L);
+                publishProgress(0,11);
                 READYtoRW2 = false;
 
                 if (backGroundMode) {
@@ -280,7 +284,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
             if (passo == 12) {
 
-                publishProgress(0L, 12L);
+                publishProgress(0, 12);
                 //now make the socket connection
 
                 // Always cancel discovery because it will slow down a connection
@@ -325,7 +329,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo == 13) {
-                publishProgress(0L, 13L);
+                publishProgress(0, 13);
 
 
                 // reset streams
@@ -361,7 +365,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo == 14) {
-                publishProgress(0L, 14L);
+                publishProgress(0, 14);
 
                 try {
                     inputStream2 = tmpIn;
@@ -391,7 +395,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
             if (passo == 20) {
                 int contagem = 0;
-                publishProgress(0L, 20L);
+                publishProgress(0, 20);
                 //passo de iniciar ELM
                 //espera pelo socket ligado e ready to rw
                 if (mmSocket2 != null) {
@@ -519,7 +523,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
                             passo = 21;
                             tostax("Connected to ELM327");
                             ELMREADY2 = 1;
-                            publishProgress(1L,1L); //actualizar icone para amarelo
+                            publishProgress(1,1); //actualizar icone para amarelo
 
 
                         } else {
@@ -538,7 +542,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo == 21) {
-                publishProgress(0L,21L);
+                publishProgress(0,21);
 
                 //passo de ler free frames
                 //espera pelo socket ligado e ready to rw
@@ -547,65 +551,38 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
                     if (mmSocket2.isConnected() && READYtoRW2) {
 
 
-                        //escolher filtro
-                        write("atcra42e\r");
-                        ultimavalida = (esperatexto(150, "OK\r\r>")) ;
+                        //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
+                        resposta = getfreeframe("42e",200,200,16);
 
-                        //ligar monitor
-                        write("atma\r");
-                        //obter resposta, esperar de acordo com a periodicidade do ID
-                        resposta = esperalinha(200);
-                        //parar monitor
-                        write0();
-                        ultimavalida = ultimavalida && (esperatexto(150, "STOPPED\r\r>")) ; //tosta("STOPPED OK");
-                        //tosta("flushed after stop:" + flushbytes(500));
-
-                        //processar o valor
-                        //obter os 4 caracteres da esquerda
-
-                        //tosta("resphex:" + resposta);
-
-                        if ((resposta.length() >= 4) && ultimavalida) {
-                            resposta2 = resposta.substring(0, 4);
-
+                        if (resposta!=null) {  //resposta correcta
                             if (ELMREADY2 != 2) {
                                 ELMREADY2 = 2;
-                                publishProgress(1L,2L); //para actualizar o icone verde
+                                publishProgress(1,2); //para actualizar o icone verde
                             }
+                            longo = processalinha(resposta,0,12,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                //converter para flutuante
+                                socx475 = longo / 47.5;
+                                //validação
+                                if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
+                                    //publishProgress(100, invalido);  //necessário publicar inválidos???
+                                }
+                                else {              //valor válido
+                                    //publica valor soc multiplicado por 100
+                                    //SOCx475 é o índice 100
+                                    publishProgress(100, (int) (socx475 * 100));
+                                }
 
-                        } else {
-                            resposta2 = "FFFF";
+                                //tostax("Processado:"+longo);
+                            }
+                        }
+                        else {  //resposta inválida
                             if (ELMREADY2 != 1) {
                                 ELMREADY2 = 1;
-                                publishProgress(1L,1L); //para actualizar o icone amarelo
+                                publishProgress(1,1); //para actualizar o icone amarelo
                             }
-
                         }
 
-                        //converter caracteres em bits
-                        //extrair inteiro
-
-                        if (ultimavalida) {
-                            try {
-                                longo = Long.parseLong(resposta2, 16);
-                                //shiftar à direita 3 bits, introduzindo zeros à esquerda
-                                longo = longo >>> 3;
-                            } catch (Exception e) {
-                                if (debugMode) tostax("excepcao na 1a conversão para long:" + e);
-                                longo = 0;
-                            }
-
-                            //converter para flutuante
-                            socx475 = longo / 47.5;
-                            //validação
-                            if (socx475 <= 0.0 || socx475 > 150.0) socx475 = -1.0;
-
-
-                            //publica valor soc multiplicado por 100
-                            //SOCx475 é o índice 100
-                            if (ELMREADY2 == 2) publishProgress(100L, (long) (socx475 * 100));
-
-                        }
 
                     }
                 }
@@ -618,100 +595,70 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo == 22) {  //passo de ler iso-tp
-                publishProgress(0L, 22L);
+                publishProgress(0, 22);
 
                 if (mmSocket2 != null) {
                     if (mmSocket2.isConnected() && READYtoRW2 && ELMREADY2 == 2) {
 
 
-                        //escolher filtro
-                        write("atcra7bb\r");
-                        ultimavalida = (esperatexto(150, "OK\r\r>")) ;
+                        resposta = getisoframe("79b","7bb","022104",200,3);
 
-                        //escolher cabecalhos
-                        write("atsh79b\r");
-                        ultimavalida = ultimavalida && (esperatexto(150, "OK\r\r>")) ;
 
-                        write("atfcsh79b\r");
-                        ultimavalida = ultimavalida && (esperatexto(150, "OK\r\r>")) ;
+                        if ( resposta!=null &&  (resposta.length() == 48))  {
 
-                        //enviar comando
-                        write("022104\r");
+                            //temperatura1, obtem-se na primeira linha
 
-                        //obter 3 linhas
-                        resposta = esperalinha(1500)+esperalinha(1500)+esperalinha(1500);
+                            longo = processalinha(resposta.substring(0,16),48,55,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                //validação
+                                if (longo >=-30 && longo <=127) {
+                                    //publica valor
+                                    //tempbat1 é o indice 101
+                                    ultimavalida = true;
+                                    publishProgress(101,(int) longo);
+                                }
 
-                        //esperar pelo >
-                        ultimavalida = ultimavalida && (esperatexto(1500, ">")) ;
-
-                        //flushar o restante
-                        flushbytes(50);
-
-                        //retirar os \r da resposta
-                        resposta = resposta.replace("§", "");
-
-                        //tostax("Recebido stripped:"+resposta);
-
-                        //processar resposta
-                        //tostax("tamanho:"+resposta.length());
-
-                        if ((resposta.length() == 48) && ultimavalida) {
-
-                            //temperatura1
-                            resposta2 = resposta.substring(12, 14);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
-                            try {
-                                longo = Long.parseLong(resposta2, 16);
-
-                            } catch (Exception e) {
-                                if (debugMode) tostax("excepcao na 2a conversão para long:" + e);
-                                longo = -100;
                             }
-                            //validação
-                            if (longo >=0 && longo <=127) {
-                                //tostax("Temperatura1:" + String.valueOf(longo) + "C");
-                                //publica valor
-                                //tempbat1 é o indice 101
-                                publishProgress(101L, longo);
+
+                            //temperatura2, obtem-se na segunda linha
+                            longo = processalinha(resposta.substring(16,32),16,23,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                //validação
+                                if (longo >=-30 && longo <=127) {
+                                    //publica valor
+                                    //tempbat2 é o indice 102
+                                    publishProgress(102,(int) longo);
+                                }
+
                             }
-                            else publishProgress(101L, -100L); //valor invalido
 
-                            //temperatura2
-                            resposta2 = resposta.substring(20, 22);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
-                            try {
-                                longo = Long.parseLong(resposta2, 16);
+                            //temperatura3, obtem-se na segunda linha
+                            longo = processalinha(resposta.substring(16,32),40,47,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                //validação
+                                if (longo >=-30 && longo <=127) {
+                                    //publica valor
+                                    //tempbat3 é o indice 103
+                                    publishProgress(103,(int) longo);
+                                }
 
-                            } catch (Exception e) {
-                                if (debugMode) tostax("excepcao na 3a conversão para long:" + e);
-                                longo = -100;
                             }
-                            //validação
-                            if (longo >=0 && longo <=127) {
-                                //tostax("Temperatura2:" + String.valueOf(longo) + "C");
-                                //publica valor
-                                //tempbat1 é o indice 101
-                                publishProgress(102L, longo);
+
+
+                            //temperatura4, obtem-se na 3ª linha
+                            longo = processalinha(resposta.substring(32,48),8,15,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                //validação
+                                if (longo >=-30 && longo <=127) {
+                                    //publica valor
+                                    //tempbat4 é o indice 104
+                                    publishProgress(104,(int) longo);
+                                }
+
                             }
-                            else publishProgress(102L, -100L); //valor invalido
 
 
-                            //temperatura3
-                            resposta2 = resposta.substring(26, 28);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
-                            try {
-                                longo = Long.parseLong(resposta2, 16);
-
-                            } catch (Exception e) {
-                                if (debugMode) tostax("excepcao na 4a conversão para long:" + e);
-                                longo = -100;
-                            }
-                            //validação
-                            if (longo >=0 && longo <=127) {
-                                //tostax("Temperatura3:" + String.valueOf(longo) + "C");
-                                //publica valor
-                                //tempbat1 é o indice 101
-                                publishProgress(103L, longo);
-                            }
-                            else publishProgress(103L, -100L); //valor invalido
-
+                            /*
                             //temperatura4
                             resposta2 = resposta.substring(34, 36);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
                             try {
@@ -719,17 +666,17 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
                             } catch (Exception e) {
                                 if (debugMode) tostax("excepcao na 5a conversão para long:" + e);
-                                longo = -100;
+                                longo = invalido;
                             }
                             //validação
                             if (longo >=0 && longo <=127) {
                                 //tostax("Temperatura4:" + String.valueOf(longo) + "C");
                                 //publica valor
                                 //tempbat1 é o indice 101
-                                publishProgress(104L, longo);
+                                publishProgress(104,(int) longo);
                             }
-                            else publishProgress(104L, -100L); //valor invalido
-
+                            else publishProgress(104, invalido); //valor invalido
+                            */
 
 
                         }
@@ -750,10 +697,10 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
             if (passo == 23) { //passo de actualizar ecrans na UI
-                publishProgress(0L,23L);
+                publishProgress(0,23);
 
 
-                if (ELMREADY2==2)publishProgress(3L,0L);
+                if (ELMREADY2==2)publishProgress(3,0);
                 //volta ao passo 21
                 passo = 21;
             }
@@ -811,7 +758,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
 
 
     @Override
-    protected void onProgressUpdate(Long... valores) {
+    protected void onProgressUpdate(Integer... valores) {
 
         //coloca valores no bus
         MyBus.getInstance().post(new BTELMTaskResultEvent(valores[0], valores[1]));
@@ -1212,6 +1159,129 @@ public class BTELMAsyncTask extends AsyncTask<Void, Long, Void> {
     }
 
 
+    //função para obter um free frame
+
+    String getfreeframe (String pid, int timeout, int period, int minimocaracteres) {
+
+        boolean ultimavalida = false;
+        String resposta;
+
+        //escolher filtro
+        write("atcra"+pid+"\r");
+        ultimavalida = (esperatexto(timeout, "OK\r\r>")) ;
+
+        //ligar monitor
+        write("atma\r");
+        //obter resposta, esperar de acordo com a periodicidade do ID
+        resposta = esperalinha(period*2);
+        //parar monitor
+        write0();
+        ultimavalida = ultimavalida && (esperatexto(timeout, "STOPPED\r\r>")) ; //tosta("STOPPED OK");
+        //tosta("flushed after stop:" + flushbytes(500));
+
+        //se não válido até aqui retorna null
+        if (!ultimavalida) return null;
+
+        //retirar o fim de linha
+        resposta = resposta.replace("§", "");
+
+        //se o numero minimo de caracteres não for satisfeito retorna null
+        if ((resposta.length() < minimocaracteres)) return null;
+
+        //se tudo correu bem retorna
+        return resposta;
+
+    }
+
+
+
+
+
+    //função processa linha em hexa com máximo de 8 bytes, devolve MAX_VALUE em caso de erro
+
+    long processalinha (String input, int startbit, int stopbit, boolean signed) {
+
+        long longo;
+        int nrbits;
+        int deslocar;
+
+        //converter toda a linha num long
+        try {
+            longo = Long.parseLong(input, 16);
+        }
+        catch (Exception e) {
+            return Long.MAX_VALUE;
+        }
+
+        //extrair os bits pedidos, contado a partir da esquerda
+
+        //numero de bits total, 4 bits por cada caracter hexa
+        nrbits = input.length()*4;
+
+        //shiftar à direita
+        longo = longo >>> (nrbits-stopbit-1);
+
+        //fazer and com máscara
+        longo = longo & (  ( 1L <<  (stopbit-startbit+1)  )   -1    );
+
+        //se estivermos a ler um signed
+        if (signed) {
+            deslocar = 64 - (stopbit - startbit + 1);
+            longo = longo << deslocar;
+            longo = longo >> deslocar;
+        }
+
+        return longo;
+        }
+
+
+
+
+
+    //função para obter frames iso-tp, devolve uma String com as linhas pedidas sem separadores
+
+    String getisoframe (String pid, String rpid, String comando, int timeout, int linhas) {
+
+        boolean ultimavalida = false;
+        String resposta = "";
+        int i;
+
+        //escolher filtro
+        write("atcra"+rpid+"\r");
+        ultimavalida = (esperatexto(timeout, "OK\r\r>")) ;
+
+        //escolher cabecalhos
+        write("atsh"+pid+"\r");
+        ultimavalida = ultimavalida && (esperatexto(timeout, "OK\r\r>")) ;
+
+        write("atfcsh"+pid+"\r");
+        ultimavalida = ultimavalida && (esperatexto(timeout, "OK\r\r>")) ;
+
+        //enviar comando
+        write(comando+"\r");
+
+
+        //obter  linhas
+        for (i=1;i<=linhas;i++) {
+            resposta = resposta + esperalinha(1000);
+        }
+
+        //esperar pelo >
+        ultimavalida = ultimavalida && (esperatexto(1500, ">")) ;
+
+        //flushar o restante
+        flushbytes(20);
+
+        //se chegar aqui e não for válido retorna
+        if (!ultimavalida) return null;
+
+        //retirar os \r da resposta
+        resposta = resposta.replace("§", "");
+
+        //se tudo correu bem retorna
+        return resposta;
+
+    }
 
 
 

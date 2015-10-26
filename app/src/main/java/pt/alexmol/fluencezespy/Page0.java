@@ -15,6 +15,8 @@ import android.widget.TextView;
 public class Page0 extends Fragment {
     Context c;
 
+    private final int invalido = Integer.MAX_VALUE;
+
     public Page0(){
 
     }
@@ -48,19 +50,19 @@ public class Page0 extends Fragment {
 
 
 
-    public void actpag0(long[] array0) {
-        if (array0[0]!=-100) {
+    public void actpag0(int[] array0) {
+        if (array0[0]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_0);
             double temp = ((double) array0[0]) / 100.0;
             view.setText("SOC:" + String.format("%3.2f", temp) + "%");
         }
 
-        if (array0[1]!=-100) {
+        if (array0[1]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.battemp_0);
-            int temp1 = ((int) array0[1]);
-            int temp2 = ((int) array0[2]);
-            int temp3 = ((int) array0[3]);
-            int temp4 = ((int) array0[4]);
+            int temp1 = ( array0[1]);
+            int temp2 = ( array0[2]);
+            int temp3 = ( array0[3]);
+            int temp4 = ( array0[4]);
             view.setText("Battery Temps:" + temp1+"C "+temp2+"C "+temp3+"C "+temp4+"C");
         }
 

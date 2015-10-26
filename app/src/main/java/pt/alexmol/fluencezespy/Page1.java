@@ -15,6 +15,8 @@ import android.widget.TextView;
 public class Page1 extends Fragment {
     Context c;
 
+    private final int invalido = Integer.MAX_VALUE;
+
     //private pagina1interface listener;
 
     public Page1(){
@@ -173,8 +175,8 @@ public class Page1 extends Fragment {
     }
 
 
-    public void actpag1(long[] array1) {
-        if (array1[0]!=-100) {
+    public void actpag1(int[] array1) {
+        if (array1[0]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_1);
             double temp = ((double) array1[0]) / 100.0;
             view.setText("SOC:" + String.format("%3.2f", temp) + "%");

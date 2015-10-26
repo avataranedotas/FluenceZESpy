@@ -32,11 +32,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     static boolean keepscreenMain= false;
     private static int ELMREADY = 0;
     private boolean sair = false;
-    public static long[] valoresmemorizados;
+    public static int[] valoresmemorizados;
     private static NotificationCompat.Builder mBuilder;
     private static NotificationManager mNotificationManager;
     private static BTELMAsyncTask tarefa;
 
+    private final int invalido = Integer.MAX_VALUE;
 
     /**
      * The android.support.v4.view.PagerAdapter that will provide fragments for
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         //evento de recepção de valores para memorizar
         //100 corresponde ao indice 0
         if (event.getResult()[0]>=100 ) {
-            valoresmemorizados[ (int) ( event.getResult()[0] -100L)  ]=event.getResult()[1];
+            valoresmemorizados[  ( event.getResult()[0] -100)  ]=event.getResult()[1];
 
         }
 
@@ -179,16 +180,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        valoresmemorizados = new long[100];
+        valoresmemorizados = new int[100];
 
         // Check whether we're recreating a previously destroyed instance
         if (savedInstanceState != null) {
             // Restore value of members from saved state
-            valoresmemorizados = savedInstanceState.getLongArray("matriz");
+            valoresmemorizados = savedInstanceState.getIntArray("matriz");
 
         } else {
             //invalida valores
-            valoresmemorizados[0]= -100;
+            int i;
+            for (i=0;i<100;i++) valoresmemorizados[i]=invalido;
         }
 
 
@@ -359,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // gravar os valores guardados
-        savedInstanceState.putLongArray("matriz", valoresmemorizados);
+        savedInstanceState.putIntArray("matriz", valoresmemorizados);
 
 
         // Always call the superclass so it can save the view hierarchy state
@@ -579,7 +581,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
     //actualizar páginas
-    private void actualizarpaginas(long[] arrayd) {
+    private void actualizarpaginas(int[] arrayd) {
 
         try {
 
