@@ -279,6 +279,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                     passo=11;
                 }
 
+
+
             }
 
 
@@ -319,8 +321,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         SystemClock.sleep(10L);
                     }
 
-
-                    if (!PAUSAMAIN || backGroundMode) passo = 11;
+                    //em background se fizer mais que 5 tentativas desiste
+                    if (!PAUSAMAIN || (backGroundMode & detectapausa <5)) passo = 11;
                     else return null;
 
                 }
@@ -658,27 +660,6 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
-                            /*
-                            //temperatura4
-                            resposta2 = resposta.substring(34, 36);  //Substring (indice do primeiro caracter, indice do caracter seguinte ao último)
-                            try {
-                                longo = Long.parseLong(resposta2, 16);
-
-                            } catch (Exception e) {
-                                if (debugMode) tostax("excepcao na 5a conversão para long:" + e);
-                                longo = invalido;
-                            }
-                            //validação
-                            if (longo >=0 && longo <=127) {
-                                //tostax("Temperatura4:" + String.valueOf(longo) + "C");
-                                //publica valor
-                                //tempbat1 é o indice 101
-                                publishProgress(104,(int) longo);
-                            }
-                            else publishProgress(104, invalido); //valor invalido
-                            */
-
-
                         }
 
 
@@ -703,6 +684,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 if (ELMREADY2==2)publishProgress(3,0);
                 //volta ao passo 21
                 passo = 21;
+
+
             }
 
 
@@ -1204,19 +1187,52 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         long longo;
         int nrbits;
         int deslocar;
+        boolean substituir = false;
+        String temp = input;
 
-        //converter toda a linha num long
-        try {
-            longo = Long.parseLong(input, 16);
-        }
-        catch (Exception e) {
+        if (temp.length()>16) {
+            if(debugMode) tostax("linha com mais de 16 caracteres");
+            SystemClock.sleep(3000);
             return Long.MAX_VALUE;
         }
+
+        //se a linha tiver 16 caracteres retirar o bit mais à esquerda
+        if (temp.length()==16) {
+            String p = temp.substring(0,1); //obter 1o caracter
+
+            int p1 = Integer.parseInt(p,16); // converter pra inteiro
+            //tostax("primeiro:"+p+"="+p1);
+            //se igual ou superior a 8 subtrair 8 e substituir o primeiro caracter da linha
+            if (p1 >=8) {
+                substituir = true;
+                p1 = p1 -8;
+                p = Integer.toHexString(p1);
+                //tostax("substituir "+p1+"="+p);
+                temp = p + temp.substring(1,16);
+
+            }
+
+
+        }
+
+        //tostax("String para conversao:"+temp);
+        //converter toda a linha num long
+        try {
+            longo = Long.parseLong(temp, 16);
+        }
+        catch (Exception e) {
+            if (debugMode) tostax("Excepcao processar longo linha:"+temp + "erro:"+e);
+            SystemClock.sleep(3000);
+            return Long.MAX_VALUE;
+        }
+
+        //repor o bit mais à esquerda
+        if (substituir) longo = longo | Long.MIN_VALUE;
 
         //extrair os bits pedidos, contado a partir da esquerda
 
         //numero de bits total, 4 bits por cada caracter hexa
-        nrbits = input.length()*4;
+        nrbits = temp.length()*4;
 
         //shiftar à direita
         longo = longo >>> (nrbits-stopbit-1);
