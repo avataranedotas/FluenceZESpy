@@ -561,6 +561,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 ELMREADY2 = 2;
                                 publishProgress(1,2); //para actualizar o icone verde
                             }
+
+                            //SOC
                             longo = processalinha(resposta,0,12,false);  //processa a resposta
                             if (longo !=Long.MAX_VALUE) { //resposta bem processada
                                 //converter para flutuante
@@ -575,8 +577,43 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(100, (int) (socx475 * 100));
                                 }
 
-                                //tostax("Processado:"+longo);
                             }
+
+                            //cable plugged
+                            longo = processalinha(resposta,13,14,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(105, (int) longo);
+                                }
+
+                            //EVSE current
+                            longo = processalinha(resposta,38,43,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(106, (int) longo);
+                            }
+
+                            //Motor fan speed ?
+                            longo = processalinha(resposta,20,24,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(107, (int) longo);
+                            }
+
+                            /*
+                            //HV battery temp ?
+                            longo = processalinha(resposta,44,50,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(108, (int) longo);
+                            }
+                            */
+
+                            //Max charging power
+                            longo = processalinha(resposta,56,63,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(109, (int) longo*3);
+                            }
+
+
+
+
                         }
                         else {  //resposta inválida
                             if (ELMREADY2 != 1) {
@@ -663,7 +700,20 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         }
 
 
+                        resposta = getisoframe("79b","7bb","022101",200,8);
 
+                        //tostax("Tamanho:"+resposta.length());
+                        //SystemClock.sleep(3000);
+
+                        if ( resposta!=null &&  (resposta.length() == 128) )  {
+
+                            //battery max input power, obtem-se na 4ª linha
+                            longo = processalinha(resposta.substring(48,64),40,55,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                    publishProgress(110,(int) longo);
+                                }
+
+                            }
 
                         //SystemClock.sleep(10000L);
 
@@ -681,7 +731,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 publishProgress(0,23);
 
 
-                if (ELMREADY2==2)publishProgress(3,0);
+                if (ELMREADY2==2)publishProgress(3, 0);
                 //volta ao passo 21
                 passo = 21;
 

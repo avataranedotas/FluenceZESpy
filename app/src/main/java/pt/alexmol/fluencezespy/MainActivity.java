@@ -97,12 +97,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //
     //  4, 0 Pedido de ligação de bluetooth
     //
-    //100, Socx475 x100
-    //101, tempbat1
-    //102, tempbat2
-    //103, tempbat3
-    //104, tempbat4
-
+    //100, Socx475 x100 %
+    //101, tempbat1 C
+    //102, tempbat2 C
+    //103, tempbat3 C
+    //104, tempbat4 C
+    //105, cableplugged 0=disconnected 1=inserted and ready 2=inserted release pressed
+    //106, evse current pilot A
+    //107, motor fan speed ?
+    //108, hv battery temp ?
+    //109, maxchargingpower x10 kW
+    //110, batterymaxinput x100 kW
 
     @Subscribe
     public void recebereventos (BTELMTaskResultEvent event) {

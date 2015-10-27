@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Page0 extends Fragment {
@@ -66,7 +67,45 @@ public class Page0 extends Fragment {
             view.setText("Battery Temps:" + temp1+"C "+temp2+"C "+temp3+"C "+temp4+"C");
         }
 
+        if (array0[5]!=invalido) {
+            ImageView view = (ImageView) getView().findViewById(R.id.plug_0);
+            if (array0[5]!=0) view.setVisibility(View.VISIBLE);
+            else view.setVisibility(View.INVISIBLE);
 
+        }
+
+        if (array0[6]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.evsepilot0);
+            if (array0[6]>0 && array0[6]<48 ) {
+                view.setText(array0[6] + "A");
+                view.setVisibility(View.VISIBLE);
+            }
+            else view.setVisibility(View.INVISIBLE);
+
+        }
+
+        /*
+        if (array0[8]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.hvbatterytemp_0);
+            view.setText("HVBatteryTemp:" +array0[8]);
+        }
+        */
+
+        if (array0[9]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.maxchargingpower_0);
+            double temp = ((double) array0[9]) / 10.0;
+            if (temp>0.0) {
+                view.setText("Max Charging Power: " + String.format("%2.1f", temp) + "kW");
+                view.setVisibility(View.VISIBLE);
+            }
+            else view.setVisibility(View.INVISIBLE);
+        }
+
+        if (array0[10]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.maxinputpower_0);
+            double temp = ((double) array0[10]) / 100.0;
+            view.setText("Max Input Power: " + String.format("%2.2f", temp) + "kW");
+        }
     }
 
 }

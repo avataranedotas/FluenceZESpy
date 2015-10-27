@@ -182,6 +182,12 @@ public class Page1 extends Fragment {
             view.setText("SOC:" + String.format("%3.2f", temp) + "%");
         }
 
+        if (array1[7]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.motorfanspeed_1);
+            view.setText("Motor Fan Speed:" +array1[7]);
+        }
+
+
 
     }
 }
