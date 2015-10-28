@@ -1,11 +1,13 @@
 package pt.alexmol.fluencezespy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -18,6 +20,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     private static MainActivity instance = null;
     private final static int SETTINGS_ACTIVITY = 7;
+    //private final static int BATTERYVOLTAGES_ACTIVITY = 8;
     private final static int REQUEST_ENABLE_BT = 3;
     static boolean debugModeMain = false;
     static boolean backgroundMain = false;
@@ -218,8 +222,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         //tamanho do ecran utilizável, dimensão mínima em dp
          smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
 
-        // se o swdp for superior a 580 estamos num tablet
-        if (smallestwidthdp > 580) TABLET = true;
+        // se o swdp for superior a 600 estamos num tablet
+        if (smallestwidthdp > 600) TABLET = true;
 
         instance = this;
 
@@ -340,6 +344,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        final SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+
         //inicia asynctaskelm caso não esteja a correr
         try {
 
@@ -367,10 +373,87 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
         catch (Exception e){  if (debugModeMain) toast ("Exception ao iniciar a thread:"+e); }
 
-        //envia informação à tarefa que não está em pausa
-        MyBus.getInstance().post(new MainTaskResultEvent(1));
 
-        sair = false;
+
+
+
+
+        if(settings.getBoolean("disclaimer",false)==false) {
+
+            tarefa.cancel(true);
+
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+            // set title
+            alertDialogBuilder.setTitle("Disclaimer");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage(Html.fromHtml("<html>Fluence ZE Spy (“the software”) is provided as is. <b>Use the software at your own risk.</b> " +
+                            "The authors make no warranties as to performance or fitness for a particular purpose, " +
+                            "or any other warranties whether expressed or implied. No oral or written communication " +
+                            "from or information provided by the authors shall create a warranty. Under no circumstances " +
+                            "shall the authors be liable for direct, indirect, special, incidental, or consequential " +
+                            "damages resulting from the use, misuse, or inability to use the software, even if the author " +
+                            "has been advised of the possibility of such damages. These exclusions and limitations may not " +
+                            "apply in all jurisdictions. You may have additional rights and some of these limitations may not " +
+                            "apply to you. This software is only intended for scientific usage." +
+                            "<br>" +
+                            "<br>" +
+                            "<b>By using this software you are interfering with your car and doing that with hardware and " +
+                            "software beyond your control, created by a loose team of interested amateurs in this field. Any " +
+                            "car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using " +
+                            "it, or even paying attention to the displays instead of watching the road.</b></html>"))
+                    .setCancelable(true)
+                    .setPositiveButton("I accept", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, close
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putBoolean("disclaimer", true);
+                            editor.commit();
+
+                            if (!( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  )) {
+                                tarefa = new BTELMAsyncTask(MainActivity.instance);
+                                tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                            }
+
+
+                            // current activity
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("I don't understand",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                    //MainActivity.this.finishAffinity(); requires API16
+                                    finish();
+                                    //android.os.Process.killProcess(android.os.Process.myPid());
+                                    //System.exit(0);
+                                }
+                            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+
+        }
+        else { //envia informação à tarefa que não está em pausa
+            MyBus.getInstance().post(new MainTaskResultEvent(1));
+            sair = false;
+        }
+
+
+
+
+
+
     }
 
 

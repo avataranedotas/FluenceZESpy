@@ -5,11 +5,13 @@ package pt.alexmol.fluencezespy;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +36,31 @@ public class Page0 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.section0, null);
+
+
+        //botao para tensões das células
+
+
+        Button button = (Button) v.findViewById(R.id.buttonxpto);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View va) {
+
+
+
+                Intent intent = new Intent(getActivity(), BatteryVoltages.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+
+
+
+
+
         return       v;
     }
 
