@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="pt.alexmol.fluencezespy.Settings"
+    android:background="@color/material_grey_100">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Select ELM327 Bluetooth device"
+        android:id="@+id/textViewBluetoothDevice"
+        android:textColor="#000000"
+        android:background="#d7e2e2" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bluetoothDeviceList"
+        android:layout_below="@+id/textViewBluetoothDevice"
+        android:prompt="@string/spinner_elm"
+        android:background="#d7e2e2"
+        android:popupTheme="@android:color/holo_blue_light"
+        />
+
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Run in background"
+        android:id="@+id/checkBoxBackground"
+        android:layout_below="@+id/bluetoothDeviceList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#f1eed2"
+        android:onClick="onCheckboxClicked"/>
+
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Keep screen On"
+        android:id="@+id/checkBoxScreen"
+        android:background="#d7e2e2"
+        android:layout_below="@+id/checkBoxBackground"
+        android:layout_centerHorizontal="true"
+        android:onClick="onCheckboxClicked"/>
+
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Debug mode"
+        android:id="@+id/checkBoxDebug"
+        android:background="#f1eed2"
+        android:layout_below="@+id/checkBoxScreen"
+        android:layout_centerHorizontal="true"
+        android:onClick="onCheckboxClicked"/>
+
+
+</RelativeLayout>
