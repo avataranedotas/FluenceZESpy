@@ -106,6 +106,39 @@ public class Page0 extends Fragment {
             double temp = ((double) array0[10]) / 100.0;
             view.setText("Max Input Power: " + String.format("%2.2f", temp) + "kW");
         }
+
+        if (array0[11]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.maxoutputpower_0);
+            double temp = ((double) array0[11]) / 100.0;
+            view.setText("Max Output Power: " + String.format("%2.2f", temp) + "kW");
+        }
+
+        if (array0[12]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.packvoltage_0);
+            double temp = ((double) array0[12]) / 100.0;
+            view.setText("Pack Voltage: " + String.format("%3.2f", temp) + "V");
+        }
+
+        if (array0[13]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
+            double temp = ((double) array0[13]) / 1000.0;
+            view.setText("Battery current: " + String.format("%3.2f", temp) + "A");
+        }
+
+        if (array0[15]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.realsoc_0);
+            double temp = ((double) array0[15]) / 10000.0;
+            view.setText("REAL SOC: " + String.format("%3.3f", temp) + "%");
+        }
+
+        if (array0[16]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.ah_0);
+            double temp = ((double) array0[16]) / 10000.0;
+            view.setText("Capacity: " + String.format("%2.3f", temp) + "Ah");
+        }
+
+
+
     }
 
 }

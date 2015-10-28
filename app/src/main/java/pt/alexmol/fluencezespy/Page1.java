@@ -160,6 +160,24 @@ public class Page1 extends Fragment {
         MainActivity actividademain1 = (MainActivity)getActivity();
         actpag1(actividademain1.valoresmemorizados);
 
+
+        TextView view = (TextView) getView().findViewById(R.id.swdp);
+        view.setText("swdp:" + MainActivity.smallestwidthdp);
+
+        if (MainActivity.debugModeMain) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.INVISIBLE);
+
+        view = (TextView) getView().findViewById(R.id.passo);
+        if (MainActivity.debugModeMain) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.INVISIBLE);
+
+        view = (TextView) getView().findViewById(R.id.type);
+        if (MainActivity.debugModeMain) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.INVISIBLE);
+
+
+
+
     }
 
     @Override public void onDestroy() {
@@ -172,6 +190,7 @@ public class Page1 extends Fragment {
     public void setPasso(String url) {
         TextView view = (TextView) getView().findViewById(R.id.passo);
         view.setText(url);
+
     }
 
 
@@ -185,6 +204,12 @@ public class Page1 extends Fragment {
         if (array1[7]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.motorfanspeed_1);
             view.setText("Motor Fan Speed:" +array1[7]);
+        }
+
+        if (array1[14]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.battery12v_1);
+            double temp = ((double) array1[14]) / 1000.0;
+            view.setText("12V Battery Voltage:"+ String.format("%2.2f", temp) + "V");
         }
 
 

@@ -71,11 +71,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Portrait Phone"
+        android:text="Portrait Tablet"
         android:id="@+id/type"
+        android:textSize="8dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="8dp" />
+        android:layout_centerHorizontal="true" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -87,6 +88,7 @@
         android:layout_below="@+id/motorfanspeed_1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
 
     <!--
     <Button

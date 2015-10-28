@@ -3,10 +3,14 @@ package pt.alexmol.fluencezespy;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.UiModeManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.*;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
@@ -14,6 +18,8 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -36,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private static NotificationCompat.Builder mBuilder;
     private static NotificationManager mNotificationManager;
     private static BTELMAsyncTask tarefa;
+    public static int smallestwidthdp;
+    public static boolean TABLET = false;
 
     private final int invalido = Integer.MAX_VALUE;
 
@@ -108,6 +116,15 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //108, hv battery temp ?
     //109, maxchargingpower x10 kW
     //110, batterymaxinput x100 kW
+    //111, batterymaxoutput x100kW
+    //112, pack voltage x100 V
+    //113, battery current x1000 A signed
+    //114, 12V voltage x1000 V
+    //115, REAL SOC x10000 %
+    //116, Ah x10000 Ah
+
+
+
 
     @Subscribe
     public void recebereventos (BTELMTaskResultEvent event) {
@@ -198,6 +215,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             for (i=0;i<100;i++) valoresmemorizados[i]=invalido;
         }
 
+        //tamanho do ecran utilizável, dimensão mínima em dp
+         smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
+
+        // se o swdp for superior a 580 estamos num tablet
+        if (smallestwidthdp > 580) TABLET = true;
 
         instance = this;
 
@@ -291,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_notification1)
+                        .setSmallIcon(R.mipmap.ic_notification_2_launcher)
                         .setContentTitle("Fluence ZE Spy")
                         .setContentText("Running in background")
                         .setPriority(-1);

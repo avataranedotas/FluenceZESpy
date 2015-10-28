@@ -713,9 +713,49 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(110,(int) longo);
                                 }
 
+
+                            //battery max output power, obtem-se na 4ª e 5ª linhas
+                            longo = processalinha((resposta.substring(62,64)+resposta.substring(66,68)),0,15,false);
+
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(111,(int) longo);
                             }
 
-                        //SystemClock.sleep(10000L);
+                            //pack voltage, obtem-se na 5ª linha
+                            longo = processalinha(resposta.substring(68,72),0,15,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(112,(int) longo);
+                            }
+
+                            //battery current, obtem-se na 2ª linha
+                            longo = processalinha(resposta.substring(16,32),24,55,true) * -1L;
+                            if (longo !=Long.MAX_VALUE) {
+                                if (Math.abs(longo)< 1000) longo = 0;
+                                publishProgress(113,(int) longo);
+                            }
+
+                            //12V voltage
+                            longo = processalinha(resposta.substring(72,76),0,15,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(114,(int) longo);
+                            }
+
+                            //REAL SOC
+                            longo = processalinha((resposta.substring(93,96)+resposta.substring(98,100)),0,19,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(115,(int) longo);
+                            }
+
+
+                            //Ah
+                            longo = processalinha(resposta.substring(103,108),0,19,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(116,(int) longo);
+                            }
+
+
+
+                        }
 
 
 
