@@ -41,7 +41,7 @@ public class Page0 extends Fragment {
         //botao para tensões das células
 
 
-        Button button = (Button) v.findViewById(R.id.buttonxpto);
+        Button button = (Button) v.findViewById(R.id.buttonbatterycell);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
