@@ -1,6 +1,8 @@
 package pt.alexmol.fluencezespy;
 
 import android.app.Activity;
+//import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.UiModeManager;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private static BTELMAsyncTask tarefa;
     public static int smallestwidthdp;
     public static boolean TABLET = false;
+    public static boolean landscape;
 
     private final int invalido = Integer.MAX_VALUE;
 
@@ -216,7 +219,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
 
         //tamanho do ecran utilizável, dimensão mínima em dp
-         smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
+        smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
+
+        if( this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) landscape = true;
+        else landscape = false;
 
         // se o swdp for superior a 580 estamos num tablet
         if (smallestwidthdp > 580) TABLET = true;
@@ -236,59 +242,66 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         keepscreenMain = settings.getBoolean("keepscreenon",false);
 
 
-        // Set up the action bar.
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setIcon(R.mipmap.ic_launcher);
+
+        if (!landscape || !TABLET) {
 
 
-        //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
-        //getSupportActionBar().setDisplayShowTitleEnabled(true);
-        //getSupportActionBar().setTitle("xpto");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            // Set up the action bar.
+            final ActionBar actionBar = getSupportActionBar();
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            actionBar.setIcon(R.mipmap.ic_launcher);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections
-        // of the app.
-        mSectionsPagerAdapter = new MyPagerAdapter(this, this,
-                getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+            //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+            //getSupportActionBar().setDisplayShowTitleEnabled(true);
+            //getSupportActionBar().setTitle("xpto");
+            //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
 
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
+
+
+
+            // Create the adapter that will return a fragment for each of the three
+            // primary sections
+            // of the app.
+            mSectionsPagerAdapter = new MyPagerAdapter(this, this,
+                    getSupportFragmentManager());
+
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.pager);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+            // When swiping between different sections, select the corresponding
+            // tab. We can also use ActionBar.Tab#select() to do this if we have
+            // a reference to the Tab.
+            mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                @Override
+                public void onPageSelected(int position) {
+                    actionBar.setSelectedNavigationItem(position);
+                }
+            });
+
+            // For each of the sections in the app, add a tab to the action bar.
+            for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+                // Create a tab with text corresponding to the page title defined by
+                // the adapter. Also specify this Activity object, which implements
+                // the TabListener interface, as the callback (listener) for when
+                // this tab is selected.
+
+
+                actionBar.addTab(
+                        actionBar.newTab()
+                                .setText(mSectionsPagerAdapter.getPageTitle(i))
+                                .setTabListener(this));
+
+
             }
-        });
 
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-
-
-
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-
-
+            //Escolher por defeito a 2ªpágina (indice 1)
+            actionBar.setSelectedNavigationItem(1);
         }
-
-        //Escolher por defeito a 2ªpágina (indice 1)
-        actionBar.setSelectedNavigationItem(1);
-
 
     }
 
@@ -572,13 +585,25 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private void actualizapasso(String link) {
 
 
-        Page1 fragmento = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
+        if (!landscape || !TABLET) {
 
-        if (fragmento !=null) {
+            Page1 fragmento = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
+
+            if (fragmento != null) {
+
+                fragmento.setPasso(link);
+            }
+            //if (fragmento == null & debugModeMain) toast("Null");
+        }
+        else {
+
+            Page1 fragmento = (Page1) getSupportFragmentManager().findFragmentById(R.id.page1);
 
             fragmento.setPasso(link);
+
+
         }
-        //if (fragmento == null & debugModeMain) toast("Null");
+
 
 
 
@@ -610,30 +635,44 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //actualizar páginas
     private void actualizarpaginas(int[] arrayd) {
 
-        try {
+        if (!landscape || !TABLET) {
+            try {
 
-            Page1 fragmentoy1 = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
+                Page1 fragmentoy1 = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
 
-            if (fragmentoy1 != null) {
-                 fragmentoy1.actpag1(arrayd);
+                if (fragmentoy1 != null) {
+                    fragmentoy1.actpag1(arrayd);
+                }
+
+                Page2 fragmentoy2 = (Page2) mSectionsPagerAdapter.getRegisteredFragment(2);
+
+                if (fragmentoy2 != null) {
+                    fragmentoy2.actpag2(arrayd);
+                }
+
+                Page0 fragmentoy0 = (Page0) mSectionsPagerAdapter.getRegisteredFragment(0);
+
+                if (fragmentoy0 != null) {
+                    fragmentoy0.actpag0(arrayd);
+                }
+
+            } catch (Exception e) {
+                if (debugModeMain) toast("excepcao:" + e);
             }
+        }
+        else {
+            Page1 fragmento1 = (Page1) getSupportFragmentManager().findFragmentById(R.id.page1);
+            fragmento1.actpag1(arrayd);
 
-            Page2 fragmentoy2 = (Page2) mSectionsPagerAdapter.getRegisteredFragment(2);
+            Page0 fragmento0 = (Page0) getSupportFragmentManager().findFragmentById(R.id.page0);
+            fragmento0.actpag0(arrayd);
 
-            if (fragmentoy2 != null) {
-                fragmentoy2.actpag2(arrayd);
-            }
+            Page2 fragmento2 = (Page2) getSupportFragmentManager().findFragmentById(R.id.page2);
+            fragmento2.actpag2(arrayd);
 
-            Page0 fragmentoy0 = (Page0) mSectionsPagerAdapter.getRegisteredFragment(0);
-
-            if (fragmentoy0 != null) {
-                fragmentoy0.actpag0(arrayd);
-            }
 
         }
-        catch (Exception e) {
-            if (debugModeMain)toast("excepcao:"+e);
-        }
+
 
     }
 
