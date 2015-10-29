@@ -4,6 +4,7 @@ import android.app.Activity;
 //import android.support.v4.app.Fragment;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.UiModeManager;
@@ -332,6 +333,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                         .setSmallIcon(R.mipmap.ic_notification_2_launcher)
                         .setContentTitle("Fluence ZE Spy")
                         .setContentText("Running in background")
+                        .setCategory(Notification.CATEGORY_STATUS)
                         .setPriority(-1);
 
         // Creates an explicit intent for an Activity in your app

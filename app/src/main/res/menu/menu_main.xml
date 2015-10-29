@@ -38,14 +38,14 @@
         android:title="@string/action_settings"
         android:orderInCategory="95"
         android:icon="@mipmap/ic_settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_exit"
         android:title="Exit"
         android:orderInCategory="100"
         android:icon="@mipmap/ic_exit"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
 </menu>
 
