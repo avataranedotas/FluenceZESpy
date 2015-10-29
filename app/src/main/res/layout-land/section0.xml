@@ -4,8 +4,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     android:paddingBottom="10dp"
     android:id="@+id/page0"
     tools:context=".Page0">
@@ -40,7 +40,8 @@
         android:id="@+id/plug_0"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_plug" />
+        android:src="@mipmap/ic_plug"
+        android:paddingRight="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,7 +57,8 @@
         android:layout_alignStart="@+id/plug_0"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:gravity="top|center_horizontal" />
+        android:gravity="top|center_horizontal"
+        android:paddingRight="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -135,6 +137,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <!--
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -144,6 +147,107 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="70dp" />
+    -->
+
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:src="@drawable/fze_back_2"
+        android:scaleType="fitEnd"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:adjustViewBounds="false"
+        android:alpha="0.25"
+        android:visibility="visible" />
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:id="@+id/layoutContainer" android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.64">
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.22">
+
+            <!-- Este é o do centro vertical -->
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainer2" android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.51">
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.02"
+                    >
+
+
+                    <Button
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cell Voltages"
+                        android:id="@+id/buttonbatterycell"
+                        android:textSize="12dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentBottom="false"
+                        android:layout_alignParentRight="false"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.47">
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.14">
+        </RelativeLayout>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
 

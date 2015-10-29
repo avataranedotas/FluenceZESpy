@@ -178,14 +178,14 @@
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.25">
+            android:layout_weight="0.3">
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.35">
+            android:layout_weight="0.3">
 
             <!-- Este é o do centro vertical -->
 
@@ -198,7 +198,7 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.67">
+                    android:layout_weight="0.69">
                 </RelativeLayout>
 
 
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:text="Cell Voltages"
                         android:id="@+id/buttonbatterycell"
-                        android:textSize="16dp"
+                        android:textSize="12dp"
                         android:layout_alignParentTop="false"
                         android:layout_alignParentLeft="false"
                         android:layout_alignParentBottom="false"
@@ -228,7 +228,7 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.27">
                 </RelativeLayout>
 
 
