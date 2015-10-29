@@ -20,7 +20,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +33,7 @@
         android:layout_below="@+id/socx475_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="15dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
         android:textAlignment="center"
         android:textStyle="bold"
         android:gravity="top|center_horizontal"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:textSize="14dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +71,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#000000"
-        android:layout_below="@+id/battemp_0" />
+        android:layout_below="@+id/battemp_0"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +83,8 @@
         android:textColor="#000000"
         android:layout_below="@+id/maxchargingpower_0"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -91,7 +95,8 @@
         android:textColor="#000000"
         android:layout_below="@+id/maxinputpower_0"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -102,7 +107,8 @@
         android:textColor="#000000"
         android:layout_below="@+id/maxoutputpower_0"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -113,7 +119,8 @@
         android:textColor="#000000"
         android:layout_below="@+id/packvoltage_0"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,7 +131,8 @@
         android:textColor="#000000"
         android:layout_below="@+id/batcurrent_0"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -135,7 +143,8 @@
         android:textColor="#000000"
         android:layout_below="@+id/realsoc_0"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
 
     <!--
     <Button
