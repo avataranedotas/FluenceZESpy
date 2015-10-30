@@ -91,7 +91,8 @@ public class Page0 extends Fragment {
             int temp2 = ( array0[2]);
             int temp3 = ( array0[3]);
             int temp4 = ( array0[4]);
-            view.setText("Battery Temps:" + temp1+"C "+temp2+"C "+temp3+"C "+temp4+"C");
+            int tempm = ( array0[17]);
+            view.setText("Battery Temps:" + temp1+"C "+temp2+"C "+temp3+"C "+temp4+"C Avg:"+tempm+"C");
         }
 
         if (array0[5]!=invalido) {
@@ -164,7 +165,23 @@ public class Page0 extends Fragment {
             view.setText("Capacity: " + String.format("%2.3f", temp) + "Ah");
         }
 
+        if (array0[18]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.health_0);
+            double temp = ((double) array0[18]) / 2.0;
+            view.setText("Health: " + String.format("%3.1f", temp) + "%");
+        }
 
+        if (array0[19]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.batkm_0);
+            //double temp = ((double) array0[19]) / 1.0;
+            view.setText("Mileage: " + array0[19] +" ("+( 65535-array0[19])   +") km");
+        }
+
+        if (array0[20]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
+            //double temp = ((double) array0[19]) / 1.0;
+            view.setText("Total Charged: " + array0[20] + "kWh");
+        }
 
     }
 

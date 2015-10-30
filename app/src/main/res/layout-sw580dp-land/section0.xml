@@ -150,6 +150,43 @@
         android:textSize="15dp" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Health: Wait"
+        android:id="@+id/health_0"
+        android:textColor="#000000"
+        android:layout_below="@+id/ah_0"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Mileage: Wait"
+        android:id="@+id/batkm_0"
+        android:textColor="#000000"
+        android:layout_below="@+id/health_0"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Total Charged: Wait"
+        android:id="@+id/totcharged_0"
+        android:textColor="#000000"
+        android:layout_below="@+id/batkm_0"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
+
+
     <!--
     <Button
         android:layout_width="100dp"
@@ -169,14 +206,14 @@
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.3">
+            android:layout_weight="0.4">
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.3">
+            android:layout_weight="0.6">
 
             <!-- Este é o do centro vertical -->
 
@@ -189,22 +226,22 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.69">
+                    android:layout_weight="0.65">
                 </RelativeLayout>
 
 
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_centerInParent="true"
-                    android:layout_weight="0.03"
+                    android:layout_weight="0.35"
                     >
 
 
                     <Button
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="Cell Voltages"
                         android:id="@+id/buttonbatterycell"
                         android:textSize="12dp"
@@ -212,15 +249,24 @@
                         android:layout_alignParentLeft="false"
                         android:layout_alignParentBottom="false"
                         android:layout_alignParentRight="false"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerInParent="true"
+                        android:layout_margin="40dp"
+                        android:alpha="0" />
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/imageView2"
+                        android:src="@drawable/fze_bat1"
+                        android:alpha="0.8"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:scaleType="fitEnd" />
+
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.27">
-                </RelativeLayout>
 
 
             </LinearLayout>
@@ -232,12 +278,10 @@
 
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.4">
-        </RelativeLayout>
+
     </LinearLayout>
+
+
 
 </RelativeLayout>
 

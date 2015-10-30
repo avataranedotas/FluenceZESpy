@@ -129,6 +129,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //114, 12V voltage x1000 V
     //115, REAL SOC x10000 %
     //116, Ah x10000 Ah
+    //117, tempbat media C
+    //118, Pack Health x2 %
+    //119, bat mileage km
+    //120, bat total charged kwh
 
 
 

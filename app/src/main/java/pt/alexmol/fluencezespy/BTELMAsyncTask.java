@@ -696,6 +696,18 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
+                            //temperatura média, obtem-se na 3ª linha
+                            longo = processalinha(resposta.substring(32,48),16,23,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                //validação
+                                if (longo >=-30 && longo <=127) {
+                                    //publica valor
+                                    //tempbatm é o indice 117
+                                    publishProgress(117,(int) longo);
+                                }
+
+                            }
+
 
                         }
 
@@ -756,6 +768,40 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                         }
+
+
+
+                        resposta = getisoframe("79b","7bb","022161",200,4);
+
+                        //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                        //else tostax("Resposta null");
+                        //SystemClock.sleep(3000);
+
+                        if ( resposta!=null &&  (resposta.length() == 64) )  {
+
+                            //pack health obtem-se na 2ª linha
+                            longo = processalinha(resposta.substring(16,32),40,47,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(118,(int) longo);
+                            }
+
+                            //bat mileage 3ª linha
+                            longo = processalinha(resposta.substring(32,48),8,23,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(119,(int) longo);
+                            }
+
+                            //bat total charged kwh  3ª linha
+                            longo = processalinha(resposta.substring(32,48),40,55,false);
+                            if (longo !=Long.MAX_VALUE) {
+                                publishProgress(120,(int) longo);
+                            }
+
+
+
+                        }
+
+
 
 
 
