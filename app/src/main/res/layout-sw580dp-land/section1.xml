@@ -94,21 +94,6 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:textSize="15dp" />
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/imageView2"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="false"
-        android:src="@drawable/fze_front_2"
-        android:layout_marginLeft="0dp"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentRight="false"
-        android:paddingLeft="0dp"
-        android:scaleType="fitEnd"
-        android:alpha="0.25" />
-
     <!--
     <Button
         android:id="@+id/buttonxpto"

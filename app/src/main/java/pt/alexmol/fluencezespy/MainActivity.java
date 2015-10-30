@@ -230,6 +230,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         // se o swdp for superior a 580 estamos num tablet
         if (smallestwidthdp > 580) TABLET = true;
+        else TABLET = false;
+        //teste
+        //TABLET = true;
 
         instance = this;
 
@@ -247,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
-        if (!landscape || !TABLET) {
+        if (/*!landscape ||*/ !TABLET) {
 
 
             // Set up the action bar.
@@ -334,6 +337,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                         .setContentTitle("Fluence ZE Spy")
                         .setContentText("Running in background")
                         .setCategory(Notification.CATEGORY_STATUS)
+                        .setAutoCancel(false)
+                        .setOngoing(true)
                         .setPriority(-1);
 
         // Creates an explicit intent for an Activity in your app
@@ -664,7 +669,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private void actualizapasso(String link) {
 
 
-        if (!landscape || !TABLET) {
+        if (/*!landscape ||*/ !TABLET) {
 
             Page1 fragmento = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
 
@@ -714,7 +719,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //actualizar páginas
     private void actualizarpaginas(int[] arrayd) {
 
-        if (!landscape || !TABLET) {
+        if (/*!landscape ||*/ !TABLET) {
             try {
 
                 Page1 fragmentoy1 = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
