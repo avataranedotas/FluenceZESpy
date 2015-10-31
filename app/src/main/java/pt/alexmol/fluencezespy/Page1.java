@@ -203,7 +203,8 @@ public class Page1 extends Fragment {
 
         if (array1[7]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.motorfanspeed_1);
-            view.setText("Motor Fan Speed:" +array1[7]);
+            double temp = ((double) array1[7]) / 2.0;
+            view.setText("Pack Voltage:"+ String.format("%3.1f", temp) + "V");
         }
 
         if (array1[14]!=invalido) {

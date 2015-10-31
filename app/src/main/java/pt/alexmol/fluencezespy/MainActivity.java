@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //104, tempbat4 C
     //105, cableplugged 0=disconnected 1=inserted and ready 2=inserted release pressed
     //106, evse current pilot A
-    //107, motor fan speed ?
+    //107, Pack voltage x2 V
     //108, hv battery temp ?
     //109, maxchargingpower x10 kW
     //110, batterymaxinput x100 kW
@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //114, 12V voltage x1000 V
     //115, REAL SOC x10000 %
     //116, Ah x10000 Ah
-    //117, tempbat media C
-    //118, Pack Health x2 %
+    //117, tempbat minimum C
+    //118, Pack health x2 %
     //119, bat mileage km
     //120, bat total charged kwh
 

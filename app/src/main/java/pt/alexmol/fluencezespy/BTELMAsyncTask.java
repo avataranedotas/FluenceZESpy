@@ -591,8 +591,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 publishProgress(106, (int) longo);
                             }
 
-                            //Motor fan speed ?
-                            longo = processalinha(resposta,20,24,false);  //processa a resposta
+                            //Pack voltage x2
+                            longo = processalinha(resposta,25,34,false);  //processa a resposta
                             if (longo !=Long.MAX_VALUE) { //resposta bem processada
                                 publishProgress(107, (int) longo);
                             }
@@ -735,7 +735,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             //pack voltage, obtem-se na 5ª linha
                             longo = processalinha(resposta.substring(68,72),0,15,false);
-                            if (longo !=Long.MAX_VALUE) {
+                            if (longo !=Long.MAX_VALUE && longo>10000 && longo<45000) {
                                 publishProgress(112,(int) longo);
                             }
 
@@ -785,8 +785,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 publishProgress(118,(int) longo);
                             }
 
-                            //bat mileage 3ª linha
-                            longo = processalinha(resposta.substring(32,48),8,23,false);
+                            //bat mileage 2ª e 3ª linha
+                            longo = processalinha(resposta.substring(30,32)+resposta.substring(34,38),0,23,false);
                             if (longo !=Long.MAX_VALUE) {
                                 publishProgress(119,(int) longo);
                             }

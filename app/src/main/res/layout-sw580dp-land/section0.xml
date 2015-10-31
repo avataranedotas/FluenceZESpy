@@ -5,15 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="5dp"
-    android:paddingRight="0dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
     android:id="@+id/page0"
     android:orientation="horizontal"
-    tools:context=".Page0">
+    tools:context=".Page0"
+    android:padding="5dp">
 
-
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +22,7 @@
         android:layout_alignParentStart="true"
         android:textColor="#000000"
         android:textSize="18dp" />
+        -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,49 +31,28 @@
         android:text="Battery Temps: Wait"
         android:id="@+id/battemp_0"
         android:textColor="#000000"
-        android:layout_below="@+id/socx475_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/plug_0"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_plug"
-        android:paddingRight="@dimen/activity_horizontal_margin" />
 
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Pilot"
         android:id="@+id/evsepilot0"
-        android:layout_below="@+id/plug_0"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textColor="#000000"
-        android:layout_alignLeft="@+id/plug_0"
-        android:layout_alignStart="@+id/plug_0"
         android:textAlignment="center"
         android:textStyle="bold"
         android:gravity="top|center_horizontal"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textSize="15dp" />
+    -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Max Charging Power: Wait"
-        android:id="@+id/maxchargingpower_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:layout_below="@+id/battemp_0"
-        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +61,7 @@
         android:text="Max Input Power: Wait"
         android:id="@+id/maxinputpower_0"
         android:textColor="#000000"
-        android:layout_below="@+id/maxchargingpower_0"
+        android:layout_below="@+id/battemp_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
@@ -101,78 +78,17 @@
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Pack Voltage: Wait"
-        android:id="@+id/packvoltage_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/maxoutputpower_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Battery current: Wait"
-        android:id="@+id/batcurrent_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/packvoltage_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="REAL SOC: Wait"
-        android:id="@+id/realsoc_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/batcurrent_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Capacity: Wait"
-        android:id="@+id/ah_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/realsoc_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Health: Wait"
-        android:id="@+id/health_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/ah_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Mileage: Wait"
-        android:id="@+id/batkm_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/health_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
+
+
+
+
+
+
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -181,7 +97,7 @@
         android:text="Total Charged: Wait"
         android:id="@+id/totcharged_0"
         android:textColor="#000000"
-        android:layout_below="@+id/batkm_0"
+        android:layout_below="@+id/maxoutputpower_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
@@ -198,35 +114,53 @@
         android:layout_marginLeft="100dp" />
     -->
 
+    <ScrollView
+        android:id="@+id/scroller_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/totcharged_0"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/inside_scroll_0"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="--" />
+
+    </ScrollView>
+
+
+
+
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:id="@+id/layoutContainer" android:orientation="horizontal">
+        android:id="@+id/layoutContainerA" android:orientation="horizontal">
 
 
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.4">
-        </RelativeLayout>
+            android:layout_weight="0.45">
 
-
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.6">
-
-            <!-- Este é o do centro vertical -->
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent" android:layout_height="fill_parent"
-                android:id="@+id/layoutContainer2" android:orientation="vertical">
+                android:id="@+id/layoutContaineresq" android:orientation="vertical">
 
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.65">
+
+
+
                 </RelativeLayout>
 
 
@@ -239,6 +173,204 @@
                     >
 
 
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Max"
+                        android:id="@+id/maxchargingpower_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/kwbat_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="km"
+                        android:id="@+id/batkm_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_above="@+id/imageView3"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/imageView3"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/health"
+                        android:alpha="0.8" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="%"
+                        android:id="@+id/health_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_above="@+id/ah_0"
+                        android:layout_toRightOf="@+id/imageView3"
+                        android:layout_toEndOf="@+id/imageView3" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Ah"
+                        android:id="@+id/ah_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/imageView3"
+                        android:layout_toEndOf="@+id/imageView3" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="A"
+                        android:id="@+id/batcurrent_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="10dp" />
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="kW"
+                        android:id="@+id/kwbat_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/seta_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="10dp" />
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="20dp"
+                        android:id="@+id/seta_0"
+                        android:layout_below="@+id/batcurrent_0"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/blue_right"
+                        android:scaleType="fitEnd"
+                        android:scaleX="1"
+                         />
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="20dp"
+                        android:id="@+id/plug_0"
+                        android:src="@drawable/charging"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitXY"
+                        android:scaleX="1"
+                        android:layout_below="@+id/batcurrent_0"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="A"
+                        android:id="@+id/evsepilot_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="10dp" />
+
+
+                </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.6">
+
+            <!-- E -->
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainerB" android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.65">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="SOC"
+                        android:id="@+id/socx475_0"
+                        android:textColor="#000000"
+                        android:textSize="25sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Real SOC"
+                        android:id="@+id/realsoc_0"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:nestedScrollingEnabled="false"
+                        android:singleLine="true"
+                        android:layout_above="@+id/socx475_0"
+                        android:layout_centerHorizontal="true" />
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.35"
+                    >
+
+                    <!--
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -252,17 +384,46 @@
                         android:layout_centerInParent="true"
                         android:layout_margin="40dp"
                         android:alpha="0" />
+                    -->
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:id="@+id/imageView2"
+                        android:id="@+id/buttonbatterycell"
                         android:src="@drawable/fze_bat1"
                         android:alpha="0.8"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        android:scaleType="fitEnd" />
+                        android:scaleType="fitEnd"
+                        android:background="#00fff7ce" />
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="C"
+                        android:id="@+id/battempmin_0"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="V"
+                        android:id="@+id/packvoltage_0"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
 
                 </RelativeLayout>

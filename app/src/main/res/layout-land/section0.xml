@@ -3,25 +3,13 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="10dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    android:paddingBottom="10dp"
+    android:layout_height="match_parent"
     android:id="@+id/page0"
-    tools:context=".Page0">
+    tools:context=".Page0"
+    android:padding="5dp">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="SOC: Wait"
-        android:id="@+id/socx475_0"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:textSize="18dp" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,20 +18,13 @@
         android:text="Battery Temps: Wait"
         android:id="@+id/battemp_0"
         android:textColor="#000000"
-        android:layout_below="@+id/socx475_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/plug_0"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_plug"
-        android:paddingRight="10dp" />
 
+
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,18 +42,8 @@
         android:gravity="top|center_horizontal"
         android:paddingRight="10dp"
         android:textSize="14dp" />
+        -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Max Charging Power: Wait"
-        android:id="@+id/maxchargingpower_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#000000"
-        android:layout_below="@+id/battemp_0"
-        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,7 +52,7 @@
         android:text="Max Input Power: Wait"
         android:id="@+id/maxinputpower_0"
         android:textColor="#000000"
-        android:layout_below="@+id/maxchargingpower_0"
+        android:layout_below="@+id/battemp_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
@@ -98,80 +69,14 @@
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Pack Voltage: Wait"
-        android:id="@+id/packvoltage_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/maxoutputpower_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Battery current: Wait"
-        android:id="@+id/batcurrent_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/packvoltage_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="REAL SOC: Wait"
-        android:id="@+id/realsoc_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/batcurrent_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Capacity: Wait"
-        android:id="@+id/ah_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/realsoc_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Health: Wait"
-        android:id="@+id/health_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/ah_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
 
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Mileage: Wait"
-        android:id="@+id/batkm_0"
-        android:textColor="#000000"
-        android:layout_below="@+id/health_0"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
+
+
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -180,10 +85,33 @@
         android:text="Total Charged: Wait"
         android:id="@+id/totcharged_0"
         android:textColor="#000000"
-        android:layout_below="@+id/batkm_0"
+        android:layout_below="@+id/maxoutputpower_0"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="15dp" />
+
+
+
+    <ScrollView
+        android:id="@+id/scroller_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/totcharged_0"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/inside_scroll_0"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="--" />
+
+    </ScrollView>
+
+
 
     <!--
     <Button
@@ -206,16 +134,173 @@
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.6">
+            android:layout_weight="0.4">
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainermeio" android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3">
+
+                    </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="0.7"
+                    >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageView4"
+                android:src="@drawable/health"
+                android:alpha="0.8"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Ah"
+                android:id="@+id/ah_0"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/imageView4"
+                android:layout_toEndOf="@+id/imageView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="%"
+                android:id="@+id/health_0"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_above="@+id/ah_0"
+                android:layout_toRightOf="@+id/imageView4"
+                android:layout_toEndOf="@+id/imageView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="km"
+                android:id="@+id/batkm_0"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_above="@+id/imageView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="A"
+                android:id="@+id/batcurrent_0"
+                android:textColor="#000000"
+                android:textSize="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="20dp"
+                        android:id="@+id/seta_0"
+                        android:src="@drawable/blue_right"
+                        android:scaleType="fitEnd"
+                        android:scaleX="1"
+                        android:layout_below="@+id/batcurrent_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="20dp"
+                        android:id="@+id/plug_0"
+                        android:src="@drawable/charging"
+                        android:scaleType="fitXY"
+                        android:scaleX="1"
+                        android:layout_below="@+id/batcurrent_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="A"
+                        android:id="@+id/evsepilot_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="kW"
+                        android:id="@+id/kwbat_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/seta_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="10dp" />
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Max"
+                        android:id="@+id/maxchargingpower_0"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:layout_below="@+id/kwbat_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
 
 
         <RelativeLayout
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:layout_weight="0.4">
+            android:layout_weight="0.35">
 
-            <!-- Este é o do centro vertical -->
+
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -227,6 +312,38 @@
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.3">
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="SOC"
+                        android:id="@+id/socx475_0"
+                        android:textColor="#000000"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Real SOC"
+                        android:id="@+id/realsoc_0"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:nestedScrollingEnabled="false"
+                        android:singleLine="true"
+                        android:layout_above="@+id/socx475_0"
+                        android:layout_centerHorizontal="true" />
+
+
+
+
                 </RelativeLayout>
 
 
@@ -239,32 +356,41 @@
                     >
 
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Cell Voltages"
-                        android:id="@+id/buttonbatterycell"
-                        android:textSize="12dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_alignParentLeft="false"
-                        android:layout_alignParentBottom="false"
-                        android:layout_alignParentRight="false"
-                        android:layout_centerInParent="true"
-                        android:layout_margin="40dp"
-                        android:alpha="0" />
-
-
-
-                    <ImageView
+                    <ImageButton
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:id="@+id/imageView2"
+                        android:id="@+id/buttonbatterycell"
                         android:src="@drawable/fze_bat1"
                         android:alpha="0.8"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        android:scaleType="fitEnd" />
+                        android:scaleType="fitEnd"
+                        android:background="#00fff7ce" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="C"
+                        android:id="@+id/battempmin_0"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="V"
+                        android:id="@+id/packvoltage_0"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
 
                 </RelativeLayout>
