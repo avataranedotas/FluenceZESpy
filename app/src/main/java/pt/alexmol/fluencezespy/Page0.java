@@ -6,14 +6,23 @@ package pt.alexmol.fluencezespy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Page0 extends Fragment {
@@ -25,7 +34,7 @@ public class Page0 extends Fragment {
 
     }
 
-
+    private int temp_anterior = -255;
 
     /*
     public Page0(Context cxpto) {
@@ -74,6 +83,33 @@ public class Page0 extends Fragment {
         MainActivity actividademain0 = (MainActivity)getActivity();
         actpag0(actividademain0.valoresmemorizados);
 
+        temp_anterior = -255;
+
+        /*
+
+        //desenhar a bola do termometro, 18x18
+        ShapeDrawable oval = new ShapeDrawable (new OvalShape());
+        oval.setIntrinsicHeight(18);
+        oval.setIntrinsicWidth(18);
+        oval.getPaint().setColor(Color.BLACK);
+
+        ImageView image = (ImageView) getView().findViewById(R.id.contembola);
+        image.setBackgroundDrawable(oval);
+
+        //desenhar o risco do termometro, rectangulo 6x52
+        ShapeDrawable rectangulo = new ShapeDrawable(new RoundRectShape(new float[8],new RectF(),new float[8]));
+        rectangulo.setIntrinsicHeight(52);
+        rectangulo.setIntrinsicWidth(6);
+        rectangulo.getPaint().setColor(Color.BLACK);
+
+        ImageView image2 = (ImageView) getView().findViewById(R.id.contemrisco);
+        image2.setBackgroundDrawable(rectangulo);
+        */
+
+        //ProgressBar pb = (ProgressBar) getView().findViewById(R.id.pb_soc_0);
+        //pb.setProgress(100);
+
+
     }
 
 
@@ -84,6 +120,12 @@ public class Page0 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.socx475_0);
             double temp = ((double) array0[0]) / 100.0;
             view.setText(String.format("%3.2f", temp) + "%");
+
+            ProgressBar pb = (ProgressBar) getView().findViewById(R.id.pb_soc_0);
+            if (temp >100.0) temp = 100.0;
+            pb.setProgress((int) temp);
+
+
         }
 
 
@@ -100,7 +142,62 @@ public class Page0 extends Fragment {
 
         if (array0[17]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.battempmin_0);
-            view.setText( array0[17]+"C");
+            view.setText(array0[17] + "C");
+
+            //se a temperatura mudou
+            if (array0[17]!=temp_anterior) {
+
+                //cor da bola e do risco do termometro
+                ShapeDrawable oval = new ShapeDrawable(new OvalShape());
+                oval.setIntrinsicHeight(18);
+                oval.setIntrinsicWidth(18);
+
+                ShapeDrawable rectangulo = new ShapeDrawable(new RoundRectShape(new float[8], new RectF(), new float[8]));
+
+
+                rectangulo.setIntrinsicHeight(52);
+                rectangulo.setIntrinsicWidth(6);
+
+                if (array0[17] < 20) {
+                    oval.getPaint().setColor(Color.BLUE);
+                    rectangulo.getPaint().setColor(Color.BLUE);
+                }
+                if (array0[17] >= 20 && array0[17] < 25) {
+                    oval.getPaint().setColor(Color.YELLOW);
+                    rectangulo.getPaint().setColor(Color.YELLOW);
+                }
+                if (array0[17] >= 25 && array0[17] < 30) {
+                    oval.getPaint().setColor(Color.rgb(255, 128, 0));
+                    rectangulo.getPaint().setColor(Color.rgb(255, 128, 0));
+                }
+                if (array0[17] >= 30) {
+                    oval.getPaint().setColor(Color.RED);
+                    rectangulo.getPaint().setColor(Color.RED);
+                }
+
+                ImageView image = (ImageView) getView().findViewById(R.id.contembola);
+                image.setBackgroundDrawable(oval);
+
+
+                //tamanho do risco,
+                double temp = array0[17] / 35.0 * 52.0;
+                if  (temp >52.0) temp = 52.0;
+
+
+                ImageView image2 = (ImageView) getView().findViewById(R.id.contemrisco);
+                image2.setBackgroundDrawable(rectangulo);
+                image2.getLayoutParams().height = (int) temp;
+
+
+
+
+            }
+
+
+            //guarda o valor anterior
+            temp_anterior=array0[17];
+
+
         }
 
 

@@ -316,7 +316,6 @@
 
 
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -325,9 +324,11 @@
                         android:id="@+id/socx475_0"
                         android:textColor="#000000"
                         android:textSize="25sp"
+
                         android:textStyle="bold"
-                        android:layout_alignParentBottom="true"
+                        android:layout_above="@+id/pb_soc_0"
                         android:layout_centerHorizontal="true" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -341,7 +342,18 @@
                         android:layout_above="@+id/socx475_0"
                         android:layout_centerHorizontal="true" />
 
-
+                    <ProgressBar
+                        android:id="@+id/pb_soc_0"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:minHeight="10dp"
+                        android:max="100"
+                        android:progressDrawable="@drawable/progressbar_hsoc"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        />
 
 
                 </RelativeLayout>
@@ -391,6 +403,40 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/thermo"
+                        android:foregroundGravity="center_vertical|center_horizontal"
+                        android:background="@drawable/thermo1"
+                        android:layout_above="@+id/battempmin_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:id="@+id/contembola"
+                        android:layout_alignBottom="@+id/thermo"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginBottom="6dp"
+
+                        />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="52dp"
+                        android:id="@+id/contemrisco"
+                        android:layout_alignBottom="@+id/contembola"
+                        android:layout_marginBottom="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp" />
+
+
 
 
                 </RelativeLayout>
