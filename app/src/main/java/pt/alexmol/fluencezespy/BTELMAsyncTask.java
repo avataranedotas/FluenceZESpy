@@ -126,6 +126,15 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         int passoanterior = 0;
         boolean ultimavalida = false;
 
+        long timebt1 = Calendar.getInstance().getTimeInMillis() - 1000L;  //ciclo 1s
+        long timebt2 = Calendar.getInstance().getTimeInMillis() - 60000L; //ciclo 1minuto
+        long timebt3 = Calendar.getInstance().getTimeInMillis() - 10000L; //ciclo 10s
+
+        boolean ciclo1s = true;
+        boolean ciclo1m = true;
+        boolean ciclo10s = true;
+
+
         //informa main que começou ciclo
         publishProgress(2,3);
         if (debugMode) tostax("BTELM task starting");
@@ -553,6 +562,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                     if (mmSocket2.isConnected() && READYtoRW2) {
 
 
+                        //ler em todos os ciclos
                         //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
                         resposta = getfreeframe("42e",200,200,16);
 
@@ -622,6 +632,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
                         }
 
+                        //próximo free frame
 
                     }
                 }
@@ -640,168 +651,177 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                     if (mmSocket2.isConnected() && READYtoRW2 && ELMREADY2 == 2) {
 
 
-                        resposta = getisoframe("79b","7bb","022104",200,3);
+                        if (ciclo1m) {
+
+                            //este id só precisa de ser lido de minuto a minuto
+                            resposta = getisoframe("79b", "7bb", "022104", 200, 3);
 
 
-                        if ( resposta!=null &&  (resposta.length() == 48))  {
+                            if (resposta != null && (resposta.length() == 48)) {
 
-                            //temperatura1, obtem-se na primeira linha
+                                //temperatura1, obtem-se na primeira linha
 
-                            longo = processalinha(resposta.substring(0,16),48,55,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                //validação
-                                if (longo >=-30 && longo <=127) {
-                                    //publica valor
-                                    //tempbat1 é o indice 101
-                                    ultimavalida = true;
-                                    publishProgress(101,(int) longo);
+                                longo = processalinha(resposta.substring(0, 16), 48, 55, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat1 é o indice 101
+                                        ultimavalida = true;
+                                        publishProgress(101, (int) longo);
+                                    }
+
                                 }
 
-                            }
+                                //temperatura2, obtem-se na segunda linha
+                                longo = processalinha(resposta.substring(16, 32), 16, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat2 é o indice 102
+                                        publishProgress(102, (int) longo);
+                                    }
 
-                            //temperatura2, obtem-se na segunda linha
-                            longo = processalinha(resposta.substring(16,32),16,23,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                //validação
-                                if (longo >=-30 && longo <=127) {
-                                    //publica valor
-                                    //tempbat2 é o indice 102
-                                    publishProgress(102,(int) longo);
                                 }
 
-                            }
+                                //temperatura3, obtem-se na segunda linha
+                                longo = processalinha(resposta.substring(16, 32), 40, 47, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat3 é o indice 103
+                                        publishProgress(103, (int) longo);
+                                    }
 
-                            //temperatura3, obtem-se na segunda linha
-                            longo = processalinha(resposta.substring(16,32),40,47,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                //validação
-                                if (longo >=-30 && longo <=127) {
-                                    //publica valor
-                                    //tempbat3 é o indice 103
-                                    publishProgress(103,(int) longo);
                                 }
 
-                            }
 
+                                //temperatura4, obtem-se na 3ª linha
+                                longo = processalinha(resposta.substring(32, 48), 8, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat4 é o indice 104
+                                        publishProgress(104, (int) longo);
+                                    }
 
-                            //temperatura4, obtem-se na 3ª linha
-                            longo = processalinha(resposta.substring(32,48),8,15,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                //validação
-                                if (longo >=-30 && longo <=127) {
-                                    //publica valor
-                                    //tempbat4 é o indice 104
-                                    publishProgress(104,(int) longo);
                                 }
 
-                            }
+                                //temperatura média, obtem-se na 3ª linha
+                                longo = processalinha(resposta.substring(32, 48), 16, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbatm é o indice 117
+                                        publishProgress(117, (int) longo);
+                                    }
 
-                            //temperatura média, obtem-se na 3ª linha
-                            longo = processalinha(resposta.substring(32,48),16,23,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                //validação
-                                if (longo >=-30 && longo <=127) {
-                                    //publica valor
-                                    //tempbatm é o indice 117
-                                    publishProgress(117,(int) longo);
                                 }
 
-                            }
 
+                            }
 
                         }
 
+                        //ler a cada segundo
 
-                        resposta = getisoframe("79b","7bb","022101",200,8);
+                        if (ciclo1s) {
 
-                        //tostax("Tamanho:"+resposta.length());
-                        //SystemClock.sleep(3000);
+                            resposta = getisoframe("79b", "7bb", "022101", 200, 8);
 
-                        if ( resposta!=null &&  (resposta.length() == 128) )  {
+                            //tostax("Tamanho:"+resposta.length());
+                            //SystemClock.sleep(3000);
 
-                            //battery max input power, obtem-se na 4ª linha
-                            longo = processalinha(resposta.substring(48,64),40,55,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                    publishProgress(110,(int) longo);
+                            if (resposta != null && (resposta.length() == 128)) {
+
+                                //battery max input power, obtem-se na 4ª linha
+                                longo = processalinha(resposta.substring(48, 64), 40, 55, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(110, (int) longo);
                                 }
 
 
-                            //battery max output power, obtem-se na 4ª e 5ª linhas
-                            longo = processalinha((resposta.substring(62,64)+resposta.substring(66,68)),0,15,false);
+                                //battery max output power, obtem-se na 4ª e 5ª linhas
+                                longo = processalinha((resposta.substring(62, 64) + resposta.substring(66, 68)), 0, 15, false);
 
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(111,(int) longo);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(111, (int) longo);
+                                }
+
+                                //pack voltage, obtem-se na 5ª linha
+                                longo = processalinha(resposta.substring(68, 72), 0, 15, false);
+                                if (longo != Long.MAX_VALUE && longo > 10000 && longo < 45000) {
+                                    publishProgress(112, (int) longo);
+                                }
+
+                                //battery current, obtem-se na 2ª linha
+                                longo = processalinha(resposta.substring(16, 32), 24, 55, true) * -1L;
+                                if (longo != Long.MAX_VALUE) {
+                                    if (Math.abs(longo) < 1000) longo = 0;
+                                    publishProgress(113, (int) longo);
+                                }
+
+                                //12V voltage
+                                longo = processalinha(resposta.substring(72, 76), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(114, (int) longo);
+                                }
+
+                                //REAL SOC
+                                longo = processalinha((resposta.substring(93, 96) + resposta.substring(98, 100)), 0, 19, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(115, (int) longo);
+                                }
+
+
+                                //Ah
+                                longo = processalinha(resposta.substring(103, 108), 0, 19, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(116, (int) longo);
+                                }
+
+
                             }
-
-                            //pack voltage, obtem-se na 5ª linha
-                            longo = processalinha(resposta.substring(68,72),0,15,false);
-                            if (longo !=Long.MAX_VALUE && longo>10000 && longo<45000) {
-                                publishProgress(112,(int) longo);
-                            }
-
-                            //battery current, obtem-se na 2ª linha
-                            longo = processalinha(resposta.substring(16,32),24,55,true) * -1L;
-                            if (longo !=Long.MAX_VALUE) {
-                                if (Math.abs(longo)< 1000) longo = 0;
-                                publishProgress(113,(int) longo);
-                            }
-
-                            //12V voltage
-                            longo = processalinha(resposta.substring(72,76),0,15,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(114,(int) longo);
-                            }
-
-                            //REAL SOC
-                            longo = processalinha((resposta.substring(93,96)+resposta.substring(98,100)),0,19,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(115,(int) longo);
-                            }
-
-
-                            //Ah
-                            longo = processalinha(resposta.substring(103,108),0,19,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(116,(int) longo);
-                            }
-
-
 
                         }
 
+                        //ler a cada minuto
+                        if (ciclo1m) {
+
+                            resposta = getisoframe("79b", "7bb", "022161", 200, 4);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 64)) {
+
+                                //pack health obtem-se na 2ª linha
+                                longo = processalinha(resposta.substring(16, 32), 40, 47, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(118, (int) longo);
+                                }
+
+                                //bat mileage 2ª e 3ª linha
+                                longo = processalinha(resposta.substring(30, 32) + resposta.substring(34, 38), 0, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(119, (int) longo);
+                                }
+
+                                //bat total charged kwh  3ª linha
+                                longo = processalinha(resposta.substring(32, 48), 40, 55, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(120, (int) longo);
+                                }
 
 
-                        resposta = getisoframe("79b","7bb","022161",200,4);
-
-                        //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                        //else tostax("Resposta null");
-                        //SystemClock.sleep(3000);
-
-                        if ( resposta!=null &&  (resposta.length() == 64) )  {
-
-                            //pack health obtem-se na 2ª linha
-                            longo = processalinha(resposta.substring(16,32),40,47,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(118,(int) longo);
                             }
-
-                            //bat mileage 2ª e 3ª linha
-                            longo = processalinha(resposta.substring(30,32)+resposta.substring(34,38),0,23,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(119,(int) longo);
-                            }
-
-                            //bat total charged kwh  3ª linha
-                            longo = processalinha(resposta.substring(32,48),40,55,false);
-                            if (longo !=Long.MAX_VALUE) {
-                                publishProgress(120,(int) longo);
-                            }
-
-
 
                         }
-
-
 
 
 
@@ -814,12 +834,35 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
             if (passo == 23) { //passo de actualizar ecrans na UI
-                publishProgress(0,23);
+
+                if (ciclo1s) publishProgress(0,23);
 
 
                 if (ELMREADY2==2)publishProgress(3, 0);
                 //volta ao passo 21
                 passo = 21;
+
+
+                //verificação de ciclos
+                //se horaactual - horainicioultimociclo > x então reinicia
+
+                if ((Calendar.getInstance().getTimeInMillis() - timebt1) > 1000L ) {
+                    ciclo1s = true;
+                    timebt1 = Calendar.getInstance().getTimeInMillis();
+                }
+                else ciclo1s = false;
+
+                if ((Calendar.getInstance().getTimeInMillis() - timebt2) > 60000L ) {
+                    ciclo1m = true;
+                    timebt2 = Calendar.getInstance().getTimeInMillis();
+                }
+                else ciclo1m = false;
+
+                if ((Calendar.getInstance().getTimeInMillis() - timebt3) > 10000L ) {
+                    ciclo10s = true;
+                    timebt3 = Calendar.getInstance().getTimeInMillis();
+                }
+                else ciclo10s = false;
 
 
             }
