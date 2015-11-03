@@ -761,7 +761,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 //battery current, obtem-se na 2ª linha
                                 longo = processalinha(resposta.substring(16, 32), 24, 55, true) * -1L;
                                 if (longo != Long.MAX_VALUE) {
-                                    if (Math.abs(longo) < 1000) longo = 0;
+                                    if (Math.abs(longo) < 1300) longo = 0;
                                     publishProgress(113, (int) longo);
                                 }
 

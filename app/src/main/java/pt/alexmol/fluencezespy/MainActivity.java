@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         else landscape = false;
 
         // se o swdp for superior a 580 estamos num tablet
-        if (smallestwidthdp > 580) TABLET = true;
+        if (smallestwidthdp >= 580) TABLET = true;
         else TABLET = false;
         //teste
         //TABLET = true;

@@ -317,6 +317,9 @@ public class Page0 extends Fragment {
                 image.setScaleType(ImageView.ScaleType.FIT_START);
             }
 
+            //se corrente for zero esconde seta
+            if (temp == 0.0) image.setVisibility(View.INVISIBLE);
+            else image.setVisibility(View.VISIBLE);
         }
 
 
