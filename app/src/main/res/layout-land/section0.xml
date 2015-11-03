@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Total Charged: Wait"
+        android:text="Total Regenerated: Wait"
         android:id="@+id/totcharged_0"
         android:textColor="#000000"
         android:layout_below="@+id/maxoutputpower_0"

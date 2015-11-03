@@ -126,9 +126,9 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         int passoanterior = 0;
         boolean ultimavalida = false;
 
-        long timebt1 = Calendar.getInstance().getTimeInMillis() - 1000L;  //ciclo 1s
-        long timebt2 = Calendar.getInstance().getTimeInMillis() - 60000L; //ciclo 1minuto
-        long timebt3 = Calendar.getInstance().getTimeInMillis() - 10000L; //ciclo 10s
+        long timebt1 = Calendar.getInstance().getTimeInMillis();          //ciclo 1s
+        long timebt2 = Calendar.getInstance().getTimeInMillis() - 40000L; //ciclo 1minuto
+        long timebt3 = Calendar.getInstance().getTimeInMillis() - 5000L;  //ciclo 10s
 
         boolean ciclo1s = true;
         boolean ciclo1m = true;
@@ -634,6 +634,21 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         //próximo free frame
 
+                        resposta = getfreeframe("427",200,200,16);
+                        if (resposta!=null) {  //resposta correcta
+
+                            //main contactor
+                            longo = processalinha(resposta,0,1,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(127, (int) longo);
+                                //tostax("contactor:" + longo);
+                                //SystemClock.sleep(3000);
+                            }
+
+
+                        }
+
+
                     }
                 }
 
@@ -761,7 +776,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 //battery current, obtem-se na 2ª linha
                                 longo = processalinha(resposta.substring(16, 32), 24, 55, true) * -1L;
                                 if (longo != Long.MAX_VALUE) {
-                                    if (Math.abs(longo) < 1300) longo = 0;
+                                    //if (Math.abs(longo) < 500) longo = 0;
                                     publishProgress(113, (int) longo);
                                 }
 

@@ -158,19 +158,23 @@ public class Page0 extends Fragment {
                 rectangulo.setIntrinsicHeight(52);
                 rectangulo.setIntrinsicWidth(6);
 
-                if (array0[17] < 20) {
+                if (array0[17] < 15) {
                     oval.getPaint().setColor(Color.BLUE);
                     rectangulo.getPaint().setColor(Color.BLUE);
                 }
-                if (array0[17] >= 20 && array0[17] < 25) {
+                if (array0[17] >= 15 && array0[17] < 22) {
+                    oval.getPaint().setColor(Color.GREEN);
+                    rectangulo.getPaint().setColor(Color.GREEN);
+                }
+                if (array0[17] >= 22 && array0[17] < 25) {
                     oval.getPaint().setColor(Color.YELLOW);
                     rectangulo.getPaint().setColor(Color.YELLOW);
                 }
-                if (array0[17] >= 25 && array0[17] < 30) {
+                if (array0[17] >= 25 && array0[17] < 28) {
                     oval.getPaint().setColor(Color.rgb(255, 128, 0));
                     rectangulo.getPaint().setColor(Color.rgb(255, 128, 0));
                 }
-                if (array0[17] >= 30) {
+                if (array0[17] >= 28) {
                     oval.getPaint().setColor(Color.RED);
                     rectangulo.getPaint().setColor(Color.RED);
                 }
@@ -210,7 +214,7 @@ public class Page0 extends Fragment {
 
         if (array0[6]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
-            if (array0[6]>0 && array0[6]<48 ) {
+            if (array0[6]>=0 && array0[6]<48 && array0[5]!=0 && array0[5] != invalido) {
                 view.setText(array0[6] + "A");
                 view.setVisibility(View.VISIBLE);
             }
@@ -254,6 +258,8 @@ public class Page0 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
             double temp = Math.abs(((double) array0[13]) / 1000.0);
             view.setText(String.format("%3.2f", temp) + "A");
+            if (temp == 0.0) view.setVisibility(View.INVISIBLE);
+            else view.setVisibility(View.VISIBLE);
         }
 
 
@@ -286,13 +292,16 @@ public class Page0 extends Fragment {
         if (array0[20]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
             //double temp = ((double) array0[19]) / 1.0;
-            view.setText("Total Charged: " + array0[20] + "kWh");
+            view.setText("Total Regenerated: " + array0[20] + "kWh ?");
         }
 
+        //calculo de potencia e seta de fluxo de corrente
         if (array0[13]!=invalido && array0[12]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.kwbat_0);
             double temp = ((double) array0[13]) / 1000.0 * ((double) array0[12]) / 100.0 / 1000.0;
             view.setText( String.format("%2.1f", Math.abs(temp)) + "kW");
+            if (temp == 0.0) view.setVisibility(View.INVISIBLE);
+            else view.setVisibility(View.VISIBLE);
 
             //seta da bateria
             ImageView image = (ImageView) getView().findViewById(R.id.seta_0);

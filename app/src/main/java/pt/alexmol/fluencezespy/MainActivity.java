@@ -137,9 +137,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //122, desconhecido2
     //123, desconhecido3
     //124, desconhecido4
-    //125, desconhecido5
+    //125, desconhecido5  - relacionado com corrente de bateria em carga
     //126, desconhecido6
-
+    //127, main contactor 0 OFF, 1 PRECharge, 2 ON
 
 
 
@@ -211,6 +211,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             valoresmemorizados[  ( event.getResult()[0] -100)  ]=event.getResult()[1];
 
         }
+
+        //no caso particular da corrente da bateria (113) se o contactor principal estiver aberto (diferente de 2) forçar valor 0 na corrente
+
+        if (event.getResult()[0]==113) {
+            if (valoresmemorizados[27]!=2) valoresmemorizados[13] = 0;
+        }
+
 
     }
 

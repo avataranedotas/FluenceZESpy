@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Total Charged: Wait"
+        android:text="Total Regenerated: Wait"
         android:id="@+id/totcharged_0"
         android:textColor="#000000"
         android:layout_below="@+id/maxoutputpower_0"
@@ -91,23 +91,94 @@
         android:textSize="15dp" />
 
 
-
     <ScrollView
         android:id="@+id/scroller_0"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/totcharged_0"
         android:scrollbars="vertical"
         android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/inside_scroll_0"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent" android:layout_height="fill_parent"
+            android:id="@+id/layoutContainerScroller" android:orientation="vertical">
 
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:text="--" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Desconhecido 1: Wait"
+                android:id="@+id/desconhecido1_0"
+                android:textColor="#000000"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Desconhecido 2: Wait"
+                android:id="@+id/desconhecido2_0"
+                android:textColor="#000000"
+                android:layout_below="@+id/desconhecido1_0"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Desconhecido 3: Wait"
+                android:id="@+id/desconhecido3_0"
+                android:textColor="#000000"
+                android:layout_below="@+id/desconhecido2_0"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Desconhecido 4: Wait"
+                android:id="@+id/desconhecido4_0"
+                android:textColor="#000000"
+                android:layout_below="@+id/desconhecido3_0"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Desconhecido 5: Wait"
+                android:id="@+id/desconhecido5_0"
+                android:textColor="#000000"
+                android:layout_below="@+id/desconhecido4_0"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Desconhecido 6: Wait"
+                android:id="@+id/desconhecido6_0"
+                android:textColor="#000000"
+                android:layout_below="@+id/desconhecido5_0"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
 
     </ScrollView>
 
