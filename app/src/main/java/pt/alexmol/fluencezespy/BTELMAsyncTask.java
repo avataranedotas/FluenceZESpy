@@ -784,6 +784,41 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(116, (int) longo);
                                 }
 
+                                //desconhecido 1
+                                longo = processalinha(resposta.substring(18, 22), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(121, (int) longo);
+                                }
+
+                                //desconhecido 2
+                                longo = processalinha(resposta.substring(76, 80), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(122, (int) longo);
+                                }
+
+                                //desconhecido 3
+                                longo = processalinha(resposta.substring(82, 86), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(123, (int) longo);
+                                }
+
+                                //desconhecido 4
+                                longo = processalinha(resposta.substring(86, 90), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(124, (int) longo);
+                                }
+
+                                //desconhecido 5
+                                longo = processalinha(resposta.substring(114, 118), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(125, (int) longo);
+                                }
+
+                                //desconhecido 6
+                                longo = processalinha(resposta.substring(118, 124), 0, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(126, (int) longo);
+                                }
 
                             }
 
@@ -822,6 +857,8 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
                         }
+
+
 
 
 

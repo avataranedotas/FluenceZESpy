@@ -133,6 +133,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //118, Pack health x2 %
     //119, bat mileage km
     //120, bat total charged kwh
+    //121, desconhecido1
+    //122, desconhecido2
+    //123, desconhecido3
+    //124, desconhecido4
+    //125, desconhecido5
+    //126, desconhecido6
+
 
 
 

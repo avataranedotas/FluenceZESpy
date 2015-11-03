@@ -136,7 +136,7 @@ public class Page0 extends Fragment {
             int temp2 = ( array0[2]);
             int temp3 = ( array0[3]);
             int temp4 = ( array0[4]);
-            view.setText("Battery Temps:" + temp1+"C "+temp2+"C "+temp3+"C "+temp4+"C");
+            view.setText("Battery Temps:" + temp1 + "C " + temp2 + "C " + temp3 + "C " + temp4 + "C");
         }
 
 
@@ -322,7 +322,21 @@ public class Page0 extends Fragment {
             else image.setVisibility(View.VISIBLE);
         }
 
+        if (array0[21]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
+            view.setText("Desconhecido 1: " + array0[21]);
+            view = (TextView) getView().findViewById(R.id.desconhecido2_0);
+            view.setText("Desconhecido 2: " + array0[22]);
+            view = (TextView) getView().findViewById(R.id.desconhecido3_0);
+            view.setText("Desconhecido 3: " + array0[23]);
+            view = (TextView) getView().findViewById(R.id.desconhecido4_0);
+            view.setText("Desconhecido 4: " + array0[24]);
+            view = (TextView) getView().findViewById(R.id.desconhecido5_0);
+            view.setText("Desconhecido 5: " + array0[25]);
+            view = (TextView) getView().findViewById(R.id.desconhecido6_0);
+            view.setText("Desconhecido 6: " + array0[26]);
 
+        }
 
     }
 
