@@ -45,7 +45,26 @@ public class Page0 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.section0, null);
+
+
+        View v;
+
+
+        if (!MainActivity.landscape) {
+            if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section0_land, null);   //vista portrait tablet
+            else v = inflater.inflate(R.layout.section0, null);                                                             //vista portrait phone
+        }
+        else {
+            if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section0, null); //vista landscape tablet
+            else v = inflater.inflate(R.layout.section0_land, null);                                                           //vista landscape phone
+        }
+
+
+
+        /*
+        if (!MainActivity.landscape) v = inflater.inflate(R.layout.section0, null);
+        else v = inflater.inflate(R.layout.section0_land, null);
+        */
 
 
         //botao para tensões das células

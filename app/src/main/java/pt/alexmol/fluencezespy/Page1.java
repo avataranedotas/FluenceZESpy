@@ -63,9 +63,17 @@ public class Page1 extends Fragment {
                              Bundle savedInstanceState) {
 
 
+        View v;
 
-        View v = inflater.inflate(R.layout.section1, null);
 
+        if (!MainActivity.landscape) {
+            if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section1_land, null);   //vista portrait tablet
+            else v = inflater.inflate(R.layout.section1, null);                                                             //vista portrait phone
+        }
+        else {
+            if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section1, null); //vista landscape tablet
+            else v = inflater.inflate(R.layout.section1_land, null);                                                           //vista landscape phone
+        }
         //botao para iniciar uma task
 
 

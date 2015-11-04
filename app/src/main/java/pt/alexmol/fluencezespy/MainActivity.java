@@ -248,6 +248,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         if( this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) landscape = true;
         else landscape = false;
 
+
+
         // se o swdp for superior a 580 estamos num tablet
         if (smallestwidthdp >= 580) TABLET = true;
         else TABLET = false;
@@ -268,8 +270,15 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
-        if (TABLET ^ reverseModeMain) setContentView(R.layout.main_act_tablet);
-        else setContentView(R.layout.main_act);
+
+        if (!landscape) {
+            if (TABLET ^ reverseModeMain) setContentView(R.layout.main_act_tablet);
+            else setContentView(R.layout.main_act);
+        }
+        else {
+            if (TABLET ^ reverseModeMain) setContentView(R.layout.main_act_tablet_land);
+            else setContentView(R.layout.main_act_land);
+        }
 
 
         MyBus.getInstance().register(this);
@@ -493,6 +502,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             sair = false;
         }
 
+
+        //if (landscape) toast("Landscape");
+        //else toast ("Portrait");
 
     }
 

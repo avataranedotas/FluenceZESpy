@@ -116,8 +116,8 @@ public class Settings extends AppCompatActivity {
         CheckBox caixa = (CheckBox) findViewById(R.id.checkboxreversemode);
 
         //se estamos num tablet
-        if ( MainActivity.TABLET) caixa.setText("Switch to phone mode");
-        else caixa.setText("Switch to tablet mode");
+        if ( MainActivity.TABLET) caixa.setText("Switch to phone mode (requires restart or rotate)");
+        else caixa.setText("Switch to tablet mode (requires restart or rotate)");
 
 
 
@@ -162,7 +162,7 @@ public class Settings extends AppCompatActivity {
             editor.putBoolean("debugmodeon",debugmodeon);
             MainActivity.debugModeMain = debugmodeon;
             editor.putBoolean("reversemodeon",reversemodeon);
-            MainActivity.reverseModeMain = reversemodeon;
+            //MainActivity.reverseModeMain = reversemodeon;
 
 
             editor.commit();
