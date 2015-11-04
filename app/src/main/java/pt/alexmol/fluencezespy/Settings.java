@@ -23,6 +23,7 @@ public class Settings extends AppCompatActivity {
     private boolean keepscreenon;
     private boolean debugmodeon;
     private boolean backgroundmodeon;
+    private boolean reversemodeon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class Settings extends AppCompatActivity {
             keepscreenon=settings.getBoolean("keepscreenon",false);
             backgroundmodeon=settings.getBoolean("backgroundmodeon",false);
             debugmodeon=settings.getBoolean("debugmodeon",false);
+            reversemodeon=settings.getBoolean("reversemodeon",false);
 
             CheckBox keep = (CheckBox) findViewById(R.id.checkBoxScreen);
             keep.setChecked(keepscreenon);
@@ -64,6 +66,8 @@ public class Settings extends AppCompatActivity {
             CheckBox debug = (CheckBox) findViewById(R.id.checkBoxDebug);
             debug.setChecked(debugmodeon);
 
+            CheckBox reverse = (CheckBox) findViewById(R.id.checkboxreversemode);
+            reverse.setChecked(reversemodeon);
 
 
             // Loop through paired devices
@@ -108,7 +112,12 @@ public class Settings extends AppCompatActivity {
 
         }
 
+        //check current mode
+        CheckBox caixa = (CheckBox) findViewById(R.id.checkboxreversemode);
 
+        //se estamos num tablet
+        if ( MainActivity.TABLET) caixa.setText("Switch to phone mode");
+        else caixa.setText("Switch to tablet mode");
 
 
 
@@ -152,6 +161,8 @@ public class Settings extends AppCompatActivity {
             MainActivity.backgroundMain = backgroundmodeon;
             editor.putBoolean("debugmodeon",debugmodeon);
             MainActivity.debugModeMain = debugmodeon;
+            editor.putBoolean("reversemodeon",reversemodeon);
+            MainActivity.reverseModeMain = reversemodeon;
 
 
             editor.commit();
@@ -199,6 +210,14 @@ public class Settings extends AppCompatActivity {
                 else
                     keepscreenon = false;
                     break;
+
+            case R.id.checkboxreversemode:
+                if (checked)
+                    reversemodeon = true;
+                else
+                    reversemodeon = false;
+                break;
+
 
         }
     }

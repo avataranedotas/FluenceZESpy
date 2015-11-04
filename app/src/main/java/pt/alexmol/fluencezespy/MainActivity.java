@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     static boolean debugModeMain = false;
     static boolean backgroundMain = false;
     static boolean keepscreenMain= false;
+    static boolean reverseModeMain = false;
     private static int ELMREADY = 0;
     private boolean sair = false;
     public static int[] valoresmemorizados;
@@ -140,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //125, desconhecido5  - relacionado com corrente de bateria em carga
     //126, desconhecido6
     //127, main contactor 0 OFF, 1 PRECharge, 2 ON
+
 
 
 
@@ -254,10 +256,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         instance = this;
 
-        setContentView(R.layout.main_act);
-
-
-        MyBus.getInstance().register(this);
 
         //carrega preferências
         SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
@@ -265,10 +263,20 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         debugModeMain = settings.getBoolean("debugmodeon", false);
         backgroundMain = settings.getBoolean("backgroundmodeon",false);
         keepscreenMain = settings.getBoolean("keepscreenon",false);
+        reverseModeMain = settings.getBoolean("reversemodeon",false);
 
 
 
-        if (/*!landscape ||*/ !TABLET) {
+
+        if (TABLET ^ reverseModeMain) setContentView(R.layout.main_act_tablet);
+        else setContentView(R.layout.main_act);
+
+
+        MyBus.getInstance().register(this);
+
+
+
+        if (!(TABLET  ^ reverseModeMain)) {
 
 
             // Set up the action bar.
@@ -687,7 +695,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private void actualizapasso(String link) {
 
 
-        if (/*!landscape ||*/ !TABLET) {
+        if ( !(TABLET ^ reverseModeMain)) {
 
             Page1 fragmento = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);
 
@@ -737,7 +745,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //actualizar páginas
     private void actualizarpaginas(int[] arrayd) {
 
-        if (/*!landscape ||*/ !TABLET) {
+        if ( !(TABLET ^ reverseModeMain)) {
             try {
 
                 Page1 fragmentoy1 = (Page1) mSectionsPagerAdapter.getRegisteredFragment(1);

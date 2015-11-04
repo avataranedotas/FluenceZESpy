@@ -59,4 +59,15 @@
         android:onClick="onCheckboxClicked"/>
 
 
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Switch mode"
+        android:id="@+id/checkboxreversemode"
+        android:background="#d7e2e2"
+        android:layout_below="@+id/checkBoxDebug"
+        android:layout_centerHorizontal="true"
+        android:onClick="onCheckboxClicked"/>
+
+
 </RelativeLayout>
