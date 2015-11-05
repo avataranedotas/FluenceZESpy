@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="fonte_normal">26sp</dimen>
-    <dimen name="fonte_grande">40sp</dimen>
-    <dimen name="fonte_pequena">22sp</dimen>
-    <dimen name="altura_seta">50dp</dimen>
+    <dimen name="fonte_normal">22sp</dimen>
+    <dimen name="fonte_grande">32sp</dimen>
+    <dimen name="fonte_pequena">19sp</dimen>
+    <dimen name="altura_seta">40dp</dimen>
+
+    <dimen name="altura_bat12v">40dp</dimen>
 
 </resources>

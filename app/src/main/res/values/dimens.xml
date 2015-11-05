@@ -3,10 +3,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+
     <dimen name="fonte_normal">14sp</dimen>
     <dimen name="fonte_grande">20sp</dimen>
     <dimen name="fonte_pequena">12sp</dimen>
     <dimen name="altura_seta">20dp</dimen>
+
+    <dimen name="altura_bat12v">20dp</dimen>
 
 
 </resources>

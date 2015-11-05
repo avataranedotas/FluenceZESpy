@@ -308,8 +308,8 @@ public class Page0 extends Fragment {
 
         if (array0[20]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
-            //double temp = ((double) array0[19]) / 1.0;
-            view.setText("Total Regenerated: " + array0[20] + "kWh ?");
+            double temp = ((double) array0[20]) / 10.0;
+            view.setText("Total Regenerated: " + String.format("%6.1f", temp) + "kWh ?");
         }
 
         //calculo de potencia e seta de fluxo de corrente

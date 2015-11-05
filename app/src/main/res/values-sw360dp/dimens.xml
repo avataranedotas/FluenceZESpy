@@ -2,9 +2,11 @@
 <resources>
 
     <dimen name="fonte_normal">18sp</dimen>
-    <dimen name="fonte_grande">27sp</dimen>
+    <dimen name="fonte_grande">28sp</dimen>
     <dimen name="fonte_pequena">15sp</dimen>
-    <dimen name="altura_seta">30dp</dimen>
+    <dimen name="altura_seta">25dp</dimen>
+
+    <dimen name="altura_bat12v">25dp</dimen>
 
 
 

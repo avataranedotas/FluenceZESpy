@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Page1 extends Fragment {
@@ -205,19 +206,32 @@ public class Page1 extends Fragment {
         if (array1[0]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_1);
             double temp = ((double) array1[0]) / 100.0;
-            view.setText("SOC:" + String.format("%3.2f", temp) + "%");
+            view.setText(String.format("%3.2f", temp) + "%");
+
+
+            ProgressBar pb = (ProgressBar) getView().findViewById(R.id.pb_soc_1);
+            if (temp >100.0) temp = 100.0;
+            pb.setProgress((int) temp);
+
+
+
+
+
+
         }
 
+        /*
         if (array1[7]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.motorfanspeed_1);
             double temp = ((double) array1[7]) / 2.0;
             view.setText("Pack Voltage:"+ String.format("%3.1f", temp) + "V");
         }
+        */
 
         if (array1[14]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.battery12v_1);
             double temp = ((double) array1[14]) / 1000.0;
-            view.setText("12V Battery Voltage:"+ String.format("%2.2f", temp) + "V");
+            view.setText(String.format("%2.2f", temp) + "V");
         }
 
 
