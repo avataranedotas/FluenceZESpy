@@ -262,7 +262,7 @@
                 android:text="Ah"
                 android:id="@+id/ah_0"
                 android:textColor="#000000"
-                android:textSize="15dp"
+                android:textSize="@dimen/fonte_normal"
                 android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/imageView4"
                 android:layout_toEndOf="@+id/imageView4" />
@@ -274,7 +274,7 @@
                 android:text="%"
                 android:id="@+id/health_0"
                 android:textColor="#000000"
-                android:textSize="15dp"
+                android:textSize="@dimen/fonte_normal"
                 android:layout_above="@+id/ah_0"
                 android:layout_toRightOf="@+id/imageView4"
                 android:layout_toEndOf="@+id/imageView4" />
@@ -286,7 +286,7 @@
                 android:text="km"
                 android:id="@+id/batkm_0"
                 android:textColor="#000000"
-                android:textSize="15dp"
+                android:textSize="@dimen/fonte_normal"
                 android:layout_above="@+id/imageView4"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -299,7 +299,7 @@
                 android:text="A"
                 android:id="@+id/batcurrent_0"
                 android:textColor="#000000"
-                android:textSize="15dp"
+                android:textSize="@dimen/fonte_normal"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -335,11 +335,12 @@
                         android:text="A"
                         android:id="@+id/evsepilot_0"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/fonte_normal"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_marginLeft="10dp" />
+                        android:layout_marginLeft="10dp"
+                        android:textIsSelectable="false" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -348,7 +349,7 @@
                         android:text="kW"
                         android:id="@+id/kwbat_0"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/fonte_normal"
                         android:layout_below="@+id/seta_0"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
@@ -363,7 +364,7 @@
                         android:text="Max"
                         android:id="@+id/maxchargingpower_0"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="@dimen/fonte_pequena"
                         android:layout_below="@+id/kwbat_0"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true" />
@@ -411,7 +412,7 @@
                         android:textStyle="bold"
                         android:layout_above="@+id/pb_soc_0"
                         android:layout_centerHorizontal="true"
-                        android:textSize="25sp" />
+                        android:textSize="@dimen/fonte_grande" />
 
 
                     <TextView
@@ -420,7 +421,7 @@
                         android:text="Real SOC"
                         android:id="@+id/realsoc_0"
                         android:textColor="#000000"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/fonte_pequena"
                         android:nestedScrollingEnabled="false"
                         android:singleLine="true"
                         android:layout_above="@+id/socx475_0"
@@ -471,7 +472,7 @@
                         android:text="C"
                         android:id="@+id/battempmin_0"
                         android:textColor="#000000"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/fonte_normal"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true" />
@@ -483,7 +484,7 @@
                         android:text="V"
                         android:id="@+id/packvoltage_0"
                         android:textColor="#000000"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/fonte_normal"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />

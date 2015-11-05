@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="fonte_normal">20sp</dimen>
+    <dimen name="fonte_grande">30sp</dimen>
+    <dimen name="fonte_pequena">17sp</dimen>
+
+
+</resources>
