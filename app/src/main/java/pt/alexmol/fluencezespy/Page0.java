@@ -15,7 +15,6 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class Page0 extends Fragment {
-    Context c;
-
-    private final int invalido = Integer.MAX_VALUE;
+    // --Commented out by Inspection (05-11-2015 14:55):Context c;
 
     public Page0(){
 
@@ -99,8 +96,8 @@ public class Page0 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity actividademain0 = (MainActivity)getActivity();
-        actpag0(actividademain0.valoresmemorizados);
+        //MainActivity actividademain0 = (MainActivity)getActivity();
+        actpag0(MainActivity.valoresmemorizados);
 
         temp_anterior = -255;
 
@@ -135,7 +132,8 @@ public class Page0 extends Fragment {
 
 
     public void actpag0(int[] array0) {
-        if (array0[0]!=invalido) {
+        int invalido = Integer.MAX_VALUE;
+        if (array0[0]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_0);
             double temp = ((double) array0[0]) / 100.0;
             view.setText(String.format("%3.2f", temp) + "%");
@@ -149,7 +147,7 @@ public class Page0 extends Fragment {
 
 
 
-        if (array0[1]!=invalido) {
+        if (array0[1]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.battemp_0);
             int temp1 = ( array0[1]);
             int temp2 = ( array0[2]);
@@ -159,7 +157,7 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[17]!=invalido) {
+        if (array0[17]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.battempmin_0);
             view.setText(array0[17] + "C");
 
@@ -224,14 +222,14 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[5]!=invalido) {
+        if (array0[5]!= invalido) {
             ImageView view = (ImageView) getView().findViewById(R.id.plug_0);
             if (array0[5]!=0) view.setVisibility(View.VISIBLE);
             else view.setVisibility(View.INVISIBLE);
 
         }
 
-        if (array0[6]!=invalido) {
+        if (array0[6]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
             if (array0[6]>=0 && array0[6]<48 && array0[5]!=0 && array0[5] != invalido) {
                 view.setText(array0[6] + "A");
@@ -243,7 +241,7 @@ public class Page0 extends Fragment {
 
 
 
-        if (array0[9]!=invalido) {
+        if (array0[9]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxchargingpower_0);
             double temp = ((double) array0[9]) / 10.0;
             if (temp>0.0) {
@@ -253,19 +251,19 @@ public class Page0 extends Fragment {
             else view.setVisibility(View.INVISIBLE);
         }
 
-        if (array0[10]!=invalido) {
+        if (array0[10]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxinputpower_0);
             double temp = ((double) array0[10]) / 100.0;
             view.setText("Max Input Power: " + String.format("%2.2f", temp) + "kW");
         }
 
-        if (array0[11]!=invalido) {
+        if (array0[11]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxoutputpower_0);
             double temp = ((double) array0[11]) / 100.0;
             view.setText("Max Output Power: " + String.format("%2.2f", temp) + "kW");
         }
 
-        if (array0[12]!=invalido) {
+        if (array0[12]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.packvoltage_0);
             double temp = ((double) array0[12]) / 100.0;
             view.setText(String.format("%3.2f", temp) + "V");
@@ -273,7 +271,7 @@ public class Page0 extends Fragment {
 
 
 
-        if (array0[13]!=invalido) {
+        if (array0[13]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
             double temp = Math.abs(((double) array0[13]) / 1000.0);
             view.setText(String.format("%3.2f", temp) + "A");
@@ -282,40 +280,40 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[15]!=invalido) {
+        if (array0[15]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.realsoc_0);
             double temp = ((double) array0[15]) / 10000.0;
             view.setText("REAL: " + String.format("%3.3f", temp) + "%");
         }
 
 
-        if (array0[16]!=invalido) {
+        if (array0[16]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.ah_0);
             double temp = ((double) array0[16]) / 10000.0;
             view.setText(String.format("%2.3f", temp) + "Ah");
         }
 
-        if (array0[18]!=invalido) {
+        if (array0[18]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.health_0);
             double temp = ((double) array0[18]) / 2.0;
             view.setText(String.format("%3.1f", temp) + "%");
         }
 
 
-        if (array0[19]!=invalido) {
+        if (array0[19]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.batkm_0);
             //double temp = ((double) array0[19]) / 1.0;
             view.setText(array0[19] +"km");
         }
 
-        if (array0[20]!=invalido) {
+        if (array0[20]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
             //double temp = ((double) array0[19]) / 1.0;
             view.setText("Total Regenerated: " + array0[20] + "kWh ?");
         }
 
         //calculo de potencia e seta de fluxo de corrente
-        if (array0[13]!=invalido && array0[12]!=invalido) {
+        if (array0[13]!= invalido && array0[12]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.kwbat_0);
             double temp = ((double) array0[13]) / 1000.0 * ((double) array0[12]) / 100.0 / 1000.0;
             view.setText( String.format("%2.1f", Math.abs(temp)) + "kW");
@@ -350,7 +348,7 @@ public class Page0 extends Fragment {
             else image.setVisibility(View.VISIBLE);
         }
 
-        if (array0[21]!=invalido) {
+        if (array0[21]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
             view.setText("Desconhecido 1: " + array0[21]);
             view = (TextView) getView().findViewById(R.id.desconhecido2_0);

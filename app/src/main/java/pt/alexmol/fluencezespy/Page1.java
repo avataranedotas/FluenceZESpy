@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class Page1 extends Fragment {
-    Context c;
-
-    private final int invalido = Integer.MAX_VALUE;
+    // --Commented out by Inspection (05-11-2015 14:55):Context c;
 
     //private pagina1interface listener;
 
@@ -165,8 +163,8 @@ public class Page1 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity actividademain1 = (MainActivity)getActivity();
-        actpag1(actividademain1.valoresmemorizados);
+        //MainActivity actividademain1 = (MainActivity)getActivity();
+        actpag1(MainActivity.valoresmemorizados);
 
 
         TextView view = (TextView) getView().findViewById(R.id.swdp);
@@ -203,19 +201,20 @@ public class Page1 extends Fragment {
 
 
     public void actpag1(int[] array1) {
-        if (array1[0]!=invalido) {
+        int invalido = Integer.MAX_VALUE;
+        if (array1[0]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_1);
             double temp = ((double) array1[0]) / 100.0;
             view.setText("SOC:" + String.format("%3.2f", temp) + "%");
         }
 
-        if (array1[7]!=invalido) {
+        if (array1[7]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.motorfanspeed_1);
             double temp = ((double) array1[7]) / 2.0;
             view.setText("Pack Voltage:"+ String.format("%3.1f", temp) + "V");
         }
 
-        if (array1[14]!=invalido) {
+        if (array1[14]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.battery12v_1);
             double temp = ((double) array1[14]) / 1000.0;
             view.setText("12V Battery Voltage:"+ String.format("%2.2f", temp) + "V");

@@ -3,19 +3,15 @@ package pt.alexmol.fluencezespy;
 import android.app.Activity;
 //import android.support.v4.app.Fragment;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.UiModeManager;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Point;
 import android.os.*;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
@@ -24,8 +20,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -52,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public static int smallestwidthdp;
     public static boolean TABLET = false;
     public static boolean landscape;
-
-    private final int invalido = Integer.MAX_VALUE;
 
     /**
      * The android.support.v4.view.PagerAdapter that will provide fragments for
@@ -239,20 +231,19 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         } else {
             //invalida valores
             int i;
-            for (i=0;i<100;i++) valoresmemorizados[i]=invalido;
+            int invalido = Integer.MAX_VALUE;
+            for (i=0;i<100;i++) valoresmemorizados[i]= invalido;
         }
 
         //tamanho do ecran utilizável, dimensão mínima em dp
         smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
 
-        if( this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) landscape = true;
-        else landscape = false;
+        landscape = this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
 
 
         // se o swdp for superior a 580 estamos num tablet
-        if (smallestwidthdp >= 580) TABLET = true;
-        else TABLET = false;
+        TABLET = smallestwidthdp >= 580;
         //teste
         //TABLET = true;
 
@@ -371,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                         .setSmallIcon(R.mipmap.ic_notification_2_launcher)
                         .setContentTitle("Fluence ZE Spy")
                         .setContentText("Running in background")
-                        .setCategory(Notification.CATEGORY_STATUS)
+                        //.setCategory(Notification.CATEGORY_STATUS)
                         .setAutoCancel(false)
                         .setOngoing(true)
                         .setPriority(-1);
@@ -431,7 +422,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
-        if(settings.getBoolean("disclaimer",false)==false) {
+        if(!settings.getBoolean("disclaimer", false)) {
 
             tarefa.cancel(true);
 
@@ -464,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                             // if this button is clicked, close
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putBoolean("disclaimer", true);
-                            editor.commit();
+                            editor.apply();
 
                             if (!( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  )) {
                                 tarefa = new BTELMAsyncTask(MainActivity.instance);

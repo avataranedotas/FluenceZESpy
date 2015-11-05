@@ -60,7 +60,7 @@
                 android:fillViewport="true">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent" android:layout_height="fill_parent"
+                    android:layout_width="fill_parent" android:layout_height="wrap_content"
                     android:id="@+id/layoutContainerScroller" android:orientation="vertical">
 
 
@@ -73,7 +73,7 @@
                         android:textColor="#000000"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
 
@@ -92,7 +92,7 @@
                         android:layout_below="@+id/battemp_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                         android:layout_below="@+id/maxinputpower_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
 
@@ -128,7 +128,7 @@
                         android:layout_below="@+id/maxoutputpower_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
 
@@ -143,11 +143,11 @@
                         android:textColor="#000000"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="621dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Desconhecido 2: Wait"
@@ -156,7 +156,7 @@
                         android:layout_below="@+id/desconhecido1_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -168,7 +168,7 @@
                         android:layout_below="@+id/desconhecido2_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
                     <TextView
@@ -181,7 +181,7 @@
                         android:layout_below="@+id/desconhecido3_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
                     <TextView
@@ -194,7 +194,7 @@
                         android:layout_below="@+id/desconhecido4_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -206,7 +206,7 @@
                         android:layout_below="@+id/desconhecido5_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="15dp" />
+                        android:textSize="@dimen/fonte_normal" />
 
 
                 </LinearLayout>
@@ -231,7 +231,8 @@
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent" android:layout_height="fill_parent"
-                android:id="@+id/layoutContainerH" android:orientation="horizontal">
+                android:id="@+id/layoutContainerH" android:orientation="horizontal"
+                android:baselineAligned="false">
 
 
                 <RelativeLayout
@@ -274,7 +275,7 @@
                                 android:text="Max"
                                 android:id="@+id/maxchargingpower_0"
                                 android:textColor="#000000"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/fonte_pequena"
                                 android:layout_below="@+id/kwbat_0"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true" />
@@ -287,7 +288,7 @@
                                 android:text="km"
                                 android:id="@+id/batkm_0"
                                 android:textColor="#000000"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/fonte_normal"
                                 android:layout_above="@+id/imageView3"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true" />
@@ -312,7 +313,7 @@
                                 android:text="%"
                                 android:id="@+id/health_0"
                                 android:textColor="#000000"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/fonte_normal"
                                 android:layout_above="@+id/ah_0"
                                 android:layout_toRightOf="@+id/imageView3"
                                 android:layout_toEndOf="@+id/imageView3" />
@@ -325,7 +326,7 @@
                                 android:text="Ah"
                                 android:id="@+id/ah_0"
                                 android:textColor="#000000"
-                                android:textSize="15dp"
+                                android:textSize="@dimen/fonte_normal"
                                 android:layout_alignParentBottom="true"
                                 android:layout_toRightOf="@+id/imageView3"
                                 android:layout_toEndOf="@+id/imageView3" />
@@ -338,7 +339,7 @@
                                 android:text="A"
                                 android:id="@+id/batcurrent_0"
                                 android:textColor="#000000"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/fonte_normal"
                                 android:layout_alignParentTop="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true"
@@ -361,7 +362,7 @@
 
                             <ImageView
                                 android:layout_width="fill_parent"
-                                android:layout_height="30dp"
+                                android:layout_height="@dimen/altura_seta"
                                 android:id="@+id/seta_0"
                                 android:layout_below="@+id/batcurrent_0"
                                 android:layout_centerHorizontal="true"
@@ -372,7 +373,7 @@
 
                             <ImageView
                                 android:layout_width="fill_parent"
-                                android:layout_height="30dp"
+                                android:layout_height="@dimen/altura_seta"
                                 android:id="@+id/plug_0"
                                 android:src="@drawable/charging"
                                 android:layout_centerHorizontal="true"
@@ -514,7 +515,7 @@
                                 android:text="C"
                                 android:id="@+id/battempmin_0"
                                 android:textColor="#000000"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/fonte_normal"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true" />
@@ -527,7 +528,7 @@
                                 android:text="V"
                                 android:id="@+id/packvoltage_0"
                                 android:textColor="#000000"
-                                android:textSize="15sp"
+                                android:textSize="@dimen/fonte_normal"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true" />

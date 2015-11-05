@@ -45,6 +45,7 @@ public class Settings extends AppCompatActivity {
 
         ArrayAdapter mArrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1);
 
+        CheckBox reverse = (CheckBox) findViewById(R.id.checkboxreversemode);
 
         // If there are paired devices
         if (pairedDevices.size() > 0) {
@@ -66,8 +67,13 @@ public class Settings extends AppCompatActivity {
             CheckBox debug = (CheckBox) findViewById(R.id.checkBoxDebug);
             debug.setChecked(debugmodeon);
 
-            CheckBox reverse = (CheckBox) findViewById(R.id.checkboxreversemode);
+
             reverse.setChecked(reversemodeon);
+            //check current mode
+            //se estamos num tablet
+            if ( MainActivity.TABLET) reverse.setText("Switch to phone mode (requires restart or rotate)");
+            else reverse.setText("Switch to tablet mode (requires restart or rotate)");
+
 
 
             // Loop through paired devices
@@ -112,12 +118,6 @@ public class Settings extends AppCompatActivity {
 
         }
 
-        //check current mode
-        CheckBox caixa = (CheckBox) findViewById(R.id.checkboxreversemode);
-
-        //se estamos num tablet
-        if ( MainActivity.TABLET) caixa.setText("Switch to phone mode (requires restart or rotate)");
-        else caixa.setText("Switch to tablet mode (requires restart or rotate)");
 
 
 
@@ -192,30 +192,18 @@ public class Settings extends AppCompatActivity {
         // Check which checkbox was clicked
         switch(view.getId()) {
             case R.id.checkBoxBackground:
-                if (checked)
-                backgroundmodeon = true;
-                else
-                backgroundmodeon = false;
+                backgroundmodeon = checked;
                 break;
             case R.id.checkBoxDebug:
-                if (checked)
-                debugmodeon = true;
-                else
-                debugmodeon = false;
+                debugmodeon = checked;
                 break;
 
             case R.id.checkBoxScreen:
-                if (checked)
-                    keepscreenon = true;
-                else
-                    keepscreenon = false;
+                keepscreenon = checked;
                     break;
 
             case R.id.checkboxreversemode:
-                if (checked)
-                    reversemodeon = true;
-                else
-                    reversemodeon = false;
+                reversemodeon = checked;
                 break;
 
 

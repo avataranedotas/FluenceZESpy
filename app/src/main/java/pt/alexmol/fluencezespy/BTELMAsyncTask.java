@@ -25,7 +25,7 @@ import java.util.UUID;
 /**
  * Created by alexandre.moleiro on 24-10-2015.
  */
-public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
+class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     private final Context mContext;
     public BTELMAsyncTask (Context context){
@@ -57,8 +57,6 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     private static BluetoothAdapter mBluetoothAdapter2;
 
-    private static double socx475 = 0.0;
-
     private static String bluetoothDeviceAddress2 = null;
 
     private static boolean PAUSAMAIN = false;
@@ -68,7 +66,6 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     private final int invalido = Integer.MAX_VALUE;
 
-    private static PowerManager powerManager;
     private static PowerManager.WakeLock wakeLock;
 
     //recebe ordem para arrancar
@@ -78,7 +75,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         MyBus.getInstance().register(this);
 
 
-        powerManager = (PowerManager) mContext.getSystemService(Activity.POWER_SERVICE);
+        PowerManager powerManager = (PowerManager) mContext.getSystemService(Activity.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "FluenceZESPYWakelockTag");
 
         mToastHandler = new ToastHandler(mContext);
@@ -118,13 +115,13 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         publishProgress(2,2);
 
         int passo = 1;
-        String resposta = "";
-        String resposta2 = "";
+        String resposta;
+        //String resposta2 = "";
 
 
-        long longo = 0L;
+        long longo;
         int passoanterior = 0;
-        boolean ultimavalida = false;
+        //boolean ultimavalida = false;
 
         long timebt1 = Calendar.getInstance().getTimeInMillis();          //ciclo 1s
         long timebt2 = Calendar.getInstance().getTimeInMillis() - 40000L; //ciclo 1minuto
@@ -243,10 +240,10 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 publishProgress(0,11);
                 READYtoRW2 = false;
 
-                if (backGroundMode) {
+                //if (backGroundMode) {
                     //mNotificationManager2.notify(2, mBuilder2.build());
                     //startNotificationOnStatusBar();
-                }
+                //}
                 if (!PAUSAMAIN && debugMode) tostax(mContext.getString(R.string.task2_start));
 
                 //try to close any previous socket
@@ -576,7 +573,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             longo = processalinha(resposta,0,12,false);  //processa a resposta
                             if (longo !=Long.MAX_VALUE) { //resposta bem processada
                                 //converter para flutuante
-                                socx475 = longo / 47.5;
+                                double socx475 = longo / 47.5;
                                 //validação
                                 if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
                                     //publishProgress(100, invalido);  //necessário publicar inválidos???
@@ -682,7 +679,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     if (longo >= -30 && longo <= 127) {
                                         //publica valor
                                         //tempbat1 é o indice 101
-                                        ultimavalida = true;
+                                        //ultimavalida = true;
                                         publishProgress(101, (int) longo);
                                     }
 
@@ -1375,9 +1372,9 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     //função para obter um free frame
 
-    String getfreeframe (String pid, int timeout, int period, int minimocaracteres) {
+    private String getfreeframe(String pid, int timeout, int period, int minimocaracteres) {
 
-        boolean ultimavalida = false;
+        boolean ultimavalida;
         String resposta;
 
         //escolher filtro
@@ -1413,7 +1410,7 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     //função processa linha em hexa com máximo de 8 bytes, devolve MAX_VALUE em caso de erro
 
-    long processalinha (String input, int startbit, int stopbit, boolean signed) {
+    private long processalinha(String input, int startbit, int stopbit, boolean signed) {
 
         long longo;
         int nrbits;
@@ -1487,9 +1484,9 @@ public class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     //função para obter frames iso-tp, devolve uma String com as linhas pedidas sem separadores
 
-    String getisoframe (String pid, String rpid, String comando, int timeout, int linhas) {
+    private String getisoframe(String pid, String rpid, String comando, int timeout, int linhas) {
 
-        boolean ultimavalida = false;
+        boolean ultimavalida;
         String resposta = "";
         int i;
 

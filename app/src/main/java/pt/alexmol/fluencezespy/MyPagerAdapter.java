@@ -16,12 +16,10 @@ class MyPagerAdapter extends FragmentPagerAdapter {
     private final MainActivity myPagerAdapter;
     private final SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
-    private final Context c;
-
     public MyPagerAdapter(MainActivity MyPagerAdapter, Context c, FragmentManager fm) {
         super(fm);
         myPagerAdapter = MyPagerAdapter;
-        this.c = c;
+        Context c1 = c;
     }
 
     @Override

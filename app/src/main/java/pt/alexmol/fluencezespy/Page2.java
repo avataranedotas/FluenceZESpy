@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class Page2 extends Fragment {
-    Context c;
-
-    private final int invalido = Integer.MAX_VALUE;
+    // --Commented out by Inspection (05-11-2015 14:55):Context c;
 
     public Page2(){
 
@@ -50,8 +48,8 @@ public class Page2 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MainActivity actividademain2 = (MainActivity)getActivity();
-        actpag2(actividademain2.valoresmemorizados);
+        //MainActivity actividademain2 = (MainActivity)getActivity();
+        actpag2(MainActivity.valoresmemorizados);
 
     }
 
@@ -59,7 +57,8 @@ public class Page2 extends Fragment {
 
 
     public void actpag2(int[] array2) {
-        if (array2[0]!=invalido) {
+        int invalido = Integer.MAX_VALUE;
+        if (array2[0]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_2);
             double temp = ((double) array2[0]) / 100.0;
             view.setText("SOC:" + String.format("%3.2f", temp) + "%");
