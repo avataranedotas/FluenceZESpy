@@ -133,6 +133,7 @@ public class Page0 extends Fragment {
 
     public void actpag0(int[] array0) {
         int invalido = Integer.MAX_VALUE;
+
         if (array0[0]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_0);
             double temp = ((double) array0[0]) / 100.0;

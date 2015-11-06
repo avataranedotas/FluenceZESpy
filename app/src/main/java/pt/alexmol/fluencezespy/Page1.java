@@ -182,6 +182,14 @@ public class Page1 extends Fragment {
         if (MainActivity.debugModeMain) view.setVisibility(View.VISIBLE);
         else view.setVisibility(View.INVISIBLE);
 
+        //se modo tablet esconde algumas coisas
+        if (MainActivity.TABLET ^ MainActivity.reverseModeMain) {
+            view = (TextView) getView().findViewById(R.id.socx475_1);
+            view.setVisibility(View.INVISIBLE);
+
+            ProgressBar progresso = (ProgressBar) getView().findViewById(R.id.pb_soc_1);
+            progresso.setVisibility(ProgressBar.INVISIBLE);
+        }
 
 
 

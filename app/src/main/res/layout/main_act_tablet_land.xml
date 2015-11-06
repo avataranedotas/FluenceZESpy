@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:baselineAligned="false">
 
+
+
     <fragment android:name="pt.alexmol.fluencezespy.Page2"
         android:id="@+id/page2"
         android:layout_weight="1"
@@ -28,6 +30,32 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         tools:layout="@layout/section0" />
+
+
+
+    <!--
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="HV Loads: Wait"
+            android:id="@+id/hvloads_m"
+            android:textColor="#000000"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="@dimen/fonte_normal" />
+
+
+    </LinearLayout>
+      -->
 
 </LinearLayout>
 

@@ -23,6 +23,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //125, desconhecido5  - relacionado com corrente de bateria em carga
     //126, desconhecido6
     //127, main contactor 0 OFF, 1 PRECharge, 2 ON
+    //128, hv consumption loads W/10
 
 
 
@@ -710,9 +712,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
         else {
 
+
+            //se for usada uma página main sem fragmentos remover o seguinte
+
             Page1 fragmento = (Page1) getSupportFragmentManager().findFragmentById(R.id.page1);
 
             fragmento.setPasso(link);
+
 
 
         }
@@ -748,6 +754,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //actualizar páginas
     private void actualizarpaginas(int[] arrayd) {
 
+        //se modo swipe views
         if ( !(TABLET ^ reverseModeMain)) {
             try {
 
@@ -773,7 +780,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 if (debugModeMain) toast("excepcao:" + e);
             }
         }
+        //se modo ecran inteiro por fragmentos
         else {
+
+
+
             Page1 fragmento1 = (Page1) getSupportFragmentManager().findFragmentById(R.id.page1);
             fragmento1.actpag1(arrayd);
 
@@ -784,10 +795,31 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             fragmento2.actpag2(arrayd);
 
 
+            //se for usada uma página main sem fragmentos
+            //actpagmain(arrayd);
+
         }
 
 
     }
+
+    //se for usada uma página main sem fragmentos
+    /*
+    public void actpagmain(int[] arraym) {
+        int invalido = Integer.MAX_VALUE;
+
+        if (arraym[28]!= invalido) {
+
+                TextView view = (TextView) findViewById(R.id.hvloads_m);
+                double temp = ((double) arraym[28]) / 10.0;
+                view.setText("HV Loads: " + String.format("%2.1f", temp) + "kW");
+
+        }
+
+    }
+    */
+
+
 
 
 
