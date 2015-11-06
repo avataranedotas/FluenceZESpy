@@ -3,6 +3,7 @@ package pt.alexmol.fluencezespy;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,6 +12,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -117,6 +121,23 @@ public class Settings extends AppCompatActivity {
 
 
         }
+
+        String versionName = BuildConfig.VERSION_NAME;
+
+
+
+        try {
+            String teste = getPackageName();
+            PackageInfo pInfo = getPackageManager().getPackageInfo(teste,0);
+            versionName = pInfo.versionName;
+        }
+        catch (Exception e ) {
+            versionName = "";
+        }
+
+
+        TextView view = (TextView) findViewById(R.id.version);
+        view.setText("Version "+ versionName);
 
 
 

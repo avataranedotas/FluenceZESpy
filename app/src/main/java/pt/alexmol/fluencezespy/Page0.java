@@ -351,17 +351,17 @@ public class Page0 extends Fragment {
 
         if (array0[21]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
-            view.setText("Desconhecido 1: " + array0[21]);
+            view.setText("Unknown 1: " + array0[21]);
             view = (TextView) getView().findViewById(R.id.desconhecido2_0);
-            view.setText("Desconhecido 2: " + array0[22]);
+            view.setText("Unknown 2: " + array0[22]);
             view = (TextView) getView().findViewById(R.id.desconhecido3_0);
-            view.setText("Desconhecido 3: " + array0[23]);
+            view.setText("Unknown 3: " + array0[23]);
             view = (TextView) getView().findViewById(R.id.desconhecido4_0);
-            view.setText("Desconhecido 4: " + array0[24]);
+            view.setText("Unknown 4: " + array0[24]);
             view = (TextView) getView().findViewById(R.id.desconhecido5_0);
-            view.setText("Desconhecido 5: " + array0[25]);
+            view.setText("Unknown 5: " + array0[25]);
             view = (TextView) getView().findViewById(R.id.desconhecido6_0);
-            view.setText("Desconhecido 6: " + array0[26]);
+            view.setText("Unknown 6: " + array0[26]);
 
         }
 

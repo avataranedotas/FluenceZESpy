@@ -6,6 +6,7 @@
     <!-- <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="true"
@@ -13,6 +14,8 @@
         android:xlargeScreens="true" />
 
     <application
+        android:versionCode="3"
+        android:versionName="0.3.1"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Fluence ZE Spy"
