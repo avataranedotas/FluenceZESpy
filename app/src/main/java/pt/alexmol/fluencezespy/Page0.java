@@ -27,6 +27,9 @@ import android.widget.TextView;
 public class Page0 extends Fragment {
     // --Commented out by Inspection (05-11-2015 14:55):Context c;
 
+    private int largura = -200;
+
+
     public Page0(){
 
     }
@@ -323,26 +326,34 @@ public class Page0 extends Fragment {
 
             //seta da bateria
             ImageView image = (ImageView) getView().findViewById(R.id.seta_0);
+
+            //obtem largura da seta da primeira vez que corre para poder escalar a seguir
+            if (largura== -200) largura = image.getWidth();
+
+            //temp = 30;
+
+            //obtem dados sobre layout
+            image.requestLayout();
+
             //se kw entre -35 e -5
             if (temp <-5.0) {
-                image.setScaleX((float) (1.0 + (-1.0 * ((temp + 5) / 17.5))));
-                image.setScaleType(ImageView.ScaleType.FIT_END);
+                image.getLayoutParams().width = (int) ((0.3+ (Math.abs(temp+5)/50) ) * largura);
             }
             //se kw entre -5 e 0
             if (temp >=-5.0 && temp <0.0) {
-                image.setScaleX((float) 1.0);
-                image.setScaleType(ImageView.ScaleType.FIT_END);
+                image.getLayoutParams().width = (int) (largura * 0.3);
             }
             //se kw entre 0 e 5
             if (temp >=0 && temp <5.0) {
+                image.getLayoutParams().width = (int) (largura * 0.3);
                 image.setScaleX((float) -1.0);
-                image.setScaleType(ImageView.ScaleType.FIT_START);
             }
             //se kw entre 5 e 80
             if (temp >=5.0) {
-                image.setScaleX((float) (-1.0 + (-1.0 * ((temp - 5) / 37.5))));
-                image.setScaleType(ImageView.ScaleType.FIT_START);
+                image.getLayoutParams().width = (int) ((0.3+ (Math.abs(temp-5)/125) ) * largura);
+                image.setScaleX((float) -1.0);
             }
+
 
             //se corrente for zero esconde seta
             if (temp == 0.0) image.setVisibility(View.INVISIBLE);

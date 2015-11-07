@@ -362,15 +362,14 @@
                                 android:layout_marginRight="10dp" />
 
                             <ImageView
-                                android:layout_width="fill_parent"
+                                android:layout_width="match_parent"
                                 android:layout_height="@dimen/altura_seta"
                                 android:id="@+id/seta_0"
                                 android:layout_below="@+id/batcurrent_0"
-                                android:layout_centerHorizontal="true"
                                 android:src="@drawable/blue_right"
-                                android:scaleType="fitEnd"
-                                android:scaleX="1"
-                                />
+                                android:layout_alignParentRight="true"
+                                android:saveEnabled="false"
+                                android:scaleType="fitXY" />
 
                             <ImageView
                                 android:layout_width="fill_parent"
