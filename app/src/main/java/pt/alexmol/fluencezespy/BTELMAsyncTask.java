@@ -838,9 +838,21 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
                                 //desconhecido 6
-                                longo = processalinha(resposta.substring(118, 124), 0, 23, false);
+                                longo = processalinha(resposta.substring(118, 120), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(126, (int) longo);
+                                }
+
+                                //desconhecido 7
+                                longo = processalinha(resposta.substring(120, 122), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(129, (int) longo);
+                                }
+
+                                //desconhecido 8
+                                longo = processalinha(resposta.substring(122, 124), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(130, (int) longo);
                                 }
 
                             }

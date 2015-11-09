@@ -4,12 +4,9 @@ package pt.alexmol.fluencezespy;
  * Created by alexandre.moleiro on 15-10-2015.
  */
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RoundRectShape;
@@ -18,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -27,7 +23,7 @@ import android.widget.TextView;
 public class Page0 extends Fragment {
     // --Commented out by Inspection (05-11-2015 14:55):Context c;
 
-    private int largura = -200;
+    private int larguracarregador = -12345;
 
 
     public Page0(){
@@ -103,6 +99,8 @@ public class Page0 extends Fragment {
         actpag0(MainActivity.valoresmemorizados);
 
         temp_anterior = -255;
+
+        larguracarregador = -12345;
 
         /*
 
@@ -324,35 +322,49 @@ public class Page0 extends Fragment {
             if (temp == 0.0) view.setVisibility(View.INVISIBLE);
             else view.setVisibility(View.VISIBLE);
 
+
             //seta da bateria
             ImageView image = (ImageView) getView().findViewById(R.id.seta_0);
 
+
             //obtem largura da seta da primeira vez que corre para poder escalar a seguir
-            if (largura== -200) largura = image.getWidth();
+
+            if (larguracarregador == -12345) {
+                View pai = getView().findViewById(R.id.esqbateria);
+                pai.requestLayout();
+                larguracarregador = pai.getWidth();
+            }
+
 
             //temp = 30;
 
-            //obtem dados sobre layout
-            image.requestLayout();
+
 
             //se kw entre -35 e -5
             if (temp <-5.0) {
-                image.getLayoutParams().width = (int) ((0.3+ (Math.abs(temp+5)/50) ) * largura);
+                image.getLayoutParams().width = (int) ((0.3+ (Math.abs(temp+5)/50) ) * larguracarregador);
+                image.setScaleX((float) 1.0);
             }
+
             //se kw entre -5 e 0
             if (temp >=-5.0 && temp <0.0) {
-                image.getLayoutParams().width = (int) (largura * 0.3);
+                image.getLayoutParams().width = (int) (larguracarregador * 0.3);
+                image.setScaleX((float) 1.0);
+
             }
+
             //se kw entre 0 e 5
             if (temp >=0 && temp <5.0) {
-                image.getLayoutParams().width = (int) (largura * 0.3);
+                image.getLayoutParams().width = (int) (larguracarregador * 0.3);
                 image.setScaleX((float) -1.0);
             }
+
             //se kw entre 5 e 80
             if (temp >=5.0) {
-                image.getLayoutParams().width = (int) ((0.3+ (Math.abs(temp-5)/125) ) * largura);
+                image.getLayoutParams().width = (int) ((0.3+ (Math.abs(temp-5)/125) ) * larguracarregador);
                 image.setScaleX((float) -1.0);
             }
+
 
 
             //se corrente for zero esconde seta
@@ -373,6 +385,10 @@ public class Page0 extends Fragment {
             view.setText("Unknown 5: " + array0[25]);
             view = (TextView) getView().findViewById(R.id.desconhecido6_0);
             view.setText("Unknown 6: " + array0[26]);
+            view = (TextView) getView().findViewById(R.id.desconhecido7_0);
+            view.setText("Unknown 7: " + array0[29]);
+            view = (TextView) getView().findViewById(R.id.desconhecido8_0);
+            view.setText("Unknown 8: " + array0[30]);
 
         }
 

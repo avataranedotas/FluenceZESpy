@@ -135,6 +135,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //126, desconhecido6
     //127, main contactor 0 OFF, 1 PRECharge, 2 ON
     //128, hv consumption loads W/10
+    //129, desconhecido7
+    //130, desconhecido8
 
 
 
