@@ -111,18 +111,12 @@
                     android:layout_weight="0.20">
 
                     <ImageView
-                        android:layout_width="fill_parent"
+                        android:layout_width="@dimen/largura_bat12v"
                         android:layout_height="@dimen/altura_bat12v"
                         android:id="@+id/bateria12v"
-                        android:layout_alignParentLeft="false"
-                        android:layout_alignParentStart="false"
                         android:src="@drawable/bat12v_1"
                         android:scaleType="fitCenter"
                         android:alpha="0.75"
-                        android:layout_alignParentBottom="false"
-                        android:layout_alignParentTop="false"
-                        android:layout_alignParentRight="false"
-                        android:layout_alignWithParentIfMissing="false"
                         android:layout_centerInParent="true" />
 
                     <TextView
@@ -133,7 +127,31 @@
                         android:id="@+id/battery12v_1"
                         android:textColor="#000000"
                         android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_above="@+id/bateria12v"
+                        android:layout_centerHorizontal="true" />
+
+                    <ImageView
+                        android:layout_width="@dimen/largura_bat12v"
+                        android:layout_height="@dimen/altura_auxcons"
+                        android:id="@+id/aux_hv"
                         android:layout_below="@+id/bateria12v"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/aux_cons"
+                        android:layout_alignParentTop="false"
+                        android:scaleType="fitStart"
+                        android:alpha="0.75"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/hvcons"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/aux_hv"
                         android:layout_centerHorizontal="true" />
 
 

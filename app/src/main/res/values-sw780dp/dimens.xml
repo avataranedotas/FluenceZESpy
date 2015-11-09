@@ -6,6 +6,11 @@
     <dimen name="fonte_pequena">19sp</dimen>
     <dimen name="altura_seta">40dp</dimen>
 
-    <dimen name="altura_bat12v">40dp</dimen>
+    <dimen name="altura_bat12v">50dp</dimen>
+
+    <dimen name="largura_bat12v">50dp</dimen>
+
+    <dimen name="altura_auxcons">76dp</dimen>
+
 
 </resources>

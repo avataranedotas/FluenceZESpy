@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -241,6 +242,25 @@ public class Page1 extends Fragment {
             double temp = ((double) array1[14]) / 1000.0;
             view.setText(String.format("%2.2f", temp) + "V");
         }
+
+
+        if (array1[28]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.hvcons);
+            double temp = ((double) array1[28]) / 100.0;
+            view.setText(String.format("%1.1f", temp) + "kW");
+
+            ImageView image = (ImageView) getView().findViewById(R.id.aux_hv);
+
+            if (temp==0.0) {
+                view.setVisibility(View.INVISIBLE);
+                image.setVisibility(View.INVISIBLE);
+            }
+            else {
+                view.setVisibility(View.VISIBLE);
+                image.setVisibility(View.VISIBLE);
+            }
+        }
+
 
 
 

@@ -882,7 +882,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(119, (int) longo);
                                 }
 
-                                //bat total charged kwh  3ª linha
+                                //bat total regen kwh  3ª linha
                                 longo = processalinha(resposta.substring(32, 48), 40, 55, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(120, (int) longo);
