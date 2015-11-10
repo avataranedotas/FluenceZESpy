@@ -69,18 +69,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Battery Temps: Wait"
+                        android:text="Temperatures: Wait"
                         android:id="@+id/battemp_0"
                         android:textColor="#000000"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_normal" />
-
-
-
-
-
-
 
 
                     <TextView
@@ -123,7 +117,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Total Regenerated: Wait"
+                        android:text="Total Regen: Wait"
                         android:id="@+id/totcharged_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/maxoutputpower_0"
@@ -316,7 +310,7 @@
                                 android:id="@+id/batkm_0"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/fonte_normal"
-                                android:layout_above="@+id/imageView3"
+                                android:layout_above="@+id/totalkwh_0"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true" />
 
@@ -422,6 +416,18 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_marginLeft="10dp" />
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="kWh"
+                                android:id="@+id/totalkwh_0"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_above="@+id/imageView3"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
 
                         </RelativeLayout>
 
@@ -475,8 +481,23 @@
                                 android:textSize="@dimen/fonte_pequena"
                                 android:nestedScrollingEnabled="false"
                                 android:singleLine="true"
-                                android:layout_above="@+id/socx475_0"
-                                android:layout_centerHorizontal="true" />
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_above="@+id/socx475_0" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="kWh"
+                                android:id="@+id/kwhleft_0"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_normal"
+                                android:nestedScrollingEnabled="false"
+                                android:singleLine="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_above="@+id/socx475_0" />
 
 
                             <ProgressBar

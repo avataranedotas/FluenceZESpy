@@ -155,7 +155,7 @@ public class Page0 extends Fragment {
             int temp2 = ( array0[2]);
             int temp3 = ( array0[3]);
             int temp4 = ( array0[4]);
-            view.setText("Battery Temps:" + temp1 + "C " + temp2 + "C " + temp3 + "C " + temp4 + "C");
+            view.setText("Temperatures: " + temp1 + "/" + temp2 + "/" + temp3 + "/" + temp4 + "C");
         }
 
 
@@ -311,7 +311,7 @@ public class Page0 extends Fragment {
         if (array0[20]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
             double temp = ((double) array0[20]) / 10.0;
-            view.setText("Total Regenerated: " + String.format("%6.1f", temp) + "kWh ?");
+            view.setText("Total Regen?: " + String.format("%6.1f", temp) + "kWh");
         }
 
         //calculo de potencia e seta de fluxo de corrente
@@ -391,6 +391,22 @@ public class Page0 extends Fragment {
             view.setText("Unknown 8: " + array0[30]);
 
         }
+
+        //remaining kwh in the battery
+        if (array0[31]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.kwhleft_0);
+            double temp = ((double) array0[31]) / 10.0;
+            view.setText(String.format("%2.1f", temp) + "kWh");
+        }
+
+        //estimated total capacity
+        if (array0[31]!= invalido && array0[0]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.totalkwh_0);
+            double temp = ((double) array0[31]) / ( Math.max( (array0[0] /100.0), 100.0)  ) * 10.0 ;
+            view.setText(String.format("%2.1f", temp) + "kWh");
+
+        }
+
 
     }
 

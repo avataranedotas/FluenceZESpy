@@ -647,10 +647,17 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             longo = processalinha(resposta,16,25,false);  //processa a resposta
                             if (longo !=Long.MAX_VALUE) { //resposta bem processada
                                 if (longo!=1023) publishProgress(128, (int) longo);
-                                //tostax("contactor:" + longo);
-                                //SystemClock.sleep(3000);
+
                             }
 
+
+
+                            //Remaining kWh
+                            longo = processalinha(resposta,48,57,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                if (longo!=0 && longo <=300) publishProgress(131, (int) longo);
+
+                            }
 
 
 

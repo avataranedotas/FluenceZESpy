@@ -58,34 +58,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Battery Temps: Wait"
+                        android:text="Temperatures: Wait"
                         android:id="@+id/battemp_0"
                         android:textColor="#000000"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_normal" />
-
-
-
-                    <!--
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Pilot"
-                        android:id="@+id/evsepilot0"
-                        android:layout_below="@+id/plug_0"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
-                        android:textColor="#000000"
-                        android:layout_alignLeft="@+id/plug_0"
-                        android:layout_alignStart="@+id/plug_0"
-                        android:textAlignment="center"
-                        android:textStyle="bold"
-                        android:gravity="top|center_horizontal"
-                        android:paddingRight="10dp"
-                        android:textSize="14dp" />
-                        -->
 
 
                     <TextView
@@ -99,7 +77,6 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_normal" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -125,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Total Regenerated: Wait"
+                        android:text="Total Regen: Wait"
                         android:id="@+id/totcharged_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/maxoutputpower_0"
@@ -275,12 +252,25 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/imageView4"
+                android:id="@+id/imageView3"
                 android:src="@drawable/health"
                 android:alpha="0.8"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="kWh"
+                        android:id="@+id/totalkwh_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:layout_above="@+id/imageView3"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -291,8 +281,8 @@
                 android:textColor="#000000"
                 android:textSize="@dimen/fonte_normal"
                 android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/imageView4"
-                android:layout_toEndOf="@+id/imageView4" />
+                android:layout_toRightOf="@+id/imageView3"
+                android:layout_toEndOf="@+id/imageView3" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -303,8 +293,8 @@
                 android:textColor="#000000"
                 android:textSize="@dimen/fonte_normal"
                 android:layout_above="@+id/ah_0"
-                android:layout_toRightOf="@+id/imageView4"
-                android:layout_toEndOf="@+id/imageView4" />
+                android:layout_toRightOf="@+id/imageView3"
+                android:layout_toEndOf="@+id/imageView3" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -314,7 +304,7 @@
                 android:id="@+id/batkm_0"
                 android:textColor="#000000"
                 android:textSize="@dimen/fonte_normal"
-                android:layout_above="@+id/imageView4"
+                android:layout_above="@+id/totalkwh_0"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -444,7 +434,6 @@
                         android:layout_centerHorizontal="true"
                         android:textSize="@dimen/fonte_grande" />
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -454,9 +443,23 @@
                         android:textSize="@dimen/fonte_pequena"
                         android:nestedScrollingEnabled="false"
                         android:singleLine="true"
-                        android:layout_above="@+id/socx475_0"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_above="@+id/socx475_0" />
 
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="kWh"
+                        android:id="@+id/kwhleft_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:nestedScrollingEnabled="false"
+                        android:singleLine="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_above="@+id/socx475_0" />
                     <ProgressBar
                         android:id="@+id/pb_soc_0"
                         style="?android:attr/progressBarStyleHorizontal"

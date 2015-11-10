@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //128, hv consumption loads x10W
     //129, desconhecido7
     //130, desconhecido8
+    //131, remaining kWh x10
 
 
 
