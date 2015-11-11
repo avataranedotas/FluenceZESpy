@@ -664,6 +664,38 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         }
 
 
+
+                        //próximo free frame
+
+                        if (ciclo10s) {
+
+                            resposta = getfreeframe("654", 200, 1000, 16);
+                            if (resposta != null) {  //resposta correcta
+
+                                //dashboard SOC
+                                longo = processalinha(resposta, 25, 31, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 127) { //resposta bem processada
+                                    publishProgress(132, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+
+                                //autonomia
+                                longo = processalinha(resposta, 42, 51, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 1023) { //resposta bem processada
+                                    publishProgress(133, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+
+
+                            }
+
+                        }
                     }
                 }
 

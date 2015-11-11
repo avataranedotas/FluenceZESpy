@@ -261,7 +261,11 @@ public class Page1 extends Fragment {
             }
         }
 
-
+        if (array1[33]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.range_1);
+            //double temp = ((double) array1[14]) / 1000.0;
+            view.setText(array1[33]+ "km");
+        }
 
 
     }

@@ -138,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //129, desconhecido7
     //130, desconhecido8
     //131, remaining kWh x10
+    //132, dashboard SOC %
+    //133, range km
 
 
 

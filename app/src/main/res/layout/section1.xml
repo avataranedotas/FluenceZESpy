@@ -25,10 +25,29 @@
             android:id="@+id/cima">
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="      km"
+                android:id="@+id/range_1"
+                android:textColor="#000000"
+                android:textSize="@dimen/fonte_normal"
+                android:singleLine="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-
-
-            </RelativeLayout>
+            <ImageView
+                android:layout_width="@dimen/largura_range"
+                android:layout_height="@dimen/largura_bat12v"
+                android:id="@+id/range_icon_1"
+                android:layout_above="@+id/range_1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/range"
+                android:scaleType="fitEnd" />
+        </RelativeLayout>
 
 
         <RelativeLayout

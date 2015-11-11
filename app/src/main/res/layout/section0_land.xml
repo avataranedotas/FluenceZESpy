@@ -93,6 +93,19 @@
 
 
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Dashboard SOC: Wait"
+                        android:id="@+id/dashsoc_0"
+                        android:textColor="#000000"
+                        android:layout_below="@+id/maxoutputpower_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_normal" />
+
+
 
 
 
@@ -105,7 +118,7 @@
                         android:text="Total Regen: Wait"
                         android:id="@+id/totcharged_0"
                         android:textColor="#000000"
-                        android:layout_below="@+id/maxoutputpower_0"
+                        android:layout_below="@+id/dashsoc_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_normal" />

@@ -402,11 +402,17 @@ public class Page0 extends Fragment {
         //estimated total capacity
         if (array0[31]!= invalido && array0[0]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totalkwh_0);
-            double temp = ((double) array0[31]) / ( Math.max( (array0[0] /100.0), 100.0)  ) * 10.0 ;
+            double temp = ((double) array0[31]) / (array0[0] /100.0)   * 10.0 ;
             view.setText(String.format("%2.1f", temp) + "kWh");
 
         }
 
+        //dashboard SOC
+        if (array0[32]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.dashsoc_0);
+            //double temp = ((double) array0[31]) / 10.0;
+            view.setText("Dashboard SOC: "+array0[32]+"%");
+        }
 
     }
 
