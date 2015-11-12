@@ -25,28 +25,70 @@
             android:id="@+id/cima">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="      km"
-                android:id="@+id/range_1"
-                android:textColor="#000000"
-                android:textSize="@dimen/fonte_normal"
-                android:singleLine="true"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainerH1" android:orientation="horizontal"
+                android:baselineAligned="false">
 
-            <ImageView
-                android:layout_width="@dimen/largura_range"
-                android:layout_height="@dimen/largura_bat12v"
-                android:id="@+id/range_icon_1"
-                android:layout_above="@+id/range_1"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:src="@drawable/range"
-                android:scaleType="fitEnd" />
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.25">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="km"
+                        android:id="@+id/range_1"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <ImageView
+                        android:layout_width="@dimen/largura_range"
+                        android:layout_height="@dimen/largura_bat12v"
+                        android:id="@+id/range_icon_1"
+                        android:src="@drawable/range"
+                        android:scaleType="fitEnd"
+                        android:layout_above="@+id/range_1"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.25">
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.25">
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.25">
+
+
+                </RelativeLayout>
+
+
+
+
+
+                </LinearLayout>
+
         </RelativeLayout>
 
 
@@ -71,6 +113,21 @@
                 android:src="@drawable/fze_cut3"
                 android:scaleType="fitXY"
                 android:alpha="0.4" />
+
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/carrocharging"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/fze_charge"
+                android:scaleType="fitXY"
+                android:visibility="invisible" />
+
+
+
 
 
 
@@ -231,6 +288,31 @@
                             android:layout_height="0dp"
                             android:layout_weight="1.3">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="hh:mm"
+                                android:id="@+id/timetofull_1"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_normal"
+                                android:singleLine="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:visibility="invisible"
+                                android:layout_marginRight="5dp" />
+
+                            <ImageView
+                                android:layout_width="@dimen/largura_range"
+                                android:layout_height="@dimen/altura_seta"
+                                android:id="@+id/timetofullicon_1"
+                                android:src="@drawable/timetofull"
+                                android:scaleType="fitCenter"
+                                android:layout_above="@+id/timetofull_1"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:visibility="invisible" />
                         </RelativeLayout>
 
 

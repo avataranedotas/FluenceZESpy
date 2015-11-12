@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //131, remaining kWh x10
     //132, dashboard SOC %
     //133, range km
+    //134, minutes until charge complete
+    //135, average kWh/100km x10
 
 
 

@@ -267,6 +267,33 @@ public class Page1 extends Fragment {
             view.setText(array1[33]+ "km");
         }
 
+        if (array1[34]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.timetofull_1);
+            ImageView image = (ImageView) getView().findViewById(R.id.timetofullicon_1);
+            //double temp = ((double) array1[14]) / 1000.0;
+            if (array1[34]!=1023) {
+                view.setText(array1[34]/60 + ":" + String.format("%02d",array1[34]%60 )   );
+                view.setVisibility(View.VISIBLE);
+                image.setVisibility(View.VISIBLE);
+            }
+            else {
+                view.setVisibility(View.INVISIBLE);
+                image.setVisibility(View.INVISIBLE);
+            }
+
+        }
+
+
+
+
+        if (array1[5]!= invalido) {
+            ImageView view = (ImageView) getView().findViewById(R.id.carrocharging);
+            if (array1[5]!=0) view.setVisibility(View.VISIBLE);
+            else view.setVisibility(View.INVISIBLE);
+
+        }
+
+
 
     }
 }
