@@ -226,14 +226,14 @@ public class Page0 extends Fragment {
 
         if (array0[5]!= invalido) {
             ImageView view = (ImageView) getView().findViewById(R.id.plug_0);
-            if (array0[5]!=0) view.setVisibility(View.VISIBLE);
+            if (array0[5]!=0 && array0[13]<0) view.setVisibility(View.VISIBLE);
             else view.setVisibility(View.INVISIBLE);
 
         }
 
         if (array0[6]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
-            if (array0[6]>=0 && array0[6]<48 && array0[5]!=0 && array0[5] != invalido) {
+            if (array0[6]>=0 && array0[6]<48 && array0[5]!=0 && array0[5] != invalido && array0[13]<0) {
                 view.setText(array0[6] + "A");
                 view.setVisibility(View.VISIBLE);
             }
@@ -246,7 +246,7 @@ public class Page0 extends Fragment {
         if (array0[9]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxchargingpower_0);
             double temp = ((double) array0[9]) / 10.0;
-            if (temp>0.0) {
+            if (temp>0.0 && array0[13]<0) {
                 view.setText("Max:" + String.format("%2.1f", temp));
                 view.setVisibility(View.VISIBLE);
             }

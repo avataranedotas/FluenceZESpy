@@ -300,11 +300,11 @@
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true"
-                                android:visibility="invisible"
-                                android:layout_marginRight="5dp" />
+                                android:layout_marginRight="5dp"
+                                android:visibility="invisible" />
 
                             <ImageView
-                                android:layout_width="@dimen/largura_range"
+                                android:layout_width="@dimen/altura_auxcons"
                                 android:layout_height="@dimen/altura_seta"
                                 android:id="@+id/timetofullicon_1"
                                 android:src="@drawable/timetofull"
@@ -312,6 +312,20 @@
                                 android:layout_above="@+id/timetofull_1"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true"
+                                android:visibility="invisible" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="A"
+                                android:id="@+id/evse_1"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_normal"
+                                android:singleLine="true"
+                                android:layout_above="@+id/timetofullicon_1"
+                                android:layout_alignRight="@+id/timetofull_1"
+                                android:layout_alignEnd="@+id/timetofull_1"
                                 android:visibility="invisible" />
                         </RelativeLayout>
 

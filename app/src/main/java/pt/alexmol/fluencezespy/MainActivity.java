@@ -7,6 +7,8 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -284,6 +286,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         MyBus.getInstance().register(this);
 
 
+        //comunica à BTELMasynctask o novo contexto
+
+        MyBus.getInstance().post(new MainTaskContextEvent(instance));
+
+
 
         if (!(TABLET  ^ reverseModeMain)) {
 
@@ -407,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
             //se a tarefa é null tem de ser criada e arrancada
             if (tarefa == null) {
-                tarefa = new BTELMAsyncTask(this);
+                tarefa = new BTELMAsyncTask(instance);
                 tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 if (debugModeMain) toast("tarefa era null, arrancada");
             }
@@ -420,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 //se está já finalizada
                 else {
                     if (debugModeMain) toast ("tarefa estava finalizada, arrancando novamente");
-                    tarefa = new BTELMAsyncTask(this);
+                    tarefa = new BTELMAsyncTask(instance);
                     tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 }
@@ -467,7 +474,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                             editor.apply();
 
                             if (!( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  )) {
-                                tarefa = new BTELMAsyncTask(MainActivity.instance);
+                                tarefa = new BTELMAsyncTask(instance);
                                 tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                             }
@@ -645,7 +652,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
                 //se a tarefa é null tem de ser criada e arrancada
                 if (tarefa == null) {
-                    tarefa = new BTELMAsyncTask(this);
+                    tarefa = new BTELMAsyncTask(instance);
                     tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     if (debugModeMain) toast("tarefa era null, arrancada");
                 }
@@ -658,7 +665,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                     //se está já finalizada
                     else {
                         if (debugModeMain) toast ("tarefa estava finalizada, arrancando novamente");
-                        tarefa = new BTELMAsyncTask(this);
+                        tarefa = new BTELMAsyncTask(instance);
                         tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                     }
@@ -871,6 +878,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
     }
+
+
+
+
 
 
 }

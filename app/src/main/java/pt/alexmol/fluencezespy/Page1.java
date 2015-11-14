@@ -284,6 +284,16 @@ public class Page1 extends Fragment {
         }
 
 
+        if (array1[6]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.evse_1);
+            if (array1[6]!=0 && array1[6]<48 && array1[5]!=0 && array1[5] != invalido) {
+                view.setVisibility(View.VISIBLE);
+                view.setText(array1[6] + "A");
+            }
+            else view.setVisibility(View.INVISIBLE);
+
+        }
+
 
 
         if (array1[5]!= invalido) {

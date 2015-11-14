@@ -27,7 +27,8 @@ import java.util.UUID;
  */
 class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
-    private final Context mContext;
+    private static Context mContext;
+
     public BTELMAsyncTask (Context context){
         mContext = context;
     }
@@ -101,6 +102,8 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         mContext.registerReceiver(mReceiver4, intentFilter);
 
+        if (debugMode) tostax("Ligados listeners");
+
         if (debugMode) tostax("Pre-execute");
         //informa main que arrancou
         MyBus.getInstance().post(new BTELMTaskResultEvent(2,1));
@@ -133,7 +136,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
         //informa main que começou ciclo
-        publishProgress(2,3);
+        publishProgress(2, 3);
         if (debugMode) tostax("BTELM task starting");
 
         //ciclo principal
@@ -1064,6 +1067,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         try {
             mContext.unregisterReceiver(mReceiver3);
             mContext.unregisterReceiver(mReceiver4);
+            if (debugMode) tostax("Desligados listeners");
         }
         catch (Exception e) {
             if (debugMode) tostax("exception ao unregisterreceivers no postexecute");
@@ -1104,6 +1108,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         try {
             mContext.unregisterReceiver(mReceiver3);
             mContext.unregisterReceiver(mReceiver4);
+            if (debugMode) tostax("Desligados listeners");
         }
         catch (Exception e) {
             if (debugMode) tostax("exception ao unregisterreceivers no oncancelled");
@@ -1159,11 +1164,15 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
             if (debugMode) tostax("Asynctaskelm recebeu nao pausa do main");
             PAUSAMAIN = false;
 
+
+
         }
 
         if (comando.getResult()==2) {
             if (debugMode) tostax("Asynctaskelm recebeu pausa do main");
             PAUSAMAIN = true;
+
+
 
         }
 
@@ -1179,6 +1188,47 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
     }
+
+    @Subscribe
+    public void recebercontextomain (MainTaskContextEvent contexto) {
+
+        if (contexto.getResult()!=null) {
+            if (debugMode) tostax("Asynctaskelm recebeu novo contexto do main");
+
+
+            //ao receber novo contexto significa que foi feito o oncreate novamente
+            //desliga os listeners no contexto antigo
+
+            try {
+                mContext.unregisterReceiver(mReceiver3);
+                mContext.unregisterReceiver(mReceiver4);
+                if (debugMode) tostax("Desligados listeners");
+            }
+            catch (Exception e) {
+            if (debugMode) tostax("exception ao unregisterreceivers no novo contexto main");
+            }
+
+            //actualiza o contexto
+            mContext = contexto.getResult();
+
+
+            //liga os listeneres no contexto novo
+            // Iniciar um listener para verificar se há mudanças no estado do bluetooth
+            // Register for broadcasts on BluetoothAdapter state change
+            IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+            mContext.registerReceiver(mReceiver3, filter);
+
+            //outro listener para ver se é perdida a ligação
+            // register for bluetooth disconnection
+            IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+            mContext.registerReceiver(mReceiver4, intentFilter);
+
+            if (debugMode) tostax("Ligados listeners");
+
+        }
+
+    }
+
 
 
 
