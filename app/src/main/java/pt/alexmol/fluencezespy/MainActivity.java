@@ -144,7 +144,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //133, range km
     //134, minutes until charge complete
     //135, average kWh/100km x10
-
+    //136 highest cell voltage  mV
+    //137 lowest cell voltage mV
+    //138 xpt cell voltage mV (unknow9)
+    //139 desconhecido10
+    //140 desconhecido11
 
 
 
@@ -544,7 +548,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         super.onDestroy();
         if (debugModeMain) toast("Destroy Main");
 
-
+        MyBus.getInstance().post(new MainTaskResultEvent(5));
 
         //se estiver isFinishing significa que está a acabar de vez ou que foi chamada pela notificação
         if (isFinishing()) {

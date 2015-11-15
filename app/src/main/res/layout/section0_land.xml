@@ -50,7 +50,8 @@
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:id="@+id/layoutContainerScroller" android:orientation="vertical">
+                    android:id="@+id/layoutContainerScroller" android:orientation="vertical"
+                    android:paddingRight="10dp">
 
 
 
@@ -115,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Total Regen: Wait"
+                        android:text="Energy Meter: Wait"
                         android:id="@+id/totcharged_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/dashsoc_0"
@@ -134,11 +135,12 @@
                         android:textColor="#000000"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/totcharged_0"/>
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="621dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Unknown 2: Wait"
@@ -147,7 +149,7 @@
                         android:layout_below="@+id/desconhecido1_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -159,7 +161,7 @@
                         android:layout_below="@+id/desconhecido2_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena" />
 
 
                     <TextView
@@ -172,7 +174,7 @@
                         android:layout_below="@+id/desconhecido3_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena" />
 
 
                     <TextView
@@ -185,7 +187,7 @@
                         android:layout_below="@+id/desconhecido4_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -197,8 +199,7 @@
                         android:layout_below="@+id/desconhecido5_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
-
+                        android:textSize="@dimen/fonte_pequena" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -210,7 +211,7 @@
                         android:layout_below="@+id/desconhecido6_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena" />
 
 
                     <TextView
@@ -223,8 +224,42 @@
                         android:layout_below="@+id/desconhecido7_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_normal" />
+                        android:textSize="@dimen/fonte_pequena" />
 
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 9: Wait"
+                        android:id="@+id/desconhecido9_0"
+                        android:textColor="#000000"
+                        android:layout_below="@+id/desconhecido8_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 10: Wait"
+                        android:id="@+id/desconhecido10_0"
+                        android:textColor="#000000"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 11: Wait"
+                        android:id="@+id/desconhecido11_0"
+                        android:textColor="#000000"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
 
                 </LinearLayout>
 
@@ -251,16 +286,124 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.3"
+                    android:layout_marginRight="5dp">
 
-                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Cell Voltages [V]"
+                        android:id="@+id/textView"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Avg."
+                        android:id="@+id/textView2"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/textView"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Min."
+                        android:id="@+id/textView3"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_alignBottom="@+id/textView2"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Max."
+                        android:id="@+id/textView4"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_alignBottom="@+id/textView2"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="V"
+                        android:id="@+id/cellmax_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/textView4"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="V"
+                        android:id="@+id/cellmed_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/textView2"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="V"
+                        android:id="@+id/cellmin_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/textView3"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Dif"
+                        android:id="@+id/dif_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/cellmax_0"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="JV"
+                        android:id="@+id/jv_0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/cellmin_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
                     android:layout_centerInParent="true"
                     android:layout_weight="0.7"
-                    android:id="@+id/esqbateria">
+                    android:id="@+id/esqbateria"
+                    android:paddingTop="5dp">
 
             <ImageView
                 android:layout_width="50dp"
@@ -429,7 +572,8 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.3"
+                    android:layout_marginLeft="5dp">
 
 
 
@@ -479,7 +623,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:minHeight="10dp"
+                        android:minHeight="14dp"
                         android:max="100"
                         android:progressDrawable="@drawable/progressbar_hsoc"
                         android:layout_alignParentBottom="true"

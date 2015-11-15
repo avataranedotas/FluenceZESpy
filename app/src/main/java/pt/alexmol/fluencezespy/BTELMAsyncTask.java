@@ -953,6 +953,56 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+                        //ler a cada 10s
+                        if (ciclo10s) {
+
+                            resposta = getisoframe("79b", "7bb", "022103",200 ,6);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 96)) {
+
+                                //tostax("obtido correctamento 022103");
+                                //SystemClock.sleep(2000);
+
+                                //highest cell
+                                longo = processalinha(resposta.substring(30, 32) + resposta.substring(34, 36), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(136, (int) longo);
+                                }
+
+                                //lowest cell
+                                longo = processalinha(resposta.substring(36, 40), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(137, (int) longo);
+                                }
+
+                                //xpt cell
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(138, (int) longo);
+                                }
+
+                                //desconhecido 9
+                                longo = processalinha(resposta.substring(12, 16), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(139, (int) longo);
+                                }
+
+                                //desconhecido 10
+                                longo = processalinha(resposta.substring(18, 22), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(140, (int) longo);
+                                }
+
+
+                            }
+
+                        }
+
+
 
 
                     }
@@ -1187,6 +1237,27 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         }
 
 
+        if (comando.getResult()==5) {
+            if (debugMode) tostax("Asynctaskelm recebeu ondestroy do main");
+
+
+            //desliga os listeners
+
+            try {
+                mContext.unregisterReceiver(mReceiver3);
+                mContext.unregisterReceiver(mReceiver4);
+                if (debugMode) tostax("Desligados listeners");
+            }
+            catch (Exception e) {
+                if (debugMode) tostax("exception ao unregisterreceivers na recepcao ondestroy do main");
+            }
+
+
+        }
+
+
+
+
     }
 
     @Subscribe
@@ -1199,6 +1270,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
             //ao receber novo contexto significa que foi feito o oncreate novamente
             //desliga os listeners no contexto antigo
 
+            /*
             try {
                 mContext.unregisterReceiver(mReceiver3);
                 mContext.unregisterReceiver(mReceiver4);
@@ -1207,6 +1279,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
             catch (Exception e) {
             if (debugMode) tostax("exception ao unregisterreceivers no novo contexto main");
             }
+            */
 
             //actualiza o contexto
             mContext = contexto.getResult();

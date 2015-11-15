@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="termometro">#0000ff</color>
 
+
+    <color name="azul">#0000FF</color>
+    <color name="vermelho">#FF0000</color>
+
+
 </resources>

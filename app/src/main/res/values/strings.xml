@@ -33,7 +33,9 @@
     <string name="task2_start">Trying to connect...</string>
     <string name="click_retry">Click RED icon to retry.</string>
     <string name="pse_wait_disc">Please wait for bluetooth disconnection...</string>
-    <string name="title_activity_battery_voltages">Fluence ZE Spy - Cell Voltages</string>
+
+
+    <string name="title_activity_battery_voltages">Battery Cell Voltages</string>
 
 
 

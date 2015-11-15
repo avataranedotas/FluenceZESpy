@@ -269,6 +269,10 @@ public class Page0 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.packvoltage_0);
             double temp = ((double) array0[12]) / 100.0;
             view.setText(String.format("%3.2f", temp) + "V");
+
+            view = (TextView) getView().findViewById(R.id.cellmed_0);
+            temp = temp / 96.0;
+            view.setText(String.format("%1.3f", temp));
         }
 
 
@@ -310,8 +314,8 @@ public class Page0 extends Fragment {
 
         if (array0[20]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
-            double temp = ((double) array0[20]) / 10.0;
-            view.setText("Total Regen?: " + String.format("%6.1f", temp) + "kWh");
+            //double temp = ((double) array0[20]) / 10.0;
+            view.setText("Energy meter: " + array0[20] + "kWh");
         }
 
         //calculo de potencia e seta de fluxo de corrente
@@ -413,6 +417,61 @@ public class Page0 extends Fragment {
             //double temp = ((double) array0[31]) / 10.0;
             view.setText("Dashboard SOC: "+array0[32]+"%");
         }
+
+
+        //highest cell voltage
+        if (array0[36]!= invalido ) {
+            TextView view = (TextView) getView().findViewById(R.id.cellmax_0);
+            double temp = ((double) array0[36]) / 1000.0;
+            view.setText(String.format("%1.3f", temp));
+
+        }
+
+
+        //lowest cell voltage
+        if (array0[37]!= invalido ) {
+            TextView view = (TextView) getView().findViewById(R.id.cellmin_0);
+            double temp = ((double) array0[37]) / 1000.0;
+            view.setText(String.format("%1.3f", temp));
+
+            //diference
+            view  = (TextView) getView().findViewById(R.id.dif_0);
+            view.setText("Dif:"+ (array0[36] - array0[37]) + "mV");
+
+        }
+
+
+        //JV
+        if (array0[36]!= invalido && array0[12]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.jv_0);
+            double temp = (2.5*array0[12]/100 - 0.144*array0[36]) / 96.0;
+            view.setText("JV:"+String.format("%1.3f", temp));
+
+
+        }
+
+        //xpt - desconhecido 9
+        if (array0[38]!= invalido ) {
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido9_0);
+            view.setText("Unknown 9: " + array0[38]);
+
+
+        }
+
+        //desconhecido 10
+        if (array0[39]!= invalido ) {
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido10_0);
+            view.setText("Unknown 10: " + array0[39]);
+
+        }
+
+        //desconhecido 11
+        if (array0[40]!= invalido ) {
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido11_0);
+            view.setText("Unknown 11: " + array0[40]);
+
+        }
+
 
     }
 
