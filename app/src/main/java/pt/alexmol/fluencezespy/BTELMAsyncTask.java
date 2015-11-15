@@ -890,9 +890,9 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(124, (int) longo);
                                 }
 
-                                //desconhecido 5
+                                //max charging power x10
                                 longo = processalinha(resposta.substring(114, 118), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
+                                if (longo != Long.MAX_VALUE && longo!=32768) {
                                     publishProgress(125, (int) longo);
                                 }
 
@@ -1053,19 +1053,19 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(137, (int) longo);
                                 }
 
-                                //xpt cell
+                                //xpt cell - u9
                                 longo = processalinha(resposta.substring(8, 12), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(138, (int) longo);
                                 }
 
-                                //desconhecido 9
+                                //desconhecido 10
                                 longo = processalinha(resposta.substring(12, 16), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(139, (int) longo);
                                 }
 
-                                //desconhecido 10
+                                //temperatura da bateria C x10
                                 longo = processalinha(resposta.substring(18, 22), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(140, (int) longo);

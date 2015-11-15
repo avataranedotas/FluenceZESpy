@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //122, desconhecido2
     //123, desconhecido3
     //124, desconhecido4
-    //125, desconhecido5  - relacionado com corrente de bateria em carga
+    //125, max battery charging power kw x10
     //126, desconhecido6
     //127, main contactor 0 OFF, 1 PRECharge, 2 ON
     //128, hv consumption loads x10W
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //137 lowest cell voltage mV
     //138 xpt cell voltage mV (unknow9)
     //139 desconhecido10
-    //140 desconhecido11
+    //140 temperatura da bateria C x10
 
     //501, tensão célula 1
     //502, tensão célula 2

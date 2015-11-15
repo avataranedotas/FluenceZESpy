@@ -159,9 +159,16 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[17]!= invalido) {
+        if (array0[17]!= invalido && array0[40]!= invalido) {
+
             TextView view = (TextView) getView().findViewById(R.id.battempmin_0);
-            view.setText(array0[17] + "C");
+
+            double tempt = array0[40] / 10.0;
+            view.setText(String.format("%2.1f", tempt) + "C");
+
+
+            //old
+            //view.setText(array0[17] + "C");
 
             //se a temperatura mudou
             if (array0[17]!=temp_anterior) {
@@ -385,8 +392,7 @@ public class Page0 extends Fragment {
             view.setText("Unknown 3: " + array0[23]);
             view = (TextView) getView().findViewById(R.id.desconhecido4_0);
             view.setText("Unknown 4: " + array0[24]);
-            view = (TextView) getView().findViewById(R.id.desconhecido5_0);
-            view.setText("Unknown 5: " + array0[25]);
+
             view = (TextView) getView().findViewById(R.id.desconhecido6_0);
             view.setText("Unknown 6: " + array0[26]);
             view = (TextView) getView().findViewById(R.id.desconhecido7_0);
@@ -394,6 +400,12 @@ public class Page0 extends Fragment {
             view = (TextView) getView().findViewById(R.id.desconhecido8_0);
             view.setText("Unknown 8: " + array0[30]);
 
+        }
+
+        if (array0[25]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.maxbatchargepwr_0);
+            double temp = ((double) array0[25]) / 10.0;
+            view.setText("U5 (max charging power): " + String.format("%2.1f", temp) + "kW");
         }
 
         //remaining kwh in the battery
@@ -467,12 +479,6 @@ public class Page0 extends Fragment {
 
         }
 
-        //desconhecido 11
-        if (array0[40]!= invalido ) {
-            TextView view = (TextView) getView().findViewById(R.id.desconhecido11_0);
-            view.setText("Unknown 11: " + array0[40]);
-
-        }
 
 
     }
