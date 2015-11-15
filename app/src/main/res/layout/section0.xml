@@ -325,7 +325,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="0dp"
                             android:layout_weight="0.4"
-                            android:layout_marginRight="5dp">
+                            android:background="@drawable/bordertopright">
 
 
                             <TextView
@@ -337,7 +337,8 @@
                                 android:textColor="#000000"
                                 android:textSize="@dimen/fonte_pequena"
                                 android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true" />
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="2dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -372,7 +373,8 @@
                                 android:textSize="@dimen/fonte_pequena"
                                 android:layout_alignBottom="@+id/textView2"
                                 android:layout_alignParentRight="true"
-                                android:layout_alignParentEnd="true" />
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="2dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -384,7 +386,8 @@
                                 android:textSize="@dimen/fonte_pequena"
                                 android:layout_below="@+id/textView4"
                                 android:layout_alignParentRight="true"
-                                android:layout_alignParentEnd="true" />
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="2dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -419,7 +422,8 @@
                                 android:textSize="@dimen/fonte_pequena"
                                 android:layout_below="@+id/cellmax_0"
                                 android:layout_alignParentRight="true"
-                                android:layout_alignParentEnd="true" />
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="2dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -613,8 +617,9 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.33"
-                            android:layout_marginLeft="5dp">
+                            android:layout_weight="0.4"
+                            android:layout_marginLeft="0dp"
+                            android:background="@drawable/bordertop">
 
 
 
@@ -642,7 +647,8 @@
                                 android:singleLine="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
-                                android:layout_above="@+id/socx475_0" />
+                                android:layout_above="@+id/socx475_0"
+                                android:layout_marginLeft="2dp" />
 
 
                             <TextView
@@ -670,7 +676,7 @@
                                 android:progressDrawable="@drawable/progressbar_hsoc"
                                 android:layout_alignParentBottom="true"
                                 android:layout_centerHorizontal="true"
-                                />
+                                android:layout_marginLeft="5dp" />
 
 
                         </RelativeLayout>

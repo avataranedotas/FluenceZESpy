@@ -3,12 +3,9 @@ package pt.alexmol.fluencezespy;
 import android.app.Activity;
 //import android.support.v4.app.Fragment;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +22,6 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
@@ -43,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private static int ELMREADY = 0;
     private boolean sair = false;
     public static int[] valoresmemorizados;
+    public static short[] tensoesdascelulas;
     private static NotificationCompat.Builder mBuilder;
     private static NotificationManager mNotificationManager;
     private static BTELMAsyncTask tarefa;
@@ -128,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //117, tempbat minimum C
     //118, Pack health x2 %
     //119, bat mileage km
-    //120, bat total charged kwh
+    //120, bat total kwh
     //121, desconhecido1
     //122, desconhecido2
     //123, desconhecido3
@@ -149,6 +146,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //138 xpt cell voltage mV (unknow9)
     //139 desconhecido10
     //140 desconhecido11
+
+    //501, tensão célula 1
+    //502, tensão célula 2
+    //.........
+    //596, tensão célula 96
+
 
 
 
@@ -216,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         //evento de recepção de valores para memorizar
         //100 corresponde ao indice 0
-        if (event.getResult()[0]>=100 ) {
+        if (event.getResult()[0]>=100 && event.getResult()[0]<200 ) {
             valoresmemorizados[  ( event.getResult()[0] -100)  ]=event.getResult()[1];
 
         }
@@ -225,6 +228,15 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         if (event.getResult()[0]==113) {
             if (valoresmemorizados[27]!=2) valoresmemorizados[13] = 0;
+        }
+
+
+
+        //evento de recepção de tensões de células para memorizar
+        //501 corresponde ao indice 0
+        if (event.getResult()[0]>=501 &&  event.getResult()[0]<=596) {
+            tensoesdascelulas[  ( event.getResult()[0] -501)  ]= (short) event.getResult()[1];
+
         }
 
 
@@ -237,17 +249,22 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
 
         valoresmemorizados = new int[100];
+        tensoesdascelulas = new short[96];
 
         // Check whether we're recreating a previously destroyed instance
         if (savedInstanceState != null) {
             // Restore value of members from saved state
             valoresmemorizados = savedInstanceState.getIntArray("matriz");
+            tensoesdascelulas = savedInstanceState.getShortArray("celulas");
 
         } else {
             //invalida valores
             int i;
             int invalido = Integer.MAX_VALUE;
             for (i=0;i<100;i++) valoresmemorizados[i]= invalido;
+            short invalidoshort = Short.MAX_VALUE;
+            for (i=0;i<96;i++) tensoesdascelulas[i]= invalidoshort;
+
         }
 
         //tamanho do ecran utilizável, dimensão mínima em dp
@@ -535,6 +552,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // gravar os valores guardados
         savedInstanceState.putIntArray("matriz", valoresmemorizados);
+        savedInstanceState.putShortArray("celulas", tensoesdascelulas);
 
 
         // Always call the superclass so it can save the view hierarchy state
@@ -549,6 +567,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         if (debugModeMain) toast("Destroy Main");
 
         MyBus.getInstance().post(new MainTaskResultEvent(5));
+
+
 
         //se estiver isFinishing significa que está a acabar de vez ou que foi chamada pela notificação
         if (isFinishing()) {

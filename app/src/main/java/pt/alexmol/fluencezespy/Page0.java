@@ -446,7 +446,9 @@ public class Page0 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.jv_0);
             double temp = (2.5*array0[12]/100 - 0.144*array0[36]) / 96.0;
             view.setText("JV:"+String.format("%1.3f", temp));
-
+            //só mostrar o JV se a célula mais alta estiver abaixo de 3,71V
+            if (array0[36]<3710) view.setVisibility(View.VISIBLE);
+            else view.setVisibility(View.INVISIBLE);
 
         }
 

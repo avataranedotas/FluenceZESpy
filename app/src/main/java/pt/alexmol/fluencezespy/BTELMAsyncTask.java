@@ -221,6 +221,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 publishProgress(0,4);
 
 
+
                 //carrega preferências
                 SharedPreferences settings = mContext.getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
                 bluetoothDeviceAddress2 = settings.getString("deviceAddress", null);
@@ -948,6 +949,79 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+
+                            //tensoes das células parte 1
+                            resposta = getisoframe("79b", "7bb", "022141", 200, 19);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 304)) {
+
+                                String resposta2 = "";
+
+                                //retirar os primeiros 2 caracteres de cada conjunto de 16
+                                for (int i=0; i<=18;i++) {
+                                    resposta2 = resposta2 + resposta.substring((i*16)+2,(i*16)+16);
+                                }
+                                //devem ficar 266
+                                //tostax("Tamanho266:"+resposta2.length());
+
+                                //retirar os primeiros 6
+                                resposta2 = resposta2.substring(6, 266);
+
+                                //em principio agora tem-se apenas as tensões das células sem a informação iso-tp
+
+
+                                for (int i=0;i<=61;i++) {
+
+                                    longo = processalinha(resposta2.substring((i*4)+0,(i*4)+ 4), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(501+i, (int) longo);
+                                    }
+
+                                }
+                            }
+
+
+                            //tensoes das células parte 2
+                            resposta = getisoframe("79b", "7bb", "022142", 200, 11);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 176)) {
+
+                                String resposta2 = "";
+
+                                //retirar os primeiros 2 caracteres de cada conjunto de 16
+                                for (int i=0; i<=10;i++) {
+                                    resposta2 = resposta2 + resposta.substring((i*16)+2,(i*16)+16);
+                                }
+                                //devem ficar 154
+                                //tostax("Tamanho154:"+resposta2.length());
+
+
+                                //retirar os primeiros 6
+                                resposta2 = resposta2.substring(6,154);
+
+                                //em principio agora tem-se apenas as tensões das células sem a informação iso-tp
+                                for (int i=0;i<=33;i++) {
+
+                                    longo = processalinha(resposta2.substring((i*4)+0,(i*4)+ 4), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(563+i, (int) longo);
+                                    }
+
+                                }
+
+                            }
+
+
+
+
 
                         }
 
