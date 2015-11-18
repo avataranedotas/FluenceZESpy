@@ -715,6 +715,60 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
+
+                            resposta = getfreeframe("5ee", 200, 200, 16);
+                            if (resposta != null) {  //resposta correcta
+
+                                //day/night1 ?
+                                longo = processalinha(resposta, 24, 24, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE ) { //resposta bem processada
+                                    publishProgress(141, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                //day/night2 ?
+                                longo = processalinha(resposta, 40, 40, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE ) { //resposta bem processada
+                                    publishProgress(142, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                //rightsolar ?
+                                longo = processalinha(resposta, 43, 47, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE ) { //resposta bem processada
+                                    publishProgress(143, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                //leftsolar ?
+                                longo = processalinha(resposta, 48, 52, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE ) { //resposta bem processada
+                                    publishProgress(144, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                //solar ?
+                                longo = processalinha(resposta, 60, 63, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE ) { //resposta bem processada
+                                    publishProgress(145, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                            }
+
+
+
+
                         }
                     }
                 }
@@ -1073,6 +1127,35 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+
+
+                            resposta = getisoframe("744", "764", "022121",200 ,3);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 48)) {
+
+                                tostax("obtido correctamento 744/764 022121");
+                                SystemClock.sleep(2000);
+
+                                //sunshine right
+                                longo = processalinha(resposta.substring(24, 26), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(146, (int) longo);
+                                }
+
+                                //sunshine left
+                                longo = processalinha(resposta.substring(26, 28), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(147, (int) longo);
+                                }
+
+
+                            }
+
+
 
                         }
 

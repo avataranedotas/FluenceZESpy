@@ -152,6 +152,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //138 xpt cell voltage mV (unknow9)
     //139 desconhecido10
     //140 temperatura da bateria C x10
+    //141 daynight1 ?
+    //142 daynight2 ?
+    //143 right solar?
+    //144 left solar?
+    //145 solar ?
+    //146 sunshine right ?
+    //147 sunshine left ?
+
 
     //501, tensão célula 1
     //502, tensão célula 2

@@ -346,6 +346,14 @@ public class Page1 extends Fragment {
         }
 
 
+        if (array1[41]!= invalido && array1[46]!=invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.daynight1_1);
+
+            view.setText("dn:"+array1[41]+" /"+array1[42]+" /"+array1[43]+" /"+array1[44]+" /"+array1[45]+" /"+array1[46]+" /"+array1[47]);
+
+        }
+
+
 
     }
 }
