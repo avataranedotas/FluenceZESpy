@@ -5,11 +5,14 @@ package pt.alexmol.fluencezespy;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class Page2 extends Fragment {
@@ -31,14 +34,56 @@ public class Page2 extends Fragment {
         View v;
 
 
-        if (!MainActivity.landscape) {
-            if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section2_land, null);   //vista portrait tablet
-            else v = inflater.inflate(R.layout.section2, null);                                                             //vista portrait phone
+        if (!MainActivity.noite) {
+
+            if (!MainActivity.landscape) {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section2_land, null);   //vista portrait tablet
+                else
+                    v = inflater.inflate(R.layout.section2, null);                                                             //vista portrait phone
+            } else {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section2, null); //vista landscape tablet
+                else
+                    v = inflater.inflate(R.layout.section2_land, null);                                                           //vista landscape phone
+            }
+
         }
         else {
-            if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section2, null); //vista landscape tablet
-            else v = inflater.inflate(R.layout.section2_land, null);                                                           //vista landscape phone
+            if (!MainActivity.landscape) {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section2_land_noite, null);   //vista portrait tablet
+                else
+                    v = inflater.inflate(R.layout.section2_noite, null);                                                             //vista portrait phone
+            } else {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section2_noite, null); //vista landscape tablet
+                else
+                    v = inflater.inflate(R.layout.section2_land_noite, null);                                                           //vista landscape phone
+            }
+
         }
+
+
+
+        Button botao = (Button) v.findViewById(R.id.button2);
+
+        botao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View va) {
+
+
+                //envia pedido ao Main para recriar e trocar
+
+                MyBus.getInstance().post(new Page2TaskResultEvent(2000));
+
+
+
+            }
+        });
+
+
+
 
 
         return       v;

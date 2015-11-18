@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/page0"
+    android:orientation="horizontal"
+    tools:context=".Page0"
+    android:padding="5dp"
+    android:background="#000000">
+
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SOC: Wait"
+        android:id="@+id/socx475_0"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#000000"
+        android:textSize="18dp" />
+        -->
+
+
+
+    <!--
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Battery Cell Voltages"
+        android:id="@+id/buttonbatterycell"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_marginLeft="100dp" />
+    -->
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:id="@+id/layoutContainerV" android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:id="@+id/cima">
+
+
+            <ScrollView
+                android:id="@+id/scroller_0"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false"
+                android:fillViewport="true"
+                android:paddingBottom="5dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:id="@+id/layoutContainerScroller" android:orientation="vertical"
+                    android:measureWithLargestChild="false">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Temperatures: Wait"
+                        android:id="@+id/battemp_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_normal" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Max Input Power: Wait"
+                        android:id="@+id/maxinputpower_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/battemp_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Max Output Power: Wait"
+                        android:id="@+id/maxoutputpower_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/maxinputpower_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_normal" />
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Dashboard SOC: Wait"
+                        android:id="@+id/dashsoc_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/maxoutputpower_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_normal" />
+
+
+
+
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Energy Meter: Wait"
+                        android:id="@+id/totcharged_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/maxoutputpower_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_normal" />
+
+
+
+
+
+
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 1: Wait"
+                        android:id="@+id/desconhecido1_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:layout_below="@+id/totcharged_0"/>
+
+
+                    <TextView
+                        android:layout_width="621dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 2: Wait"
+                        android:id="@+id/desconhecido2_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido1_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 3: Wait"
+                        android:id="@+id/desconhecido3_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido2_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 4: Wait"
+                        android:id="@+id/desconhecido4_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido3_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="U5 (max charging power): Wait"
+                        android:id="@+id/maxbatchargepwr_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido4_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 6: Wait"
+                        android:id="@+id/desconhecido6_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/maxbatchargepwr_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 7: Wait"
+                        android:id="@+id/desconhecido7_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido6_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 8: Wait"
+                        android:id="@+id/desconhecido8_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido7_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 9: Wait"
+                        android:id="@+id/desconhecido9_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/desconhecido8_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Unknown 10: Wait"
+                        android:id="@+id/desconhecido10_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
+
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:layout_weight="0.6"
+            android:id="@+id/baixo">
+
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainerH" android:orientation="horizontal"
+                android:baselineAligned="false">
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.45">
+
+
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:id="@+id/layoutContaineresq" android:orientation="vertical">
+
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.4"
+                            android:background="@drawable/bordertopright">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Cell Voltages [V]"
+                                android:id="@+id/textView"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Avg."
+                                android:id="@+id/textView2"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/textView"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Min."
+                                android:id="@+id/textView3"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_alignBottom="@+id/textView2"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Max."
+                                android:id="@+id/textView4"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_alignBottom="@+id/textView2"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="2dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="V"
+                                android:id="@+id/cellmax_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/textView4"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="2dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="V"
+                                android:id="@+id/cellmed_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/textView2"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="V"
+                                android:id="@+id/cellmin_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/textView3"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Dif:"
+                                android:id="@+id/dif_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/cellmax_0"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="2dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="JV"
+                                android:id="@+id/jv_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/cellmin_0"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_centerInParent="true"
+                            android:layout_weight="0.75"
+                            android:id="@+id/esqbateria"
+                            >
+
+
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Max"
+                                android:id="@+id/maxchargingpower_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:layout_below="@+id/kwbat_0"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="km"
+                                android:id="@+id/batkm_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_above="@+id/totalkwh_0"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:id="@+id/imageView3"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:src="@drawable/health"
+                                android:alpha="1" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="%"
+                                android:id="@+id/health_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_above="@+id/ah_0"
+                                android:layout_toRightOf="@+id/imageView3"
+                                android:layout_toEndOf="@+id/imageView3" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Ah"
+                                android:id="@+id/ah_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_alignParentBottom="true"
+                                android:layout_toRightOf="@+id/imageView3"
+                                android:layout_toEndOf="@+id/imageView3" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="A"
+                                android:id="@+id/batcurrent_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="10dp" />
+
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="kW"
+                                android:id="@+id/kwbat_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_below="@+id/seta_0"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="10dp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/altura_seta"
+                                android:id="@+id/seta_0"
+                                android:layout_below="@+id/batcurrent_0"
+                                android:src="@drawable/blue_right"
+                                android:layout_alignParentRight="true"
+                                android:saveEnabled="false"
+                                android:scaleType="fitXY" />
+
+                            <ImageView
+                                android:layout_width="fill_parent"
+                                android:layout_height="@dimen/altura_seta"
+                                android:id="@+id/plug_0"
+                                android:src="@drawable/charging"
+                                android:layout_centerHorizontal="true"
+                                android:scaleType="fitXY"
+                                android:scaleX="1"
+                                android:layout_below="@+id/batcurrent_0"
+
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="A"
+                                android:id="@+id/evsepilot_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginLeft="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="kWh"
+                                android:id="@+id/totalkwh_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_above="@+id/imageView3"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.6">
+
+                    <!-- E -->
+
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:id="@+id/layoutContainerB" android:orientation="vertical">
+
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.4"
+                            android:layout_marginLeft="0dp"
+                            android:background="@drawable/bordertop">
+
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="SOC"
+                                android:id="@+id/socx475_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_grande"
+
+                                android:textStyle="bold"
+                                android:layout_above="@+id/pb_soc_0"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Real SOC"
+                                android:id="@+id/realsoc_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:nestedScrollingEnabled="false"
+                                android:singleLine="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_above="@+id/socx475_0"
+                                android:layout_marginLeft="2dp" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="kWh"
+                                android:id="@+id/kwhleft_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:nestedScrollingEnabled="false"
+                                android:singleLine="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_above="@+id/socx475_0" />
+
+
+                            <ProgressBar
+                                android:id="@+id/pb_soc_0"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:minHeight="14dp"
+                                android:max="100"
+                                android:progressDrawable="@drawable/progressbar_hsoc"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="5dp" />
+
+
+                        </RelativeLayout>
+
+
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_centerInParent="true"
+                            android:layout_weight="0.75"
+                            >
+
+                            <!--
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Cell Voltages"
+                                android:id="@+id/buttonbatterycell"
+                                android:textSize="12dp"
+                                android:layout_alignParentTop="false"
+                                android:layout_alignParentLeft="false"
+                                android:layout_alignParentBottom="false"
+                                android:layout_alignParentRight="false"
+                                android:layout_centerInParent="true"
+                                android:layout_margin="40dp"
+                                android:alpha="0" />
+                            -->
+
+                            <ImageButton
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:id="@+id/buttonbatterycell"
+                                android:src="@drawable/fze_bat1"
+                                android:alpha="0.8"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:scaleType="fitEnd"
+                                android:background="#00fff7ce" />
+
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="C"
+                                android:id="@+id/battempmin_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="V"
+                                android:id="@+id/packvoltage_0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="80dp"
+                                android:id="@+id/thermo"
+                                android:foregroundGravity="center_vertical|center_horizontal"
+                                android:background="@drawable/thermo1"
+                                android:layout_above="@+id/battempmin_0"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:id="@+id/contembola"
+                                android:layout_alignBottom="@+id/thermo"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="6dp"
+                                android:layout_marginBottom="6dp"
+
+
+
+                                />
+
+                            <ImageView
+                                android:layout_width="6dp"
+                                android:layout_height="52dp"
+                                android:id="@+id/contemrisco"
+                                android:layout_alignBottom="@+id/contembola"
+                                android:layout_marginBottom="16dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="12dp" />
+
+
+                        </RelativeLayout>
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+
+
+
+

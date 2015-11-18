@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/page1"
+    tools:context=".Page1"
+    android:padding="2dp"
+    android:background="#000000">
+
+    <!--
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar task1"
+        android:id="@+id/buttonIniciar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+    -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XX"
+        android:id="@+id/passo"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="bottom|right"
+        android:textColor="#7d0010eb"
+        android:textSize="@dimen/abc_action_bar_overflow_padding_start_material" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="swdp:"
+        android:id="@+id/swdp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Landscape Phone"
+        android:id="@+id/type"
+        android:textSize="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <!--
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="230dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/fze_cut3"
+        android:paddingLeft="0dp"
+        android:scaleType="fitXY"
+        android:alpha="0.4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    -->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:id="@+id/layoutContainer" android:orientation="horizontal"
+        android:baselineAligned="false">
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="km"
+                android:id="@+id/range_1"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/fonte_normal"
+                android:singleLine="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="@dimen/largura_range"
+                android:layout_height="@dimen/largura_bat12v"
+                android:id="@+id/range_icon_1"
+
+                android:src="@drawable/range"
+                android:scaleType="fitEnd"
+                android:layout_above="@+id/range_1"
+                android:layout_centerHorizontal="true" />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.1">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.75">
+
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/carroback"
+                android:src="@drawable/fze_cut3"
+                android:scaleType="fitXY"
+                android:alpha="0.6"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/carrocharging"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/fze_charge"
+                android:scaleType="fitXY"
+                android:visibility="invisible"
+                android:alpha="0.75" />
+
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainerH" android:orientation="horizontal"
+                android:baselineAligned="false">
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.20">
+
+                    <ImageView
+                        android:layout_width="@dimen/largura_bat12v"
+                        android:layout_height="@dimen/altura_bat12v"
+                        android:id="@+id/bateria12v"
+                        android:src="@drawable/bat12v_1"
+                        android:scaleType="fitCenter"
+                        android:alpha="0.75"
+                        android:layout_centerInParent="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="12V"
+                        android:id="@+id/battery12v_1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_above="@+id/bateria12v"
+                        android:layout_centerHorizontal="true" />
+
+                    <ImageView
+                        android:layout_width="@dimen/largura_bat12v"
+                        android:layout_height="@dimen/altura_auxcons"
+                        android:id="@+id/aux_hv"
+                        android:layout_below="@+id/bateria12v"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/aux_cons"
+                        android:layout_alignParentTop="false"
+                        android:scaleType="fitStart"
+                        android:alpha="0.75"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/hvcons"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/aux_hv"
+                        android:layout_centerHorizontal="true" />
+
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.2">
+
+
+
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.30">
+
+
+
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.30">
+
+
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.2">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <ProgressBar
+                                android:id="@+id/pb_soc_1"
+                                android:layout_width="12dip"
+                                android:layout_height="fill_parent"
+                                style="@style/ProgressVertical"
+                                android:max="100"
+
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:text="SOC"
+                                android:id="@+id/socx475_1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/pb_soc_1"
+                                android:layout_toEndOf="@+id/pb_soc_1" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.3">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="hh:mm"
+                                android:id="@+id/timetofull_1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:singleLine="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:visibility="invisible"
+                                android:layout_marginRight="5dp" />
+
+                            <ImageView
+                                android:layout_width="@dimen/largura_range"
+                                android:layout_height="@dimen/altura_seta"
+                                android:id="@+id/timetofullicon_1"
+                                android:src="@drawable/timetofull"
+                                android:scaleType="fitCenter"
+                                android:visibility="invisible"
+                                android:layout_above="@+id/timetofull_1"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="A"
+                                android:id="@+id/evse_1"
+                                android:textColor="#FFFFFF"
+                                android:textSize="@dimen/fonte_normal"
+                                android:singleLine="true"
+                                android:layout_above="@+id/timetofullicon_1"
+                                android:layout_alignRight="@+id/timetofull_1"
+                                android:layout_alignEnd="@+id/timetofull_1"
+                                android:visibility="invisible" />
+
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+    <!--
+    <Button
+        android:id="@+id/buttonxpto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start AsyncTask"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/socx475_1"
+        android:layout_toEndOf="@+id/socx475_1" />
+    -->
+
+</RelativeLayout>
+
+

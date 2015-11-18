@@ -47,6 +47,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public static boolean TABLET = false;
     public static boolean landscape;
 
+    public Intent starterIntent;
+
+    public static boolean noite = false;
+
+    public static int ecran;
+
     /**
      * The android.support.v4.view.PagerAdapter that will provide fragments for
      * each of the sections. We use a
@@ -243,19 +249,58 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
 
+    //receber eventos da page2
+    @Subscribe
+    public void recebereventospage2 (Page2TaskResultEvent event) {
+        //Toast.makeText(this,"Resultado:"+ event.getResult()[0] +"/"+event.getResult()[1], Toast.LENGTH_SHORT).show();
+
+        //evento de recriar
+        if (event.getResult() == 2000) {
+
+           recriar();
+
+        }
+
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        /*
+        if (getIntent().hasExtra("bundle") && savedInstanceState==null){
+            savedInstanceState = getIntent().getExtras().getBundle("bundle");
+        }
+        */
+        starterIntent = getIntent();
+
+
         super.onCreate(savedInstanceState);
 
         valoresmemorizados = new int[100];
         tensoesdascelulas = new short[96];
+
+
+
+
+
+        //carrega preferências
+        SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+
+        debugModeMain = settings.getBoolean("debugmodeon", false);
+        backgroundMain = settings.getBoolean("backgroundmodeon", false);
+        keepscreenMain = settings.getBoolean("keepscreenon",false);
+        reverseModeMain = settings.getBoolean("reversemodeon", false);
+
+
+
 
         // Check whether we're recreating a previously destroyed instance
         if (savedInstanceState != null) {
             // Restore value of members from saved state
             valoresmemorizados = savedInstanceState.getIntArray("matriz");
             tensoesdascelulas = savedInstanceState.getShortArray("celulas");
+            ecran = savedInstanceState.getInt("ecranactual");
 
         } else {
             //invalida valores
@@ -264,6 +309,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             for (i=0;i<100;i++) valoresmemorizados[i]= invalido;
             short invalidoshort = Short.MAX_VALUE;
             for (i=0;i<96;i++) tensoesdascelulas[i]= invalidoshort;
+            ecran = settings.getInt("ecran", 1);
 
         }
 
@@ -281,14 +327,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         instance = this;
 
-
-        //carrega preferências
-        SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
-
-        debugModeMain = settings.getBoolean("debugmodeon", false);
-        backgroundMain = settings.getBoolean("backgroundmodeon",false);
-        keepscreenMain = settings.getBoolean("keepscreenon",false);
-        reverseModeMain = settings.getBoolean("reversemodeon",false);
 
 
 
@@ -350,6 +388,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 @Override
                 public void onPageSelected(int position) {
                     actionBar.setSelectedNavigationItem(position);
+                    ecran = position;
+                    //toast("Pagina:"+position);
                 }
             });
 
@@ -370,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             }
 
             //Escolher por defeito a 2ªpágina (indice 1)
-            actionBar.setSelectedNavigationItem(1);
+            actionBar.setSelectedNavigationItem(ecran);
         }
 
     }
@@ -553,7 +593,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         // gravar os valores guardados
         savedInstanceState.putIntArray("matriz", valoresmemorizados);
         savedInstanceState.putShortArray("celulas", tensoesdascelulas);
-
+        savedInstanceState.putInt("ecranactual", ecran);
 
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
@@ -570,9 +610,18 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
+
+
         //se estiver isFinishing significa que está a acabar de vez ou que foi chamada pela notificação
         if (isFinishing()) {
             if (debugModeMain) toast("Main finishing");
+
+            SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("ecran", ecran);
+            editor.commit();
+
 
         }
 
@@ -723,6 +772,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
+
     }
 
     @Override
@@ -904,7 +954,23 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
 
+    public void recriar() {
 
+        //troca
+        noite = !noite;
+
+        SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("ecran", ecran);
+        editor.commit();
+
+
+        finish();
+        startActivity(starterIntent);
+
+
+    }
 
 
 

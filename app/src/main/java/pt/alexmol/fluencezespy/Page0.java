@@ -46,6 +46,39 @@ public class Page0 extends Fragment {
         View v;
 
 
+        if (!MainActivity.noite) {
+
+            if (!MainActivity.landscape) {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section0_land, null);   //vista portrait tablet
+                else
+                    v = inflater.inflate(R.layout.section0, null);                                                             //vista portrait phone
+            } else {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section0, null); //vista landscape tablet
+                else
+                    v = inflater.inflate(R.layout.section0_land, null);                                                           //vista landscape phone
+            }
+
+        }
+        else {
+            if (!MainActivity.landscape) {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section0_land_noite, null);   //vista portrait tablet
+                else
+                    v = inflater.inflate(R.layout.section0_noite, null);                                                             //vista portrait phone
+            } else {
+                if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                    v = inflater.inflate(R.layout.section0_noite, null); //vista landscape tablet
+                else
+                    v = inflater.inflate(R.layout.section0_land_noite, null);                                                           //vista landscape phone
+            }
+
+        }
+
+
+
+        /*
         if (!MainActivity.landscape) {
             if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section0_land, null);   //vista portrait tablet
             else v = inflater.inflate(R.layout.section0, null);                                                             //vista portrait phone
@@ -54,7 +87,7 @@ public class Page0 extends Fragment {
             if (MainActivity.TABLET ^ MainActivity.reverseModeMain) v = inflater.inflate(R.layout.section0, null); //vista landscape tablet
             else v = inflater.inflate(R.layout.section0_land, null);                                                           //vista landscape phone
         }
-
+        */
 
 
         /*
