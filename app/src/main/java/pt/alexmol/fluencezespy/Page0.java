@@ -283,9 +283,11 @@ public class Page0 extends Fragment {
 
 
 
-        if (array0[9]!= invalido) {
+        if (array0[9]!=invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxchargingpower_0);
-            double temp = ((double) array0[9]) / 10.0;
+            double temp;
+            if (array0[25]!=invalido)  temp = ((double) array0[25]) / 10.0;
+            else temp = ((double) array0[9]) / 10.0;
             if (temp>0.0 && array0[13]<0) {
                 view.setText("Max:" + String.format("%2.1f", temp));
                 view.setVisibility(View.VISIBLE);
@@ -435,12 +437,6 @@ public class Page0 extends Fragment {
 
         }
 
-        if (array0[25]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.maxbatchargepwr_0);
-            double temp = ((double) array0[25]) / 10.0;
-            view.setText("U5 (max charging power): " + String.format("%2.1f", temp) + "kW");
-        }
-
         //remaining kwh in the battery
         if (array0[31]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.kwhleft_0);
@@ -456,12 +452,14 @@ public class Page0 extends Fragment {
 
         }
 
+        /*
         //dashboard SOC
         if (array0[32]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.dashsoc_0);
             //double temp = ((double) array0[31]) / 10.0;
             view.setText("Dashboard SOC: "+array0[32]+"%");
         }
+        */
 
 
         //highest cell voltage
@@ -499,8 +497,8 @@ public class Page0 extends Fragment {
 
         //xpt - desconhecido 9
         if (array0[38]!= invalido ) {
-            TextView view = (TextView) getView().findViewById(R.id.desconhecido9_0);
-            view.setText("Unknown 9: " + array0[38]);
+            TextView view = (TextView) getView().findViewById(R.id.xptcellvolt_0);
+            view.setText("Weak Cell threshold: " + array0[38] + "mV");
 
 
         }

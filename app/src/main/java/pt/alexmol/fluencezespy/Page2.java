@@ -64,7 +64,7 @@ public class Page2 extends Fragment {
 
         }
 
-
+        /*
 
         Button botao = (Button) v.findViewById(R.id.button2);
 
@@ -81,6 +81,7 @@ public class Page2 extends Fragment {
 
             }
         });
+        */
 
 
 

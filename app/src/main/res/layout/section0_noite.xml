@@ -106,7 +106,7 @@
 
 
 
-
+                    <!--
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_normal" />
-
+                    -->
 
 
 
@@ -146,6 +146,17 @@
 
 
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Weak cell voltage: Wait"
+                        android:id="@+id/xptcellvolt_0"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@+id/totcharged_0"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/fonte_pequena" />
 
 
 
@@ -159,7 +170,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_pequena"
-                        android:layout_below="@+id/totcharged_0"/>
+                        android:layout_below="@+id/xptcellvolt_0"/>
 
 
                     <TextView
@@ -204,18 +215,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="U5 (max charging power): Wait"
-                        android:id="@+id/maxbatchargepwr_0"
-                        android:textColor="#FFFFFF"
-                        android:layout_below="@+id/desconhecido4_0"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_pequena" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Unknown 6: Wait"
                         android:id="@+id/desconhecido6_0"
                         android:textColor="#FFFFFF"
@@ -250,17 +249,6 @@
                         android:textSize="@dimen/fonte_pequena" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Unknown 9: Wait"
-                        android:id="@+id/desconhecido9_0"
-                        android:textColor="#FFFFFF"
-                        android:layout_below="@+id/desconhecido8_0"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_pequena" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -272,8 +260,6 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_pequena" />
-
-
 
                 </LinearLayout>
 

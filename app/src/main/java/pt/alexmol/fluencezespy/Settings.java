@@ -29,6 +29,9 @@ public class Settings extends AppCompatActivity {
     private boolean backgroundmodeon;
     private boolean reversemodeon;
 
+    protected static boolean nightmodeautomatic;
+    protected static boolean forcenightmode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,8 +78,8 @@ public class Settings extends AppCompatActivity {
             reverse.setChecked(reversemodeon);
             //check current mode
             //se estamos num tablet
-            if ( MainActivity.TABLET) reverse.setText("Switch to phone mode (requires restart or rotate)");
-            else reverse.setText("Switch to tablet mode (requires restart or rotate)");
+            if ( MainActivity.TABLET) reverse.setText("Switch to phone mode");
+            else reverse.setText("Switch to tablet mode");
 
 
 
@@ -118,6 +121,28 @@ public class Settings extends AppCompatActivity {
             // select the actual device
             deviceList.setSelection(index);
             deviceList.setSelected(true);
+
+
+            Spinner spinnernight = (Spinner) findViewById(R.id.nightmodespinner);
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapternight = ArrayAdapter.createFromResource(this, R.array.nightmode_array, android.R.layout.simple_list_item_1);
+            // Specify the layout to use when the list of choices appears
+            adapternight.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+            spinnernight.setAdapter(adapternight);
+
+            int modonoite = 0;
+
+            if (!MainActivity.autonightmode) {
+                if (MainActivity.noite) modonoite = 2;
+                else modonoite = 1;
+            }
+
+            spinnernight.setSelection(modonoite);
+            //spinnernight.setSelected(true);
+
+
+            spinnernight.setOnItemSelectedListener(new NightModeOnItemSelectedListener());
 
 
         }
@@ -176,6 +201,16 @@ public class Settings extends AppCompatActivity {
 
 
             }
+
+
+
+
+            editor.putBoolean("autonightmode",nightmodeautomatic);
+            MainActivity.autonightmode = nightmodeautomatic;
+
+            editor.putBoolean("night",forcenightmode);
+            MainActivity.noite = forcenightmode;
+
             editor.putBoolean("keepscreenon",keepscreenon);
             MainActivity.keepscreenMain = keepscreenon;
             editor.putBoolean("backgroundmodeon",backgroundmodeon);
@@ -225,6 +260,7 @@ public class Settings extends AppCompatActivity {
 
             case R.id.checkboxreversemode:
                 reversemodeon = checked;
+                MainActivity.redesenhar = true;
                 break;
 
 

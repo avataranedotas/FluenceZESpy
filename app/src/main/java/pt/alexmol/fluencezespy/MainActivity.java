@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public Intent starterIntent;
 
     public static boolean noite = false;
+    public static boolean autonightmode = false;
+    public static boolean redesenhar = false;
 
     public static int ecran;
 
@@ -152,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //138 xpt cell voltage mV (unknow9)
     //139 desconhecido10
     //140 temperatura da bateria C x10
-    //141 daynight1 ?
-    //142 daynight2 ?
+    //141 dashboard iluminated
+    //142 day/night 0=day 1=night
     //143 right solar?
     //144 left solar?
     //145 solar ?
@@ -244,6 +246,18 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             if (valoresmemorizados[27]!=2) valoresmemorizados[13] = 0;
         }
 
+        //no caso particular do bit de dia/noite em modo automático
+
+        if (event.getResult()[0]==142 && autonightmode) {
+            //se é de dia e recebe noite
+            if (!noite && event.getResult()[1]==1) recriar();
+
+            //se é de noite e recebe dia
+            if (noite && event.getResult()[1]==0) recriar();
+
+        }
+
+
 
 
         //evento de recepção de tensões de células para memorizar
@@ -299,8 +313,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         backgroundMain = settings.getBoolean("backgroundmodeon", false);
         keepscreenMain = settings.getBoolean("keepscreenon",false);
         reverseModeMain = settings.getBoolean("reversemodeon", false);
-
-
+        autonightmode = settings.getBoolean("autonightmode", false);
+        noite = settings.getBoolean("night", false);
 
 
         // Check whether we're recreating a previously destroyed instance
@@ -581,6 +595,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         //if (landscape) toast("Landscape");
         //else toast ("Portrait");
+
+        if (redesenhar) {
+            redesenhar = false;
+            recriar();
+        }
 
     }
 
@@ -964,18 +983,30 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     public void recriar() {
 
-        //troca
-        noite = !noite;
+
+
+        if (autonightmode) {
+
+
+            if (valoresmemorizados[42] != Integer.MAX_VALUE && valoresmemorizados[42] == 1)
+                noite = true;
+
+            if (valoresmemorizados[42] != Integer.MAX_VALUE && valoresmemorizados[42] == 0)
+                noite = false;
+
+        }
 
         SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
 
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("ecran", ecran);
+        editor.putBoolean("night", noite);
         editor.commit();
 
 
         finish();
         startActivity(starterIntent);
+
 
 
     }

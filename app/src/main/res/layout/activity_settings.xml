@@ -8,6 +8,21 @@
     android:background="@color/material_grey_100">
 
 
+    <ScrollView
+        android:id="@+id/scroller_0"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:fillViewport="true"
+        android:paddingBottom="5dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:id="@+id/layoutContainerScroller" android:orientation="vertical"
+        android:measureWithLargestChild="false">
+
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -68,6 +83,37 @@
         android:layout_below="@+id/checkBoxDebug"
         android:layout_centerHorizontal="true"
         android:onClick="onCheckboxClicked"/>
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Select Day/Night Mode"
+        android:id="@+id/textdaynightmode"
+        android:textColor="#000000"
+        android:background="#f1eed2"
+        android:layout_below="@+id/checkboxreversemode"/>
+
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nightmodespinner"
+        android:layout_below="@+id/textdaynightmode"
+
+        android:prompt="@string/spinner_night"
+        android:background="#f1eed2"
+        android:popupTheme="@android:color/holo_blue_light"
+
+        android:spinnerMode="dialog" />
+
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
 
     <TextView
         android:layout_width="wrap_content"

@@ -719,7 +719,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             resposta = getfreeframe("5ee", 200, 200, 16);
                             if (resposta != null) {  //resposta correcta
 
-                                //day/night1 ?
+                                //dashboard in night mode
                                 longo = processalinha(resposta, 24, 24, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE ) { //resposta bem processada
                                     publishProgress(141, (int) longo);
@@ -728,7 +728,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
 
-                                //day/night2 ?
+                                // 0=day 1=night
                                 longo = processalinha(resposta, 40, 40, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE ) { //resposta bem processada
                                     publishProgress(142, (int) longo);
@@ -1137,8 +1137,8 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             if (resposta != null && (resposta.length() == 48)) {
 
-                                tostax("obtido correctamento 744/764 022121");
-                                SystemClock.sleep(2000);
+                                //tostax("obtido correctamento 744/764 022121");
+                                //SystemClock.sleep(2000);
 
                                 //sunshine right
                                 longo = processalinha(resposta.substring(24, 26), 0, 15, false);
