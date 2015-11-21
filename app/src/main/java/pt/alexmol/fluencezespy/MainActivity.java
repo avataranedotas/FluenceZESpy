@@ -161,7 +161,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //145 solar ?
     //146 sunshine right ?
     //147 sunshine left ?
-
+    //148 evporator setpoint C +40 x10
+    //149 Water setpoint C
+    //150 Evaporator temperature C +40 x10
+    //151 water temperature +40C
+    //152 evaporator temperature C +40 x2.5
+    //153 internal temp C +40 x2.5
+    //154 internal humidity x2 %
 
     //501, tensão célula 1
     //502, tensão célula 2

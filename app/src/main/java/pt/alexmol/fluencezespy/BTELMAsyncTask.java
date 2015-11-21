@@ -673,7 +673,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         if (ciclo10s) {
 
-                            resposta = getfreeframe("654", 200, 1000, 16);
+                            resposta = getfreeframe("654", 200, 500, 16);
                             if (resposta != null) {  //resposta correcta
 
                                 //dashboard SOC
@@ -714,9 +714,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+                            //else tostax("654 sem resposta");
 
 
-                            resposta = getfreeframe("5ee", 200, 200, 16);
+                            resposta = getfreeframe("5ee", 200, 100, 16);
                             if (resposta != null) {  //resposta correcta
 
                                 //dashboard in night mode
@@ -724,7 +725,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 if (longo != Long.MAX_VALUE ) { //resposta bem processada
                                     publishProgress(141, (int) longo);
                                     //tostax("contactor:" + longo);
-                                    //SystemClock.sleep(3000);
+                                    //SystemClock.sleep(3000)
                                 }
 
 
@@ -765,6 +766,67 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+                            //else tostax("5EE sem resposta");
+
+
+                            resposta = getfreeframe("42a",200, 100, 10);
+                            if (resposta != null) {  //resposta correcta
+                                //tostax("recebeu 42A");
+
+                                //Evaporator set point
+                                longo = processalinha(resposta, 6, 15, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 1023) { //resposta bem processada
+                                    publishProgress(148, (int) longo);
+                                    //tostax("evapset:"+longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                // Water setpoint
+                                longo = processalinha(resposta, 17, 23, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 127) { //resposta bem processada
+                                    publishProgress(149, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                //Evaporator temperature
+                                longo = processalinha(resposta, 30, 39, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 1023) { //resposta bem processada
+                                    publishProgress(150, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+
+
+
+
+
+                            }
+                            //else tostax("42A sem resposta");
+
+
+
+                            resposta = getfreeframe("5da", 200, 100, 14);
+                            if (resposta != null) {  //resposta correcta
+                                //tostax("recebeu 42A");
+
+                                //water temperature
+                                longo = processalinha(resposta, 0, 7, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 255) { //resposta bem processada
+                                    publishProgress(151, (int) longo);
+                                    //tostax("evapset:"+longo);
+                                    //tostax("contactor:" + longo)
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                            }
+
 
 
 
@@ -1073,6 +1135,51 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
+                            resposta = getisoframe("744", "764", "022121",200 ,3);
+                            //por vezes ao pedir este frame cria um pequeno atraso de 1-2segundos
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 48)) {
+
+                                //tostax("obtido correctamento 744/764 022121");
+                                //SystemClock.sleep(2000);
+
+                                //sunshine right
+                                longo = processalinha(resposta.substring(24, 26), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(146, (int) longo);
+                                }
+
+                                //sunshine left
+                                longo = processalinha(resposta.substring(26, 28), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(147, (int) longo);
+                                }
+
+
+                                //evaporator temp
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(152, (int) longo);
+                                }
+
+
+                                //internal temp
+                                longo = processalinha(resposta.substring(10, 12), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(153, (int) longo);
+                                }
+
+                                //internal humidity
+                                longo = processalinha(resposta.substring(12, 14), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(154, (int) longo);
+                                }
+
+                            }
 
 
 
@@ -1084,7 +1191,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         //ler a cada 10s
                         if (ciclo10s) {
 
-                            resposta = getisoframe("79b", "7bb", "022103",200 ,6);
+                            resposta = getisoframe("79b", "7bb", "022103", 200, 6);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
                             //else tostax("Resposta null");
@@ -1129,12 +1236,16 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
-                            resposta = getisoframe("744", "764", "022121",200 ,3);
+
+
+                            /*
+                            //resposta = getisoframe("7E4", "7EC", "03223307",200 ,16);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
                             //else tostax("Resposta null");
                             //SystemClock.sleep(3000);
 
+                            /*
                             if (resposta != null && (resposta.length() == 48)) {
 
                                 //tostax("obtido correctamento 744/764 022121");
@@ -1154,6 +1265,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+                            */
 
 
 
@@ -1754,6 +1866,43 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         //retirar o fim de linha
         resposta = resposta.replace("§", "");
 
+        //se o numero minimo de caracteres não for satisfeito retorna null
+        if ((resposta.length() < minimocaracteres)) return null;
+
+        //se tudo correu bem retorna
+        return resposta;
+
+    }
+
+
+
+
+
+    private String getfreeframeteste (String pid, int timeout, int period, int minimocaracteres) {
+
+        boolean ultimavalida;
+        String resposta;
+
+        //escolher filtro
+        write("atcra"+pid+"\r");
+        ultimavalida = (esperatexto(timeout, "OK\r\r>")) ;
+        //if (ultimavalida) tostax("recebeu OK");
+        //ligar monitor
+        write("atma\r");
+        //obter resposta, esperar de acordo com a periodicidade do ID
+        resposta = esperalinha(period*2);
+        //parar monitor
+        //if (resposta!=null) tostax("Recebeu linha");
+        write0();
+        ultimavalida = ultimavalida && (esperatexto(timeout, "STOPPED\r\r>")) ; //tosta("STOPPED OK");
+        //tosta("flushed after stop:" + flushbytes(500));
+        //if (ultimavalida) tostax("Recebeu stop");
+        //se não válido até aqui retorna null
+        if (!ultimavalida) return null;
+
+        //retirar o fim de linha
+        resposta = resposta.replace("§", "");
+        tostax("Resposta:"+resposta+" Comprimento:"+resposta.length());
         //se o numero minimo de caracteres não for satisfeito retorna null
         if ((resposta.length() < minimocaracteres)) return null;
 

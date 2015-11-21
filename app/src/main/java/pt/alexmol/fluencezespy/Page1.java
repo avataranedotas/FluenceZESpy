@@ -358,6 +358,39 @@ public class Page1 extends Fragment {
         }
         */
 
+        if (array1[48]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.temp1_1);
+            double temp = (((double) array1[48]) /10.0) -40.0;
+            view.setText("Evap SP:"+String.format("%3.1f", temp) + "C");
+        }
+
+
+        if (array1[49]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.temp2_1);
+            double temp = ((double) array1[49]) / 1.0;
+            view.setText("Water SP:"+String.format("%4.0f", temp) + "C");
+        }
+
+        if (array1[50]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.temp3_1);
+            double temp = ((double) array1[50]) / 10.0 - 40.0 ;
+            //double temp2 = ((double) array1[52]) / 2.5 - 40.0;
+            view.setText("Evap:"+String.format("%3.1f", temp) + "C");
+        }
+
+
+        if (array1[51]!= invalido && array1[53]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.temp4_1);
+            //water temp
+            double temp = ((double) array1[51]) - 40.0;
+            //internal temp
+            double temp2 = ((double) array1[53]) /2.5 - 40.0;
+            //internal humidity
+            double temp3 = ((double) array1[54]) /2.0;
+
+            view.setText("Water:"+String.format("%3.0f", temp) + "C / "+String.format("%3.1f", temp2)+"C / "+String.format("%3.1f", temp3));
+        }
+
 
 
     }
