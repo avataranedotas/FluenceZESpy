@@ -737,7 +737,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //SystemClock.sleep(3000);
                                 }
 
-
+                                /*
                                 //rightsolar ?
                                 longo = processalinha(resposta, 43, 47, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE ) { //resposta bem processada
@@ -763,6 +763,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("contactor:" + longo);
                                     //SystemClock.sleep(3000);
                                 }
+                                */
 
 
                             }
@@ -773,6 +774,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             if (resposta != null) {  //resposta correcta
                                 //tostax("recebeu 42A");
 
+                                /*
                                 //Evaporator set point
                                 longo = processalinha(resposta, 6, 15, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE && longo != 1023) { //resposta bem processada
@@ -790,6 +792,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("contactor:" + longo);
                                     //SystemClock.sleep(3000);
                                 }
+                                */
 
 
                                 //Evaporator temperature
@@ -832,6 +835,27 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                         }
+                        if (ciclo1m) {
+
+                            resposta = getfreeframe("534", 200, 200, 10);
+                            if (resposta != null) {  //resposta correcta
+                                //tostax("recebeu 42A:"+resposta.length());
+
+                                //water temperature
+                                longo = processalinha(resposta,32, 39, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE && longo != 255) { //resposta bem processada
+                                    publishProgress(165, (int) longo);
+                                    //tostax("evapset:"+longo);
+                                    //tostax("contactor:" + longo)
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                            }
+                            //else tostax("falhou 534");
+
+                        }
+
                     }
                 }
 
@@ -1147,6 +1171,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 //tostax("obtido correctamento 744/764 022121");
                                 //SystemClock.sleep(2000);
 
+                                /*
                                 //sunshine right
                                 longo = processalinha(resposta.substring(24, 26), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
@@ -1158,13 +1183,15 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(147, (int) longo);
                                 }
+                                */
 
-
+                                /*
                                 //evaporator temp
                                 longo = processalinha(resposta.substring(8, 10), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(152, (int) longo);
                                 }
+                                */
 
 
                                 //internal temp
@@ -1235,38 +1262,193 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
-
-
-
                             /*
-                            //resposta = getisoframe("7E4", "7EC", "03223307",200 ,16);
+                            resposta = getisoframe("7E4", "7EC", "03223318",200 ,1);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
                             //else tostax("Resposta null");
                             //SystemClock.sleep(3000);
 
-                            /*
-                            if (resposta != null && (resposta.length() == 48)) {
 
-                                //tostax("obtido correctamento 744/764 022121");
-                                //SystemClock.sleep(2000);
-
-                                //sunshine right
-                                longo = processalinha(resposta.substring(24, 26), 0, 15, false);
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //motor water pump
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
-                                    publishProgress(146, (int) longo);
+                                    publishProgress(155, (int) longo);
+                                    //tostax("MWT:"+longo);
                                 }
-
-                                //sunshine left
-                                longo = processalinha(resposta.substring(26, 28), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(147, (int) longo);
-                                }
-
-
                             }
                             */
 
+
+                            /*
+                            resposta = getisoframe("7E4", "7EC", "03223319",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //charger water pump
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(156, (int) longo);
+                                    //tostax("CWT:"+longo);
+                                }
+                            }
+                            */
+
+                            /*
+                            resposta = getisoframe("7E4", "7EC", "0322331a",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //heater water pump
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(157, (int) longo);
+                                    //tostax("CWT:"+longo);
+                                }
+                            }
+                            */
+
+                            /*
+                            resposta = getisoframe("7E4", "7EC", "03223328",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //charger water temp?
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(158, (int) longo);
+                                    //tostax("HPR:" + longo);
+                                }
+                            }
+                            */
+
+
+                            resposta = getisoframe("7E4", "7EC", "032233DC",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 14), 0, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(159, (int) longo);
+                                    //tostax("Total:" + longo);
+                                }
+                            }
+
+
+                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(160, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
+
+
+                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(161, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+                            /*
+                            resposta = getisoframe("7E4", "7EC", "032233FE",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(162, (int) longo);
+                                    tostax("bcf:" + longo);
+                                }
+                            }
+                            */
+
+                            /*
+                            resposta = getisoframe("7E4", "7EC", "0322341E",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(163, (int) longo);
+                                    tostax("befs:" + longo);
+                                }
+                            }
+                            */
+
+                            /*
+                            resposta = getisoframe("7E4", "7EC", "0322341F",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(164, (int) longo);
+                                    tostax("bifs:" + longo);
+                                }
+                            }
+                            */
 
 
                         }

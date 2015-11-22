@@ -309,6 +309,7 @@ public class Page1 extends Fragment {
             view.setText(array1[33]+ "km");
         }
 
+        //until charge complete
         if (array1[34]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.timetofull_1);
             ImageView image = (ImageView) getView().findViewById(R.id.timetofullicon_1);
@@ -325,7 +326,7 @@ public class Page1 extends Fragment {
 
         }
 
-
+        //evse current
         if (array1[6]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.evse_1);
             if (array1[6]!=0 && array1[6]<48 && array1[5]!=0 && array1[5] != invalido && !(MainActivity.TABLET ^ MainActivity.reverseModeMain ) ) {
@@ -337,7 +338,7 @@ public class Page1 extends Fragment {
         }
 
 
-
+        //cable plugged
         if (array1[5]!= invalido) {
             ImageView view = (ImageView) getView().findViewById(R.id.carrocharging);
             if (array1[5]!=0) view.setVisibility(View.VISIBLE);
@@ -357,6 +358,9 @@ public class Page1 extends Fragment {
 
         }
         */
+
+
+        /*
 
         if (array1[48]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.temp1_1);
@@ -388,7 +392,97 @@ public class Page1 extends Fragment {
             //internal humidity
             double temp3 = ((double) array1[54]) /2.0;
 
-            view.setText("Water:"+String.format("%3.0f", temp) + "C / "+String.format("%3.1f", temp2)+"C / "+String.format("%3.1f", temp3));
+            double temp4 = ((double) array1[46]) /1.0;
+
+            double temp5 = ((double) array1[47]) /1.0;
+
+            view.setText("Water:"+String.format("%3.0f", temp) + "C / "+String.format("%3.1f", temp2)+"C / "+String.format("%3.1f", temp3)+"% /"+String.format("%4.0f", temp4)+" /"+String.format("%4.0f", temp5));
+        }
+
+
+
+        if (array1[55]!= invalido ) {
+            TextView view = (TextView) getView().findViewById(R.id.temp5_1);
+            //motor water temp
+            double temp = ((double) array1[55]);
+            //charger water temp
+            double temp2 = ((double) array1[56]);
+
+            double temp3 = ((double) array1[57]);
+
+            //double temp4 = ((double) array1[46]) /1.0;
+
+            //double temp5 = ((double) array1[47]) /1.0;
+
+            view.setText("MWT:"+String.format("%3.0f", temp) + " CWT:"+String.format("%3.0f", temp2)+" HWP:"+String.format("%3.0f", temp3)/*+" 23"+String.format("%4.0f", temp4)+" /"+String.format("%4.0f", temp5));
+        }
+        */
+
+
+
+        //se o contactor principal estiver ligado mostra a temperatura do conversor DCDC
+        if (array1[60]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.dcdctemp_1);
+            if (array1[27]==2) {
+                view.setVisibility(View.VISIBLE);
+                double temp = ((double) array1[60]) /64.0;
+                view.setText(String.format("%3.0f", temp) + "C");
+            }
+            else view.setVisibility(View.INVISIBLE);
+
+        }
+
+        //temperatura da bateria
+        if (array1[40]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.battemp_1);
+
+            double tempt = array1[40] / 10.0;
+            view.setText(String.format("%2.0f", tempt) + "C");
+        }
+
+
+
+        //se o contactor principal estiver ligado mostra a temperatura do inversor
+        if (array1[61]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.invtemp_1);
+            if (array1[27]==2) {
+                view.setVisibility(View.VISIBLE);
+                double temp = ((double) array1[61]) /64.0;
+                view.setText(String.format("%3.0f", temp) + "C");
+            }
+            else view.setVisibility(View.INVISIBLE);
+
+        }
+
+
+        //temperatura interna
+        if (array1[53]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.tempinside_1);
+
+            double tempt = array1[53] /2.5 - 40.0;
+            view.setText(String.format("%2.0f", tempt) + "C");
+        }
+
+
+
+        //temperatura externa
+        if (array1[65]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.tempoutside_1);
+
+            double tempt = array1[65] - 40.0;
+            view.setText(String.format("%2.0f", tempt) + "C");
+        }
+
+        //total energy spent
+        if (array1[59]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.totspent_1);
+
+            double tempt = array1[59] / 100.0;
+            view.setText(String.format("%6.2f", tempt) + "kWh");
         }
 
 

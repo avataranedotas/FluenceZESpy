@@ -65,69 +65,34 @@
                     android:layout_weight="0.25">
 
 
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.25">
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.25">
+
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="temp1"
-                        android:id="@+id/temp1_1"
+                        android:text="Total Spent"
+                        android:id="@+id/totspent_1"
                         android:textColor="#000000"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="false"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="temp2"
-                        android:id="@+id/temp2_1"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/fonte_normal"
-                        android:singleLine="false"
-                        android:layout_below="@+id/temp1_1"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="temp3"
-                        android:id="@+id/temp3_1"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/fonte_normal"
-                        android:singleLine="false"
-                        android:layout_below="@+id/temp2_1"
-                        android:layout_centerHorizontal="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="temp4"
-                        android:id="@+id/temp4_1"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/fonte_normal"
-                        android:singleLine="false"
-                        android:layout_below="@+id/temp3_1"
-                        android:layout_centerHorizontal="true" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.25">
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dip"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="0.25">
-
-
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
                 </RelativeLayout>
 
 
@@ -251,6 +216,29 @@
                     android:layout_weight="0.20">
 
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/dcdctemp_1"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="false"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#64ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/invtemp_1"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="false"
+                        android:layout_below="@+id/dcdctemp_1"
+                        android:layout_centerHorizontal="true" />
+
                 </RelativeLayout>
 
 
@@ -260,10 +248,65 @@
                 <RelativeLayout
                     android:layout_width="0dip"
                     android:layout_height="fill_parent"
-                    android:layout_weight="0.3">
+                    android:layout_weight="0.3"
+                    >
 
 
-                </RelativeLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:id="@+id/tempinside_1"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:singleLine="false"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:id="@+id/tempoutside_1"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:singleLine="false"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.0">
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+                        </RelativeLayout>
 
 
 
@@ -327,7 +370,20 @@
                                 android:textSize="@dimen/fonte_normal"
                                 android:layout_centerVertical="true"
                                 android:layout_toRightOf="@+id/pb_soc_1"
-                                android:layout_toEndOf="@+id/pb_soc_1" />
+                                android:layout_toEndOf="@+id/pb_soc_1"
+                                android:background="#40ffffff" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:id="@+id/battemp_1"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_pequena"
+                                android:singleLine="false"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true" />
                         </RelativeLayout>
 
                         <RelativeLayout

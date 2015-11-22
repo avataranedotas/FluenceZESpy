@@ -192,7 +192,7 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[17]!= invalido && array0[40]!= invalido) {
+        if (array0[40]!= invalido) {
 
             TextView view = (TextView) getView().findViewById(R.id.battempmin_0);
 

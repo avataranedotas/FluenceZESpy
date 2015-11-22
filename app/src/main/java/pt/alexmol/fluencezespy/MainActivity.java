@@ -156,18 +156,31 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //140 temperatura da bateria C x10
     //141 dashboard iluminated
     //142 day/night 0=day 1=night
-    //143 right solar?
-    //144 left solar?
-    //145 solar ?
-    //146 sunshine right ?
-    //147 sunshine left ?
-    //148 evporator setpoint C +40 x10
-    //149 Water setpoint C
+    //143 right solar - SUSPENSO
+    //144 left solar - SUSPENSO
+    //145 solar - SUSPENSO
+    //146 sunshine right - SUSPENSO
+    //147 sunshine left - SUSPENSO
+    //148 evporator setpoint C +40 x10 - SUSPENSO
+    //149 Water setpoint C - SUSPENSO
     //150 Evaporator temperature C +40 x10
-    //151 water temperature +40C
-    //152 evaporator temperature C +40 x2.5
+    //151 heating water temperature +40C
+    //152 evaporator temperature C +40 x2.5 - SUSPENSO
     //153 internal temp C +40 x2.5
     //154 internal humidity x2 %
+    //155 motor water pump, 10=stopped 20=running - SUSPENSO
+    //156 charger water pump, 10=stopped 20=running  - SUSPENSO
+    //157 heater water pump, 10=stopped 20=speed 0? 41.. speed  - SUSPENSO
+    //158 heater pump requested speed 10=stopped 20=speed 0? 41.. speed - SUSPENSO
+    //159 total energy spent by car kWh x100
+    //160 DCDC converter temperature x64 C
+    //161 inverter temperature x64 C
+    //162 battery cooling fans - SUSPENSO
+    //163 battery fan external speed - SUSPENSO
+    //164 battery fan internal speed - SUSPENSO
+    //165 external temperature +40C
+
+
 
     //501, tensão célula 1
     //502, tensão célula 2
