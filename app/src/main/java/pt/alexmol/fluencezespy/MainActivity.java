@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private boolean sair = false;
     public static int[] valoresmemorizados;
     public static short[] tensoesdascelulas;
+    public static boolean[] shuntscelulas;
     private static NotificationCompat.Builder mBuilder;
     private static NotificationManager mNotificationManager;
     private static BTELMAsyncTask tarefa;
@@ -179,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //163 battery fan external speed - SUSPENSO
     //164 battery fan internal speed - SUSPENSO
     //165 external temperature +40C
+    //166 odometer km x100
 
 
 
@@ -186,6 +188,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //502, tensão célula 2
     //.........
     //596, tensão célula 96
+
+    //601, shunt célula 1
+    //602, shunt célula 2
+    //..
+    //696, shunt célula 96
 
 
 
@@ -286,6 +293,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         }
 
+        //evento de recepção de shunts de células para memorizar
+        //601 corresponde ao indice 0
+        if (event.getResult()[0]>=601 &&  event.getResult()[0]<=696) {
+            if (event.getResult()[1]==1 ) shuntscelulas[  ( event.getResult()[0] -601)  ]= true;
+            else shuntscelulas[  ( event.getResult()[0] -601)  ]= false;
+
+        }
+
 
     }
 
@@ -320,6 +335,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         valoresmemorizados = new int[100];
         tensoesdascelulas = new short[96];
+        shuntscelulas = new boolean[96];
 
 
 
@@ -341,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             // Restore value of members from saved state
             valoresmemorizados = savedInstanceState.getIntArray("matriz");
             tensoesdascelulas = savedInstanceState.getShortArray("celulas");
+            shuntscelulas = savedInstanceState.getBooleanArray("shunts");
             ecran = savedInstanceState.getInt("ecranactual");
 
         } else {
@@ -350,7 +367,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             for (i=0;i<100;i++) valoresmemorizados[i]= invalido;
             short invalidoshort = Short.MAX_VALUE;
             for (i=0;i<96;i++) tensoesdascelulas[i]= invalidoshort;
+            for (i=0;i<96;i++) shuntscelulas[i]= false;
             ecran = settings.getInt("ecran", 1);
+
 
         }
 
@@ -639,6 +658,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         // gravar os valores guardados
         savedInstanceState.putIntArray("matriz", valoresmemorizados);
         savedInstanceState.putShortArray("celulas", tensoesdascelulas);
+        savedInstanceState.putBooleanArray("shunts", shuntscelulas);
+
         savedInstanceState.putInt("ecranactual", ecran);
 
         // Always call the superclass so it can save the view hierarchy state

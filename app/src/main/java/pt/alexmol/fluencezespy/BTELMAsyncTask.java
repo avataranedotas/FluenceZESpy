@@ -635,39 +635,41 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         //próximo free frame
 
-                        resposta = getfreeframe("427",200,200,16);
-                        if (resposta!=null) {  //resposta correcta
 
-                            //main contactor
-                            longo = processalinha(resposta,0,1,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                publishProgress(127, (int) longo);
-                                //tostax("contactor:" + longo);
-                                //SystemClock.sleep(3000);
+                        if (ciclo1s) {
+
+                            resposta = getfreeframe("427", 200, 200, 16);
+                            if (resposta != null) {  //resposta correcta
+
+                                //main contactor
+                                longo = processalinha(resposta, 0, 1, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(127, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+                                //HV consumption loads
+                                longo = processalinha(resposta, 16, 25, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    if (longo != 1023) publishProgress(128, (int) longo);
+
+                                }
+
+
+                                //Remaining kWh
+                                longo = processalinha(resposta, 48, 57, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    if (longo != 0 && longo <= 300)
+                                        publishProgress(131, (int) longo);
+
+                                }
+
+
                             }
-
-
-                            //HV consumption loads
-                            longo = processalinha(resposta,16,25,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                if (longo!=1023) publishProgress(128, (int) longo);
-
-                            }
-
-
-
-                            //Remaining kWh
-                            longo = processalinha(resposta,48,57,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                if (longo!=0 && longo <=300) publishProgress(131, (int) longo);
-
-                            }
-
-
 
                         }
-
-
 
                         //próximo free frame
 
@@ -822,14 +824,27 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 longo = processalinha(resposta, 0, 7, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE && longo != 255) { //resposta bem processada
                                     publishProgress(151, (int) longo);
-                                    //tostax("evapset:"+longo);
-                                    //tostax("contactor:" + longo)
-                                    //SystemClock.sleep(3000);
+
                                 }
 
 
                             }
 
+
+
+                            resposta = getfreeframe("5d7", 200, 100, 14);
+                            if (resposta != null) {  //resposta correcta
+
+
+                                //odometer x100
+                                longo = processalinha(resposta, 16, 43, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(166, (int) longo);
+
+                                }
+
+
+                            }
 
 
 
@@ -841,7 +856,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             if (resposta != null) {  //resposta correcta
                                 //tostax("recebeu 42A:"+resposta.length());
 
-                                //water temperature
+                                //external temperature
                                 longo = processalinha(resposta,32, 39, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE && longo != 255) { //resposta bem processada
                                     publishProgress(165, (int) longo);
@@ -1158,6 +1173,58 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
                             }
+
+
+                            //shunts das células
+                            resposta = getisoframe("79b", "7bb", "022107", 200, 4);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+                            if (resposta != null && (resposta.length() == 64)) {
+
+                                String resposta2 = "";
+
+                                //retirar os primeiros 2 caracteres de cada conjunto de 16
+                                for (int i=0; i<=3;i++) {
+                                    resposta2 = resposta2 + resposta.substring((i*16)+2,(i*16)+16);
+                                }
+                                //devem ficar 56
+                                //tostax("Tamanho56:"+resposta2.length());
+
+                                //retirar os primeiros 6
+                                resposta2 = resposta2.substring(6, 56);
+
+                                tostax(resposta2);
+                                //em principio agora tem-se apenas os shunts sem a informação iso-tp
+
+                                //extrair informação dos bits 4 a 7 de cada byte
+
+                                for (int i=0;i<=23;i++) {
+
+                                    longo = processalinha(resposta2.substring((i*2),(i*2)+ 2), 4, 7, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        //bit 4
+                                        if ((longo & 8) == 8) publishProgress(601+(i*4), 1);
+                                        else publishProgress(601+(i*4), 0);
+                                        //bit 5
+                                        if ((longo & 4) == 4) publishProgress(602+(i*4), 1);
+                                        else publishProgress(602+(i*4), 0);
+                                        //bit 6
+                                        if ((longo & 2) == 2) publishProgress(603+(i*4), 1);
+                                        else publishProgress(603+(i*4), 0);
+                                        //bit 7
+                                        if ((longo & 1) == 1) publishProgress(604+(i*4), 1);
+                                        else publishProgress(604+(i*4), 0);
+                                    }
+
+                                }
+
+                            }
+
+
+
 
                             resposta = getisoframe("744", "764", "022121",200 ,3);
                             //por vezes ao pedir este frame cria um pequeno atraso de 1-2segundos

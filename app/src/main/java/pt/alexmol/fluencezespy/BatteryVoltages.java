@@ -34,6 +34,7 @@ public class BatteryVoltages extends AppCompatActivity {
 
     private static BarChart mBarChart;
 
+    private int coresbarras[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,12 +104,27 @@ public class BatteryVoltages extends AppCompatActivity {
 
         int azul = getResources().getColor(R.color.azul);
         int vermelho = getResources().getColor(R.color.vermelho);
+        int ciano = getResources().getColor(R.color.ciano);
 
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         setComp1.setDrawValues(false);
-        setComp1.setColors(new int[]{azul, azul});
+
+        //criar uma array de ints com as 96 cores
+
+        coresbarras = new int[96];
+
+        for (int i=0; i<=95;i++) {
+            if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = ciano;
+            else coresbarras[i] = azul;
+        }
+
+        //teste
+        //coresbarras[10] = ciano;
+        //coresbarras[90] = vermelho;
+
+        setComp1.setColors(coresbarras);
         setComp1.setBarSpacePercent(25.0f);
 
 
@@ -390,17 +406,22 @@ public class BatteryVoltages extends AppCompatActivity {
             texto = texto + String.format("%2.3f", temp) + "Ah    ";
         }
 
-        //km
+        //odoBat km
         if (MainActivity.valoresmemorizados[19]!=Integer.MAX_VALUE) {
-            texto = texto + "Odo:"+arrayv[19]+ "km ";
+            texto = texto + "OdoBat:"+arrayv[19]+ "km ";
         }
 
         //kWh
         if (MainActivity.valoresmemorizados[20]!=Integer.MAX_VALUE) {
-            texto = texto + arrayv[20]+ "kWh";
+            texto = texto + arrayv[20]+ "kWh    ";
         }
 
-        view.setText(texto);
+        //odoCar
+        if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
+            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km";
+        }
+
+            view.setText(texto);
 
 
 

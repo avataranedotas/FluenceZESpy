@@ -486,6 +486,16 @@ public class Page1 extends Fragment {
         }
 
 
+        //total km
+        if (array1[66]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.odokm_1);
+
+            double tempt = array1[66] / 100.0;
+            view.setText(String.format("%6.2f", tempt) + "km");
+        }
+
+
 
     }
 }
