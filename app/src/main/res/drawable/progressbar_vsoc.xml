@@ -11,10 +11,10 @@
             -->
             <gradient
                 android:angle="180"
-                android:centerColor="#c7c7c7"
+                android:centerColor="#ababab"
                 android:centerY="0.5"
                 android:endColor="#838383"
-                android:startColor="#e1e1e1"
+                android:startColor="#969696"
                 />
 
         </shape>

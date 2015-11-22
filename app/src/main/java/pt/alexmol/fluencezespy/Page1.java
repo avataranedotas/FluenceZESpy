@@ -476,12 +476,12 @@ public class Page1 extends Fragment {
             view.setText(String.format("%2.0f", tempt) + "C");
         }
 
-        //total energy spent
+        //partial energy spent
         if (array1[59]!= invalido) {
 
             TextView view = (TextView) getView().findViewById(R.id.totspent_1);
 
-            double tempt = array1[59] / 100.0;
+            double tempt = array1[59] / 1000.0;
             view.setText(String.format("%6.2f", tempt) + "kWh");
         }
 

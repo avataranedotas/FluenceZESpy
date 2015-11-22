@@ -408,17 +408,17 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //odoBat km
         if (MainActivity.valoresmemorizados[19]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoBat:"+arrayv[19]+ "km ";
+            texto = texto + "OdoBat:"+arrayv[19]+ "km    ";
+        }
+
+        //odoCar
+        if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
+            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km ";
         }
 
         //kWh
         if (MainActivity.valoresmemorizados[20]!=Integer.MAX_VALUE) {
             texto = texto + arrayv[20]+ "kWh    ";
-        }
-
-        //odoCar
-        if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km";
         }
 
             view.setText(texto);

@@ -173,9 +173,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //156 charger water pump, 10=stopped 20=running  - SUSPENSO
     //157 heater water pump, 10=stopped 20=speed 0? 41.. speed  - SUSPENSO
     //158 heater pump requested speed 10=stopped 20=speed 0? 41.. speed - SUSPENSO
-    //159 total energy spent by car kWh x100
+    //159 partial energy spent by car kWh x1000
     //160 DCDC converter temperature x64 C
-    //161 inverter temperature x64 C
+    //161 inverter temperature x64 C ????
     //162 battery cooling fans - SUSPENSO
     //163 battery fan external speed - SUSPENSO
     //164 battery fan internal speed - SUSPENSO
