@@ -26,7 +26,7 @@ public class NightModeOnItemSelectedListener  implements AdapterView.OnItemSelec
 
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+        // nao fazer nada
     }
 
 }
