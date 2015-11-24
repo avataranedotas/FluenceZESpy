@@ -87,17 +87,38 @@
                 android:textColor="#000000"
                 android:textSize="@dimen/fonte_normal"
                 android:singleLine="true"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/range_icon_1"
                 android:layout_centerHorizontal="true" />
 
             <ImageView
                 android:layout_width="@dimen/largura_range"
-                android:layout_height="@dimen/largura_bat12v"
+                android:layout_height="@dimen/altura_range"
                 android:id="@+id/range_icon_1"
 
                 android:src="@drawable/range"
                 android:scaleType="fitEnd"
-                android:layout_above="@+id/range_1"
+                android:layout_below="@+id/odokm_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_width="@dimen/largura_range"
+                android:layout_height="@dimen/altura_range"
+                android:id="@+id/imageView"
+                android:src="@drawable/odometer"
+                android:scaleType="fitCenter"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/odokm_1"
+                android:textColor="#000000"
+                android:textSize="@dimen/fonte_normal"
+                android:singleLine="true"
+                android:layout_below="@+id/imageView"
                 android:layout_centerHorizontal="true" />
 
 
@@ -113,7 +134,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Total Spent"
                 android:id="@+id/totspent_1"
                 android:textColor="#000000"
                 android:textSize="@dimen/fonte_normal"
@@ -122,39 +142,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/odokm_1"
-                android:textColor="#000000"
-                android:textSize="@dimen/fonte_normal"
-                android:singleLine="true"
-                android:layout_below="@+id/imageView"
-                android:layout_centerHorizontal="true" />
-
-            <ImageView
-                android:layout_width="@dimen/largura_range"
-                android:layout_height="@dimen/largura_bat12v"
-                android:id="@+id/imageView"
-                android:src="@drawable/odometer"
-                android:scaleType="fitEnd"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="km"
-                android:id="@+id/textView7"
-                android:textColor="#000000"
-                android:textSize="@dimen/fonte_normal"
-                android:singleLine="true"
-                android:layout_below="@+id/odokm_1"
-                android:layout_centerHorizontal="true" />
 
 
         </RelativeLayout>

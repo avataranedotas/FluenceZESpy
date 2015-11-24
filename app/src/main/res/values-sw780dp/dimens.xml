@@ -10,6 +10,8 @@
 
     <dimen name="largura_bat12v">50dp</dimen>
     <dimen name="largura_range">100dp</dimen>
+    <dimen name="altura_range">23dp</dimen>
+
 
     <dimen name="altura_auxcons">76dp</dimen>
 
