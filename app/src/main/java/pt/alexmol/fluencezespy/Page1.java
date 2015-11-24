@@ -477,6 +477,7 @@ public class Page1 extends Fragment {
         }
 
         //partial energy spent
+        /*
         if (array1[59]!= invalido) {
 
             TextView view = (TextView) getView().findViewById(R.id.totspent_1);
@@ -484,6 +485,7 @@ public class Page1 extends Fragment {
             double tempt = array1[59] / 1000.0;
             view.setText(String.format("%6.2f", tempt) + "kWh");
         }
+        */
 
 
         //total km
@@ -492,7 +494,7 @@ public class Page1 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.odokm_1);
 
             double tempt = array1[66] / 100.0;
-            view.setText(String.format("%6.2f", tempt)/* + "km"*/);
+            view.setText(String.format("%6.0f", tempt)/* + "km"*/);
         }
 
 

@@ -66,6 +66,10 @@ public class BatteryVoltages extends AppCompatActivity {
         }
 
 
+        //actualizagrafico();
+
+
+
         obtemintervalo();
 
 
@@ -86,25 +90,9 @@ public class BatteryVoltages extends AppCompatActivity {
             tensoescelulas.add(dado);
         }
 
-        /*
-        BarEntry c1e1 = new BarEntry(4.055f, 0); // 0 == quarter 1
-        tensoescelulas.add(c1e1);
-        BarEntry c1e2 = new BarEntry(4.040f, 1); // 1 == quarter 2 ...
-        tensoescelulas.add(c1e2);
-
-        BarEntry c1e3 = new BarEntry(4.042f, 2); // 1 == quarter 2 ...
-        tensoescelulas.add(c1e3);
-        */
-
-        //Entry c2e1 = new Entry(120.000f, 0); // 0 == quarter 1
-        //outratreta.add(c2e1);
-        //Entry c2e2 = new Entry(110.000f, 1); // 1 == quarter 2 ...
-        //outratreta.add(c2e2);
-        //...
-
         int azul = getResources().getColor(R.color.azul);
         int vermelho = getResources().getColor(R.color.vermelho);
-        int ciano = getResources().getColor(R.color.ciano);
+        int verde = getResources().getColor(R.color.verde);
 
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
@@ -116,26 +104,20 @@ public class BatteryVoltages extends AppCompatActivity {
         coresbarras = new int[96];
 
         for (int i=0; i<=95;i++) {
-            if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = ciano;
+            if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = verde;
             else coresbarras[i] = azul;
         }
 
-        //teste
-        //coresbarras[10] = ciano;
-        //coresbarras[90] = vermelho;
 
         setComp1.setColors(coresbarras);
         setComp1.setBarSpacePercent(25.0f);
 
 
 
-        //LineDataSet setComp2 = new LineDataSet(outratreta, "Company 2");
-        //setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
 
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(setComp1);
-        //dataSets.add(setComp2);
 
         ArrayList<String> xVals = new ArrayList<String>();
 
@@ -184,7 +166,6 @@ public class BatteryVoltages extends AppCompatActivity {
         mBarChart.setData(data);
 
         mBarChart.invalidate(); // refresh
-
 
 
         actualizarvalores(MainActivity.valoresmemorizados);
@@ -261,7 +242,7 @@ public class BatteryVoltages extends AppCompatActivity {
         //se receber o 596 pode actualizar o gráfico
         if (event.getResult()[0]==596) {
 
-            actualizagrafico(MainActivity.tensoesdascelulas);
+            actualizagrafico();
 
         }
 
@@ -281,14 +262,10 @@ public class BatteryVoltages extends AppCompatActivity {
 
 
     //actualizar gráfico
-    private void actualizagrafico (short[] arrayt) {
+    private void actualizagrafico () {
 
 
         obtemintervalo();
-
-
-
-
 
         mBarChart = (BarChart) findViewById(R.id.chart);
 
@@ -307,12 +284,27 @@ public class BatteryVoltages extends AppCompatActivity {
 
         int azul = getResources().getColor(R.color.azul);
         int vermelho = getResources().getColor(R.color.vermelho);
+        int verde = getResources().getColor(R.color.verde);
 
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         setComp1.setDrawValues(false);
-        setComp1.setColors(new int[]{azul, azul});
+
+        //criar uma array de ints com as 96 cores
+
+        coresbarras = new int[96];
+
+        for (int i=0; i<=95;i++) {
+            if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = verde;
+            else coresbarras[i] = azul;
+        }
+
+        //teste
+        //coresbarras[10] = ciano;
+        //coresbarras[90] = vermelho;
+
+        setComp1.setColors(coresbarras);
         setComp1.setBarSpacePercent(25.0f);
 
 

@@ -1196,7 +1196,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 //retirar os primeiros 6
                                 resposta2 = resposta2.substring(6, 56);
 
-                                tostax(resposta2);
+                                //tostax(resposta2);
                                 //em principio agora tem-se apenas os shunts sem a informação iso-tp
 
                                 //extrair informação dos bits 4 a 7 de cada byte
