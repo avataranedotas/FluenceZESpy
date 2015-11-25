@@ -370,6 +370,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             for (i=0;i<96;i++) shuntscelulas[i]= false;
             ecran = settings.getInt("ecran", 1);
 
+            //recupera valores actuais
+            //toast("Loading...");
+            for (i=0; i<=99;i++) valoresmemorizados[i]=settings.getInt("valoresmemorizados"+i,invalido );
+            for (i=0;i<96;i++) tensoesdascelulas[i]= (short) settings.getInt("tensoesdascelulas"+i,invalidoshort);
+            for (i=0;i<96;i++) shuntscelulas[i]= settings.getBoolean("shunts"+i,false);
+
+
+
 
         }
 
@@ -687,6 +695,15 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("ecran", ecran);
+
+            //grava valores actuais
+            //toast("Saving...");
+            int i;
+            for (i=0; i<=99;i++) editor.putInt("valoresmemorizados"+i, valoresmemorizados[i]);
+            for (i=0;i<96;i++) editor.putInt("tensoesdascelulas"+i,tensoesdascelulas[i]);
+            for (i=0;i<96;i++) editor.putBoolean("shunts"+i,shuntscelulas[i]);
+
+
             editor.commit();
 
 
