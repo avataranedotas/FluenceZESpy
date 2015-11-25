@@ -564,49 +564,54 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                         //ler em todos os ciclos
-                        //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
-                        resposta = getfreeframe("42e",200,200,16);
 
-                        if (resposta!=null) {  //resposta correcta
-                            if (ELMREADY2 != 2) {
-                                ELMREADY2 = 2;
-                                publishProgress(1,2); //para actualizar o icone verde
-                            }
 
-                            //SOC
-                            longo = processalinha(resposta,0,12,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                //converter para flutuante
-                                double socx475 = longo / 47.5;
-                                //validação
-                                if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
-                                    //publishProgress(100, invalido);  //necessário publicar inválidos???
-                                }
-                                else {              //valor válido
-                                    //publica valor soc multiplicado por 100
-                                    //SOCx475 é o índice 100
-                                    publishProgress(100, (int) (socx475 * 100));
+                        if (ciclo1s) {
+
+
+                            //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
+                            resposta = getfreeframe("42e",200,200,16);
+
+                            if (resposta!=null) {  //resposta correcta
+                                if (ELMREADY2 != 2) {
+                                    ELMREADY2 = 2;
+                                    publishProgress(1,2); //para actualizar o icone verde
                                 }
 
-                            }
+                                //SOC
+                                longo = processalinha(resposta,0,12,false);  //processa a resposta
+                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                    //converter para flutuante
+                                    double socx475 = longo / 47.5;
+                                    //validação
+                                    if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
+                                        //publishProgress(100, invalido);  //necessário publicar inválidos???
+                                    }
+                                    else {              //valor válido
+                                        //publica valor soc multiplicado por 100
+                                        //SOCx475 é o índice 100
+                                        publishProgress(100, (int) (socx475 * 100));
+                                    }
 
-                            //cable plugged
-                            longo = processalinha(resposta,13,14,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                publishProgress(105, (int) longo);
                                 }
 
-                            //EVSE current
-                            longo = processalinha(resposta,38,43,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                publishProgress(106, (int) longo);
-                            }
+                                //cable plugged
+                                longo = processalinha(resposta,13,14,false);  //processa a resposta
+                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(105, (int) longo);
+                                }
 
-                            //Pack voltage x2
-                            longo = processalinha(resposta,25,34,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                publishProgress(107, (int) longo);
-                            }
+                                //EVSE current
+                                longo = processalinha(resposta,38,43,false);  //processa a resposta
+                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(106, (int) longo);
+                                }
+
+                                //Pack voltage x2
+                                longo = processalinha(resposta,25,34,false);  //processa a resposta
+                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(107, (int) longo);
+                                }
 
                             /*
                             //HV battery temp ?
@@ -616,29 +621,26 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
                             */
 
-                            //Max charging power
-                            longo = processalinha(resposta,56,63,false);  //processa a resposta
-                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                publishProgress(109, (int) longo*3);
+                                //Max charging power
+                                longo = processalinha(resposta,56,63,false);  //processa a resposta
+                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(109, (int) longo*3);
+                                }
+
+
+
+
+                            }
+                            else {  //resposta inválida
+                                if (ELMREADY2 != 1) {
+                                    ELMREADY2 = 1;
+                                    publishProgress(1,1); //para actualizar o icone amarelo
+                                }
                             }
 
 
 
-
-                        }
-                        else {  //resposta inválida
-                            if (ELMREADY2 != 1) {
-                                ELMREADY2 = 1;
-                                publishProgress(1,1); //para actualizar o icone amarelo
-                            }
-                        }
-
-                        //próximo free frame
-
-
-                        if (ciclo1s) {
-
-                            resposta = getfreeframe("427", 200, 200, 16);
+                            resposta = getfreeframe("427", 200, 100, 16);
                             if (resposta != null) {  //resposta correcta
 
                                 //main contactor
@@ -668,6 +670,24 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+
+
+                            resposta = getfreeframe("391", 200, 50, 12);
+                            if (resposta != null) {  //resposta correcta
+
+                                //  a/c key
+                                longo = processalinha(resposta, 32, 33, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(169, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+
+
+                            }
+
 
                         }
 
@@ -888,81 +908,30 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                     if (mmSocket2.isConnected() && READYtoRW2 && ELMREADY2 == 2) {
 
 
-                        if (ciclo1m) {
+                        //ler todos os ciclos
 
-                            //este id só precisa de ser lido de minuto a minuto
-                            resposta = getisoframe("79b", "7bb", "022104", 200, 3);
+                        //wiper stalk buttons
 
+                        resposta = getisoframe("745", "765", "02215F",200 ,1);
 
-                            if (resposta != null && (resposta.length() == 48)) {
-
-                                //temperatura1, obtem-se na primeira linha
-
-                                longo = processalinha(resposta.substring(0, 16), 48, 55, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    //validação
-                                    if (longo >= -30 && longo <= 127) {
-                                        //publica valor
-                                        //tempbat1 é o indice 101
-                                        //ultimavalida = true;
-                                        publishProgress(101, (int) longo);
-                                    }
-
-                                }
-
-                                //temperatura2, obtem-se na segunda linha
-                                longo = processalinha(resposta.substring(16, 32), 16, 23, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    //validação
-                                    if (longo >= -30 && longo <= 127) {
-                                        //publica valor
-                                        //tempbat2 é o indice 102
-                                        publishProgress(102, (int) longo);
-                                    }
-
-                                }
-
-                                //temperatura3, obtem-se na segunda linha
-                                longo = processalinha(resposta.substring(16, 32), 40, 47, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    //validação
-                                    if (longo >= -30 && longo <= 127) {
-                                        //publica valor
-                                        //tempbat3 é o indice 103
-                                        publishProgress(103, (int) longo);
-                                    }
-
-                                }
+                        //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                        //else tostax("Resposta null");
+                        //SystemClock.sleep(3000);
 
 
-                                //temperatura4, obtem-se na 3ª linha
-                                longo = processalinha(resposta.substring(32, 48), 8, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    //validação
-                                    if (longo >= -30 && longo <= 127) {
-                                        //publica valor
-                                        //tempbat4 é o indice 104
-                                        publishProgress(104, (int) longo);
-                                    }
+                        if (resposta != null && (resposta.length() == 16)) {
+                            //tostax("Reposta:" + resposta);
+                            //tostax("sub:"+resposta.substring(12, 13));
 
-                                }
-
-                                //temperatura média, obtem-se na 3ª linha
-                                longo = processalinha(resposta.substring(32, 48), 16, 23, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    //validação
-                                    if (longo >= -30 && longo <= 127) {
-                                        //publica valor
-                                        //tempbatm é o indice 117
-                                        publishProgress(117, (int) longo);
-                                    }
-
-                                }
-
-
+                            longo = processalinha(resposta.substring(10, 11), 1, 2, false);
+                            if (longo != Long.MAX_VALUE) {
+                                publishProgress(168, (int) longo);
+                                //tostax("wstalk:" + (longo));
                             }
-
                         }
+                        //SystemClock.sleep(4000);
+
+
 
                         //ler a cada segundo
 
@@ -1071,10 +1040,111 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
+
+                            //motor amps
+
+                            resposta = getisoframe("75A", "77E", "0322301D",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, true);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(167, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+
+
+
                         }
 
                         //ler a cada minuto
                         if (ciclo1m) {
+
+
+
+
+
+                            //este id só precisa de ser lido de minuto a minuto
+                            resposta = getisoframe("79b", "7bb", "022104", 200, 3);
+
+
+                            if (resposta != null && (resposta.length() == 48)) {
+
+                                //temperatura1, obtem-se na primeira linha
+
+                                longo = processalinha(resposta.substring(0, 16), 48, 55, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat1 é o indice 101
+                                        //ultimavalida = true;
+                                        publishProgress(101, (int) longo);
+                                    }
+
+                                }
+
+                                //temperatura2, obtem-se na segunda linha
+                                longo = processalinha(resposta.substring(16, 32), 16, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat2 é o indice 102
+                                        publishProgress(102, (int) longo);
+                                    }
+
+                                }
+
+                                //temperatura3, obtem-se na segunda linha
+                                longo = processalinha(resposta.substring(16, 32), 40, 47, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat3 é o indice 103
+                                        publishProgress(103, (int) longo);
+                                    }
+
+                                }
+
+
+                                //temperatura4, obtem-se na 3ª linha
+                                longo = processalinha(resposta.substring(32, 48), 8, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbat4 é o indice 104
+                                        publishProgress(104, (int) longo);
+                                    }
+
+                                }
+
+                                //temperatura média, obtem-se na 3ª linha
+                                longo = processalinha(resposta.substring(32, 48), 16, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    //validação
+                                    if (longo >= -30 && longo <= 127) {
+                                        //publica valor
+                                        //tempbatm é o indice 117
+                                        publishProgress(117, (int) longo);
+                                    }
+
+                                }
+
+
+                            }
+
+
 
                             resposta = getisoframe("79b", "7bb", "022161", 200, 4);
 

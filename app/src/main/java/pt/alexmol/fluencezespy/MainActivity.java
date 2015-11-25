@@ -181,6 +181,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //164 battery fan internal speed - SUSPENSO
     //165 external temperature +40C
     //166 odometer km x100
+    //167 motor current x32 A
+    //168 wiper stalk buttons 1=Down 2=Up 0=nothing
+    //169 a/c key pressed
 
 
 
@@ -259,6 +262,24 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
 
 
+
+        //no caso particular dos botões do a/c
+
+        if (event.getResult()[0]==169 ) {
+            //se botão premido
+            if (event.getResult()[1] != valoresmemorizados[69]) {
+                ecran++;
+                if (ecran >2) ecran=0;
+
+                ActionBar actionBar = getSupportActionBar();
+                actionBar.setSelectedNavigationItem(ecran);
+            }
+
+        }
+
+
+
+
         //evento de recepção de valores para memorizar
         //100 corresponde ao indice 0
         if (event.getResult()[0]>=100 && event.getResult()[0]<200 ) {
@@ -283,6 +304,24 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         }
 
+        //no caso particular dos botões do limpa-vidros
+
+        if (event.getResult()[0]==168 ) {
+            //se botão para baixo
+            if (event.getResult()[1]==1 && ecran >0) {
+                ecran--;
+                ActionBar actionBar = getSupportActionBar();
+                actionBar.setSelectedNavigationItem(ecran);
+            }
+
+            //se botão para cima
+            if (event.getResult()[1]==2 && ecran <2) {
+                ecran++;
+                ActionBar actionBar = getSupportActionBar();
+                actionBar.setSelectedNavigationItem(ecran);
+            }
+
+        }
 
 
 

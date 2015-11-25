@@ -293,7 +293,8 @@ public class Page1 extends Fragment {
 
             ImageView image = (ImageView) getView().findViewById(R.id.aux_hv);
 
-            if (temp==0.0) {
+            //se o valor for zero ou o contactor principal não estiver ligado
+            if (temp==0.0 || array1[27]!=2 ) {
                 view.setVisibility(View.INVISIBLE);
                 image.setVisibility(View.INVISIBLE);
             }
@@ -496,6 +497,33 @@ public class Page1 extends Fragment {
             double tempt = array1[66] / 100.0;
             view.setText(String.format("%6.0f", tempt)/* + "km"*/);
         }
+
+        //se o contactor principal estiver ligado mostra a potência do motor
+        if (array1[67]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.motoramp_1);
+
+            if (array1[27]==2) {
+                view.setVisibility(View.VISIBLE);
+                double temp = ((double) array1[67]) / 32.0 * ((double) array1[12] / 100.0 / 1000.0);
+                view.setText(String.format("%2.1f", temp) + "kW");
+            }
+            else view.setVisibility(View.INVISIBLE);
+
+
+
+        }
+
+        /*
+        //teste wiper
+        if (array1[68]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.testew_1);
+
+            double tempt = array1[68] ;
+            view.setText(String.format("%6.0f", tempt) + "km");
+        }
+        */
 
 
 
