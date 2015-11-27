@@ -562,56 +562,51 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 if (mmSocket2 != null) {
                     if (mmSocket2.isConnected() && READYtoRW2) {
 
+                        //ler todos os ciclos
 
-                        //ler em todos os ciclos
+                        //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
+                        resposta = getfreeframe("42e",200,200,16);
 
+                        if (resposta!=null) {  //resposta correcta
+                            if (ELMREADY2 != 2) {
+                                ELMREADY2 = 2;
+                                publishProgress(1,2); //para actualizar o icone verde
+                            }
 
-                        if (ciclo1s) {
-
-
-                            //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
-                            resposta = getfreeframe("42e",200,200,16);
-
-                            if (resposta!=null) {  //resposta correcta
-                                if (ELMREADY2 != 2) {
-                                    ELMREADY2 = 2;
-                                    publishProgress(1,2); //para actualizar o icone verde
+                            //SOC
+                            longo = processalinha(resposta,0,12,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                //converter para flutuante
+                                double socx475 = longo / 47.5;
+                                //validação
+                                if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
+                                    //publishProgress(100, invalido);  //necessário publicar inválidos???
+                                }
+                                else {              //valor válido
+                                    //publica valor soc multiplicado por 100
+                                    //SOCx475 é o índice 100
+                                    publishProgress(100, (int) (socx475 * 100));
                                 }
 
-                                //SOC
-                                longo = processalinha(resposta,0,12,false);  //processa a resposta
-                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                    //converter para flutuante
-                                    double socx475 = longo / 47.5;
-                                    //validação
-                                    if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
-                                        //publishProgress(100, invalido);  //necessário publicar inválidos???
-                                    }
-                                    else {              //valor válido
-                                        //publica valor soc multiplicado por 100
-                                        //SOCx475 é o índice 100
-                                        publishProgress(100, (int) (socx475 * 100));
-                                    }
+                            }
 
-                                }
+                            //cable plugged
+                            longo = processalinha(resposta,13,14,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(105, (int) longo);
+                            }
 
-                                //cable plugged
-                                longo = processalinha(resposta,13,14,false);  //processa a resposta
-                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                    publishProgress(105, (int) longo);
-                                }
+                            //EVSE current
+                            longo = processalinha(resposta,38,43,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(106, (int) longo);
+                            }
 
-                                //EVSE current
-                                longo = processalinha(resposta,38,43,false);  //processa a resposta
-                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                    publishProgress(106, (int) longo);
-                                }
-
-                                //Pack voltage x2
-                                longo = processalinha(resposta,25,34,false);  //processa a resposta
-                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                    publishProgress(107, (int) longo);
-                                }
+                            //Pack voltage x2
+                            longo = processalinha(resposta,25,34,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(107, (int) longo);
+                            }
 
                             /*
                             //HV battery temp ?
@@ -621,22 +616,27 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
                             */
 
-                                //Max charging power
-                                longo = processalinha(resposta,56,63,false);  //processa a resposta
-                                if (longo !=Long.MAX_VALUE) { //resposta bem processada
-                                    publishProgress(109, (int) longo*3);
-                                }
-
-
-
-
+                            //Max charging power
+                            longo = processalinha(resposta,56,63,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(109, (int) longo*3);
                             }
-                            else {  //resposta inválida
-                                if (ELMREADY2 != 1) {
-                                    ELMREADY2 = 1;
-                                    publishProgress(1,1); //para actualizar o icone amarelo
-                                }
+
+
+
+
+                        }
+                        else {  //resposta inválida
+                            if (ELMREADY2 != 1) {
+                                ELMREADY2 = 1;
+                                publishProgress(1,1); //para actualizar o icone amarelo
                             }
+                        }
+
+
+
+                        if (ciclo1s) {
+
 
 
 
@@ -671,7 +671,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
-
+                            /*
                             resposta = getfreeframe("391", 200, 50, 12);
                             if (resposta != null) {  //resposta correcta
 
@@ -687,6 +687,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+                            */
 
 
                         }
@@ -912,6 +913,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         //wiper stalk buttons
 
+                        /*
                         resposta = getisoframe("745", "765", "02215F",200 ,1);
 
                         //if (resposta!=null) tostax("Tamanho:"+resposta.length());
@@ -930,7 +932,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
                         }
                         //SystemClock.sleep(4000);
-
+                        */
 
 
                         //ler a cada segundo
@@ -1059,6 +1061,138 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("INVtemp:" + (longo*100/64));
                                 }
                             }
+
+
+                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(160, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
+
+
+                            resposta = getisoframe("75A", "77E", "03223019",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(170, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
+
+
+                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(161, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+
+
+                            resposta = getisoframe("75A", "77E", "0322302A",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(171, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+
+
+                            resposta = getisoframe("7E4", "7EC", "03223042",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(172, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+
+
+                            resposta = getisoframe("75A", "77E", "0322301E",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(173, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+
+
+
+                            resposta = getisoframe("75A", "77E", "0322301F",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(174, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
 
 
 
@@ -1495,40 +1629,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
-                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
 
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 6, 15, true);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(160, (int) longo);
-                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
-                                }
-                            }
-
-
-                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
-
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 6, 15, true);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(161, (int) longo);
-                                    //tostax("INVtemp:" + (longo*100/64));
-                                }
-                            }
 
                             /*
                             resposta = getisoframe("7E4", "7EC", "032233FE",200 ,1);

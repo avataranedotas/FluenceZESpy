@@ -421,15 +421,16 @@ public class Page1 extends Fragment {
 
 
 
-        //se o contactor principal estiver ligado mostra a temperatura do conversor DCDC
-        if (array1[60]!= invalido) {
+        //temperatura do conversor DCDC ??
+        if (array1[60]!= invalido && array1[70]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.dcdctemp_1);
-            if (array1[27]==2) {
-                view.setVisibility(View.VISIBLE);
+            //if (array1[27]==2) {
+                //view.setVisibility(View.VISIBLE);
                 double temp = ((double) array1[60]) /64.0;
-                view.setText(String.format("%3.0f", temp) + "C");
-            }
-            else view.setVisibility(View.INVISIBLE);
+                double temp2 = ((double) array1[70]) /256.0;
+                view.setText(String.format("%3.1f", temp)+"C / "+String.format("%3.0f", temp2)+"%");
+            //}
+            //else view.setVisibility(View.INVISIBLE);
 
         }
 
@@ -443,18 +444,20 @@ public class Page1 extends Fragment {
         }
 
 
-
-        //se o contactor principal estiver ligado mostra a temperatura do inversor
+        //temperatura do inversor ???
         if (array1[61]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.invtemp_1);
-            if (array1[27]==2) {
-                view.setVisibility(View.VISIBLE);
-                double temp = ((double) array1[61]) /64.0;
-                view.setText(String.format("%3.0f", temp) + "C");
-            }
-            else view.setVisibility(View.INVISIBLE);
+            //if (array1[27]==2) {
+            //view.setVisibility(View.VISIBLE);
+            double temp = ((double) array1[61]) /64.0;
+
+            //view.setText(array1[61]);
+            view.setText(String.format("%3.1f", temp)+"C");
+            //}
+            //else view.setVisibility(View.INVISIBLE);
 
         }
+
 
 
         //temperatura interna
@@ -505,8 +508,8 @@ public class Page1 extends Fragment {
 
             if (array1[27]==2) {
                 view.setVisibility(View.VISIBLE);
-                double temp = ((double) array1[67]) / 32.0 * ((double) array1[12] / 100.0 / 1000.0);
-                view.setText(String.format("%2.1f", temp) + "kW");
+                double temp = ((double) array1[67]) / 32.0;
+                view.setText(String.format("%2.1f", temp) + "A");
             }
             else view.setVisibility(View.INVISIBLE);
 
@@ -525,6 +528,16 @@ public class Page1 extends Fragment {
         }
         */
 
+        if (array1[71]!= invalido && array1[72]!=invalido && array1[73]!=invalido && array1[74]!=invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.testa_1);
+            double temp = array1[71] / 256.0;
+            double temp2 = (array1[72] -32768.0) / 4.0 ;
+            double temp3 = array1[73] / 1.0;
+            double temp4 = array1[74] / 1.0;
+            view.setText(String.format("%3.0f", temp) + "% / "+String.format("%3.0f", temp2) + "A / "+String.format("%6.0f", temp3) + " / "+String.format("%6.0f", temp4));
+
+        }
 
 
     }

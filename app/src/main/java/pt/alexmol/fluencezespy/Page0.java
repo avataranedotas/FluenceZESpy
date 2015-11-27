@@ -447,10 +447,18 @@ public class Page0 extends Fragment {
         }
 
         //estimated total capacity
-        if (array0[31]!= invalido && array0[0]!= invalido) {
+        if (array0[31]!= invalido && array0[0]!= invalido && array0[16]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totalkwh_0);
-            double temp = ((double) array0[31]) / (array0[0] /100.0)   * 10.0 ;
-            view.setText(String.format("%2.1f", temp) + "kWh");
+
+            //se Soc superior a 25%
+            if (array0[0]>2500) {
+                double temp = ((double) array0[31]) / (array0[0] / 100.0) * 10.0;
+                view.setText(String.format("%2.1f", temp) + "kWh");
+            }
+            else {
+                double temp = array0[16] / 10000.0 * 322.0 / 1000.0;
+                view.setText("\u2248"+String.format("%2.1f", temp) + "kWh");
+            }
 
         }
 

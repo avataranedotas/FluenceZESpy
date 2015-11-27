@@ -174,16 +174,21 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //157 heater water pump, 10=stopped 20=speed 0? 41.. speed  - SUSPENSO
     //158 heater pump requested speed 10=stopped 20=speed 0? 41.. speed - SUSPENSO
     //159 partial energy spent by car kWh x1000
-    //160 DCDC converter temperature x64 C
-    //161 inverter temperature x64 C ????
+    //160 DCDC converter temperature ??????
+    //161 inverter temperature  ????
     //162 battery cooling fans - SUSPENSO
     //163 battery fan external speed - SUSPENSO
     //164 battery fan internal speed - SUSPENSO
     //165 external temperature +40C
     //166 odometer km x100
     //167 motor current x32 A
-    //168 wiper stalk buttons 1=Down 2=Up 0=nothing
-    //169 a/c key pressed
+    //168 wiper stalk buttons 1=Down 2=Up 0=nothing - SUSPENSO
+    //169 a/c key pressed - SUSPENSO
+    //170 DCDC converter temperature % ???
+    //171 inverter temperature % ???
+    //172 peb current x4 ??
+    //173 PEB 1E
+    //174 PEB 1F
 
 
 
@@ -262,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
 
 
-
+        /*
         //no caso particular dos botões do a/c
 
         if (event.getResult()[0]==169 ) {
@@ -276,6 +281,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             }
 
         }
+        */
 
 
 
@@ -304,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         }
 
+        /*
         //no caso particular dos botões do limpa-vidros
 
         if (event.getResult()[0]==168 ) {
@@ -322,6 +329,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             }
 
         }
+        */
 
 
 
