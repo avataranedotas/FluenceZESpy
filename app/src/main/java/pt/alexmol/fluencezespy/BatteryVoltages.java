@@ -93,19 +93,30 @@ public class BatteryVoltages extends AppCompatActivity {
         int azul = getResources().getColor(R.color.azul);
         int vermelho = getResources().getColor(R.color.vermelho);
         int verde = getResources().getColor(R.color.verde);
+        int laranja = getResources().getColor(R.color.laranja);
+        int amarelo = getResources().getColor(R.color.amarelo);
 
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         setComp1.setDrawValues(false);
 
+
+        //calcular JV
+
+        int jv = (int) ((2.5*MainActivity.valoresmemorizados[12]/100 - 0.144*MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+
         //criar uma array de ints com as 96 cores
 
         coresbarras = new int[96];
 
         for (int i=0; i<=95;i++) {
+            coresbarras[i] = azul;
             if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = verde;
-            else coresbarras[i] = azul;
+            //if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[76]) coresbarras[i] = amarelo;
+            if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[38]) coresbarras[i] = laranja;
+            if ( MainActivity.tensoesdascelulas[i] < jv)coresbarras[i] = vermelho;
+
         }
 
 
@@ -226,7 +237,7 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //evento de recepção de valores para memorizar
         //100 corresponde ao indice 0
-        if (event.getResult()[0]>=100 && event.getResult()[0]<200 ) {
+        if (event.getResult()[0]>=100 && event.getResult()[0]<300 ) {
             MainActivity.valoresmemorizados[  ( event.getResult()[0] -100)  ]=event.getResult()[1];
 
         }
@@ -285,19 +296,30 @@ public class BatteryVoltages extends AppCompatActivity {
         int azul = getResources().getColor(R.color.azul);
         int vermelho = getResources().getColor(R.color.vermelho);
         int verde = getResources().getColor(R.color.verde);
+        int laranja = getResources().getColor(R.color.laranja);
+        int amarelo = getResources().getColor(R.color.amarelo);
 
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
         setComp1.setDrawValues(false);
 
+
+        //calcular JV
+
+        int jv = (int) ((2.5*MainActivity.valoresmemorizados[12]/100 - 0.144*MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+
         //criar uma array de ints com as 96 cores
 
         coresbarras = new int[96];
 
         for (int i=0; i<=95;i++) {
+            coresbarras[i] = azul;
             if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = verde;
-            else coresbarras[i] = azul;
+            //if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[76]) coresbarras[i] = amarelo;
+            if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[38]) coresbarras[i] = laranja;
+            if ( MainActivity.tensoesdascelulas[i] < jv)coresbarras[i] = vermelho;
+
         }
 
         //teste
@@ -371,6 +393,11 @@ public class BatteryVoltages extends AppCompatActivity {
     //actualizar valores
     private void actualizarvalores(int[] arrayv) {
 
+
+
+
+
+
         TextView view = (TextView) findViewById(R.id.battery_information);
         String texto = "";
 
@@ -413,7 +440,21 @@ public class BatteryVoltages extends AppCompatActivity {
             texto = texto + arrayv[20]+ "kWh    ";
         }
 
-            view.setText(texto);
+        /*
+        //JV
+        if (MainActivity.valoresmemorizados[12]!=Integer.MAX_VALUE && MainActivity.valoresmemorizados[36]!=Integer.MAX_VALUE) {
+            int jv = (int) ((2.5 * MainActivity.valoresmemorizados[12] / 100 - 0.144 * MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+            texto = texto + "JV:" + jv + "mV    ";
+        }
+
+        //weak cell
+        if (MainActivity.valoresmemorizados[38]!=Integer.MAX_VALUE) {
+            texto = texto + "WC:"+ arrayv[38]+ "mV    ";
+        }
+        */
+
+
+        view.setText(texto);
 
 
 
@@ -516,6 +557,12 @@ public class BatteryVoltages extends AppCompatActivity {
             if (maisbaixa < 2.8f) {
                 inicio = 2.6f;
                 fim = 3.10001f;
+            }
+
+            //gama 2.4 a 2.9
+            if (maisbaixa < 2.6f) {
+                inicio = 2.4f;
+                fim = 2.90001f;
             }
 
 

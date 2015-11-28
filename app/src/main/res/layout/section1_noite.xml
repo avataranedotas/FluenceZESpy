@@ -95,18 +95,18 @@
                     android:layout_weight="0.25">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="test"
-                        android:id="@+id/testa_1"
-                        android:textColor="#ffffff"
-                        android:textSize="@dimen/fonte_normal"
-                        android:singleLine="false"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                        <!--android:text="test"-->
+                        <!--android:id="@+id/testa_1"-->
+                        <!--android:textColor="#ffffff"-->
+                        <!--android:textSize="@dimen/fonte_normal"-->
+                        <!--android:singleLine="false"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:layout_alignParentLeft="true"-->
+                        <!--android:layout_alignParentStart="true" />-->
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -127,6 +127,76 @@
                         <!--android:layout_alignParentLeft="true"-->
                         <!--android:layout_alignParentStart="true" />-->
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Trip 1"
+                        android:id="@+id/testb_1"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:singleLine="false"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reset"
+                        android:id="@+id/button_reset_1"
+                        android:layout_below="@+id/testb_1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Parcial kWh"
+                        android:id="@+id/pkwh_1"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:singleLine="false"
+                        android:layout_below="@+id/button_reset_1"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Parcial km"
+                        android:id="@+id/pkm_1"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:singleLine="false"
+                        android:layout_below="@+id/pkwh_1"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Média"
+                        android:id="@+id/pmed_1"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:singleLine="false"
+                        android:layout_below="@+id/pkm_1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="kWh/100km"
+                        android:id="@+id/textView6"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:singleLine="false"
+                        android:layout_below="@+id/pmed_1"
+                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
 
 
@@ -249,6 +319,9 @@
                     android:layout_weight="0.20">
 
 
+
+
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -257,9 +330,9 @@
                         android:textColor="#ffffff"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="false"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:background="#40000000" />
+                        android:text="C"
+                        android:layout_above="@+id/textView7"
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -269,9 +342,11 @@
                         android:textColor="#ffffff"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="false"
-                        android:layout_below="@+id/dcdctemp_1"
-                        android:layout_centerHorizontal="true"
-                        android:background="#40000000" />
+                        android:text="C"
+                        android:background="#64000000"
+                        android:layout_below="@+id/textView7"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -281,10 +356,25 @@
                         android:textColor="#ffffff"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="false"
-                        android:background="#40000000"
                         android:layout_below="@+id/invtemp_1"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="5dp"
+                        android:text="0,0kW"
+                        android:background="#64000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/textView7"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/fonte_muitopequena"
+                        android:singleLine="false"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="  " />
+
+
 
                 </RelativeLayout>
 
@@ -318,7 +408,8 @@
                                 android:singleLine="false"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignLeft="@+id/tempoutside_1"
-                                android:layout_alignStart="@+id/tempoutside_1" />
+                                android:layout_alignStart="@+id/tempoutside_1"
+                                android:text="C" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -329,7 +420,8 @@
                                 android:textSize="@dimen/fonte_pequena"
                                 android:singleLine="false"
                                 android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true" />
+                                android:layout_centerHorizontal="true"
+                                android:text="C" />
 
                         </RelativeLayout>
 

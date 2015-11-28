@@ -10,7 +10,8 @@
     <color name="vermelho">#FF0000</color>
     <color name="ciano">#00ffff</color>
     <color name="verde">#00c800</color>
-
+    <color name="laranja">#ea8200</color>
+    <color name="amarelo">#dcdc00</color>
 
 
 </resources>

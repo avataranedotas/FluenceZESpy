@@ -226,8 +226,8 @@ public class Page0 extends Fragment {
                     rectangulo.getPaint().setColor(Color.GREEN);
                 }
                 if (array0[17] >= 22 && array0[17] < 25) {
-                    oval.getPaint().setColor(Color.YELLOW);
-                    rectangulo.getPaint().setColor(Color.YELLOW);
+                    oval.getPaint().setColor(getResources().getColor(R.color.amarelo));
+                    rectangulo.getPaint().setColor(getResources().getColor(R.color.amarelo));
                 }
                 if (array0[17] >= 25 && array0[17] < 28) {
                     oval.getPaint().setColor(Color.rgb(255, 128, 0));
@@ -298,13 +298,13 @@ public class Page0 extends Fragment {
         if (array0[10]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxinputpower_0);
             double temp = ((double) array0[10]) / 100.0;
-            view.setText("Max Input Power: " + String.format("%2.2f", temp) + "kW");
+            view.setText("Max Input Power: " + String.format("%2.1f", temp) + "kW");
         }
 
         if (array0[11]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.maxoutputpower_0);
             double temp = ((double) array0[11]) / 100.0;
-            view.setText("Max Output Power: " + String.format("%2.2f", temp) + "kW");
+            view.setText("Max Output Power: " + String.format("%2.1f", temp) + "kW");
         }
 
         if (array0[12]!= invalido) {
@@ -505,11 +505,10 @@ public class Page0 extends Fragment {
 
         }
 
-        //xpt - desconhecido 9
-        if (array0[38]!= invalido ) {
+        //weak cells
+        if ( array0[38]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.xptcellvolt_0);
-            view.setText("Weak Cell threshold: " + array0[38] + "mV");
-
+            view.setText("Weak Cell threshold:"  + array0[38] + "mV");
 
         }
 

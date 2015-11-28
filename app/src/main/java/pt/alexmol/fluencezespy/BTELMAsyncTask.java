@@ -853,6 +853,23 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+                            resposta = getfreeframe("6F8", 200, 100, 6);
+                            if (resposta != null) {  //resposta correcta
+
+
+                                //Go status
+                                longo = processalinha(resposta, 11, 11, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(177, (int) longo);
+
+
+                                }
+
+
+                            }
+
+
+
                             resposta = getfreeframe("5d7", 200, 100, 14);
                             if (resposta != null) {  //resposta correcta
 
@@ -870,7 +887,13 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+
                         }
+
+
+
+
+
                         if (ciclo1m) {
 
                             resposta = getfreeframe("534", 200, 200, 10);
@@ -1063,60 +1086,12 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
-                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
-
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
 
 
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(160, (int) longo);
-                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
-                                }
-                            }
 
 
-                            resposta = getisoframe("75A", "77E", "03223019",200 ,1);
 
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(170, (int) longo);
-                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
-                                }
-                            }
-
-
-                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
-
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(161, (int) longo);
-                                    //tostax("INVtemp:" + (longo*100/64));
-                                }
-                            }
-
-
+                            /*
 
                             resposta = getisoframe("75A", "77E", "0322302A",200 ,1);
 
@@ -1134,9 +1109,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("INVtemp:" + (longo*100/64));
                                 }
                             }
+                            */
 
 
-
+                            /*
                             resposta = getisoframe("7E4", "7EC", "03223042",200 ,1);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
@@ -1153,9 +1129,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("INVtemp:" + (longo*100/64));
                                 }
                             }
+                            */
 
 
-
+                            /*
                             resposta = getisoframe("75A", "77E", "0322301E",200 ,1);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
@@ -1172,10 +1149,11 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("INVtemp:" + (longo*100/64));
                                 }
                             }
+                            */
 
 
 
-
+                            /*
                             resposta = getisoframe("75A", "77E", "0322301F",200 ,1);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
@@ -1192,6 +1170,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("INVtemp:" + (longo*100/64));
                                 }
                             }
+                            */
 
 
 
@@ -1300,7 +1279,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(119, (int) longo);
                                 }
 
-                                //bat total regen kwh  3ª linha
+                                //bat total provided kwh  3ª linha
                                 longo = processalinha(resposta.substring(32, 48), 40, 55, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(120, (int) longo);
@@ -1489,6 +1468,66 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         //ler a cada 10s
                         if (ciclo10s) {
 
+
+                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(161, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
+
+
+
+                            resposta = getisoframe("75A", "77E", "03223019",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(170, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
+
+
+
+
+                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(160, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
+
+
+
+
                             resposta = getisoframe("79b", "7bb", "022103", 200, 6);
 
                             //if (resposta!=null) tostax("Tamanho:"+resposta.length());
@@ -1532,6 +1571,32 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                             }
+
+                            /*
+                            resposta = getisoframe("79b", "7bb", "022105", 200, 11);
+
+                            if (resposta != null && (resposta.length() == 176)) {
+
+                                //tostax("obtido correctamento 022105");
+                                //SystemClock.sleep(2000);
+
+                                //weak cell
+                                longo = processalinha(resposta.substring(22, 26), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(175, (int) longo);
+                                }
+
+                                //bad cell
+                                longo = processalinha(resposta.substring(26, 30), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(176, (int) longo);
+                                }
+
+
+                            }
+                            */
+
+
 
                             /*
                             resposta = getisoframe("7E4", "7EC", "03223318",200 ,1);
@@ -1712,6 +1777,12 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 passo = 21;
 
 
+
+
+
+
+
+
                 //verificação de ciclos
                 //se horaactual - horainicioultimociclo > x então reinicia
 
@@ -1801,6 +1872,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
     @Override
     protected void onPostExecute(Void ignore) {
 
+        MyBus.getInstance().post(new BTELMTaskResultEvent(1, 0)); //actualiza icone para vermelho
 
         // desactivar os listeners
         try {
@@ -1841,6 +1913,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     @Override
     protected void onCancelled(Void ignore) {
+
+
+        MyBus.getInstance().post(new BTELMTaskResultEvent(1, 0)); //actualiza icone para vermelho
+
 
 
         // desactivar os listeners
@@ -2016,6 +2092,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         BTON2 = false;
                         BTSOCKET2 = false;
                         tostalongax(mContext.getString(R.string.bt_turned_off));
+                        MyBus.getInstance().post(new BTELMTaskResultEvent(1, 0)); //actualiza icone para vermelho
                         break;
 
 
@@ -2044,6 +2121,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 //Device has disconnected
                 BTSOCKET2 = false;
                 // inform user
+                MyBus.getInstance().post(new BTELMTaskResultEvent(1, 0)); //actualiza icone para vermelho
                 tostalongax(mContext.getString(R.string.bt_conn_lost));
                 SystemClock.sleep(2000L);
                 if (!PAUSAMAIN) tostalongax(mContext.getString(R.string.click_retry));

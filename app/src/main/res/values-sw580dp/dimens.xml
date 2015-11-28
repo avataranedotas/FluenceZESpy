@@ -4,6 +4,7 @@
     <dimen name="fonte_normal">20sp</dimen>
     <dimen name="fonte_grande">30sp</dimen>
     <dimen name="fonte_pequena">17sp</dimen>
+    <dimen name="fonte_muitopequena">12sp</dimen>
     <dimen name="altura_seta">30dp</dimen>
 
     <dimen name="altura_bat12v">38dp</dimen>

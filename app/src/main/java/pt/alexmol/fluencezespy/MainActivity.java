@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //135, average kWh/100km x10
     //136 highest cell voltage  mV
     //137 lowest cell voltage mV
-    //138 xpt cell voltage mV (unknow9)
+    //138 weak cell voltage mV (unknow9)
     //139 desconhecido10
     //140 temperatura da bateria C x10
     //141 dashboard iluminated
@@ -185,10 +185,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //168 wiper stalk buttons 1=Down 2=Up 0=nothing - SUSPENSO
     //169 a/c key pressed - SUSPENSO
     //170 DCDC converter temperature % ???
-    //171 inverter temperature % ???
-    //172 peb current x4 ??
-    //173 PEB 1E
-    //174 PEB 1F
+    //171 inverter temperature % ??? - SUSPENSO
+    //172 peb current x4 - SUSPENSO
+    //173 PEB 1E - SUSPENSO
+    //174 PEB 1F - SUSPENSO
+    //175 bad cell threshold mV - SUSPENSO
+    //176 weak cell threshold mV - SUSPENSO
+    //177 GO 0=off 1=on
+
+
+    //298 Ponto 0 do parcial km
+    //299 Ponto 0 do parcial kWh
 
 
 
@@ -288,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         //evento de recepção de valores para memorizar
         //100 corresponde ao indice 0
-        if (event.getResult()[0]>=100 && event.getResult()[0]<200 ) {
+        if (event.getResult()[0]>=100 && event.getResult()[0]<300 ) {
             valoresmemorizados[  ( event.getResult()[0] -100)  ]=event.getResult()[1];
 
         }
@@ -367,6 +374,29 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
 
+
+    //receber eventos da page1
+    @Subscribe
+    public void recebereventospage1 (Page1TaskResultEvent event) {
+        //Toast.makeText(this,"Resultado:"+ event.getResult()[0] +"/"+event.getResult()[1], Toast.LENGTH_SHORT).show();
+
+        //evento acertar parciais kWh e km
+        if (event.getResult() == 3001) {
+
+            //acertar kWh
+            valoresmemorizados[199]=valoresmemorizados[59];
+            actualizarpaginas(valoresmemorizados);
+
+
+            //acertar km
+            valoresmemorizados[198]=valoresmemorizados[66];
+            actualizarpaginas(valoresmemorizados);
+        }
+
+    }
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -380,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         super.onCreate(savedInstanceState);
 
-        valoresmemorizados = new int[100];
+        valoresmemorizados = new int[200];
         tensoesdascelulas = new short[96];
         shuntscelulas = new boolean[96];
 
@@ -411,7 +441,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             //invalida valores
             int i;
             int invalido = Integer.MAX_VALUE;
-            for (i=0;i<100;i++) valoresmemorizados[i]= invalido;
+            for (i=0;i<200;i++) valoresmemorizados[i]= invalido;
             short invalidoshort = Short.MAX_VALUE;
             for (i=0;i<96;i++) tensoesdascelulas[i]= invalidoshort;
             for (i=0;i<96;i++) shuntscelulas[i]= false;
@@ -419,7 +449,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
             //recupera valores actuais
             //toast("Loading...");
-            for (i=0; i<=99;i++) valoresmemorizados[i]=settings.getInt("valoresmemorizados"+i,invalido );
+            for (i=0; i<=199;i++) valoresmemorizados[i]=settings.getInt("valoresmemorizados"+i,invalido );
             for (i=0;i<96;i++) tensoesdascelulas[i]= (short) settings.getInt("tensoesdascelulas"+i,invalidoshort);
             for (i=0;i<96;i++) shuntscelulas[i]= settings.getBoolean("shunts"+i,false);
 
@@ -746,7 +776,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             //grava valores actuais
             //toast("Saving...");
             int i;
-            for (i=0; i<=99;i++) editor.putInt("valoresmemorizados"+i, valoresmemorizados[i]);
+            for (i=0; i<=199;i++) editor.putInt("valoresmemorizados"+i, valoresmemorizados[i]);
             for (i=0;i<96;i++) editor.putInt("tensoesdascelulas"+i,tensoesdascelulas[i]);
             for (i=0;i<96;i++) editor.putBoolean("shunts"+i,shuntscelulas[i]);
 

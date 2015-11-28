@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -167,6 +168,21 @@ public class Page1 extends Fragment {
 
 
 
+        Button botao = (Button) v.findViewById(R.id.button_reset_1);
+
+        botao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View va) {
+
+
+                //envia pedido ao Main para igualar parciais ao odo
+
+                MyBus.getInstance().post(new Page1TaskResultEvent(3001));
+
+            }
+        });
+
+
 
 
         return       v;
@@ -254,8 +270,12 @@ public class Page1 extends Fragment {
 
     public void actpag1(int[] array1) {
         int invalido = Integer.MAX_VALUE;
+
+        TextView view;
+        ImageView view2;
+
         if (array1[0]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.socx475_1);
+            view = (TextView) getView().findViewById(R.id.socx475_1);
             double temp = ((double) array1[0]) / 100.0;
             view.setText(String.format("%3.2f", temp) + "%");
 
@@ -280,14 +300,14 @@ public class Page1 extends Fragment {
         */
 
         if (array1[14]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.battery12v_1);
+            view = (TextView) getView().findViewById(R.id.battery12v_1);
             double temp = ((double) array1[14]) / 1000.0;
             view.setText(String.format("%2.2f", temp) + "V");
         }
 
 
         if (array1[28]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.hvcons);
+            view = (TextView) getView().findViewById(R.id.hvcons);
             double temp = ((double) array1[28]) / 100.0;
             view.setText(String.format("%1.1f", temp) + "kW");
 
@@ -304,15 +324,19 @@ public class Page1 extends Fragment {
             }
         }
 
-        if (array1[33]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.range_1);
+
+        //autonomia
+        view = (TextView) getView().findViewById(R.id.range_1);
+
+        if (array1[33]!= invalido && array1[33]>9) {
             //double temp = ((double) array1[14]) / 1000.0;
             view.setText(array1[33]+ "km");
         }
+        else view.setText("- - -");
 
         //until charge complete
         if (array1[34]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.timetofull_1);
+            view = (TextView) getView().findViewById(R.id.timetofull_1);
             ImageView image = (ImageView) getView().findViewById(R.id.timetofullicon_1);
             //double temp = ((double) array1[14]) / 1000.0;
             if (array1[34]!=1023) {
@@ -329,7 +353,7 @@ public class Page1 extends Fragment {
 
         //evse current
         if (array1[6]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.evse_1);
+            view = (TextView) getView().findViewById(R.id.evse_1);
             if (array1[6]!=0 && array1[6]<48 && array1[5]!=0 && array1[5] != invalido && !(MainActivity.TABLET ^ MainActivity.reverseModeMain ) ) {
                 view.setVisibility(View.VISIBLE);
                 view.setText(array1[6] + "A");
@@ -341,9 +365,9 @@ public class Page1 extends Fragment {
 
         //cable plugged
         if (array1[5]!= invalido) {
-            ImageView view = (ImageView) getView().findViewById(R.id.carrocharging);
-            if (array1[5]!=0) view.setVisibility(View.VISIBLE);
-            else view.setVisibility(View.INVISIBLE);
+            view2 = (ImageView) getView().findViewById(R.id.carrocharging);
+            if (array1[5]!=0) view2.setVisibility(View.VISIBLE);
+            else view2.setVisibility(View.INVISIBLE);
 
         }
 
@@ -423,50 +447,49 @@ public class Page1 extends Fragment {
 
         //temperatura do conversor DCDC ??
         if (array1[60]!= invalido && array1[70]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.dcdctemp_1);
-            //if (array1[27]==2) {
-                //view.setVisibility(View.VISIBLE);
+            view = (TextView) getView().findViewById(R.id.dcdctemp_1);
+            if (array1[27]==2) {
+                view.setVisibility(View.VISIBLE);
                 double temp = ((double) array1[60]) /64.0;
-                double temp2 = ((double) array1[70]) /256.0;
-                view.setText(String.format("%3.1f", temp)+"C / "+String.format("%3.0f", temp2)+"%");
-            //}
-            //else view.setVisibility(View.INVISIBLE);
+                //double temp2 = ((double) array1[70]) /256.0;
+                view.setText(String.format("%3.0f", temp)+"C");
+            }
+            else view.setVisibility(View.INVISIBLE);
 
         }
 
         //temperatura da bateria
         if (array1[40]!= invalido) {
 
-            TextView view = (TextView) getView().findViewById(R.id.battemp_1);
+            view = (TextView) getView().findViewById(R.id.battemp_1);
 
             double tempt = array1[40] / 10.0;
             view.setText(String.format("%2.0f", tempt) + "C");
         }
 
 
-        //temperatura do inversor ???
-        if (array1[61]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.invtemp_1);
-            //if (array1[27]==2) {
-            //view.setVisibility(View.VISIBLE);
-            double temp = ((double) array1[61]) /64.0;
-
-            //view.setText(array1[61]);
-            view.setText(String.format("%3.1f", temp)+"C");
-            //}
-            //else view.setVisibility(View.INVISIBLE);
+        //temperatura do inversor
+        if (array1[61]!= invalido && array1[77]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.invtemp_1);
+            if (array1[77]==1) {
+                view.setVisibility(View.VISIBLE);
+                double temp = ((double) array1[61]) /64.0;
+                view.setText(String.format("%3.0f", temp)+"C");
+            }
+            else view.setVisibility(View.INVISIBLE);
 
         }
 
 
 
         //temperatura interna
-        if (array1[53]!= invalido) {
+        if (array1[53]!= invalido /*&& array1[54]!= invalido*/) {
 
-            TextView view = (TextView) getView().findViewById(R.id.tempinside_1);
+            view = (TextView) getView().findViewById(R.id.tempinside_1);
 
             double tempt = array1[53] /2.5 - 40.0;
-            view.setText(String.format("%2.0f", tempt) + "C");
+            //double hum = array1[54] / 2.0;
+            view.setText(String.format("%2.0f", tempt) + "C"/*+ String.format("%2.0f", hum) + "%"*/);
         }
 
 
@@ -474,7 +497,7 @@ public class Page1 extends Fragment {
         //temperatura externa
         if (array1[65]!= invalido) {
 
-            TextView view = (TextView) getView().findViewById(R.id.tempoutside_1);
+            view = (TextView) getView().findViewById(R.id.tempoutside_1);
 
             double tempt = array1[65] - 40.0;
             view.setText(String.format("%2.0f", tempt) + "C");
@@ -495,21 +518,22 @@ public class Page1 extends Fragment {
         //total km
         if (array1[66]!= invalido) {
 
-            TextView view = (TextView) getView().findViewById(R.id.odokm_1);
+            view = (TextView) getView().findViewById(R.id.odokm_1);
 
             double tempt = array1[66] / 100.0;
             view.setText(String.format("%6.0f", tempt)/* + "km"*/);
         }
 
-        //se o contactor principal estiver ligado mostra a potência do motor
+        //se estiver em GO mostra a potência do motor
         if (array1[67]!= invalido) {
 
-            TextView view = (TextView) getView().findViewById(R.id.motoramp_1);
+            view = (TextView) getView().findViewById(R.id.motoramp_1);
 
-            if (array1[27]==2) {
+            if (array1[77]==1) {
                 view.setVisibility(View.VISIBLE);
                 double temp = ((double) array1[67]) / 32.0;
-                view.setText(String.format("%2.1f", temp) + "A");
+                double temp2 = temp * 650.0 / 1000.0;
+                view.setText(/*String.format("%3.1f", temp) + "A\r" + */String.format("%2.1f", temp2)+"kW");
             }
             else view.setVisibility(View.INVISIBLE);
 
@@ -528,16 +552,71 @@ public class Page1 extends Fragment {
         }
         */
 
-        if (array1[71]!= invalido && array1[72]!=invalido && array1[73]!=invalido && array1[74]!=invalido) {
+        /*
+        if (array1[71]!= invalido && array1[73]!=invalido && array1[74]!=invalido) {
 
-            TextView view = (TextView) getView().findViewById(R.id.testa_1);
+            view = (TextView) getView().findViewById(R.id.testa_1);
             double temp = array1[71] / 256.0;
-            double temp2 = (array1[72] -32768.0) / 4.0 ;
             double temp3 = array1[73] / 1.0;
             double temp4 = array1[74] / 1.0;
-            view.setText(String.format("%3.0f", temp) + "% / "+String.format("%3.0f", temp2) + "A / "+String.format("%6.0f", temp3) + " / "+String.format("%6.0f", temp4));
+            view.setText(String.format("%3.0f", temp) + "% / "+String.format("%6.0f", temp3) + " / "+String.format("%6.0f", temp4));
 
         }
+        */
+
+
+        /*
+        //total kwh
+        if (array1[59]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.testb_1);
+
+                double temp = ((double) array1[59]) / 1000.0;
+                view.setText("Tot:"+ String.format("%4.3f", temp) + " kWh");
+
+
+
+
+        }
+        */
+
+        double parkwh = 0.0;
+        double parkm = 0.0;
+        double media = 0.0;
+
+        //parcial kwh = total - ponto 0
+        if (array1[199]!=invalido && array1[59]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.pkwh_1);
+
+            parkwh = (array1[59] / 1000.0) - (array1[199] / 1000.0);
+
+            //se der negativo algo correu mal ou o contador deu a volta, faz reset
+            if (parkwh<0.0) MyBus.getInstance().post(new Page1TaskResultEvent(3001));
+
+            view.setText(String.format("%3.2f", parkwh) + "kWh");
+        }
+
+
+        //parcial km = total - ponto 0
+        if (array1[198]!=invalido && array1[66]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.pkm_1);
+
+            parkm = (array1[66] / 100.0) - (array1[198] / 100.0);
+            view.setText(String.format("%3.1f", parkm) + "km");
+        }
+
+
+        //media
+        if (parkm >0.0) {
+            media = parkwh / (parkm / 100.0);
+            if (media > 99.99) media = 99.99;
+        }
+
+        view = (TextView) getView().findViewById(R.id.pmed_1);
+        view.setText(String.format("%2.2f", media));
+
+
+
 
 
     }
