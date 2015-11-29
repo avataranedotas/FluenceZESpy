@@ -129,11 +129,12 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         long timebt1 = Calendar.getInstance().getTimeInMillis();          //ciclo 1s
         long timebt2 = Calendar.getInstance().getTimeInMillis() - 40000L; //ciclo 1minuto
         long timebt3 = Calendar.getInstance().getTimeInMillis() - 5000L;  //ciclo 10s
+        long timebt4 = Calendar.getInstance().getTimeInMillis() - 3000L;  //ciclo 5s
 
         boolean ciclo1s = true;
         boolean ciclo1m = true;
         boolean ciclo10s = true;
-
+        boolean ciclo5s = true;
 
         //informa main que começou ciclo
         publishProgress(2, 3);
@@ -565,7 +566,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         //ler todos os ciclos
 
                         //obter frame 42e, que vai dizer se o canbus está activo e extrair o SoCx475
-                        resposta = getfreeframe("42e",200,200,16);
+                        resposta = getfreeframe("42e",200,100,16);
 
                         if (resposta!=null) {  //resposta correcta
                             if (ELMREADY2 != 2) {
@@ -635,10 +636,43 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+
+
+
+
+
+
                         if (ciclo1s) {
 
 
 
+
+
+                            /*
+                            resposta = getfreeframe("391", 200, 50, 12);
+                            if (resposta != null) {  //resposta correcta
+
+                                //  a/c key
+                                longo = processalinha(resposta, 32, 33, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(169, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+
+
+
+                            }
+                            */
+
+
+                        }
+
+                        //próximo free frame
+
+
+                        if (ciclo5s) {
 
                             resposta = getfreeframe("427", 200, 100, 16);
                             if (resposta != null) {  //resposta correcta
@@ -671,28 +705,31 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
-                            /*
-                            resposta = getfreeframe("391", 200, 50, 12);
+
+                        }
+
+                        if (ciclo5s) {
+
+                            resposta = getfreeframe("6F8", 200, 100, 6);
                             if (resposta != null) {  //resposta correcta
 
-                                //  a/c key
-                                longo = processalinha(resposta, 32, 33, false);  //processa a resposta
+
+                                //IG status
+                                longo = processalinha(resposta, 4, 4, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE) { //resposta bem processada
-                                    publishProgress(169, (int) longo);
-                                    //tostax("contactor:" + longo);
-                                    //SystemClock.sleep(3000);
+                                    publishProgress(177, (int) longo);
+
+
                                 }
 
 
-
-
                             }
-                            */
+
 
 
                         }
 
-                        //próximo free frame
+
 
                         if (ciclo10s) {
 
@@ -793,7 +830,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             //else tostax("5EE sem resposta");
 
 
-                            resposta = getfreeframe("42a",200, 100, 10);
+                            resposta = getfreeframe("42a",200, 200, 10);
                             if (resposta != null) {  //resposta correcta
                                 //tostax("recebeu 42A");
 
@@ -853,20 +890,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                            resposta = getfreeframe("6F8", 200, 100, 6);
-                            if (resposta != null) {  //resposta correcta
 
-
-                                //Go status
-                                longo = processalinha(resposta, 11, 11, false);  //processa a resposta
-                                if (longo != Long.MAX_VALUE) { //resposta bem processada
-                                    publishProgress(177, (int) longo);
-
-
-                                }
-
-
-                            }
 
 
 
@@ -896,7 +920,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         if (ciclo1m) {
 
-                            resposta = getfreeframe("534", 200, 200, 10);
+                            resposta = getfreeframe("534", 200, 100, 10);
                             if (resposta != null) {  //resposta correcta
                                 //tostax("recebeu 42A:"+resposta.length());
 
@@ -933,6 +957,19 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                         //ler todos os ciclos
+
+
+                        //motor amps
+
+                        resposta = getisoframe("75A", "77E", "0322301D",200 ,1);
+
+                        if (resposta != null && (resposta.length() == 16)) {
+                            longo = processalinha(resposta.substring(8, 12), 0, 15, true);
+                            if (longo != Long.MAX_VALUE) publishProgress(167, (int) longo);
+
+                        }
+
+
 
                         //wiper stalk buttons
 
@@ -1065,37 +1102,6 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
 
-
-                            //motor amps
-
-                            resposta = getisoframe("75A", "77E", "0322301D",200 ,1);
-
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, true);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(167, (int) longo);
-                                    //tostax("INVtemp:" + (longo*100/64));
-                                }
-                            }
-
-                            //PEB 3021
-
-                            resposta = getisoframe("75A", "77E", "03223021",200 ,1);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(178, (int) longo);
-                                }
-                            }
 
 
 
@@ -1795,6 +1801,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                 //verificação de ciclos
+                //os ciclos não são exactos para os desfasar
                 //se horaactual - horainicioultimociclo > x então reinicia
 
                 if ((Calendar.getInstance().getTimeInMillis() - timebt1) > 1000L ) {
@@ -1803,17 +1810,25 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                 }
                 else ciclo1s = false;
 
-                if ((Calendar.getInstance().getTimeInMillis() - timebt2) > 60000L ) {
+                if ((Calendar.getInstance().getTimeInMillis() - timebt2) > 60555L ) {
                     ciclo1m = true;
                     timebt2 = Calendar.getInstance().getTimeInMillis();
                 }
                 else ciclo1m = false;
 
-                if ((Calendar.getInstance().getTimeInMillis() - timebt3) > 10000L ) {
+                if ((Calendar.getInstance().getTimeInMillis() - timebt3) > 10333L ) {
                     ciclo10s = true;
                     timebt3 = Calendar.getInstance().getTimeInMillis();
                 }
                 else ciclo10s = false;
+
+
+                if ((Calendar.getInstance().getTimeInMillis() - timebt4) > 5111L ) {
+                    ciclo5s = true;
+                    timebt4 = Calendar.getInstance().getTimeInMillis();
+                }
+                else ciclo5s = false;
+
 
 
             }

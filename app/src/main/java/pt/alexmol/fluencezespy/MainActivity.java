@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //175 bad cell threshold mV - SUSPENSO
     //176 weak cell threshold mV - SUSPENSO
     //177 GO 0=off 1=on
-    //178 PEB 3021
+
 
 
     //298 Ponto 0 do parcial km
