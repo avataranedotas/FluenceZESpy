@@ -1085,6 +1085,17 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
                             }
 
+                            //PEB 3021
+
+                            resposta = getisoframe("75A", "77E", "03223021",200 ,1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(178, (int) longo);
+                                }
+                            }
 
 
 
