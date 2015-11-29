@@ -531,7 +531,7 @@ public class Page1 extends Fragment {
 
             if (array1[77]==1) {
                 view.setVisibility(View.VISIBLE);
-                double temp = array1[67] / 64.0 * 1.4142;
+                double temp = (array1[67] / 32.0) / 1.44;
                 view.setText(String.format("%3.1f", temp) + "kW");
             }
             else view.setVisibility(View.INVISIBLE);
