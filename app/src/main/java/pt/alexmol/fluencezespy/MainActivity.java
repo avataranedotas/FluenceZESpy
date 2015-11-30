@@ -193,10 +193,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //176 weak cell threshold mV - SUSPENSO
     //177 GO 0=off 1=on
 
-
-
-    //298 Ponto 0 do parcial km
-    //299 Ponto 0 do parcial kWh
+    //296 Ponto 0 do parcial 2 km
+    //297 Ponto 0 do parcial 2 kWh
+    //298 Ponto 0 do parcial 1 km
+    //299 Ponto 0 do parcial 1 kWh
 
 
 
@@ -365,12 +365,41 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public void recebereventospage2 (Page2TaskResultEvent event) {
         //Toast.makeText(this,"Resultado:"+ event.getResult()[0] +"/"+event.getResult()[1], Toast.LENGTH_SHORT).show();
 
-        //evento de recriar
-        if (event.getResult() == 2000) {
+        //evento acertar parciais 1 kWh e km
+        if (event.getResult() == 3001) {
 
-           recriar();
+            /*
+            //acertar kWh
+            valoresmemorizados[199]=valoresmemorizados[59];
+            actualizarpaginas(valoresmemorizados);
+
+            //acertar km
+            valoresmemorizados[198]=valoresmemorizados[66];
+            actualizarpaginas(valoresmemorizados);
+            */
+            toast("Trip 1 was reset!");
 
         }
+
+
+        //evento acertar parciais 2 kWh e km
+        if (event.getResult() == 3002) {
+
+
+            //acertar kWh
+            valoresmemorizados[197]=valoresmemorizados[59];
+            actualizarpaginas(valoresmemorizados);
+
+            //acertar km
+            valoresmemorizados[196]=valoresmemorizados[66];
+            actualizarpaginas(valoresmemorizados);
+
+
+            toast("Trip 2 was reset!");
+
+
+        }
+
 
     }
 
@@ -381,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public void recebereventospage1 (Page1TaskResultEvent event) {
         //Toast.makeText(this,"Resultado:"+ event.getResult()[0] +"/"+event.getResult()[1], Toast.LENGTH_SHORT).show();
 
-        //evento acertar parciais kWh e km
+        //evento acertar parciais 1 kWh e km
         if (event.getResult() == 3001) {
 
             //acertar kWh

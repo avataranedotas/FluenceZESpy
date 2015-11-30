@@ -167,7 +167,7 @@ public class Page1 extends Fragment {
         */
 
 
-
+        /*
         Button botao = (Button) v.findViewById(R.id.button_reset_1);
 
         botao.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +182,7 @@ public class Page1 extends Fragment {
             }
         });
 
-
+        */
 
 
         return       v;
@@ -579,6 +579,8 @@ public class Page1 extends Fragment {
         }
         */
 
+        /*
+
         double parkwh = 0.0;
         double parkm = 0.0;
         double media = 0.0;
@@ -614,7 +616,7 @@ public class Page1 extends Fragment {
         view = (TextView) getView().findViewById(R.id.pmed_1);
         view.setText(String.format("%2.2f", media));
 
-
+        */
 
 
 
