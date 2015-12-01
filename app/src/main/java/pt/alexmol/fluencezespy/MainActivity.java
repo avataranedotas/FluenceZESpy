@@ -368,7 +368,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         //evento acertar parciais 1 kWh e km
         if (event.getResult() == 3001) {
 
-            /*
+
             //acertar kWh
             valoresmemorizados[199]=valoresmemorizados[59];
             actualizarpaginas(valoresmemorizados);
@@ -376,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             //acertar km
             valoresmemorizados[198]=valoresmemorizados[66];
             actualizarpaginas(valoresmemorizados);
-            */
+
             toast("Trip 1 was reset!");
 
         }
