@@ -2061,7 +2061,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
             //ao receber novo contexto significa que foi feito o oncreate novamente
             //desliga os listeners no contexto antigo
 
-            /*
+
             try {
                 mContext.unregisterReceiver(mReceiver3);
                 mContext.unregisterReceiver(mReceiver4);
@@ -2070,7 +2070,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
             catch (Exception e) {
             if (debugMode) tostax("exception ao unregisterreceivers no novo contexto main");
             }
-            */
+
 
             //actualiza o contexto
             mContext = contexto.getResult();

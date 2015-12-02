@@ -55,7 +55,7 @@ public class Page1 extends Fragment {
         }
         */
 
-        MyBus.getInstance().register(this);
+        //MyBus.getInstance().register(this);
     }
 
 
@@ -255,7 +255,7 @@ public class Page1 extends Fragment {
     }
 
     @Override public void onDestroy() {
-        MyBus.getInstance().unregister(this);
+        //MyBus.getInstance().unregister(this);
         super.onDestroy();
     }
 

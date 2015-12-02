@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <item
+        android:top="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:bottom="1dp">
+
+        <rotate
+            android:fromDegrees="270"
+            android:toDegrees="180"
+            android:pivotX="50%"
+            android:pivotY="50%" >
+
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="ring"
+            android:innerRadiusRatio="3"
+            android:thicknessRatio="7"
+            android:useLevel="false">
+
+            <gradient
+                android:centerX="0.5"
+                android:type="sweep"
+                android:startColor="#ff8000"
+                android:centerColor="#ff0000"
+                android:endColor="#ff0000" />
+
+
+        </shape>
+
+
+</rotate>
+    </item>
+
+
+
+
+    <item
+        android:top="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:bottom="1dp">
+
+        <!--<rotate
+            android:fromDegrees="270"
+            android:toDegrees="180"
+            android:pivotX="50%"
+            android:pivotY="50%" >-->
+
+            <shape
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:shape="ring"
+                android:innerRadiusRatio="5"
+                android:thicknessRatio="7"
+                android:useLevel="false">
+
+                <solid android:color="#8c8c8c" />
+
+
+
+            </shape>
+
+
+     <!--   </rotate>-->
+    </item>
+
+
+
+
+
+    <!--
+
+    <item android:top="20dp" android:left="20dp" android:right="20dp" android:bottom="20dp">
+        <shape android:shape="oval">
+            <solid android:color="#ff0000" />
+        </shape>
+    </item>
+-->
+
+<!--
+    <item android:top="50dp" android:left="0dp" android:right="0dp" android:bottom="0dp">
+        <shape android:shape="oval">
+            <solid android:color="#00ff00" />
+        </shape>
+    </item>-->
+<!--
+
+    <item android:top="7dp" android:left="8dp" android:right="8dp" android:bottom="20dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0000ff" />
+        </shape>
+    </item>
+-->
+
+<!--
+    <item android:top="2dp" android:left="10dp" android:right="10dp" android:bottom="68dp">
+        <shape android:shape="oval">
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+
+
+    <item android:top="53dp" android:left="3dp" android:right="3dp" android:bottom="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+
+    <item android:top="7dp" android:left="10dp" android:right="10dp" android:bottom="18dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+
+-->
+
+    <!--
+
+    <item android:id="@+id/bola_termo"
+        android:top="56dp" android:left="6dp" android:right="6dp" android:bottom="6dp">
+        <shape android:shape="oval">
+            <solid android:color="#000000" />
+        </shape>
+    </item>
+
+
+
+    <item android:top="50dp" android:left="12dp" android:right="12dp" android:bottom="20dp">
+        <shape android:shape="rectangle">
+            <corners
+                android:radius="5dp" />
+            <solid android:color="@color/termometro" />
+        </shape>
+    </item>
+    -->
+
+</layer-list>
+
+
+

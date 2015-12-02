@@ -6,15 +6,26 @@ package pt.alexmol.fluencezespy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+
 
 public class Page2 extends Fragment {
     // --Commented out by Inspection (05-11-2015 14:55):Context c;
@@ -115,6 +126,142 @@ public class Page2 extends Fragment {
         //MainActivity actividademain2 = (MainActivity)getActivity();
         actpag2(MainActivity.valoresmemorizados);
 
+        handler.post(timedTask);
+
+        View vista;
+        vista = getView().findViewById(R.id.cima3);
+
+        //vista.setCont
+
+
+        SurfaceView surface = (SurfaceView) getView().findViewById(R.id.surface3);
+
+
+        surface.getHolder().addCallback(new SurfaceHolder.Callback() {
+
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                // Do some drawing when surface is ready
+                Canvas canvas = holder.lockCanvas();
+                canvas.drawColor(Color.RED);
+
+
+
+
+
+
+                float width = (float) getView().getWidth();
+
+                float height = (float) getView().getHeight();
+
+                float radius;
+
+
+
+                if (width > height){
+
+                    radius = height/4;
+
+                }else{
+
+                    radius = width/4;
+
+                }
+
+
+
+                Path path = new Path();
+
+                path.addCircle(width/2,
+
+                        height/2, radius,
+
+                        Path.Direction.CW);
+
+
+
+                Paint paint = new Paint();
+
+                paint.setColor(Color.WHITE);
+
+                paint.setStrokeWidth(5);
+
+
+
+                paint.setStyle(Paint.Style.FILL);
+
+                float center_x, center_y;
+
+                center_x = width/2;
+
+                center_y = height/4;
+
+                final RectF oval = new RectF();
+
+                oval.set(center_x - radius,
+
+                        center_y - radius,
+
+                        center_x + radius,
+
+                        center_y + radius);
+
+                canvas.drawArc(oval, 90, 270, true, paint);
+
+
+
+                paint.setStyle(Paint.Style.STROKE);
+
+                center_x = width/2;
+
+                center_y = height/2;
+
+                oval.set(center_x - radius,
+
+                        center_y - radius,
+
+                        center_x + radius,
+
+                        center_y + radius);
+
+                canvas.drawArc(oval, 90, 270, true, paint);
+
+
+
+                paint.setStyle(Paint.Style.STROKE);
+
+                center_x = width/2;
+
+                center_y = height * 3/4;
+
+                oval.set(center_x - radius,
+
+                        center_y - radius,
+
+                        center_x + radius,
+
+                        center_y + radius);
+
+                canvas.drawArc(oval, 90, 270, false, paint);
+
+
+
+
+
+                holder.unlockCanvasAndPost(canvas);
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            }
+        });
+
+
+
     }
 
 
@@ -211,6 +358,184 @@ public class Page2 extends Fragment {
         view = (TextView) getView().findViewById(R.id.t2_avg);
         view.setText(String.format("%2.2f", media2));
 
+
+
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(timedTask);
+    }
+
+    @Override public void onDestroy() {
+        //MyBus.getInstance().unregister(this);
+        super.onDestroy();
+
+    }
+
+
+    private int cnt = 0;
+
+    private Handler handler = new Handler();
+
+
+    private Runnable timedTask = new Runnable(){
+
+        @Override
+        public void run() {
+            cnt=cnt+5;
+            if (cnt>250) cnt = 0;
+            if (visivel) {
+                //try {
+                    ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+                    pb.setProgress(cnt);
+                //} catch (Exception e) {
+
+                //}
+            }
+
+
+
+            handler.postDelayed(timedTask, 30);
+        }};
+
+
+
+    private static boolean visivel;
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        visivel = isVisibleToUser;
+
+    }
+
+
+    public class MyView extends View {
+
+
+
+        public MyView(Context context) {
+
+            super(context);
+
+            // TODO Auto-generated constructor stub
+
+        }
+
+
+
+        @Override
+
+        protected void onDraw(Canvas canvas) {
+
+            // TODO Auto-generated method stub
+
+            super.onDraw(canvas);
+
+
+
+
+
+            float width = (float)getWidth();
+
+            float height = (float)getHeight();
+
+            float radius;
+
+
+
+            if (width > height){
+
+                radius = height/4;
+
+            }else{
+
+                radius = width/4;
+
+            }
+
+
+
+            Path path = new Path();
+
+            path.addCircle(width/2,
+
+                    height/2, radius,
+
+                    Path.Direction.CW);
+
+
+
+            Paint paint = new Paint();
+
+            paint.setColor(Color.WHITE);
+
+            paint.setStrokeWidth(5);
+
+
+
+            paint.setStyle(Paint.Style.FILL);
+
+            float center_x, center_y;
+
+            center_x = width/2;
+
+            center_y = height/4;
+
+            final RectF oval = new RectF();
+
+            oval.set(center_x - radius,
+
+                    center_y - radius,
+
+                    center_x + radius,
+
+                    center_y + radius);
+
+            canvas.drawArc(oval, 90, 270, true, paint);
+
+
+
+            paint.setStyle(Paint.Style.STROKE);
+
+            center_x = width/2;
+
+            center_y = height/2;
+
+            oval.set(center_x - radius,
+
+                    center_y - radius,
+
+                    center_x + radius,
+
+                    center_y + radius);
+
+            canvas.drawArc(oval, 90, 270, true, paint);
+
+
+
+            paint.setStyle(Paint.Style.STROKE);
+
+            center_x = width/2;
+
+            center_y = height * 3/4;
+
+            oval.set(center_x - radius,
+
+                    center_y - radius,
+
+                    center_x + radius,
+
+                    center_y + radius);
+
+            canvas.drawArc(oval, 90, 270, false, paint);
+
+
+
+        }
 
 
 
