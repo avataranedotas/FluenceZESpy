@@ -11,6 +11,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -128,12 +131,15 @@ public class Page2 extends Fragment {
 
         handler.post(timedTask);
 
+        /*
         View vista;
         vista = getView().findViewById(R.id.cima3);
 
         //vista.setCont
+        */
 
 
+        /*
         SurfaceView surface = (SurfaceView) getView().findViewById(R.id.surface3);
 
 
@@ -146,10 +152,6 @@ public class Page2 extends Fragment {
                 canvas.drawColor(Color.RED);
 
 
-
-
-
-
                 float width = (float) getView().getWidth();
 
                 float height = (float) getView().getHeight();
@@ -157,27 +159,24 @@ public class Page2 extends Fragment {
                 float radius;
 
 
+                if (width > height) {
 
-                if (width > height){
+                    radius = height / 4;
 
-                    radius = height/4;
+                } else {
 
-                }else{
-
-                    radius = width/4;
+                    radius = width / 4;
 
                 }
 
 
-
                 Path path = new Path();
 
-                path.addCircle(width/2,
+                path.addCircle(width / 2,
 
-                        height/2, radius,
+                        height / 2, radius,
 
                         Path.Direction.CW);
-
 
 
                 Paint paint = new Paint();
@@ -187,14 +186,13 @@ public class Page2 extends Fragment {
                 paint.setStrokeWidth(5);
 
 
-
                 paint.setStyle(Paint.Style.FILL);
 
                 float center_x, center_y;
 
-                center_x = width/2;
+                center_x = width / 2;
 
-                center_y = height/4;
+                center_y = height / 4;
 
                 final RectF oval = new RectF();
 
@@ -209,12 +207,11 @@ public class Page2 extends Fragment {
                 canvas.drawArc(oval, 90, 270, true, paint);
 
 
-
                 paint.setStyle(Paint.Style.STROKE);
 
-                center_x = width/2;
+                center_x = width / 2;
 
-                center_y = height/2;
+                center_y = height / 2;
 
                 oval.set(center_x - radius,
 
@@ -227,12 +224,11 @@ public class Page2 extends Fragment {
                 canvas.drawArc(oval, 90, 270, true, paint);
 
 
-
                 paint.setStyle(Paint.Style.STROKE);
 
-                center_x = width/2;
+                center_x = width / 2;
 
-                center_y = height * 3/4;
+                center_y = height * 3 / 4;
 
                 oval.set(center_x - radius,
 
@@ -243,9 +239,6 @@ public class Page2 extends Fragment {
                         center_y + radius);
 
                 canvas.drawArc(oval, 90, 270, false, paint);
-
-
-
 
 
                 holder.unlockCanvasAndPost(canvas);
@@ -260,6 +253,31 @@ public class Page2 extends Fragment {
             }
         });
 
+        */
+
+
+        if (visivel) {
+            //try {
+            ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+            //pb.setRotation((-cnt / 1000f * 360f) - 90f);
+            pb.setProgress(0);
+
+
+            ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
+            //pb2.setRotation((-cnt / 1000f * 360f) - 0f);
+            //pb2.setTranslationX(-100);
+            //pb2.setTranslationY(cnt/5);
+            pb2.setProgress(0);
+
+            //} catch (Exception e) {
+
+            //}
+
+
+            getView().findViewById(R.id.semicirculo_2).getBackground().setLevel(5000);
+
+
+        }
 
 
     }
@@ -386,11 +404,64 @@ public class Page2 extends Fragment {
         @Override
         public void run() {
             cnt=cnt+5;
-            if (cnt>250) cnt = 0;
+            if (cnt>250) cnt = -250;
             if (visivel) {
                 //try {
-                    ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
-                    pb.setProgress(cnt);
+
+                ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+                    if (cnt>0) {
+
+                        //pb.setRotation((-cnt / 1000f * 360f) - 90f);
+                        pb.setProgress(cnt);
+                    }
+                else pb.setProgress(0);
+
+
+                    ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
+                if (cnt<0) {
+                    pb2.setRotation((cnt / 1000f * 360f) - 0f);
+                    //pb2.setTranslationX(-100);
+                    //pb2.setTranslationY(cnt/5);
+                    pb2.setProgress(-cnt);
+                }
+                else pb2.setProgress(0);
+
+
+                ImageView ponte = (ImageView)  getView().findViewById(R.id.ponteiro_2);
+                ponte.setPivotX(ponte.getWidth() / 2);
+                ponte.setPivotY(ponte.getHeight());
+                ponte.setRotation(cnt / 250f * 89.5f);
+
+
+                Drawable background = ponte.getBackground();
+
+                if (cnt<0) {
+
+                    if (background instanceof ShapeDrawable) {
+                        // cast to 'ShapeDrawable'
+                        ShapeDrawable shapeDrawable = (ShapeDrawable) background;
+                        shapeDrawable.getPaint().setColor(getResources().getColor(R.color.verdep));
+                    } else if (background instanceof GradientDrawable) {
+                        // cast to 'GradientDrawable'
+                        GradientDrawable gradientDrawable = (GradientDrawable) background;
+                        gradientDrawable.setColor(getResources().getColor(R.color.verdep));
+                    }
+                }
+                else {
+                    if (background instanceof ShapeDrawable) {
+                        // cast to 'ShapeDrawable'
+                        ShapeDrawable shapeDrawable = (ShapeDrawable) background;
+                        shapeDrawable.getPaint().setColor(getResources().getColor(R.color.laranjap));
+                    } else if (background instanceof GradientDrawable) {
+                        // cast to 'GradientDrawable'
+                        GradientDrawable gradientDrawable = (GradientDrawable) background;
+                        gradientDrawable.setColor(getResources().getColor(R.color.laranjap));
+                    }
+                }
+
+
+
+
                 //} catch (Exception e) {
 
                 //}
@@ -412,7 +483,7 @@ public class Page2 extends Fragment {
 
     }
 
-
+    /*
     public class MyView extends View {
 
 
@@ -421,7 +492,7 @@ public class Page2 extends Fragment {
 
             super(context);
 
-            // TODO Auto-generated constructor stub
+
 
         }
 
@@ -540,7 +611,7 @@ public class Page2 extends Fragment {
 
 
     }
-
+    */
 
 
 }
