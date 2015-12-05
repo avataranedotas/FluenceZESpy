@@ -17,21 +17,28 @@ import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 
 public class Page2 extends Fragment {
     // --Commented out by Inspection (05-11-2015 14:55):Context c;
+
+
+    private static int largura = -123;
+
 
     public Page2(){
 
@@ -129,7 +136,39 @@ public class Page2 extends Fragment {
         //MainActivity actividademain2 = (MainActivity)getActivity();
         actpag2(MainActivity.valoresmemorizados);
 
+
+        scaledone = false;
+
         handler.post(timedTask);
+
+
+
+        //View pai = getView().findViewById(R.id.contemprog2);
+        //pai.requestLayout();
+        //largura = pai.getWidth();
+
+
+        //Display display = getActivity().getWindowManager().getDefaultDisplay();
+        //int width = display.getWidth();
+        //int height = display.getHeight();
+
+        //largura = MainActivity.smallestwidthdp;
+
+        final FrameLayout myLayout;
+
+        myLayout = (FrameLayout) getView().findViewById(R.id.contemprog2);
+        myLayout.post(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                //Log.i("TEST", "Layout width : "+ myLayout.getWidth());
+                largura = myLayout.getWidth();
+                if (myLayout.getHeight()<largura) largura =myLayout.getHeight();
+            }
+        });
+
 
         /*
         View vista;
@@ -256,9 +295,15 @@ public class Page2 extends Fragment {
         */
 
 
-        if (visivel) {
+        //if (visivel) {
             //try {
+
+        /*
             ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+
+            pb.setScaleX(largura/200f);
+            pb.setScaleY(largura/200f);
+            pb.setTranslationY((largura-150f)/2f);
             //pb.setRotation((-cnt / 1000f * 360f) - 90f);
             pb.setProgress(0);
 
@@ -267,17 +312,33 @@ public class Page2 extends Fragment {
             //pb2.setRotation((-cnt / 1000f * 360f) - 0f);
             //pb2.setTranslationX(-100);
             //pb2.setTranslationY(cnt/5);
+
+            pb2.setScaleX(largura/200f);
+            pb2.setScaleY(largura/200f);
+            pb2.setTranslationY((largura-150f)/2f);
             pb2.setProgress(0);
 
             //} catch (Exception e) {
 
             //}
 
+            ImageView pontei = (ImageView) getView().findViewById(R.id.ponteiro_2);
+            pontei.setScaleX(largura/200f);
+            pontei.setScaleY(largura/200f);
+            pontei.setTranslationY((largura-150f)/2f);
 
-            getView().findViewById(R.id.semicirculo_2).getBackground().setLevel(5000);
+            ImageView semi = (ImageView) getView().findViewById(R.id.semicirculo_2);
+            semi.setScaleX(largura/200f);
+            semi.setScaleY(largura/200f);
+            semi.getBackground().setLevel(5000);
 
 
-        }
+        */
+
+            //getView().findViewById(R.id.semicirculo_2).getBackground().setLevel(5000);
+
+
+        //}
 
 
     }
@@ -398,15 +459,67 @@ public class Page2 extends Fragment {
 
     private Handler handler = new Handler();
 
+    private boolean scaledone = false;
+
 
     private Runnable timedTask = new Runnable(){
 
         @Override
         public void run() {
-            cnt=cnt+5;
-            if (cnt>250) cnt = -250;
-            if (visivel) {
+            cnt=cnt+1;
+            if (cnt>255) cnt = -255;
+
+
+            if (largura !=-123 && !scaledone) {
+
+                float factor = MainActivity.densidade/160f;
+
+                ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+
+                pb.setScaleX(largura/factor/200f);
+                pb.setScaleY(largura / factor / 200f);
+                pb.setTranslationY((largura/factor-150f)/2f);
+                //pb.setRotation((-cnt / 1000f * 360f) - 90f);
+                pb.setProgress(0);
+
+
+                ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
+                //pb2.setRotation((-cnt / 1000f * 360f) - 0f);
+                //pb2.setTranslationX(-100);
+                //pb2.setTranslationY(cnt/5);
+
+                pb2.setScaleX(largura/factor/200f);
+                pb2.setScaleY(largura/factor/200f);
+                pb2.setTranslationY((largura/factor-150f)/2f);
+                pb2.setProgress(0);
+
+                //} catch (Exception e) {
+
+                //}
+
+                ImageView pontei = (ImageView) getView().findViewById(R.id.ponteiro_2);
+                pontei.setScaleX(largura/factor/200f);
+                pontei.setScaleY(largura/factor/200f);
+                pontei.setTranslationY((largura/factor-150f)/2f);
+
+                ImageView semi = (ImageView) getView().findViewById(R.id.semicirculo_2);
+                semi.setScaleX(largura/factor/200f);
+                semi.setScaleY(largura/factor/200f);
+                semi.getBackground().setLevel(5000);
+
+
+
+                scaledone = true;
+            }
+
+
+            if (visivel && scaledone) {
                 //try {
+
+
+
+
+
 
                 ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
                     if (cnt>0) {

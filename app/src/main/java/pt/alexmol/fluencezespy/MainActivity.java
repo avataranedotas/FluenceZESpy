@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private static NotificationManager mNotificationManager;
     private static BTELMAsyncTask tarefa;
     public static int smallestwidthdp;
+    public static float densidade;
     public static boolean TABLET = false;
     public static boolean landscape;
 
@@ -490,6 +491,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         //tamanho do ecran utilizável, dimensão mínima em dp
         smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
+        densidade = this.getResources().getConfiguration().densityDpi;
+
+
+
+
 
         landscape = this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
