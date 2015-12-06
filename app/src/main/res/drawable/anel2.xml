@@ -46,7 +46,7 @@
                         android:centerY="50%"
                         android:endColor="#ff000c"
                         android:gradientRadius="340"
-                        android:startColor="#009a00"
+                        android:startColor="#008200"
                         android:type="sweep" />
 
                 </shape>

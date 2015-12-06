@@ -634,6 +634,23 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
                         }
 
+                        //ler velocidade
+                        resposta = getfreeframe("29A", 200, 50, 16);
+                        if (resposta != null) {  //resposta correcta
+
+                            //  velocidade
+                            longo = processalinha(resposta, 32, 47, false);  //processa a resposta
+                            if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(178, (int) longo);
+                                //tostax("contactor:" + longo);
+                                //SystemClock.sleep(3000);
+                            }
+
+
+
+
+                        }
+                        //else tostax("erro 29A");
 
 
 

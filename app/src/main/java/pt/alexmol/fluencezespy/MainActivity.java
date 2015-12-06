@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //175 bad cell threshold mV - SUSPENSO
     //176 weak cell threshold mV - SUSPENSO
     //177 GO 0=off 1=on
+    //178 Speed x100km/h
 
     //296 Ponto 0 do parcial 2 km
     //297 Ponto 0 do parcial 2 kWh
@@ -404,7 +405,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     }
 
-
+    /*
 
     //receber eventos da page1
     @Subscribe
@@ -426,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     }
 
-
+    */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

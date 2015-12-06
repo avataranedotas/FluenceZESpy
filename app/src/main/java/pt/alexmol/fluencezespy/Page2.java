@@ -138,25 +138,14 @@ public class Page2 extends Fragment {
 
 
         scaledone = false;
+        largura = -123;
 
         handler.post(timedTask);
-
-
-
-        //View pai = getView().findViewById(R.id.contemprog2);
-        //pai.requestLayout();
-        //largura = pai.getWidth();
-
-
-        //Display display = getActivity().getWindowManager().getDefaultDisplay();
-        //int width = display.getWidth();
-        //int height = display.getHeight();
-
-        //largura = MainActivity.smallestwidthdp;
 
         final FrameLayout myLayout;
 
         myLayout = (FrameLayout) getView().findViewById(R.id.contemprog2);
+        myLayout.setVisibility(View.INVISIBLE);
         myLayout.post(new Runnable()
         {
 
@@ -166,179 +155,9 @@ public class Page2 extends Fragment {
                 //Log.i("TEST", "Layout width : "+ myLayout.getWidth());
                 largura = myLayout.getWidth();
                 if (myLayout.getHeight()<largura) largura =myLayout.getHeight();
+                //largura = 210;
             }
         });
-
-
-        /*
-        View vista;
-        vista = getView().findViewById(R.id.cima3);
-
-        //vista.setCont
-        */
-
-
-        /*
-        SurfaceView surface = (SurfaceView) getView().findViewById(R.id.surface3);
-
-
-        surface.getHolder().addCallback(new SurfaceHolder.Callback() {
-
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                // Do some drawing when surface is ready
-                Canvas canvas = holder.lockCanvas();
-                canvas.drawColor(Color.RED);
-
-
-                float width = (float) getView().getWidth();
-
-                float height = (float) getView().getHeight();
-
-                float radius;
-
-
-                if (width > height) {
-
-                    radius = height / 4;
-
-                } else {
-
-                    radius = width / 4;
-
-                }
-
-
-                Path path = new Path();
-
-                path.addCircle(width / 2,
-
-                        height / 2, radius,
-
-                        Path.Direction.CW);
-
-
-                Paint paint = new Paint();
-
-                paint.setColor(Color.WHITE);
-
-                paint.setStrokeWidth(5);
-
-
-                paint.setStyle(Paint.Style.FILL);
-
-                float center_x, center_y;
-
-                center_x = width / 2;
-
-                center_y = height / 4;
-
-                final RectF oval = new RectF();
-
-                oval.set(center_x - radius,
-
-                        center_y - radius,
-
-                        center_x + radius,
-
-                        center_y + radius);
-
-                canvas.drawArc(oval, 90, 270, true, paint);
-
-
-                paint.setStyle(Paint.Style.STROKE);
-
-                center_x = width / 2;
-
-                center_y = height / 2;
-
-                oval.set(center_x - radius,
-
-                        center_y - radius,
-
-                        center_x + radius,
-
-                        center_y + radius);
-
-                canvas.drawArc(oval, 90, 270, true, paint);
-
-
-                paint.setStyle(Paint.Style.STROKE);
-
-                center_x = width / 2;
-
-                center_y = height * 3 / 4;
-
-                oval.set(center_x - radius,
-
-                        center_y - radius,
-
-                        center_x + radius,
-
-                        center_y + radius);
-
-                canvas.drawArc(oval, 90, 270, false, paint);
-
-
-                holder.unlockCanvasAndPost(canvas);
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
-        });
-
-        */
-
-
-        //if (visivel) {
-            //try {
-
-        /*
-            ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
-
-            pb.setScaleX(largura/200f);
-            pb.setScaleY(largura/200f);
-            pb.setTranslationY((largura-150f)/2f);
-            //pb.setRotation((-cnt / 1000f * 360f) - 90f);
-            pb.setProgress(0);
-
-
-            ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
-            //pb2.setRotation((-cnt / 1000f * 360f) - 0f);
-            //pb2.setTranslationX(-100);
-            //pb2.setTranslationY(cnt/5);
-
-            pb2.setScaleX(largura/200f);
-            pb2.setScaleY(largura/200f);
-            pb2.setTranslationY((largura-150f)/2f);
-            pb2.setProgress(0);
-
-            //} catch (Exception e) {
-
-            //}
-
-            ImageView pontei = (ImageView) getView().findViewById(R.id.ponteiro_2);
-            pontei.setScaleX(largura/200f);
-            pontei.setScaleY(largura/200f);
-            pontei.setTranslationY((largura-150f)/2f);
-
-            ImageView semi = (ImageView) getView().findViewById(R.id.semicirculo_2);
-            semi.setScaleX(largura/200f);
-            semi.setScaleY(largura/200f);
-            semi.getBackground().setLevel(5000);
-
-
-        */
-
-            //getView().findViewById(R.id.semicirculo_2).getBackground().setLevel(5000);
-
-
-        //}
 
 
     }
@@ -373,6 +192,8 @@ public class Page2 extends Fragment {
 
             parkwh1 = (array2[59] / 1000.0) - (array2[199] / 1000.0);
 
+            float densidade = MainActivity.densidade;
+
             //se der negativo algo correu mal ou o contador deu a volta, faz reset
             if (parkwh1<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3001));
 
@@ -394,6 +215,8 @@ public class Page2 extends Fragment {
             media1 = parkwh1 / (parkm1 / 100.0);
             if (media1 > 99.99) media1 = 99.99;
         }
+
+        float densidade = MainActivity.densidade;
 
         view = (TextView) getView().findViewById(R.id.t1_avg);
         view.setText(String.format("%2.2f", media1));
@@ -438,6 +261,25 @@ public class Page2 extends Fragment {
         view.setText(String.format("%2.2f", media2));
 
 
+        //velocidade
+        if (array2[78]!=invalido ) {
+            // cheg x100, divide-se por 10 para ficar x10
+            velocidade = array2[78]/10;
+
+        }
+
+
+        //potencia
+        if (array2[67]!=invalido ) {
+            // x10
+
+            double temp = (array2[67] / 32.0) / 1.44; //em kW
+            potenciaactual = (int) (temp * 10.0);
+            if (potenciaactual>800) potenciaactual = 800;
+            if (potenciaactual<-400) potenciaactual = -400;
+
+        }
+
 
 
     }
@@ -454,8 +296,14 @@ public class Page2 extends Fragment {
 
     }
 
+    private int potenciaactual = 0;
+    private int cntpedido = 0;
+    //private int cntsuave = 0;
+
 
     private int cnt = 0;
+    private int velocidade = 0;
+    private int velocanterior = 0;
 
     private Handler handler = new Handler();
 
@@ -466,19 +314,83 @@ public class Page2 extends Fragment {
 
         @Override
         public void run() {
-            cnt=cnt+1;
-            if (cnt>255) cnt = -255;
+            //cnt=cnt+1;
+            //if (cnt>250) cnt = -250;
 
 
+            //velocidade
+            //se a velocidade actual for superior à anterior sobe 0.5, se for inferior desce 0.5
+            if (velocidade > velocanterior ) {
+                velocanterior=velocanterior+5;
+                TextView textoveloc = (TextView) getView().findViewById(R.id.vel_2);
+                textoveloc.setText(""+velocanterior/10);
+            }
+            if (velocidade < velocanterior ) {
+                velocanterior=velocanterior-5;
+                TextView textoveloc = (TextView) getView().findViewById(R.id.vel_2);
+                textoveloc.setText(""+velocanterior/10);
+            }
+
+
+            //potencia
+            //recebe valor entre -400 e 800
+            //deverá sair um valor entre -250 e 250
+
+            //potencias entre 0 e 5,0 é linear
+            if (potenciaactual>=0 && potenciaactual <=50) cntpedido = potenciaactual;
+
+            //potencias entre -5,0 e 0 é linear
+            if (potenciaactual>=-50 && potenciaactual <0) cntpedido = (potenciaactual * 125) / 100;
+
+            //potencias entre 5,0 e 80,0 escala logaritmica
+            if (potenciaactual >50) {
+                double temp = potenciaactual * 0.1;
+                temp = temp/5.0;
+                temp = Math.log(temp) / Math.log(2.0);
+                temp = temp + 1.0;
+                temp = temp * 50.0;
+                cntpedido = (int) temp;
+            }
+
+            //potencias entre -40,0 e -5,0 escala logaritmica
+            if (potenciaactual <-50) {
+                double temp = potenciaactual * -0.1;
+                temp = temp / 5.0;
+                temp = Math.log(temp) / Math.log(2.0);
+                temp = temp + 1.0;
+                temp = temp * -62.5;
+                cntpedido = (int) temp;
+            }
+
+            //suavização
+            //se diferença for inferior a 50 vai de 1 em 1
+            if ( Math.abs(cnt-cntpedido) <=50) {
+                if (cntpedido>cnt) cnt++;
+                if (cntpedido<cnt) cnt--;
+            }
+            //se diferença for entre 100 e 200 vai de 5 em 5
+            if ( Math.abs(cnt-cntpedido) >50) {
+                if (cntpedido>cnt) cnt=cnt+5;
+                if (cntpedido<cnt) cnt=cnt-5;
+            }
+            //se diferença for superior a 150 vai de 10 em 10
+            if ( Math.abs(cnt-cntpedido) >150) {
+                if (cntpedido>cnt) cnt=cnt+10;
+                if (cntpedido<cnt) cnt=cnt-10;
+            }
+
+
+
+            //first draw
             if (largura !=-123 && !scaledone) {
 
                 float factor = MainActivity.densidade/160f;
 
                 ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
 
-                pb.setScaleX(largura/factor/200f);
-                pb.setScaleY(largura / factor / 200f);
-                pb.setTranslationY((largura/factor-150f)/2f);
+                pb.setScaleX(largura/200f);
+                pb.setScaleY(largura / 200f);
+                pb.setTranslationY((largura-200f)/2f);
                 //pb.setRotation((-cnt / 1000f * 360f) - 90f);
                 pb.setProgress(0);
 
@@ -488,9 +400,9 @@ public class Page2 extends Fragment {
                 //pb2.setTranslationX(-100);
                 //pb2.setTranslationY(cnt/5);
 
-                pb2.setScaleX(largura/factor/200f);
-                pb2.setScaleY(largura/factor/200f);
-                pb2.setTranslationY((largura/factor-150f)/2f);
+                pb2.setScaleX(largura/200f);
+                pb2.setScaleY(largura / 200f);
+                pb2.setTranslationY((largura-200f)/2f);
                 pb2.setProgress(0);
 
                 //} catch (Exception e) {
@@ -498,21 +410,57 @@ public class Page2 extends Fragment {
                 //}
 
                 ImageView pontei = (ImageView) getView().findViewById(R.id.ponteiro_2);
-                pontei.setScaleX(largura/factor/200f);
-                pontei.setScaleY(largura/factor/200f);
-                pontei.setTranslationY((largura/factor-150f)/2f);
+                pontei.setTranslationY((largura - 200f) / 2f);
+                pontei.setScaleX(largura / 200f);
+                pontei.setScaleY(largura / 200f);
+
+                pontei.setPivotX(pontei.getWidth() / 2);
+                pontei.setPivotY(pontei.getHeight());
+                pontei.setRotation(0);
 
                 ImageView semi = (ImageView) getView().findViewById(R.id.semicirculo_2);
-                semi.setScaleX(largura/factor/200f);
-                semi.setScaleY(largura/factor/200f);
+                semi.setScaleX(largura / 200f);
+                semi.setScaleY(largura / 200f);
+                semi.setTranslationY((largura - 200f) / 2f);
                 semi.getBackground().setLevel(5000);
+
+
+                ImageView dash = (ImageView) getView().findViewById(R.id.dash_2);
+                dash.setScaleX(largura / 200f);
+                dash.setScaleY(largura / 200f);
+                dash.setTranslationY((largura - 200f) / 2f);
+
+                TextView velo = (TextView) getView().findViewById(R.id.vel_2);
+
+                //FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) velo.getLayoutParams();
+                //params.setMargins(0,(int) (60f*largura/200f), 0, 0); //substitute parameters for left, top, right, bottom
+                //velo.setLayoutParams(params);
+
+
+                velo.setScaleX(largura / 200f);
+                velo.setScaleY(largura / 200f);
+                velo.setTranslationY(((largura / 200f) * 45f) + ((largura - 200f) / 10f));
+                //velo.setTranslationX(-((largura / 200f) * 10f) + ((largura - 200f) / 10f));
+                //velo.setTranslationX((-1.0f* (largura / 200f) * 5f)  );
+
+                ImageView rect = (ImageView) getView().findViewById(R.id.rect_2);
+                rect.setScaleX(largura / 200f);
+                rect.setScaleY(largura / 200f);
+                rect.setTranslationY(((largura / 200f) * 50f) + ((largura - 200f) / 10f));
+                //rect.setTranslationX((-1.0f* (largura / 200f) * 5f)  );
+
+
+
+
+                FrameLayout myLayout = (FrameLayout) getView().findViewById(R.id.contemprog2);
+                myLayout.setVisibility(View.VISIBLE);
 
 
 
                 scaledone = true;
             }
 
-
+            //updates
             if (visivel && scaledone) {
                 //try {
 
@@ -581,7 +529,6 @@ public class Page2 extends Fragment {
             }
 
 
-
             handler.postDelayed(timedTask, 30);
         }};
 
@@ -596,135 +543,6 @@ public class Page2 extends Fragment {
 
     }
 
-    /*
-    public class MyView extends View {
-
-
-
-        public MyView(Context context) {
-
-            super(context);
-
-
-
-        }
-
-
-
-        @Override
-
-        protected void onDraw(Canvas canvas) {
-
-            // TODO Auto-generated method stub
-
-            super.onDraw(canvas);
-
-
-
-
-
-            float width = (float)getWidth();
-
-            float height = (float)getHeight();
-
-            float radius;
-
-
-
-            if (width > height){
-
-                radius = height/4;
-
-            }else{
-
-                radius = width/4;
-
-            }
-
-
-
-            Path path = new Path();
-
-            path.addCircle(width/2,
-
-                    height/2, radius,
-
-                    Path.Direction.CW);
-
-
-
-            Paint paint = new Paint();
-
-            paint.setColor(Color.WHITE);
-
-            paint.setStrokeWidth(5);
-
-
-
-            paint.setStyle(Paint.Style.FILL);
-
-            float center_x, center_y;
-
-            center_x = width/2;
-
-            center_y = height/4;
-
-            final RectF oval = new RectF();
-
-            oval.set(center_x - radius,
-
-                    center_y - radius,
-
-                    center_x + radius,
-
-                    center_y + radius);
-
-            canvas.drawArc(oval, 90, 270, true, paint);
-
-
-
-            paint.setStyle(Paint.Style.STROKE);
-
-            center_x = width/2;
-
-            center_y = height/2;
-
-            oval.set(center_x - radius,
-
-                    center_y - radius,
-
-                    center_x + radius,
-
-                    center_y + radius);
-
-            canvas.drawArc(oval, 90, 270, true, paint);
-
-
-
-            paint.setStyle(Paint.Style.STROKE);
-
-            center_x = width/2;
-
-            center_y = height * 3/4;
-
-            oval.set(center_x - radius,
-
-                    center_y - radius,
-
-                    center_x + radius,
-
-                    center_y + radius);
-
-            canvas.drawArc(oval, 90, 270, false, paint);
-
-
-
-        }
-
-
-
-    }
-    */
 
 
 }

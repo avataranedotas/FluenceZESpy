@@ -437,6 +437,126 @@
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.35"></RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.65">
+
+
+
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/contemprog2">
+
+                <ImageView
+                    android:layout_width="180px"
+                    android:layout_height="180px"
+                    android:id="@+id/semicirculo_2"
+                    android:background="@drawable/semicircle_branco"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_marginTop="10px" />
+
+
+
+                <ImageView
+                    android:layout_width="2px"
+                    android:layout_height="87px"
+                    android:id="@+id/ponteiro_2"
+                    android:background="@drawable/ponteiro"
+                    android:layout_marginTop="14px"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_marginLeft="0.5px" />
+
+
+                <ImageView
+                    android:layout_width="184px"
+                    android:layout_height="184px"
+                    android:id="@+id/dash_2"
+                    android:background="@drawable/dash"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_marginTop="8px" />
+
+
+                <ProgressBar
+                    android:id="@+id/yourId"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200px"
+                    android:layout_height="200px"
+                    android:max="1000"
+                    android:progress="250"
+                    android:progressDrawable="@drawable/anel1"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignParentEnd="false"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_horizontal|top" />
+
+                <ProgressBar
+                    android:id="@+id/yourId2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200px"
+                    android:layout_height="200px"
+                    android:max="1000"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/anel2"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:mirrorForRtl="false"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_horizontal|top" />
+
+
+                <ImageView
+                    android:layout_width="60px"
+                    android:layout_height="40px"
+                    android:id="@+id/rect_2"
+                    android:background="@drawable/rectangle"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top" />
+
+
+                <TextView
+                    android:layout_width="60px"
+                    android:layout_height="40px"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="0"
+                    android:id="@+id/vel_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="34px"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal" />
+
+            </FrameLayout>
+
+
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>
 
 
