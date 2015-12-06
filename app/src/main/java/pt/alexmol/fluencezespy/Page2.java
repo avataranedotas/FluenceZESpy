@@ -140,6 +140,9 @@ public class Page2 extends Fragment {
         scaledone = false;
         largura = -123;
 
+        if  (MainActivity.TABLET ^ MainActivity.reverseModeMain) visivel = true;
+        //else visivel = false;
+
         handler.post(timedTask);
 
         final FrameLayout myLayout;
@@ -332,6 +335,8 @@ public class Page2 extends Fragment {
             }
 
 
+
+
             //potencia
             //recebe valor entre -400 e 800
             //deverá sair um valor entre -250 e 250
@@ -460,6 +465,8 @@ public class Page2 extends Fragment {
                 scaledone = true;
             }
 
+
+
             //updates
             if (visivel && scaledone) {
                 //try {
@@ -477,6 +484,8 @@ public class Page2 extends Fragment {
                     }
                 else pb.setProgress(0);
 
+                //pb.setVisibility(View.INVISIBLE);
+
 
                     ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
                 if (cnt<0) {
@@ -486,6 +495,8 @@ public class Page2 extends Fragment {
                     pb2.setProgress(-cnt);
                 }
                 else pb2.setProgress(0);
+
+                //pb2.setVisibility(View.INVISIBLE);
 
 
                 ImageView ponte = (ImageView)  getView().findViewById(R.id.ponteiro_2);
@@ -528,6 +539,7 @@ public class Page2 extends Fragment {
                 //}
             }
 
+            //if (cnt >=240) return;
 
             handler.postDelayed(timedTask, 30);
         }};

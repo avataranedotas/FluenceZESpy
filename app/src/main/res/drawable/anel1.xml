@@ -2,30 +2,10 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
- <!--   <item >
 
 
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
-
-            android:shape="rectangle"
-            >
-
-            <solid android:color="#00ffffff" />
-
-
-        </shape>
-
-
-    </item>
--->
     <item android:id="@android:id/progress">
 
-
-        <!--<translate
-            android:fromXDelta="50%"
-            android:toXDelta="50%"
-            android:fromYDelta="50%"
-            android:toYDelta="75%" >-->
 
 
 
@@ -35,10 +15,13 @@
                 android:pivotX="50%"
                 android:pivotY="50%" >
 
+
                 <shape xmlns:android="http://schemas.android.com/apk/res/android"
                     android:innerRadiusRatio="2.5"
                     android:shape="ring"
-                    android:thicknessRatio="30" >
+                    android:thicknessRatio="30"
+                    android:useLevel="true"
+                    >
 
                     <gradient
                         android:centerColor="#ff0000"
@@ -52,7 +35,7 @@
                 </shape>
 
             </rotate>
-<!--        </translate>-->
+
 
     </item>
 
