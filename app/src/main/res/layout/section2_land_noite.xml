@@ -223,7 +223,7 @@
                                         android:text="999.9"
                                         android:id="@+id/t1_km"
                                         android:textColor="#ffffff"
-                                        android:textSize="@dimen/fonte_normal"
+                                        android:textSize="@dimen/fonte_normal2"
                                         android:singleLine="false"
                                         android:layout_centerVertical="true"
                                         android:layout_centerHorizontal="true"
@@ -245,7 +245,7 @@
                                         android:text="999.99"
                                         android:id="@+id/t1_kwh"
                                         android:textColor="#ffffff"
-                                        android:textSize="@dimen/fonte_normal"
+                                        android:textSize="@dimen/fonte_normal2"
                                         android:singleLine="false"
                                         android:gravity="center_horizontal"
                                         android:layout_centerVertical="true"
@@ -266,7 +266,7 @@
                                         android:text="99.99"
                                         android:id="@+id/t1_avg"
                                         android:textColor="#ffffff"
-                                        android:textSize="@dimen/fonte_normal"
+                                        android:textSize="@dimen/fonte_normal2"
                                         android:singleLine="false"
                                         android:gravity="center_horizontal"
                                         android:layout_centerVertical="true"
@@ -350,7 +350,7 @@
                                         android:text="999.9"
                                         android:id="@+id/t2_km"
                                         android:textColor="#ffffff"
-                                        android:textSize="@dimen/fonte_normal"
+                                        android:textSize="@dimen/fonte_normal2"
                                         android:singleLine="false"
                                         android:layout_centerVertical="true"
                                         android:layout_centerHorizontal="true"
@@ -372,7 +372,7 @@
                                         android:text="999.99"
                                         android:id="@+id/t2_kwh"
                                         android:textColor="#ffffff"
-                                        android:textSize="@dimen/fonte_normal"
+                                        android:textSize="@dimen/fonte_normal2"
                                         android:singleLine="false"
                                         android:gravity="center_horizontal"
                                         android:layout_centerVertical="true"
@@ -393,7 +393,7 @@
                                         android:text="99.99"
                                         android:id="@+id/t2_avg"
                                         android:textColor="#ffffff"
-                                        android:textSize="@dimen/fonte_normal"
+                                        android:textSize="@dimen/fonte_normal2"
                                         android:singleLine="false"
                                         android:gravity="center_horizontal"
                                         android:layout_centerVertical="true"
@@ -547,6 +547,43 @@
                     android:textSize="34px"
                     android:textColor="#ffffff"
                     android:gravity="center_vertical|center_horizontal" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:id="@+id/yourId3"
+                    android:layout_width="180px"
+                    android:layout_height="20px"
+                    android:layout_gravity="center_horizontal|top"
+                    android:max="100"
+                    android:progressDrawable="@drawable/socbarchange"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:indeterminate="false"
+                    android:progress="75" />
+
+                <TextView
+                    android:layout_width="75px"
+                    android:layout_height="22px"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="100.00%"
+                    android:id="@+id/soc_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="18px"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|right" />
+
+
+                <TextView
+                    android:layout_width="60px"
+                    android:layout_height="22px"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="199km"
+                    android:id="@+id/range_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="18px"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|right" />
+
 
             </FrameLayout>
 

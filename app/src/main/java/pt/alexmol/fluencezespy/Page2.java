@@ -6,10 +6,13 @@ package pt.alexmol.fluencezespy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -17,6 +20,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -158,7 +162,7 @@ public class Page2 extends Fragment {
                 //Log.i("TEST", "Layout width : "+ myLayout.getWidth());
                 largura = myLayout.getWidth();
                 if (myLayout.getHeight()<largura) largura =myLayout.getHeight();
-                //largura = 210;
+                //largura = 200;
             }
         });
 
@@ -218,8 +222,9 @@ public class Page2 extends Fragment {
             media1 = parkwh1 / (parkm1 / 100.0);
             if (media1 > 99.99) media1 = 99.99;
         }
+        else media1 = 99.99;
 
-        float densidade = MainActivity.densidade;
+        //float densidade = MainActivity.densidade;
 
         view = (TextView) getView().findViewById(R.id.t1_avg);
         view.setText(String.format("%2.2f", media1));
@@ -259,6 +264,7 @@ public class Page2 extends Fragment {
             media2 = parkwh2 / (parkm2 / 100.0);
             if (media2 > 99.99) media2 = 99.99;
         }
+        else media2 = 99.99;
 
         view = (TextView) getView().findViewById(R.id.t2_avg);
         view.setText(String.format("%2.2f", media2));
@@ -284,6 +290,52 @@ public class Page2 extends Fragment {
         }
 
 
+        //soc
+        if (array2[0]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.soc_2);
+            double temp = ((double) array2[0]) / 100.0;
+            view.setText(String.format("%3.2f", temp) + "%");
+
+            //verde acima dos 35%
+            //amarelo entre 20 e 35%
+            //vermelho abaixo dos 20%
+
+
+            ProgressBar pb3 = (ProgressBar) getView().findViewById(R.id.yourId3);
+            if (temp >100.0) temp = 100.0;
+            pb3.setProgress((int) temp);
+
+
+        }
+
+
+        //autonomia
+        view = (TextView) getView().findViewById(R.id.range_2);
+        /*
+        if (array2[33]!= invalido && array2[33]>9) {
+            //double temp = ((double) array1[14]) / 1000.0;
+            view.setText(array2[33] + "km");
+        }
+        else view.setText("- - -");
+        */
+
+        //autonomia nova
+        if (array2[16]!=invalido && array2[15]!=invalido & array2[33]!=invalido) {
+            double total = array2[16] / 10000.0 * 322.0; //total em Wh
+            double restante = array2[15] / 1000000.0 / 0.95 * total;  //restante em Wh
+            //se nenhum dos parciais tiver mais que 1km então usa valor do carro
+            if ( parkm1 < 1.0 && parkm2 < 1.0) {
+                view.setText(array2[33] + "km");
+            }
+            else {
+                double autonomia;
+                //se o t1 for inferior ao t2
+                if (parkm1 < parkm2) autonomia = restante / media1 / 10.0;
+                //caso contrário
+                else autonomia = restante / media2 / 10.0;
+                view.setText((int) autonomia + "km");
+            }
+        }
 
     }
 
@@ -451,10 +503,32 @@ public class Page2 extends Fragment {
                 ImageView rect = (ImageView) getView().findViewById(R.id.rect_2);
                 rect.setScaleX(largura / 200f);
                 rect.setScaleY(largura / 200f);
-                rect.setTranslationY(((largura / 200f) * 50f) + ((largura - 200f) / 10f));
+                rect.setTranslationY(((largura / 200f) * 103f) + ((largura - 200f) / 18.1818f));
                 //rect.setTranslationX((-1.0f* (largura / 200f) * 5f)  );
 
 
+                ProgressBar pb3 = (ProgressBar) getView().findViewById(R.id.yourId3);
+
+                pb3.setScaleX(largura/200f);
+                pb3.setScaleY(largura / 200f);
+                pb3.setTranslationY(((largura / 200f) * 106f) + ((largura - 200f) / 20f));
+                //pb3.setProgress(50);
+
+
+                TextView soc = (TextView) getView().findViewById(R.id.soc_2);
+
+                soc.setScaleX(largura / 200f);
+                soc.setScaleY(largura / 200f);
+                soc.setTranslationY(((largura / 200f) * 103f) + ((largura - 200f) / 18.1818f));
+                soc.setTranslationX(-1.0f * (((largura / 200f) * 50f) /*- ((largura - 200f) / 6.666666666666f)*/));
+
+
+                TextView range = (TextView) getView().findViewById(R.id.range_2);
+
+                range.setScaleX(largura / 200f);
+                range.setScaleY(largura / 200f);
+                range.setTranslationY(((largura / 200f) * 103f) + ((largura - 200f) / 18.1818f));
+                range.setTranslationX(1.0f * (((largura / 200f) * 50f) /*- ((largura - 200f) / 6.666666666666f)*/));
 
 
                 FrameLayout myLayout = (FrameLayout) getView().findViewById(R.id.contemprog2);
@@ -497,6 +571,8 @@ public class Page2 extends Fragment {
                 else pb2.setProgress(0);
 
                 //pb2.setVisibility(View.INVISIBLE);
+
+
 
 
                 ImageView ponte = (ImageView)  getView().findViewById(R.id.ponteiro_2);

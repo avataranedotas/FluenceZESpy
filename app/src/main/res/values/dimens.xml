@@ -6,6 +6,7 @@
 
 
     <dimen name="fonte_normal">14sp</dimen>
+    <dimen name="fonte_normal2">16sp</dimen>
     <dimen name="fonte_grande">20sp</dimen>
     <dimen name="fonte_pequena">12sp</dimen>
     <dimen name="fonte_muitopequena">7sp</dimen>
