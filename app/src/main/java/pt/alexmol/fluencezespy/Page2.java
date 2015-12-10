@@ -125,7 +125,20 @@ public class Page2 extends Fragment {
         });
 
 
+        ImageButton buttonrange = (ImageButton) v.findViewById(R.id.botao_range_2);
 
+        buttonrange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View va) {
+
+
+                MyBus.getInstance().post(new Page2TaskResultEvent(3003));
+
+
+
+
+            }
+        });
 
 
 
@@ -304,13 +317,16 @@ public class Page2 extends Fragment {
             ProgressBar pb3 = (ProgressBar) getView().findViewById(R.id.yourId3);
             if (temp >100.0) temp = 100.0;
             pb3.setProgress((int) temp);
-
+            //pb3.setProgress(100);
 
         }
 
 
         //autonomia
         view = (TextView) getView().findViewById(R.id.range_2);
+        TextView t1 = (TextView) getView().findViewById(R.id.t1l_2);
+        TextView t2 = (TextView) getView().findViewById(R.id.t2l_2);
+
         /*
         if (array2[33]!= invalido && array2[33]>9) {
             //double temp = ((double) array1[14]) / 1000.0;
@@ -323,6 +339,55 @@ public class Page2 extends Fragment {
         if (array2[16]!=invalido && array2[15]!=invalido & array2[33]!=invalido) {
             double total = array2[16] / 10000.0 * 322.0; //total em Wh
             double restante = array2[15] / 1000000.0 / 0.95 * total;  //restante em Wh
+
+            //se for para usar a autonomia do carro
+            if (array2[195]==0) {
+                view.setText(array2[33] + "km");
+                view.setTextColor(Color.BLACK);
+                if (!MainActivity.noite) {
+                    t1.setTextColor(Color.BLACK);
+                    t2.setTextColor(Color.BLACK);
+                }
+                else {
+                    t1.setTextColor(Color.WHITE);
+                    t2.setTextColor(Color.WHITE);
+                }
+            }
+
+            //se for para usar o Trip 1
+            if (array2[195]==1) {
+                double autonomia = restante / media1 / 10.0;
+                view.setText((int) autonomia + "km");
+                view.setTextColor(Color.BLUE);
+                if (!MainActivity.noite) {
+                    t1.setTextColor(Color.BLUE);
+                    t2.setTextColor(Color.BLACK);
+                }
+                else {
+                    t1.setTextColor(Color.BLUE);
+                    t2.setTextColor(Color.WHITE);
+                }
+            }
+
+
+            //se for para usar o Trip 2
+            if (array2[195]==2) {
+                double autonomia = restante / media2 / 10.0;
+                view.setText((int) autonomia + "km");
+                view.setTextColor(Color.BLUE);
+                if (!MainActivity.noite) {
+                    t2.setTextColor(Color.BLUE);
+                    t1.setTextColor(Color.BLACK);
+                }
+                else {
+                    t2.setTextColor(Color.BLUE);
+                    t1.setTextColor(Color.WHITE);
+                }
+            }
+
+
+            /*
+
             //se nenhum dos parciais tiver mais que 1km então usa valor do carro
             if ( parkm1 < 1.0 && parkm2 < 1.0) {
                 view.setText(array2[33] + "km");
@@ -335,6 +400,7 @@ public class Page2 extends Fragment {
                 else autonomia = restante / media2 / 10.0;
                 view.setText((int) autonomia + "km");
             }
+            */
         }
 
     }
@@ -500,19 +566,28 @@ public class Page2 extends Fragment {
                 //velo.setTranslationX(-((largura / 200f) * 10f) + ((largura - 200f) / 10f));
                 //velo.setTranslationX((-1.0f* (largura / 200f) * 5f)  );
 
+                /*
                 ImageView rect = (ImageView) getView().findViewById(R.id.rect_2);
                 rect.setScaleX(largura / 200f);
                 rect.setScaleY(largura / 200f);
                 rect.setTranslationY(((largura / 200f) * 103f) + ((largura - 200f) / 18.1818f));
                 //rect.setTranslationX((-1.0f* (largura / 200f) * 5f)  );
-
+                */
 
                 ProgressBar pb3 = (ProgressBar) getView().findViewById(R.id.yourId3);
 
-                pb3.setScaleX(largura/200f);
+                pb3.setScaleX(largura / 200f);
                 pb3.setScaleY(largura / 200f);
                 pb3.setTranslationY(((largura / 200f) * 106f) + ((largura - 200f) / 20f));
                 //pb3.setProgress(50);
+
+
+                ImageButton rangebar = (ImageButton) getView().findViewById(R.id.botao_range_2);
+
+                rangebar.setScaleX(largura / 200f);
+                rangebar.setScaleY(largura / 200f);
+                rangebar.setTranslationY(((largura / 200f) * 106f) + ((largura - 200f) / 20f));
+
 
 
                 TextView soc = (TextView) getView().findViewById(R.id.soc_2);

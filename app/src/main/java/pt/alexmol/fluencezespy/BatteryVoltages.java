@@ -432,12 +432,12 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //odoCar
         if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km ";
+            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km / ";
         }
 
-        //kWh
+        //Ageing counter
         if (MainActivity.valoresmemorizados[20]!=Integer.MAX_VALUE) {
-            texto = texto + arrayv[20]+ "kWh    ";
+            texto = texto + arrayv[20]+ "    ";
         }
 
         /*

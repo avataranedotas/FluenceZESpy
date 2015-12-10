@@ -131,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Energy Meter: Wait"
+                        android:text="Ageing counter: Wait"
                         android:id="@+id/totcharged_0"
                         android:textColor="#FFFFFF"
                         android:layout_below="@+id/maxoutputpower_0"

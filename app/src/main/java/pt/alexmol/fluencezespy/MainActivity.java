@@ -195,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //177 GO 0=off 1=on
     //178 Speed x100km/h
 
+
+    //295 Autonomia carro, trip1 ou trip2
     //296 Ponto 0 do parcial 2 km
     //297 Ponto 0 do parcial 2 kWh
     //298 Ponto 0 do parcial 1 km
@@ -398,6 +400,36 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
             toast("Trip 2 was reset!");
+
+
+        }
+
+
+        //evento rodar autonomia
+        if (event.getResult() == 3003) {
+
+            valoresmemorizados[195]++;
+            if (valoresmemorizados[195]>2 ||valoresmemorizados[195]<0 ) valoresmemorizados[195]=0;
+
+            switch (valoresmemorizados[195]) {
+                case 0:
+                    toast("Range from Car");
+                    break;
+
+                case 1:
+                    toast("Range from Trip1");
+                    break;
+
+                case 2:
+                    toast("Range from Trip2");
+                    break;
+
+            }
+
+            actualizarpaginas(valoresmemorizados);
+
+
+
 
 
         }

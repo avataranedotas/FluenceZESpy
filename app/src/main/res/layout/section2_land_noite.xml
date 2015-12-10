@@ -201,7 +201,7 @@
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceSmall"
                                         android:text="1"
-                                        android:id="@+id/textView8"
+                                        android:id="@+id/t1l_2"
                                         android:textColor="#ffffff"
                                         android:textSize="@dimen/fonte_grande"
                                         android:textStyle="bold"
@@ -328,7 +328,7 @@
                                         android:layout_height="wrap_content"
                                         android:textAppearance="?android:attr/textAppearanceSmall"
                                         android:text="2"
-                                        android:id="@+id/textView18"
+                                        android:id="@+id/t2l_2"
                                         android:textColor="#ffffff"
                                         android:textSize="@dimen/fonte_grande"
                                         android:textStyle="bold"
@@ -527,14 +527,14 @@
                     android:layout_alignParentTop="true"
                     android:layout_gravity="center_horizontal|top" />
 
-                <ImageView
+              <!--  <ImageView
                     android:layout_width="60px"
                     android:layout_height="40px"
                     android:id="@+id/rect_2"
                     android:background="@drawable/rectangle"
 
                     android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal|top" />
+                    android:layout_gravity="center_horizontal|top" />-->
 
 
                 <TextView
@@ -577,12 +577,19 @@
                     android:layout_width="60px"
                     android:layout_height="22px"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="199km"
+                    android:text="km"
                     android:id="@+id/range_2"
                     android:layout_gravity="center_horizontal|top"
                     android:textSize="18px"
                     android:textColor="#000000"
                     android:gravity="center_vertical|right" />
+
+                <ImageButton
+                    android:layout_width="180px"
+                    android:layout_height="20px"
+                    android:id="@+id/botao_range_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:background="@drawable/rectangle_trans" />
 
 
             </FrameLayout>
