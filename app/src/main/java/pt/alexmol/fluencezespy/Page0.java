@@ -288,7 +288,7 @@ public class Page0 extends Fragment {
             double temp;
             if (array0[25]!=invalido)  temp = ((double) array0[25]) / 10.0;
             else temp = ((double) array0[9]) / 10.0;
-            if (temp>0.0 && array0[13]<0) {
+            if (temp>0.0 && array0[13]<0 && array0[5]==1) {
                 view.setText("Max:" + String.format("%2.1f", temp));
                 view.setVisibility(View.VISIBLE);
             }

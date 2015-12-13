@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //122, desconhecido2
     //123, desconhecido3
     //124, desconhecido4
-    //125, max battery charging power kw x10
+    //125, max battery charging power kw x10 - mais preciso que o 109
     //126, desconhecido6
     //127, main contactor 0 OFF, 1 PRECharge, 2 ON
     //128, hv consumption loads x10W
@@ -521,6 +521,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
         }
+
+        //verifica selecção da autonomia
+        if (valoresmemorizados[195]==Integer.MAX_VALUE) valoresmemorizados[195]=0;
 
         //tamanho do ecran utilizável, dimensão mínima em dp
         smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;

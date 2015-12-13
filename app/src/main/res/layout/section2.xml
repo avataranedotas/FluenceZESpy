@@ -31,6 +31,9 @@
                 android:id="@+id/contemprog2">
 
 
+
+
+
                 <ImageView
                     android:layout_width="180px"
                     android:layout_height="180px"
@@ -41,6 +44,18 @@
                     android:layout_gravity="center_horizontal|top"
                     android:layout_marginTop="10px" />
 
+
+
+                <ImageView
+                    android:layout_width="2px"
+                    android:layout_height="87px"
+                    android:id="@+id/ponteiro_regen2"
+                    android:background="@drawable/ponteiro_regen"
+                    android:layout_marginTop="14px"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_marginLeft="0.5px" />
 
 
                 <ImageView
@@ -160,6 +175,48 @@
                     android:id="@+id/botao_range_2"
                     android:layout_gravity="center_horizontal|top"
                     android:background="@drawable/rectangle_trans" />
+
+
+
+                <ImageView
+                    android:layout_width="80px"
+                    android:layout_height="72px"
+                    android:id="@+id/imgbatt_2"
+                    android:background="@drawable/fze_bat1"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:alpha="0.5" />
+
+                <TextView
+                    android:layout_width="46px"
+                    android:layout_height="20px"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tempbat_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="15px"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <ImageView
+                    android:layout_width="84px"
+                    android:layout_height="70px"
+                    android:id="@+id/imgout_2"
+                    android:background="@drawable/outside"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:alpha="0.5" />
+
+                <TextView
+                    android:layout_width="46px"
+                    android:layout_height="20px"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tempext_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="15px"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal" />
 
 
             </FrameLayout>

@@ -135,8 +135,6 @@ public class Page2 extends Fragment {
                 MyBus.getInstance().post(new Page2TaskResultEvent(3003));
 
 
-
-
             }
         });
 
@@ -403,6 +401,79 @@ public class Page2 extends Fragment {
             */
         }
 
+        //ponteiro regen
+
+        if (array2[10]!=invalido) {
+
+            ImageView ponteireg = (ImageView) getView().findViewById(R.id.ponteiro_regen2);
+
+            ponteireg.setPivotX(ponteireg.getWidth() / 2);
+            ponteireg.setPivotY(ponteireg.getHeight());
+
+
+
+            //obter max regen
+            int potmain = array2[10];
+
+            if ( potmain<4000 && potmain >=0 )potregen = potmain; //x100kW
+            potregen = potregen / 10;    //passa à gama -400 a 0
+            potregen = potregen * -1;
+
+            //potencia
+            //recebe valor entre -400 e 0
+            //deverá sair um valor entre -250 e 0
+
+            //potencias entre -5,0 e 0 é linear
+            if (potregen>=-50 && potregen <0) cntregen = (potregen * 125) / 100;
+
+            //potencias entre -40,0 e -5,0 escala logaritmica
+            if (potregen <-50) {
+                double temp = potregen * -0.1;
+                temp = temp / 5.0;
+                temp = Math.log(temp) / Math.log(2.0);
+                temp = temp + 1.0;
+                temp = temp * -62.5;
+                cntregen = (int) temp;
+            }
+
+            //cntregen = (potmain /50 );
+
+            ponteireg.setRotation(cntregen / 250f * 89.5f);
+
+
+
+        }
+
+        //temperatura da bateria
+
+
+        if (array2[40]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.tempbat_2);
+
+            double tempt = array2[40] / 10.0;
+            view.setText(String.format("%2.1f", tempt) + "C");
+
+            if (array2[17] >= 28) view.setTextColor(Color.RED);
+            else {
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+            }
+
+        }
+
+
+        //temperatura exterior
+
+        //temperatura externa
+        if (array2[65]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.tempext_2);
+
+            double tempt = array2[65] - 40.0;
+            view.setText(String.format("%2.0f", tempt) + "C");
+        }
+
     }
 
     @Override
@@ -420,7 +491,8 @@ public class Page2 extends Fragment {
     private int potenciaactual = 0;
     private int cntpedido = 0;
     //private int cntsuave = 0;
-
+    private int potregen = 0;
+    private int cntregen = 0;
 
     private int cnt = 0;
     private int velocidade = 0;
@@ -541,6 +613,47 @@ public class Page2 extends Fragment {
                 pontei.setPivotY(pontei.getHeight());
                 pontei.setRotation(0);
 
+
+                ImageView ponteireg = (ImageView) getView().findViewById(R.id.ponteiro_regen2);
+                ponteireg.setTranslationY((largura - 200f) / 2f);
+                ponteireg.setScaleX(largura / 200f);
+                ponteireg.setScaleY(largura / 200f);
+
+                ponteireg.setPivotX(ponteireg.getWidth() / 2);
+                ponteireg.setPivotY(ponteireg.getHeight());
+
+
+
+                //obter max regen
+                int potmain = MainActivity.valoresmemorizados[10];
+
+
+                if ( potmain<4000 && potmain >=0 )potregen = potmain; //x100kW
+                potregen = potregen / 10;    //passa à gama -400 a 0
+                potregen = potregen * -1;
+
+                //potencia
+                //recebe valor entre -400 e 0
+                //deverá sair um valor entre -250 e 0
+
+                //potencias entre -5,0 e 0 é linear
+                if (potregen>=-50 && potregen <0) cntregen = (potregen * 125) / 100;
+
+                //potencias entre -40,0 e -5,0 escala logaritmica
+                if (potregen <-50) {
+                    double temp = potregen * -0.1;
+                    temp = temp / 5.0;
+                    temp = Math.log(temp) / Math.log(2.0);
+                    temp = temp + 1.0;
+                    temp = temp * -62.5;
+                    cntregen = (int) temp;
+                }
+
+                //cntregen = (potmain /50 );
+
+                ponteireg.setRotation(cntregen / 250f * 89.5f);
+
+
                 ImageView semi = (ImageView) getView().findViewById(R.id.semicirculo_2);
                 semi.setScaleX(largura / 200f);
                 semi.setScaleY(largura / 200f);
@@ -552,6 +665,44 @@ public class Page2 extends Fragment {
                 dash.setScaleX(largura / 200f);
                 dash.setScaleY(largura / 200f);
                 dash.setTranslationY((largura - 200f) / 2f);
+
+
+
+                ImageView batt = (ImageView) getView().findViewById(R.id.imgbatt_2);
+                batt.setScaleX(largura / 400f);
+                batt.setScaleY(largura / 400f);
+
+                batt.setTranslationY(/*((largura / 400f) * 5f) +*/ ((largura - 400f) / 11.111111111111111111f));
+                batt.setTranslationX(1.0f * (((largura / 400f) * 160f) /*+ ((largura - 200f) / 11.11111111111f)*/));
+
+
+
+                ImageView weather = (ImageView) getView().findViewById(R.id.imgout_2);
+                weather.setScaleX(largura / 400f);
+                weather.setScaleY(largura / 400f);
+
+                weather.setTranslationY(/*((largura / 400f) * 10f) +*/ ((largura - 400f) / 11.42857f));
+                weather.setTranslationX(-1.0f * (((largura / 400f) * 158f) /*+ ((largura - 200f) / 11.11111111111f)*/));
+
+
+                TextView tempbat = (TextView) getView().findViewById(R.id.tempbat_2);
+                tempbat.setScaleX(largura / 200f);
+                tempbat.setScaleY(largura / 200f);
+
+
+                tempbat.setTranslationY(((largura / 200f) * 5f) + ((largura - 200f) / 20.0f));
+                tempbat.setTranslationX(1.0f * (((largura / 200f) * 78f) /*+ ((largura - 200f) / 11.11111111111f)*/));
+
+
+                TextView tempext = (TextView) getView().findViewById(R.id.tempext_2);
+                tempext.setScaleX(largura / 200f);
+                tempext.setScaleY(largura / 200f);
+
+
+                tempext.setTranslationY(((largura / 200f) * 5f) + ((largura - 200f) / 20.0f));
+                tempext.setTranslationX(-1.0f * (((largura / 200f) * 78f) /*+ ((largura - 200f) / 11.11111111111f)*/));
+
+
 
                 TextView velo = (TextView) getView().findViewById(R.id.vel_2);
 
