@@ -474,6 +474,35 @@ public class Page2 extends Fragment {
             view.setText(String.format("%2.0f", tempt) + "C");
         }
 
+
+
+        //consumo auxiliar HV
+
+        if (array2[28]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.aux_cons_2);
+            view.setVisibility(View.VISIBLE);
+            double temp = ((double) array2[28]) / 100.0;
+            view.setText(String.format("%1.1f", temp) + "kW");
+
+            ProgressBar pb5 = (ProgressBar) getView().findViewById(R.id.progress_aux_2);
+            pb5.setVisibility(View.VISIBLE);
+            temp = temp * 100 / 6.0;  //converte 0 a 100%
+            if (temp >100.0) temp = 100.0;  //limita 100%
+            pb5.setProgress((int) temp);
+
+
+        }
+        else {
+            view = (TextView) getView().findViewById(R.id.aux_cons_2);
+            view.setVisibility(View.INVISIBLE);
+            ProgressBar pb5 = (ProgressBar) getView().findViewById(R.id.progress_aux_2);
+            pb5.setVisibility(View.INVISIBLE);
+        }
+
+
+
+
+
     }
 
     @Override
