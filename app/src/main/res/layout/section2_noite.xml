@@ -310,15 +310,6 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
-                            <Button
-                                style="?android:attr/buttonStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="HSM"
-                                android:id="@+id/button_hsm"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true" />
-
 
                         </RelativeLayout>
                     </LinearLayout>

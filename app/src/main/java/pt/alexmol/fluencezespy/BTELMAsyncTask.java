@@ -122,6 +122,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         String resposta;
         //String resposta2 = "";
 
+        hsm = false;
 
         long longo;
         int passoanterior = 0;
@@ -641,7 +642,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             //  velocidade
                             longo = processalinha(resposta, 32, 47, false);  //processa a resposta
-                            if (longo != Long.MAX_VALUE) { //resposta bem processada
+                            if (longo <= 20000 && longo >= 0) { //resposta bem processada
                                 publishProgress(178, (int) longo);
                                 //tostax("contactor:" + longo);
                                 //SystemClock.sleep(3000);
@@ -690,7 +691,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         //próximo free frame
 
 
-                        if (ciclo5s) {
+                        if (ciclo5s ) {
 
                             resposta = getfreeframe("427", 200, 100, 16);
                             if (resposta != null) {  //resposta correcta
@@ -726,7 +727,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         }
 
-                        if (ciclo5s) {
+                        if (ciclo5s && !hsm) {
 
                             resposta = getfreeframe("6F8", 200, 100, 6);
                             if (resposta != null) {  //resposta correcta
@@ -749,7 +750,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                        if (ciclo10s) {
+                        if (ciclo10s && !hsm) {
 
                             resposta = getfreeframe("654", 200, 500, 16);
                             if (resposta != null) {  //resposta correcta
@@ -936,7 +937,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                        if (ciclo1m) {
+                        if (ciclo1m && !hsm) {
 
                             resposta = getfreeframe("534", 200, 100, 10);
                             if (resposta != null) {  //resposta correcta
@@ -1015,7 +1016,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         //ler a cada segundo
 
-                        if (ciclo1s) {
+                        if (ciclo1s && !hsm) {
 
                             resposta = getisoframe("79b", "7bb", "022101", 200, 8);
 
@@ -1214,7 +1215,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         }
 
                         //ler a cada minuto
-                        if (ciclo1m) {
+                        if (ciclo1m && !hsm) {
 
 
 
@@ -1501,7 +1502,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                         //ler a cada 10s
-                        if (ciclo10s) {
+                        if (ciclo10s & !hsm) {
 
 
                             resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
@@ -1804,7 +1805,11 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
             if (passo == 23) { //passo de actualizar ecrans na UI
 
-                if (ciclo1s) publishProgress(0,23);
+                if (ciclo1s) {
+                    publishProgress(0, 23);
+                    if (hsm) publishProgress(5, 1);
+                    else publishProgress(5, 0);
+                }
 
 
                 if (ELMREADY2==2)publishProgress(3, 0);
@@ -2020,6 +2025,8 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     @Subscribe
     public void recebereventospage2 (Page2TaskResultEvent comando) {
+
+        /*
         if (comando.getResult()==3010) {
             if (debugMode) tostax("Asynctaskelm recebeu comando hsm da page 2");
 
@@ -2035,6 +2042,8 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
             //tostax("HSM off");
 
         }
+        */
+
 
 
     }
@@ -2089,6 +2098,18 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
         }
 
+
+
+        if (comando.getResult()==6) {
+            if (debugMode) tostax("Asynctaskelm recebeu hsm on");
+            hsm = true;
+        }
+
+
+        if (comando.getResult()==7) {
+            if (debugMode) tostax("Asynctaskelm recebeu hsm off");
+            hsm = false;
+        }
 
 
 

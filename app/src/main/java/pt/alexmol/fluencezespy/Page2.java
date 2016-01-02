@@ -126,6 +126,7 @@ public class Page2 extends Fragment {
         });
 
 
+        /*
         Button buttonhsm = (Button) v.findViewById(R.id.button_hsm);
 
         buttonhsm.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +134,7 @@ public class Page2 extends Fragment {
             public void onClick(View vb) {
 
                 //se estiver desligado ligar
-                if (!hsm_mode && (MainActivity.ELMREADY ==2)) {
+                if ( !hsm_mode && (MainActivity.ELMREADY ==2)) {
                     MyBus.getInstance().post(new Page2TaskResultEvent(3010));
                     hsm_mode = true;
                 }
@@ -146,7 +147,7 @@ public class Page2 extends Fragment {
 
             }
         });
-
+        */
 
 
 
@@ -528,19 +529,20 @@ public class Page2 extends Fragment {
         }
 
 
+        /*
         //botão HSM
 
         Button buttonhsm = (Button) getView().findViewById(R.id.button_hsm);
         //se estiver ligado muda cor do botão
-        if (hsm_mode) {
+        if (array2[194]==1) {
             buttonhsm.setBackgroundColor(Color.RED);
         }
         else {
             buttonhsm.setBackgroundColor(Color.GRAY);
         }
 
-        // só mostra botão
-
+        // só mostra botão se estiver ligado ??
+        */
 
 
 

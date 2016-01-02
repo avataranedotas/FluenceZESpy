@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public static boolean autonightmode = false;
     public static boolean redesenhar = false;
 
+    private boolean hsm = false;
+    private boolean hsm_anterior = false;
+
     public static int ecran;
 
     /**
@@ -115,7 +118,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //
     //  4, 0 Pedido de ligação de bluetooth
     //
-    //100, Socx475 x100 %
+    //  5, 0 DesLigou HSM
+    //  5, 1 ligou HSM
+    //
+    //100, Socx475 x100 %                         ===HSM===
     //101, tempbat1 C
     //102, tempbat2 C
     //103, tempbat3 C
@@ -182,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //164 battery fan internal speed - SUSPENSO
     //165 external temperature +40C
     //166 odometer km x100
-    //167 motor current x32 A
+    //167 motor current x32 A                           ===HSM===
     //168 wiper stalk buttons 1=Down 2=Up 0=nothing - SUSPENSO
     //169 a/c key pressed - SUSPENSO
     //170 DCDC converter temperature % ???
@@ -193,7 +199,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //175 bad cell threshold mV - SUSPENSO
     //176 weak cell threshold mV - SUSPENSO
     //177 GO 0=off 1=on
-    //178 Speed x100km/h
+    //178 Speed x100km/h                        ===HSM===
+
 
 
     //295 Autonomia carro, trip1 ou trip2
@@ -257,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
 
         //evento de estado do ELM
-        if (event.getResult()[0]==1 && event.getResult()[1]==1 ) {
+        if (event.getResult()[0]==1 && event.getResult()[1] ==1 ) {
             amarelo();
         }
 
@@ -277,6 +284,30 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
+
+        //evento hsm desligado
+        if (event.getResult()[0]==5 && event.getResult()[1]==0 ) {
+            hsm = false;
+
+            if (hsm_anterior) {
+                refresca();
+                toast("High Speed Mode Disabled");
+                hsm_anterior = false;
+            }
+        }
+
+        //evento hsm ligado
+        if (event.getResult()[0]==5 && event.getResult()[1]==1 ) {
+            hsm = true;
+
+            if (!hsm_anterior) {
+                refresca();
+                toast("High Speed Mode Enabled");
+                hsm_anterior = true;
+            }
+        }
+
+
 
 
         /*
@@ -359,6 +390,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             else shuntscelulas[  ( event.getResult()[0] -601)  ]= false;
 
         }
+
+
 
 
     }
@@ -805,6 +838,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         super.onPause();
 
 
+        //desligar HSM
+        MyBus.getInstance().post(new MainTaskResultEvent(7));
+
         //indica à asynctask que vai entrar em pausa
         MyBus.getInstance().post(new MainTaskResultEvent(2));
 
@@ -874,7 +910,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         MenuItem ligado = menu.findItem(R.id.connected_yes);
         MenuItem desligado = menu.findItem(R.id.connected_no);
         MenuItem aviso = menu.findItem(R.id.connected_elm);
-
+        MenuItem hsm_branco = menu.findItem(R.id.hsm_icon_white);
+        MenuItem hsm_azul = menu.findItem(R.id.hsm_icon_blue);
 
         //ELMREADY é também actualizado pela task via métodos verde,amarelo e vermelho
 
@@ -893,6 +930,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             aviso.setVisible(false);
             desligado.setVisible(true);
         }
+
+
+        if (!hsm) {
+            hsm_branco.setVisible(true);
+            hsm_azul.setVisible(false);
+        } else {
+            hsm_branco.setVisible(false);
+            hsm_azul.setVisible(true);
+        }
+
+
 
 
 
@@ -981,6 +1029,26 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             catch (Exception e){  if (debugModeMain) toast ("Exception ao iniciar a thread:"+e); }
 
             return true;
+        }
+
+
+        if ((id == R.id.hsm_icon_white) ){
+
+
+            //ligar HSM
+
+            MyBus.getInstance().post(new MainTaskResultEvent(6));
+
+        }
+
+
+        if ((id == R.id.hsm_icon_blue) ){
+
+
+            //desligar HSM
+
+            MyBus.getInstance().post(new MainTaskResultEvent(7));
+
         }
 
 

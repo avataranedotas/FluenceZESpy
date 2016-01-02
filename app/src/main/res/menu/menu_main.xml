@@ -3,9 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
 
+
+
+    <item
+        android:id="@+id/hsm_icon_blue"
+        android:orderInCategory="2"
+        android:title="Disable High Speed Mode"
+        android:visible="true"
+        android:icon="@mipmap/ic_hsm_blue"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/hsm_icon_white"
+        android:orderInCategory="1"
+        android:title="Enable High Speed Mode"
+        android:visible="true"
+        android:icon="@mipmap/ic_hsm_white"
+        app:showAsAction="ifRoom"
+        />
+
+
     <item
         android:id="@+id/connected_yes"
-        android:orderInCategory="1"
+        android:orderInCategory="3"
         android:title="Connected"
         android:visible="true"
         android:icon="@mipmap/ic_car_ok"
@@ -14,7 +35,7 @@
 
     <item
         android:id="@+id/connected_no"
-        android:orderInCategory="2"
+        android:orderInCategory="4"
         android:title="NotConnected"
         android:visible="true"
         android:icon="@mipmap/ic_not_connected"
@@ -23,7 +44,7 @@
 
     <item
         android:id="@+id/connected_elm"
-        android:orderInCategory="3"
+        android:orderInCategory="5"
         android:title="CarNotFound"
         android:visible="true"
         android:icon="@mipmap/ic_just_elm"
@@ -36,14 +57,14 @@
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="95"
+        android:orderInCategory="6"
         android:icon="@mipmap/ic_settings"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_exit"
         android:title="Exit"
-        android:orderInCategory="100"
+        android:orderInCategory="7"
         android:icon="@mipmap/ic_exit"
         app:showAsAction="always" />
 
