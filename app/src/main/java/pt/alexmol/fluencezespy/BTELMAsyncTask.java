@@ -64,6 +64,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     private static boolean backGroundMode = false;
     private static boolean debugMode = false;
+    private static boolean hsm = false;
 
     private final int invalido = Integer.MAX_VALUE;
 
@@ -2014,6 +2015,31 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
         }
 
     }
+
+
+
+    @Subscribe
+    public void recebereventospage2 (Page2TaskResultEvent comando) {
+        if (comando.getResult()==3010) {
+            if (debugMode) tostax("Asynctaskelm recebeu comando hsm da page 2");
+
+            hsm=true;
+            //tostax("HSM on");
+
+        }
+
+        if (comando.getResult()==3011) {
+            if (debugMode) tostax("Asynctaskelm recebeu comando hsm OFF da page 2");
+
+            hsm=false;
+            //tostax("HSM off");
+
+        }
+
+
+    }
+
+
 
 
     @Subscribe

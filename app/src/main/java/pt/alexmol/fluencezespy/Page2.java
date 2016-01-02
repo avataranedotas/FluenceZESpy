@@ -43,6 +43,7 @@ public class Page2 extends Fragment {
 
     private static int largura = -123;
 
+    private boolean hsm_mode = false;
 
     public Page2(){
 
@@ -125,6 +126,30 @@ public class Page2 extends Fragment {
         });
 
 
+        Button buttonhsm = (Button) v.findViewById(R.id.button_hsm);
+
+        buttonhsm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vb) {
+
+                //se estiver desligado ligar
+                if (!hsm_mode && (MainActivity.ELMREADY ==2)) {
+                    MyBus.getInstance().post(new Page2TaskResultEvent(3010));
+                    hsm_mode = true;
+                }
+                //se estiver ligado desligar
+                else {
+                    MyBus.getInstance().post(new Page2TaskResultEvent(3011));
+                    hsm_mode = false;
+                }
+
+
+            }
+        });
+
+
+
+
         ImageButton buttonrange = (ImageButton) v.findViewById(R.id.botao_range_2);
 
         buttonrange.setOnClickListener(new View.OnClickListener() {
@@ -135,8 +160,11 @@ public class Page2 extends Fragment {
                 MyBus.getInstance().post(new Page2TaskResultEvent(3003));
 
 
+
+
             }
         });
+
 
 
 
@@ -500,6 +528,20 @@ public class Page2 extends Fragment {
         }
 
 
+        //botão HSM
+
+        Button buttonhsm = (Button) getView().findViewById(R.id.button_hsm);
+        //se estiver ligado muda cor do botão
+        if (hsm_mode) {
+            buttonhsm.setBackgroundColor(Color.RED);
+        }
+        else {
+            buttonhsm.setBackgroundColor(Color.GRAY);
+        }
+
+        // só mostra botão
+
+
 
 
 
@@ -530,7 +572,6 @@ public class Page2 extends Fragment {
     private Handler handler = new Handler();
 
     private boolean scaledone = false;
-
 
     private Runnable timedTask = new Runnable(){
 

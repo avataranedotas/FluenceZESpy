@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     static boolean backgroundMain = false;
     static boolean keepscreenMain= false;
     static boolean reverseModeMain = false;
-    private static int ELMREADY = 0;
+    public static int ELMREADY = 0;
     private boolean sair = false;
     public static int[] valoresmemorizados;
     public static short[] tensoesdascelulas;
