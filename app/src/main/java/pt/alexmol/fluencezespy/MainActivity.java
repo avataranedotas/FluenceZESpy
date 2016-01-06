@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //176 weak cell threshold mV - SUSPENSO
     //177 GO 0=off 1=on
     //178 Speed x100km/h                        ===HSM===
+    //179 VIN
 
 
 

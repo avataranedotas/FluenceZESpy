@@ -524,6 +524,23 @@ public class Page1 extends Fragment {
             view.setText(String.format("%6.0f", tempt)/* + "km"*/);
         }
 
+
+        //VIN
+        if (array1[79]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.vin_1);
+
+            char a = (char) (array1[79] & 255);
+            char b = (char) (array1[79] >> 8 & 255);
+            char c = (char) (array1[79] >> 16 & 255);
+            char d = (char) (array1[79] >> 24 & 255);
+
+            //double tempt = array1[66] / 100.0;
+            view.setText("\u2026"+d+c+b+a);
+        }
+
+
+
         //se estiver em GO mostra a potência do motor
         if (array1[67]!= invalido) {
 

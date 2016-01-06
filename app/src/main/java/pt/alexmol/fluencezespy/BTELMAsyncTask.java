@@ -1229,10 +1229,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                                 //temperatura1, obtem-se na primeira linha
 
-                                longo = processalinha(resposta.substring(0, 16), 48, 55, false);
+                                longo = processalinha(resposta.substring(0, 16), 48, 55, true);
                                 if (longo != Long.MAX_VALUE) {
                                     //validação
-                                    if (longo >= -30 && longo <= 127) {
+                                    if (longo >= -50 && longo <= 127) {
                                         //publica valor
                                         //tempbat1 é o indice 101
                                         //ultimavalida = true;
@@ -1242,10 +1242,11 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
                                 //temperatura2, obtem-se na segunda linha
-                                longo = processalinha(resposta.substring(16, 32), 16, 23, false);
+                                longo = processalinha(resposta.substring(16, 32), 16, 23, true);
+                                //longo = processalinha("FA", 0, 7, true);
                                 if (longo != Long.MAX_VALUE) {
                                     //validação
-                                    if (longo >= -30 && longo <= 127) {
+                                    if (longo >= -50 && longo <= 127) {
                                         //publica valor
                                         //tempbat2 é o indice 102
                                         publishProgress(102, (int) longo);
@@ -1254,10 +1255,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
                                 //temperatura3, obtem-se na segunda linha
-                                longo = processalinha(resposta.substring(16, 32), 40, 47, false);
+                                longo = processalinha(resposta.substring(16, 32), 40, 47, true);
                                 if (longo != Long.MAX_VALUE) {
                                     //validação
-                                    if (longo >= -30 && longo <= 127) {
+                                    if (longo >= -50 && longo <= 127) {
                                         //publica valor
                                         //tempbat3 é o indice 103
                                         publishProgress(103, (int) longo);
@@ -1267,10 +1268,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
                                 //temperatura4, obtem-se na 3ª linha
-                                longo = processalinha(resposta.substring(32, 48), 8, 15, false);
+                                longo = processalinha(resposta.substring(32, 48), 8, 15, true);
                                 if (longo != Long.MAX_VALUE) {
                                     //validação
-                                    if (longo >= -30 && longo <= 127) {
+                                    if (longo >= -50 && longo <= 127) {
                                         //publica valor
                                         //tempbat4 é o indice 104
                                         publishProgress(104, (int) longo);
@@ -1279,10 +1280,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
                                 //temperatura média, obtem-se na 3ª linha
-                                longo = processalinha(resposta.substring(32, 48), 16, 23, false);
+                                longo = processalinha(resposta.substring(32, 48), 16, 23, true);
                                 if (longo != Long.MAX_VALUE) {
                                     //validação
-                                    if (longo >= -30 && longo <= 127) {
+                                    if (longo >= -50 && longo <= 127) {
                                         //publica valor
                                         //tempbatm é o indice 117
                                         publishProgress(117, (int) longo);
@@ -1497,6 +1498,35 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+                            //VIN
+                            resposta = getisoframe("7E4", "7EC", "022181",200 ,4);
+
+                            if (resposta != null && (resposta.length() == 64)) {
+
+                                //tostax("obtido correctamento 7e4/7ec 022181");
+                                //SystemClock.sleep(2000);
+
+
+                                //ultimos 4 digitos
+
+                                longo = processalinha(resposta.substring(38, 46), 0, 31, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(179, (int) longo);
+                                }
+
+
+
+
+
+
+
+                            }
+
+
+
+
+
                         }
 
 
@@ -1600,7 +1630,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
                                 //temperatura da bateria C x10
-                                longo = processalinha(resposta.substring(18, 22), 0, 15, false);
+                                longo = processalinha(resposta.substring(18, 22), 0, 15, true);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(140, (int) longo);
                                 }
