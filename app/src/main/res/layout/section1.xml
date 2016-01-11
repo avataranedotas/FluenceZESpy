@@ -96,13 +96,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="...1234"
+                        android:text="...0000"
                         android:id="@+id/vin_1"
                         android:textColor="#000000"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="true"
                         android:layout_below="@+id/textView6"
                         android:layout_centerHorizontal="true" />
+
+                    <ImageButton
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/vinbutton"
+                        android:layout_alignTop="@+id/textView6"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignBottom="@+id/vin_1"
+                        android:alpha="0.3"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginBottom="-5dp" />
                 </RelativeLayout>
 
                 <RelativeLayout

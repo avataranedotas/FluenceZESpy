@@ -939,6 +939,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         if (ciclo1m && !hsm) {
 
+                            /*
                             resposta = getfreeframe("534", 200, 100, 10);
                             if (resposta != null) {  //resposta correcta
                                 //tostax("recebeu 42A:"+resposta.length());
@@ -955,6 +956,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                             }
                             //else tostax("falhou 534");
+                            */
 
                         }
 
@@ -1516,15 +1518,57 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
 
+                                //penultimos 4 digitos
+
+                                longo = processalinha(resposta.substring(28, 32)+resposta.substring(34, 38), 0, 31, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(180, (int) longo);
+                                }
 
 
+                                //antepenultimos 4 digitos
 
+                                longo = processalinha(resposta.substring(20, 28), 0, 31, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(181, (int) longo);
+                                }
+
+                                //digitos 2 a 5
+                                longo = processalinha(resposta.substring(10, 16)+resposta.substring(18, 20), 0, 31, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(182, (int) longo);
+                                }
+
+                                //digito 1
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(183, (int) longo);
+                                }
 
 
                             }
 
 
 
+
+
+                            //temperatura exterior
+                            resposta = getisoframe("7E4", "7EC", "032233B1",200 ,1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 10), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(165, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
 
 
                         }

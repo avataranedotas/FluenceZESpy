@@ -200,8 +200,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //176 weak cell threshold mV - SUSPENSO
     //177 GO 0=off 1=on
     //178 Speed x100km/h                        ===HSM===
-    //179 VIN
-
+    //179 VIN  4ultimos
+    //180 VIN  4penultimos
+    //181 VIN  4antepenultimos
+    //182 VIN  digitos 2 a 5
+    //183 VIN  1º digito
 
 
     //295 Autonomia carro, trip1 ou trip2
@@ -471,29 +474,95 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     }
 
-    /*
+
 
     //receber eventos da page1
     @Subscribe
     public void recebereventospage1 (Page1TaskResultEvent event) {
-        //Toast.makeText(this,"Resultado:"+ event.getResult()[0] +"/"+event.getResult()[1], Toast.LENGTH_SHORT).show();
 
-        //evento acertar parciais 1 kWh e km
-        if (event.getResult() == 3001) {
-
-            //acertar kWh
-            valoresmemorizados[199]=valoresmemorizados[59];
-            actualizarpaginas(valoresmemorizados);
+        //evento mostrar VIN
+        if (event.getResult() == 4001) {
 
 
-            //acertar km
-            valoresmemorizados[198]=valoresmemorizados[66];
-            actualizarpaginas(valoresmemorizados);
+            char a = (char) (valoresmemorizados[79] & 255);
+            char b = (char) (valoresmemorizados[79] >> 8 & 255);
+            char c = (char) (valoresmemorizados[79] >> 16 & 255);
+            char d = (char) (valoresmemorizados[79] >> 24 & 255);
+
+
+            char a1 = (char) (valoresmemorizados[80] & 255);
+            char b1 = (char) (valoresmemorizados[80] >> 8 & 255);
+            char c1 = (char) (valoresmemorizados[80] >> 16 & 255);
+            char d1 = (char) (valoresmemorizados[80] >> 24 & 255);
+
+            char a2 = (char) (valoresmemorizados[81] & 255);
+            char b2 = (char) (valoresmemorizados[81] >> 8 & 255);
+            char c2 = (char) (valoresmemorizados[81] >> 16 & 255);
+            char d2 = (char) (valoresmemorizados[81] >> 24 & 255);
+
+            char a3 = (char) (valoresmemorizados[82] & 255);
+            char b3 = (char) (valoresmemorizados[82] >> 8 & 255);
+            char c3 = (char) (valoresmemorizados[82] >> 16 & 255);
+            char d3 = (char) (valoresmemorizados[82] >> 24 & 255);
+
+            char e = (char) valoresmemorizados[83];
+
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+            // set title
+            alertDialogBuilder.setTitle("VIN");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage(""+e+d3+c3+b3+a3+d2+c2+b2+a2+d1+c1+b1+a1+d+c+b+a)
+                    .setCancelable(true);
+                    /*
+                    .setPositiveButton("I accept", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, close
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putBoolean("disclaimer", true);
+                            editor.apply();
+
+                            if (!( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  )) {
+                                tarefa = new BTELMAsyncTask(instance);
+                                tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                            }
+
+
+                            // current activity
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("I don't understand",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                    //MainActivity.this.finishAffinity(); requires API16
+                                    finish();
+                                    //android.os.Process.killProcess(android.os.Process.myPid());
+                                    //System.exit(0);
+                                }
+                            });
+                      */
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+
+
+
         }
 
     }
 
-    */
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
