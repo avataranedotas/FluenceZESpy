@@ -529,22 +529,32 @@ public class Page2 extends Fragment {
         }
 
 
-        /*
-        //botão HSM
+        //consumo instantaneo
+        if (array2[67]!=invalido && array2[78]!=invalido ) {
+            // potencia motor
+            double temppotmot = (array2[67] / 32.0) / 1.44; //em kW
 
-        Button buttonhsm = (Button) getView().findViewById(R.id.button_hsm);
-        //se estiver ligado muda cor do botão
-        if (array2[194]==1) {
-            buttonhsm.setBackgroundColor(Color.RED);
+            //potencia auxiliar
+            double temppotaux = 0.0;
+            if (array2[28]!= invalido) temppotaux = ((double) array2[28]) / 100.0; //em kW
+
+            // velocidade
+            double tempvel = (array2[78] / 100.0); //em km/h
+
+            double instant = (temppotmot+temppotaux)/tempvel*100.0;
+            if (instant >99.9) instant = 99.9;
+            if (instant <-99.9) instant = -99.9;
+            if (temppotmot==0.0 && temppotaux==0.0) instant = 0.0;
+
+            view = (TextView) getView().findViewById(R.id.inst_2);
+            view.setVisibility(View.VISIBLE);
+            view.setText(String.format("%2.1f", instant));
+
         }
         else {
-            buttonhsm.setBackgroundColor(Color.GRAY);
+            view = (TextView) getView().findViewById(R.id.inst_2);
+            view.setVisibility(View.INVISIBLE);
         }
-
-        // só mostra botão se estiver ligado ??
-        */
-
-
 
 
     }

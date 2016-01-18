@@ -314,6 +314,42 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="99.9"
+                                android:id="@+id/inst_2"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_grande"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="kWh/100km"
+                                android:id="@+id/textView8"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_normal"
+                                android:layout_below="@+id/inst_2"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="5dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="Instant"
+                                android:id="@+id/textView9"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/fonte_normal2"
+                                android:layout_above="@+id/inst_2"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="10dp" />
+
                         </RelativeLayout>
                     </LinearLayout>
                 </RelativeLayout>

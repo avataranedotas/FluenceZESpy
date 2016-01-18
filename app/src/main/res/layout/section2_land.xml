@@ -520,12 +520,56 @@
                     android:layout_weight="1">
 
 
+
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"></RelativeLayout>
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="99.9"
+                        android:id="@+id/inst_2"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_grande"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="kWh/100km"
+                        android:id="@+id/textView8"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Instant"
+                        android:id="@+id/textView9"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal2"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+
+
+
+
+                </RelativeLayout>
+
+
             </LinearLayout>
         </RelativeLayout>
 
