@@ -489,13 +489,15 @@
                                 android:text="hh:mm"
                                 android:id="@+id/timetofull_1"
                                 android:textColor="#FFFFFF"
-                                android:textSize="@dimen/fonte_normal"
+                                android:textSize="@dimen/fonte_normal2"
                                 android:singleLine="true"
                                 android:layout_alignParentBottom="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_alignParentEnd="true"
                                 android:visibility="invisible"
-                                android:layout_marginRight="5dp" />
+                                android:layout_marginRight="5dp"
+                                android:background="#80000000"
+                                />
 
                             <ImageView
                                 android:layout_width="@dimen/largura_range"
@@ -516,12 +518,14 @@
                                 android:text="A"
                                 android:id="@+id/evse_1"
                                 android:textColor="#FFFFFF"
-                                android:textSize="@dimen/fonte_normal"
+                                android:textSize="@dimen/fonte_normal2"
                                 android:singleLine="true"
                                 android:layout_above="@+id/timetofullicon_1"
                                 android:layout_alignRight="@+id/timetofull_1"
                                 android:layout_alignEnd="@+id/timetofull_1"
-                                android:visibility="invisible" />
+                                android:visibility="invisible"
+                                android:background="#80000000"
+                                />
 
 
                         </RelativeLayout>

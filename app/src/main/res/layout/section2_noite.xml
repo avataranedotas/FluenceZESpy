@@ -321,8 +321,7 @@
                                 android:textColor="#ffffff"
                                 android:textSize="@dimen/fonte_grande"
                                 android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                android:textStyle="bold" />
+                                android:layout_centerHorizontal="true" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -346,7 +345,7 @@
                                 android:textSize="@dimen/fonte_normal2"
                                 android:layout_above="@+id/inst_2"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginBottom="10dp" />
+                                android:layout_marginBottom="5dp" />
 
 
                         </RelativeLayout>

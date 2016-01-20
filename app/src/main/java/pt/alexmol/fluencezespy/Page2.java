@@ -507,7 +507,7 @@ public class Page2 extends Fragment {
 
         //consumo auxiliar HV
 
-        if (array2[28]!= invalido) {
+        if (array2[28]!= invalido && array2[27]==2) {
             view = (TextView) getView().findViewById(R.id.aux_cons_2);
             view.setVisibility(View.VISIBLE);
             double temp = ((double) array2[28]) / 100.0;
@@ -536,7 +536,7 @@ public class Page2 extends Fragment {
 
             //potencia auxiliar
             double temppotaux = 0.0;
-            if (array2[28]!= invalido) temppotaux = ((double) array2[28]) / 100.0; //em kW
+            if (array2[28]!= invalido && array2[27]==2) temppotaux = ((double) array2[28]) / 100.0; //em kW
 
             // velocidade
             double tempvel = (array2[78] / 100.0); //em km/h
