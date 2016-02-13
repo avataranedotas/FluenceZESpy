@@ -39,7 +39,10 @@ public class BatteryVoltages extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battery_voltages);
+
+
+        if (MainActivity.noite) setContentView(R.layout.activity_battery_voltages_noite);
+        else setContentView(R.layout.activity_battery_voltages);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -77,6 +80,9 @@ public class BatteryVoltages extends AppCompatActivity {
         mBarChart = (BarChart) findViewById(R.id.chart);
 
 
+
+
+
         //dados para o gráfico
 
         ArrayList<BarEntry> tensoescelulas = new ArrayList<BarEntry>();
@@ -95,6 +101,7 @@ public class BatteryVoltages extends AppCompatActivity {
         int verde = getResources().getColor(R.color.verde);
         int laranja = getResources().getColor(R.color.laranja);
         int amarelo = getResources().getColor(R.color.amarelo);
+
 
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
@@ -122,6 +129,7 @@ public class BatteryVoltages extends AppCompatActivity {
 
         setComp1.setColors(coresbarras);
         setComp1.setBarSpacePercent(25.0f);
+
 
 
 
@@ -171,6 +179,21 @@ public class BatteryVoltages extends AppCompatActivity {
         mBarChart.getLegend().setEnabled(false);
 
         mBarChart.setDescription("");
+
+
+
+
+        if (MainActivity.noite) {
+
+            mBarChart.setBackgroundColor(Color.BLACK);
+
+            mBarChart.setDrawGridBackground(false);
+
+            mBarChart.getAxis(setComp1.getAxisDependency()).setTextColor(Color.WHITE);
+
+            //mBarChart.getAxis(setComp1.getAxisDependency()).
+
+        }
 
 
 

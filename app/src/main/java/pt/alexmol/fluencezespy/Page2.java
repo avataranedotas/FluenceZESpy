@@ -109,6 +109,24 @@ public class Page2 extends Fragment {
         });
 
 
+        botaoreset1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vb) {
+
+
+                //Informa que se tem que fazer long press
+
+                MyBus.getInstance().post(new Page2TaskResultEvent(3004));
+
+
+                return;
+
+            }
+        });
+
+
+
+
         Button botaoreset2 = (Button) v.findViewById(R.id.button2t);
 
         botaoreset2.setOnLongClickListener(new View.OnLongClickListener() {
@@ -124,6 +142,23 @@ public class Page2 extends Fragment {
 
             }
         });
+
+
+        botaoreset2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vb) {
+
+
+                //Informa que se tem que fazer long press
+
+                MyBus.getInstance().post(new Page2TaskResultEvent(3004));
+
+
+                return;
+
+            }
+        });
+
 
 
         /*
@@ -369,7 +404,11 @@ public class Page2 extends Fragment {
 
             //se for para usar a autonomia do carro
             if (array2[195]==0) {
-                view.setText(array2[33] + "km");
+                if (array2[33]!= invalido && array2[33]>9) {
+                    view.setText(array2[33] + "km");
+                }
+                else view.setText("- - -");
+
                 view.setTextColor(Color.BLACK);
                 if (!MainActivity.noite) {
                     t1.setTextColor(Color.BLACK);

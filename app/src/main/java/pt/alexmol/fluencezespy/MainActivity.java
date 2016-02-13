@@ -471,6 +471,15 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         }
 
+        //evento single press reset button
+        if (event.getResult() == 3004) {
+
+            toast("To Reset press and hold button for 1 second");
+
+
+        }
+
+
 
     }
 
