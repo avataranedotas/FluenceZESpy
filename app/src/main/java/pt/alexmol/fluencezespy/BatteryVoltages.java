@@ -106,6 +106,7 @@ public class BatteryVoltages extends AppCompatActivity {
 
         BarDataSet setComp1 = new BarDataSet(tensoescelulas,"Volts");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
+
         setComp1.setDrawValues(false);
 
 
@@ -128,6 +129,7 @@ public class BatteryVoltages extends AppCompatActivity {
 
 
         setComp1.setColors(coresbarras);
+
         setComp1.setBarSpacePercent(25.0f);
 
 
@@ -191,7 +193,8 @@ public class BatteryVoltages extends AppCompatActivity {
 
             mBarChart.getAxis(setComp1.getAxisDependency()).setTextColor(Color.WHITE);
 
-            //mBarChart.getAxis(setComp1.getAxisDependency()).
+            mBarChart.getXAxis().setTextColor(Color.WHITE);
+
 
         }
 
