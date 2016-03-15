@@ -582,8 +582,8 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 //converter para flutuante
                                 double socx475 = longo / 47.5;
                                 //validação
-                                if (socx475 <= 0.0 || socx475 > 150.0) {   //valor inválido
-                                    //publishProgress(100, invalido);  //necessário publicar inválidos???
+                                if (socx475 < 0.0 || socx475 > 150.0) {   //valor inválido
+                                    publishProgress(100, 0);  //necessário publicar inválidos???
                                 }
                                 else {              //valor válido
                                     //publica valor soc multiplicado por 100
