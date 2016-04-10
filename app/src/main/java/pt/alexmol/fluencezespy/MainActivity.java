@@ -420,6 +420,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             valoresmemorizados[198]=valoresmemorizados[66];
             actualizarpaginas(valoresmemorizados);
 
+
+
+            SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            //grava valores actuais
+            int i;
+            for (i=0; i<=199;i++) editor.putInt("valoresmemorizados" + i, valoresmemorizados[i]);
+            editor.commit();
+
+
+
             toast("Trip 1 was reset!");
 
         }
@@ -436,6 +447,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             //acertar km
             valoresmemorizados[196]=valoresmemorizados[66];
             actualizarpaginas(valoresmemorizados);
+
+
+            SharedPreferences settings = getSharedPreferences("pt.alexmol.fluencezespy.settings", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            //grava valores actuais
+            int i;
+            for (i=0; i<=199;i++) editor.putInt("valoresmemorizados"+i, valoresmemorizados[i]);
+            editor.commit();
 
 
             toast("Trip 2 was reset!");
