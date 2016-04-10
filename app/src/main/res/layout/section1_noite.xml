@@ -167,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="%"
-                        android:id="@+id/textView14"
+                        android:id="@+id/dcdcp"
                         android:textColor="#ffffff"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="true"

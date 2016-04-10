@@ -530,7 +530,7 @@ public class Page1 extends Fragment {
 
             double tempt;
 
-            if (array1[27]==2) tempt = ((double) array1[84])/128.0;
+            if (array1[27]==2) tempt = ((double) array1[84])/64.0;
             else tempt = 0.0;
 
             view.setText(String.format("%3.2f", tempt) + "A");
