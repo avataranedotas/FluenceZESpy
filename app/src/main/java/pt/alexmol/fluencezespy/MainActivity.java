@@ -205,6 +205,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //181 VIN  4antepenultimos
     //182 VIN  digitos 2 a 5
     //183 VIN  1º digito
+    //184 DCDC current
+    //185 DCDC Load %
 
 
     //295 Autonomia carro, trip1 ou trip2

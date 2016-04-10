@@ -418,7 +418,7 @@ public class Page0 extends Fragment {
             else image.setVisibility(View.VISIBLE);
         }
 
-        /*
+
         if (array0[21]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
             view.setText("Unknown 1: " + array0[21]);
@@ -437,7 +437,7 @@ public class Page0 extends Fragment {
             view.setText("Unknown 8: " + array0[30]);
 
         }
-        */
+
 
         //remaining kwh in the battery
         if (array0[31]!= invalido) {

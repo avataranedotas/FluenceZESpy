@@ -127,6 +127,53 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.25">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="A"
+                        android:id="@+id/Dcc"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textView10"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="DC/DC"
+                        android:id="@+id/textView10"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/fonte_normal"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="W"
+                        android:id="@+id/dcdcw"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/Dcc"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="%"
+                        android:id="@+id/textView14"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/dcdcw"
+                        android:layout_centerHorizontal="true" />
+
 
                 </RelativeLayout>
 

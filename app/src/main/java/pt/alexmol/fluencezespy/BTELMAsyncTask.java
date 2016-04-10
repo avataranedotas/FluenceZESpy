@@ -746,6 +746,9 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+
+
+
                         }
 
 
@@ -928,7 +931,18 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
+                            //ler carga conversor DCDC
+                            resposta = getfreeframe("1FD", 200, 100, 16);
+                            if (resposta != null) {  //resposta correcta
 
+                                //  carga conversor DCDC
+                                longo = processalinha(resposta, 0, 7, false);  //processa a resposta
+                                if (longo <= 255 && longo >= 0) { //resposta bem processada
+                                    publishProgress(185, (int) longo);
+                                    //tostax("contactor:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+                            }
 
 
                         }
@@ -1635,6 +1649,24 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
                             }
 
+
+
+                            resposta = getisoframe("75A", "77E", "03223013",200 ,1);
+
+                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                            //else tostax("Resposta null");
+                            //SystemClock.sleep(3000);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, true);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(184, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
 
 
 

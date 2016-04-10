@@ -824,6 +824,16 @@ public class Page2 extends Fragment {
                 tempext.setTranslationX(-1.0f * (((largura / 200f) * 78f) /*+ ((largura - 200f) / 11.11111111111f)*/));
 
 
+              /*  TextView tempint = (TextView) getView().findViewById(R.id.tempint_2);
+                tempint.setScaleX(largura / 200f);
+                tempint.setScaleY(largura / 200f);
+
+
+                tempint.setTranslationY(((largura / 200f) * 5f) + ((largura - 200f) / 20.0f));
+                tempint.setTranslationX(-1.0f * (((largura / 200f) * 78f) *//*+ ((largura - 200f) / 11.11111111111f)*//*));
+
+
+*/
 
                 TextView velo = (TextView) getView().findViewById(R.id.vel_2);
 

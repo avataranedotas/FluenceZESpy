@@ -521,6 +521,47 @@ public class Page1 extends Fragment {
             view.setText(String.format("%2.0f", tempt) + "C");
         }
 
+
+
+        // corrente conversor DCDC
+        if ( (array1[84]!= invalido) && (array1[14]!= invalido) ) {
+
+            view = (TextView) getView().findViewById(R.id.Dcc);
+
+            double tempt;
+
+            if (array1[27]==2) tempt = ((double) array1[84])/128.0;
+            else tempt = 0.0;
+
+            view.setText(String.format("%3.2f", tempt) + "A");
+
+            view = (TextView) getView().findViewById(R.id.dcdcw);
+
+            double tempt2 = tempt * (((double) array1[14])/1000.0);
+            view.setText(String.format("%4.0f", tempt2) + "W");
+
+
+        }
+
+        //carga conversor DCDC
+
+        if ( (array1[85]!= invalido)  ) {
+
+            view = (TextView) getView().findViewById(R.id.dcdcp );
+
+            if (array1[85]!=255) {
+
+                double tempt = ((double) array1[85]) / 255.0 * 100.0;
+                view.setText(String.format("%3.1f", tempt) + "%");
+            }
+            else {
+                view.setText("");
+            }
+
+        }
+
+
+
         //partial energy spent
         /*
         if (array1[59]!= invalido) {

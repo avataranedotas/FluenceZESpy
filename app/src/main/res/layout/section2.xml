@@ -219,6 +219,22 @@
                     android:gravity="center_vertical|center_horizontal" />
 
 
+<!--
+
+                <TextView
+                    android:layout_width="46px"
+                    android:layout_height="20px"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tempint_2"
+                    android:layout_gravity="center_horizontal|top"
+                    android:textSize="15px"
+                    android:text="INT"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal" />
+
+-->
+
+
             </FrameLayout>
 
             <LinearLayout
