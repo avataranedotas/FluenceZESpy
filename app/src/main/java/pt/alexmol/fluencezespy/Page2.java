@@ -274,10 +274,10 @@ public class Page2 extends Fragment {
 
             parkwh1 = (array2[59] / 1000.0) - (array2[199] / 1000.0);
 
-            float densidade = MainActivity.densidade;
+            //float densidade = MainActivity.densidade;
 
-            //se der negativo algo correu mal ou o contador deu a volta, faz reset
-            if (parkwh1<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3001));
+            //se der muito negativo algo correu mal ou o contador deu a volta, faz reset
+            if (parkwh1<-20.0) MyBus.getInstance().post(new Page2TaskResultEvent(3001));
 
             view.setText(String.format("%3.2f", parkwh1));
         }
@@ -318,8 +318,8 @@ public class Page2 extends Fragment {
 
             parkwh2 = (array2[59] / 1000.0) - (array2[197] / 1000.0);
 
-            //se der negativo algo correu mal ou o contador deu a volta, faz reset
-            if (parkwh2<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3002));
+            //se der muito negativo algo correu mal ou o contador deu a volta, faz reset
+            if (parkwh2<-20.0) MyBus.getInstance().post(new Page2TaskResultEvent(3002));
 
             view.setText(String.format("%3.2f", parkwh2));
         }

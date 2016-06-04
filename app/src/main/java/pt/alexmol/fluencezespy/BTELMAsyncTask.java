@@ -755,7 +755,23 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                         if (ciclo10s && !hsm) {
 
-                            resposta = getfreeframe("654", 200, 500, 16);
+
+                            //battery cooling
+                            resposta = getfreeframe("212",200,100,10);
+                            if (resposta != null) {  //resposta correcta
+
+                                //battery cooling
+                                longo = processalinha(resposta, 16, 17, false);  //processa a resposta
+                                if (longo != Long.MAX_VALUE) { //resposta bem processada
+                                    publishProgress(186, (int) longo);
+                                    tostax("batcool:" + longo);
+                                    //SystemClock.sleep(3000);
+                                }
+
+                            }
+
+
+                                resposta = getfreeframe("654", 200, 500, 16);
                             if (resposta != null) {  //resposta correcta
 
                                 //dashboard SOC

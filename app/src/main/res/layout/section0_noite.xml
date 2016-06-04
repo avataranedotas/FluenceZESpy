@@ -750,6 +750,24 @@
                                 android:layout_marginRight="12dp" />
 
 
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/ventax"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/fan"
+                                android:scaleType="fitCenter"
+                                android:scaleX="1"
+                                android:layout_marginLeft="@dimen/largura_range"
+                                android:layout_marginTop="@dimen/largura_range"
+                                android:visibility="invisible"
+                                android:layout_marginBottom="@dimen/largura_range"
+                                android:layout_marginRight="@dimen/largura_range" />
+
+
+
                         </RelativeLayout>
 
 
