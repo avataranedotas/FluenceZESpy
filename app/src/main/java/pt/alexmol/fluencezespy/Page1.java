@@ -8,6 +8,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,9 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,6 +31,8 @@ public class Page1 extends Fragment {
     // --Commented out by Inspection (05-11-2015 14:55):Context c;
 
     //private pagina1interface listener;
+
+
 
     public Page1(){
 
@@ -270,6 +278,9 @@ public class Page1 extends Fragment {
 
 
 
+
+
+
     }
 
     @Override public void onDestroy() {
@@ -291,6 +302,14 @@ public class Page1 extends Fragment {
 
         TextView view;
         ImageView view2;
+
+
+        /*
+        Animation rodar = new RotateAnimation(0.0f, 360.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+                0.5f);
+        rodar.setInterpolator(new LinearInterpolator());
+        */
 
         if (array1[0]!= invalido) {
             view = (TextView) getView().findViewById(R.id.socx475_1);
@@ -322,6 +341,52 @@ public class Page1 extends Fragment {
             double temp = ((double) array1[14]) / 1000.0;
             view.setText(String.format("%2.2f", temp) + "V");
         }
+
+
+        if (array1[86]!= invalido) {
+            view2 = (ImageView) getView().findViewById(R.id.ventaxrad);
+            //double temp = ((double) array1[14]) / 1000.0;
+            //view.setText(String.format("%2.2f", temp) + "V");
+
+
+            //view = (TextView) getView().findViewById(R.id.textView10);
+            //view.setText(array1[86] + "S" );
+
+            /*
+            if (array1[86]!=0) {
+                view2.setVisibility(View.VISIBLE);
+                if (!rodar.isInitialized()) {
+                    rodar.setRepeatCount(-1);
+                    view2.startAnimation(rodar);
+                }
+                rodar.setDuration(1000 / (array1[86] + 1));
+            }
+            else {
+                rodar.setRepeatCount(1);
+                rodar.cancel();
+                rodar.reset();
+                view.setText("Parou");
+                view2.setVisibility(View.INVISIBLE);
+            }
+            */
+
+            if (array1[86]==0) view2.setVisibility(View.INVISIBLE);
+            else view2.setVisibility(View.VISIBLE);
+
+            view2.setPivotX(view2.getWidth() / 2);
+            view2.setPivotY(view2.getHeight() / 2);
+
+
+            view2.setRotation(((array1[86]*(System.currentTimeMillis() / 10)))%360  );
+
+        }
+
+
+
+
+
+
+
 
 
         if (array1[28]!= invalido) {

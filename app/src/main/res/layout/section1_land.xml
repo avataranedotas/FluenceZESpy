@@ -291,7 +291,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="DC/DC"
-                        android:id="@+id/textView13"
+                        android:id="@+id/textView10"
                         android:textColor="#000000"
                         android:textSize="@dimen/fonte_normal"
                         android:layout_alignParentTop="true"
@@ -306,7 +306,7 @@
                         android:textColor="#000000"
                         android:textSize="@dimen/fonte_normal"
                         android:singleLine="true"
-                        android:layout_below="@+id/textView13"
+                        android:layout_below="@+id/textView10"
                         android:layout_centerHorizontal="true" />
 
                     <TextView
@@ -593,6 +593,70 @@
 
             </LinearLayout>
 
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:id="@+id/layoutContainerH2" android:orientation="horizontal"
+                android:baselineAligned="false">
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.13"
+
+                    android:longClickable="true">
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.14"
+
+                    android:longClickable="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ventaxrad"
+                        android:src="@drawable/fan"
+                        android:scaleType="fitCenter"
+                        android:scaleX="1"
+                        android:visibility="invisible"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.13"
+
+                    android:longClickable="true">
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.60"
+
+                    android:longClickable="true">
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
 
 
 

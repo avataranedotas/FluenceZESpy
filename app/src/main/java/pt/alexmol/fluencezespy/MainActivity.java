@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //183 VIN  1º digito
     //184 DCDC current
     //185 DCDC Load %
-    //186 battery cooling status
+    //186 radiator fan speed
 
     //295 Autonomia carro, trip1 ou trip2
     //296 Ponto 0 do parcial 2 km
