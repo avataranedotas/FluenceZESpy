@@ -699,11 +699,8 @@
                         android:src="@drawable/fan"
                         android:scaleType="fitCenter"
                         android:scaleX="1"
-                        android:layout_marginLeft="@dimen/largura_range"
-                        android:layout_marginTop="@dimen/largura_range"
                         android:visibility="invisible"
-                        android:layout_marginBottom="@dimen/largura_range"
-                        android:layout_marginRight="@dimen/largura_range" />
+                        android:layout_margin="@dimen/altura_bat12v" />
 
 
 

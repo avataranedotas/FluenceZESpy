@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -276,7 +277,7 @@ public class Page1 extends Fragment {
 
         }
 
-
+        handler.post(timedTask);
 
 
 
@@ -295,6 +296,36 @@ public class Page1 extends Fragment {
         view.setText(url);
 
     }
+
+
+    private Handler handler = new Handler();
+
+    private int cnt = 0;
+
+    private Runnable timedTask = new Runnable(){
+
+        @Override
+        public void run() {
+            cnt=cnt+1;
+            if (cnt>59) cnt = 0;
+
+
+            ImageView view2 = (ImageView) getView().findViewById(R.id.ventaxrad);
+            view2.setRotation(cnt*6);
+
+
+            handler.postDelayed(timedTask, 30);
+        }};
+
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(timedTask);
+    }
+
+
 
 
     public void actpag1(int[] array1) {
@@ -373,11 +404,11 @@ public class Page1 extends Fragment {
             if (array1[86]==0) view2.setVisibility(View.INVISIBLE);
             else view2.setVisibility(View.VISIBLE);
 
-            view2.setPivotX(view2.getWidth() / 2);
-            view2.setPivotY(view2.getHeight() / 2);
+            //view2.setPivotX(view2.getWidth() / 2);
+            //view2.setPivotY(view2.getHeight() / 2);
 
 
-            view2.setRotation(((array1[86]*(System.currentTimeMillis() / 10)))%360  );
+            //view2.setRotation(((array1[86]*(System.currentTimeMillis() / 10)))%360  );
 
         }
 
@@ -603,6 +634,7 @@ public class Page1 extends Fragment {
             view = (TextView) getView().findViewById(R.id.dcdcw);
 
             double tempt2 = tempt * (((double) array1[14])/1000.0);
+
             view.setText(String.format("%4.0f", tempt2) + "W");
 
 

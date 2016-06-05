@@ -11,6 +11,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,8 +161,37 @@ public class Page0 extends Fragment {
         //pb.setProgress(100);
 
 
+        handler.post(timedTask);
+
     }
 
+
+    private Handler handler = new Handler();
+
+    private int cnt = 0;
+
+    private Runnable timedTask = new Runnable(){
+
+        @Override
+        public void run() {
+            cnt=cnt+1;
+            if (cnt>59) cnt = 0;
+
+
+            ImageView image = (ImageView) getView().findViewById(R.id.ventax);
+            image.setRotation(cnt*6);
+
+
+            handler.postDelayed(timedTask, 30);
+        }};
+
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(timedTask);
+    }
 
 
 
@@ -511,6 +541,34 @@ public class Page0 extends Fragment {
             view.setText("Weak Cell threshold:"  + array0[38] + "mV");
 
         }
+
+
+
+        // corrente conversor DCDC
+        if ( (array0[84]!= invalido) && (array0[14]!= invalido) &&  (array0[5]!= invalido)) {
+
+
+            ImageView image = (ImageView) getView().findViewById(R.id.ventax);
+
+            double tempt;
+
+            if (array0[27]==2) tempt = ((double) array0[84])/64.0;
+            else tempt = 0.0;
+            double potenciadcdc = tempt * (((double) array0[14])/1000.0);
+
+            if ((potenciadcdc>600.0) && (array0[5]!=0)) {
+
+                image.setVisibility(View.VISIBLE);
+                //image.setRotation(((System.currentTimeMillis() / 25)) % 360);
+
+
+            }
+            else image.setVisibility(View.INVISIBLE);
+
+
+        }
+
+
 
         /*
         //desconhecido 10
