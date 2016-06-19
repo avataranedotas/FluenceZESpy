@@ -399,7 +399,10 @@ public class Page2 extends Fragment {
 
         //autonomia nova
         if (array2[16]!=invalido && array2[15]!=invalido & array2[33]!=invalido) {
-            double total = array2[16] / 10000.0 * 322.0; //total em Wh
+            // 22kWH com SOH 100%, menos 1kWh
+            // ((AH / 59.09) * 22 kWh )- 1kWh
+            double total = ( array2[16] / 10000.0 / 59.09 * 22500 ) -1000 ; //total em Wh
+            // considerar o Real SOC com máximo de 95%
             double restante = array2[15] / 1000000.0 / 0.95 * total;  //restante em Wh
 
             //se for para usar a autonomia do carro
