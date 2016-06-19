@@ -556,7 +556,7 @@ public class Page0 extends Fragment {
             else tempt = 0.0;
             double potenciadcdc = tempt * (((double) array0[14])/1000.0);
 
-            if ((potenciadcdc>600.0) && (array0[5]!=0)) {
+            if ((potenciadcdc>500.0) && (array0[5]!=0)) {
 
                 image.setVisibility(View.VISIBLE);
                 //image.setRotation(((System.currentTimeMillis() / 25)) % 360);
