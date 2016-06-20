@@ -208,6 +208,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //184 DCDC current
     //185 DCDC Load %
     //186 radiator fan speed
+    //187 HVBAT Status 1=OK 2=Failure
+    //188 desconhecido, motor fan speed??
+    //189 battery current x1.44 ?????
+
 
     //295 Autonomia carro, trip1 ou trip2
     //296 Ponto 0 do parcial 2 km

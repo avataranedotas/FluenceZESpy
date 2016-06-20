@@ -35,6 +35,9 @@ public class Page1 extends Fragment {
 
 
 
+    private int rotafan = 0;
+
+
     public Page1(){
 
     }
@@ -306,12 +309,13 @@ public class Page1 extends Fragment {
 
         @Override
         public void run() {
-            cnt=cnt+1;
-            if (cnt>59) cnt = 0;
+
+            cnt=cnt+rotafan;
+            if (cnt>89) cnt = 0;
 
 
             ImageView view2 = (ImageView) getView().findViewById(R.id.ventaxrad);
-            view2.setRotation(cnt*6);
+            view2.setRotation(cnt*4);
 
 
             handler.postDelayed(timedTask, 30);
@@ -376,6 +380,9 @@ public class Page1 extends Fragment {
 
         if (array1[86]!= invalido) {
             view2 = (ImageView) getView().findViewById(R.id.ventaxrad);
+
+            rotafan = array1[86];
+
             //double temp = ((double) array1[14]) / 1000.0;
             //view.setText(String.format("%2.2f", temp) + "V");
 

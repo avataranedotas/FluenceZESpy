@@ -448,25 +448,58 @@ public class Page0 extends Fragment {
             else image.setVisibility(View.VISIBLE);
         }
 
+        if (array0[87]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
+
+            if (array0[87]!=1 && array0[87]!=2) view.setText("Battery Status: " + array0[87]);
+            if (array0[87]==1) view.setText("Battery Status: OK");
+            if (array0[87]==2) view.setText("Battery Status: Fail");
+        }
+
+
 
         if (array0[21]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
-            view.setText("Unknown 1: " + array0[21]);
-            view = (TextView) getView().findViewById(R.id.desconhecido2_0);
-            view.setText("Unknown 2: " + array0[22]);
-            view = (TextView) getView().findViewById(R.id.desconhecido3_0);
-            view.setText("Unknown 3: " + array0[23]);
-            view = (TextView) getView().findViewById(R.id.desconhecido4_0);
-            view.setText("Unknown 4: " + array0[24]);
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido2_0);
+            view.setText("\n"+
+                            "79B/7BB/2101/18/22: " + array0[21] + "\n" +
+                            "79B/7BB/2101/76/80: " + array0[22] + "\n" +
+                            "79B/7BB/2101/82/86: " + array0[23] + "\n" +
+                            "79B/7BB/2101/86/90: " + array0[24] + "\n" +
+                            "79B/7BB/2101/118/120: " + array0[26] + "\n" +
+                            "79B/7BB/2101/120/122: " + array0[29] + "\n" +
+                            "79B/7BB/2101/122/124: " + array0[30] + "\n"
+            );
+        }
 
-            view = (TextView) getView().findViewById(R.id.desconhecido6_0);
-            view.setText("Unknown 6: " + array0[26]);
-            view = (TextView) getView().findViewById(R.id.desconhecido7_0);
-            view.setText("Unknown 7: " + array0[29]);
-            view = (TextView) getView().findViewById(R.id.desconhecido8_0);
-            view.setText("Unknown 8: " + array0[30]);
+
+        if (array0[8]!= invalido) {
+            TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
+            view.setText("42E/44/50: " + array0[8] +"\n"+
+                    "42E/20/24: " + array0[88] + "\n"
+
+            );
+        }
+
+        /*
+        if (array0[89]!= invalido && array0[13]!= invalido) {
+
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido3_0);
+            view.setText("Ratio bat A:" + ((float)array0[89]/(float)array0[13]));
 
         }
+        */
+
+         /*   view = (TextView) getView().findViewById(R.id.desconhecido4_0);
+            //view.setText("79B/7BB/2101/86/90: " + array0[24]);
+
+            view = (TextView) getView().findViewById(R.id.desconhecido6_0);
+            //view.setText("79B/7BB/2101/118/120: " + array0[26]);
+            view = (TextView) getView().findViewById(R.id.desconhecido7_0);
+            //view.setText("79B/7BB/2101/120/122: " + array0[29]);
+            view = (TextView) getView().findViewById(R.id.desconhecido8_0);
+            //view.setText("79B/7BB/2101/122/124: " + array0[30]);
+
+        */
 
 
         //remaining kwh in the battery

@@ -611,18 +611,30 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 publishProgress(107, (int) longo);
                             }
 
-                            /*
+
                             //HV battery temp ?
                             longo = processalinha(resposta,44,50,false);  //processa a resposta
                             if (longo !=Long.MAX_VALUE) { //resposta bem processada
                                 publishProgress(108, (int) longo);
                             }
-                            */
+
 
                             //Max charging power
                             longo = processalinha(resposta,56,63,false);  //processa a resposta
                             if (longo !=Long.MAX_VALUE) { //resposta bem processada
                                 publishProgress(109, (int) longo*3);
+                            }
+
+                            //HV Bat OK
+                            longo = processalinha(resposta,18,19,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(187, (int) longo);
+                            }
+
+                            //desconhecido
+                            longo = processalinha(resposta,20,24,false);  //processa a resposta
+                            if (longo !=Long.MAX_VALUE) { //resposta bem processada
+                                publishProgress(188, (int) longo);
                             }
 
 
@@ -1149,6 +1161,15 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 longo = processalinha(resposta.substring(122, 124), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(130, (int) longo);
+                                }
+
+
+
+                                //battery current x1.6 ????
+                                longo = processalinha(resposta.substring(8, 16), 0, 31, true) * -1L;
+                                if (longo != Long.MAX_VALUE) {
+                                    //if (Math.abs(longo) < 500) longo = 0;
+                                    publishProgress(189, (int) longo);
                                 }
 
                             }
