@@ -9,8 +9,8 @@ android {
         applicationId "pt.alexmol.testeswipe4"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 11
-        versionName '0.4.7'
+        versionCode 24
+        versionName '0.6.2'
     }
     buildTypes {
         release {

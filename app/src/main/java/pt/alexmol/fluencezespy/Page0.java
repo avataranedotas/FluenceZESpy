@@ -449,25 +449,25 @@ public class Page0 extends Fragment {
         }
 
         if (array0[87]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.desconhecido1_0);
+            TextView view = (TextView) getView().findViewById(R.id.hvbatfail_0);
 
-            if (array0[87]!=1 && array0[87]!=2) view.setText("Battery Status: " + array0[87]);
-            if (array0[87]==1) view.setText("Battery Status: OK");
-            if (array0[87]==2) view.setText("Battery Status: Fail");
+            if (array0[87]!=1 && array0[87]!=2) view.setText("Battery Fail: " + array0[87]);
+            if (array0[87]==1) view.setText("Battery Fail: No");
+            if (array0[87]==2) view.setText("Battery Fail: Yes");
         }
-
 
 
         if (array0[21]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.desconhecido2_0);
             view.setText("\n"+
+                            "Unknown RAW Data\n"+
                             "79B/7BB/2101/18/22: " + array0[21] + "\n" +
                             "79B/7BB/2101/76/80: " + array0[22] + "\n" +
                             "79B/7BB/2101/82/86: " + array0[23] + "\n" +
                             "79B/7BB/2101/86/90: " + array0[24] + "\n" +
                             "79B/7BB/2101/118/120: " + array0[26] + "\n" +
                             "79B/7BB/2101/120/122: " + array0[29] + "\n" +
-                            "79B/7BB/2101/122/124: " + array0[30] + "\n"
+                            "79B/7BB/2101/122/124: " + array0[30]
             );
         }
 
