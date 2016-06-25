@@ -475,19 +475,19 @@ public class Page0 extends Fragment {
         if (array0[8]!= invalido) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
             view.setText("42E/44/50: " + array0[8] +"\n"+
-                    "42E/20/24: " + array0[88] + "\n"
+                    "42E/20/24: " + array0[88] + ""
 
             );
         }
 
-        /*
-        if (array0[89]!= invalido && array0[13]!= invalido) {
 
-            TextView view = (TextView) getView().findViewById(R.id.desconhecido3_0);
-            view.setText("Ratio bat A:" + ((float)array0[89]/(float)array0[13]));
+        if (array0[90]!= invalido ) {
+
+            TextView view = (TextView) getView().findViewById(R.id.desconhecido4_0);
+            view.setText("744/764/2121/34/36:" + array0[90]+"\n");
 
         }
-        */
+
 
          /*   view = (TextView) getView().findViewById(R.id.desconhecido4_0);
             //view.setText("79B/7BB/2101/86/90: " + array0[24]);

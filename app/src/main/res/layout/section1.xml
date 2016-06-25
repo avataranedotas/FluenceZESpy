@@ -168,6 +168,18 @@
                         android:singleLine="true"
                         android:layout_below="@+id/dcdcw"
                         android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="SUN"
+                        android:id="@+id/sunshine_1"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -414,10 +426,11 @@
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:id="@+id/tempinside_1"
                                 android:textColor="#000000"
-                                android:textSize="@dimen/fonte_pequena"
+                                android:textSize="@dimen/fonte_muitopequena"
                                 android:singleLine="false"
                                 android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true" />
+                                android:layout_centerHorizontal="true"
+                                android:text="C" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -428,7 +441,8 @@
                                 android:textSize="@dimen/fonte_pequena"
                                 android:singleLine="false"
                                 android:layout_alignParentTop="true"
-                                android:layout_centerHorizontal="true" />
+                                android:layout_centerHorizontal="true"
+                                android:text="C" />
 
                         </RelativeLayout>
 

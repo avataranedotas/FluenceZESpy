@@ -4,25 +4,14 @@ package pt.alexmol.fluencezespy;
  * Created by alexandre.moleiro on 15-10-2015.
  */
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.os.AsyncTask;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -375,6 +364,15 @@ public class Page1 extends Fragment {
             view = (TextView) getView().findViewById(R.id.battery12v_1);
             double temp = ((double) array1[14]) / 1000.0;
             view.setText(String.format("%2.2f", temp) + "V");
+
+
+            if (array1[14] <= 11700) view.setTextColor(getResources().getColor(R.color.laranja));
+            if (array1[14] <= 10500) view.setTextColor(Color.RED);
+            else {
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+            }
+
         }
 
 
@@ -574,6 +572,18 @@ public class Page1 extends Fragment {
                 double temp = ((double) array1[60]) /64.0;
                 //double temp2 = ((double) array1[70]) /256.0;
                 view.setText(String.format("%3.0f", temp)+"C");
+
+
+                if (array1[27] >= 3200) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[27] >= 3520) view.setTextColor(Color.RED);
+                else {
+                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                    else view.setTextColor(Color.BLACK);
+                }
+
+
+
+
             }
             else view.setVisibility(View.INVISIBLE);
 
@@ -586,6 +596,15 @@ public class Page1 extends Fragment {
 
             double tempt = array1[40] / 10.0;
             view.setText(String.format("%2.0f", tempt) + "C");
+
+            if (array1[40] >= 270) view.setTextColor(getResources().getColor(R.color.laranja));
+            if (array1[40] >= 280) view.setTextColor(Color.RED);
+            else {
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+            }
+
+
         }
 
 
@@ -596,6 +615,17 @@ public class Page1 extends Fragment {
                 view.setVisibility(View.VISIBLE);
                 double temp = ((double) array1[61]) /64.0;
                 view.setText(String.format("%3.0f", temp)+"C");
+
+
+                if (array1[77] >= 3200) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[77] >= 3520) view.setTextColor(Color.RED);
+                else {
+                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                    else view.setTextColor(Color.BLACK);
+                }
+
+
+
             }
             else view.setVisibility(View.INVISIBLE);
 
@@ -603,14 +633,31 @@ public class Page1 extends Fragment {
 
 
 
-        //temperatura interna
-        if (array1[53]!= invalido /*&& array1[54]!= invalido*/) {
+
+
+
+        //sunshine
+        if (array1[46]!= invalido && array1[47]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.sunshine_1);
+
+            if (array1[46]>0 && array1[47]>0) view.setText("Sun:"+(array1[46]+ array1[47]));
+            else view.setText("");
+        }
+
+
+
+
+        //evaporador, temperatura e humidade interna
+        if (array1[53]!= invalido && array1[54]!= invalido && array1[52]!= invalido && array1[51]!=invalido) {
 
             view = (TextView) getView().findViewById(R.id.tempinside_1);
 
+            double evap = array1[52] /2.5 - 40.0;
             double tempt = array1[53] /2.5 - 40.0;
-            //double hum = array1[54] / 2.0;
-            view.setText(String.format("%2.0f", tempt) + "C"/*+ String.format("%2.0f", hum) + "%"*/);
+            double hum = array1[54] / 2.0;
+            double heatw= array1[51] - 40.0;
+            view.setText("Cold:"+String.format("%2.0f", evap) + "C\nIntake:"+String.format("%2.0f", tempt)+"C\nHot:"+String.format("%2.0f", heatw)+ "C\nHum:"+ String.format("%2.0f", hum) + "%");
         }
 
 
@@ -643,6 +690,15 @@ public class Page1 extends Fragment {
             double tempt2 = tempt * (((double) array1[14])/1000.0);
 
             view.setText(String.format("%4.0f", tempt2) + "W");
+
+
+            if (tempt2 >= 1000.0) view.setTextColor(getResources().getColor(R.color.laranja));
+            if (tempt2 >= 1500.0) view.setTextColor(Color.RED);
+            else {
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+            }
+
 
 
         }

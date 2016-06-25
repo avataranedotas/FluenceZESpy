@@ -1511,7 +1511,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 //tostax("obtido correctamento 744/764 022121");
                                 //SystemClock.sleep(2000);
 
-                                /*
+
                                 //sunshine right
                                 longo = processalinha(resposta.substring(24, 26), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
@@ -1523,18 +1523,18 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(147, (int) longo);
                                 }
-                                */
 
-                                /*
+
+
                                 //evaporator temp
                                 longo = processalinha(resposta.substring(8, 10), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(152, (int) longo);
                                 }
-                                */
 
 
-                                //internal temp
+
+                                //internal temp ???
                                 longo = processalinha(resposta.substring(10, 12), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(153, (int) longo);
@@ -1545,6 +1545,13 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(154, (int) longo);
                                 }
+
+                                //clima unknown
+                                longo = processalinha(resposta.substring(34, 36), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(190, (int) longo);
+                                }
+
 
                             }
 

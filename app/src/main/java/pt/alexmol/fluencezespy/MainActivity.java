@@ -173,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //149 Water setpoint C - SUSPENSO
     //150 Evaporator temperature C +40 x10
     //151 heating water temperature +40C
-    //152 evaporator temperature C +40 x2.5 - SUSPENSO
-    //153 internal temp C +40 x2.5
+    //152 evaporator temperature C +40 x2.5
+    //153 internal??? temp C +40 x2.5
     //154 internal humidity x2 %
     //155 motor water pump, 10=stopped 20=running - SUSPENSO
     //156 charger water pump, 10=stopped 20=running  - SUSPENSO
@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //187 HVBAT Status 1=OK 2=Failure
     //188 desconhecido, motor fan speed??
     //189 battery current x1.44 ?????
+    //190 desconhecido clima??
 
 
     //295 Autonomia carro, trip1 ou trip2
