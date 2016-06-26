@@ -343,7 +343,7 @@ public class BatteryVoltages extends AppCompatActivity {
             coresbarras[i] = azul;
             if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = verde;
             //if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[76]) coresbarras[i] = amarelo;
-            if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[38]) coresbarras[i] = laranja;
+            //if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[38]) coresbarras[i] = laranja;
             if ( MainActivity.tensoesdascelulas[i] < jv && MainActivity.tensoesdascelulas[i] < 3.7) coresbarras[i] = vermelho;
 
         }
@@ -453,18 +453,20 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //odoBat km
         if (MainActivity.valoresmemorizados[19]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoBat:"+arrayv[19]+ "km    ";
-        }
-
-        //odoCar
-        if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km / ";
+            texto = texto + "OdoBat:"+arrayv[19]+ "km / ";
         }
 
         //Ageing counter
         if (MainActivity.valoresmemorizados[20]!=Integer.MAX_VALUE) {
-            texto = texto + arrayv[20]+ "    ";
+            texto = texto + arrayv[20]+ "kWh    ";
         }
+
+
+        //odoCar
+        if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
+            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km";
+        }
+
 
         /*
         //JV

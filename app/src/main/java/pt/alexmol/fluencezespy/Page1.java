@@ -653,11 +653,11 @@ public class Page1 extends Fragment {
 
             view = (TextView) getView().findViewById(R.id.tempinside_1);
 
-            double evap = array1[52] /2.5 - 40.0;
+            //double evap = array1[52] /2.5 - 40.0;
             double tempt = array1[53] /2.5 - 40.0;
             double hum = array1[54] / 2.0;
-            double heatw= array1[51] - 40.0;
-            view.setText("Cold:"+String.format("%2.0f", evap) + "C\nIntake:"+String.format("%2.0f", tempt)+"C\nHot:"+String.format("%2.0f", heatw)+ "C\nHum:"+ String.format("%2.0f", hum) + "%");
+            //double heatw= array1[51] - 40.0;
+            view.setText(/*"Cold:"+String.format("%2.0f", evap) + "C\nIntake:"+*/String.format("%2.0f", tempt)+"C/"+ String.format("%2.0f", hum) + "%RH");
         }
 
 

@@ -142,16 +142,16 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //118, Pack health x2 %
     //119, bat mileage km
     //120, bat total kwh
-    //121, desconhecido1
-    //122, desconhecido2
-    //123, desconhecido3
-    //124, desconhecido4
+    //121, current sensor offset
+    //122, IR Sensor short pulse amplitude
+    //123, internal resistance
+    //124, degradação IR
     //125, max battery charging power kw x10 - mais preciso que o 109
-    //126, desconhecido6
+    //126, quick charge counter
     //127, main contactor 0 OFF, 1 PRECharge, 2 ON
     //128, hv consumption loads x10W
-    //129, desconhecido7
-    //130, desconhecido8
+    //129, normal charge counter
+    //130, full charges
     //131, remaining kWh x10
     //132, dashboard SOC %
     //133, range km
@@ -159,8 +159,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //135, average kWh/100km x10
     //136 highest cell voltage  mV
     //137 lowest cell voltage mV
-    //138 weak cell voltage mV (unknow9)
-    //139 desconhecido10
+    //138 weak cell voltage mV (unknow9)   ---- REMOVER NAO FAZ SENTIDO
+    //139 partial charges
     //140 temperatura da bateria C x10
     //141 dashboard iluminated
     //142 day/night 0=day 1=night
@@ -212,6 +212,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //188 desconhecido, motor fan speed??
     //189 battery current x1.44 ?????
     //190 desconhecido clima??
+    //191 degradation of Ah % x100
+    //192 degradation of internal resistance
 
 
     //295 Autonomia carro, trip1 ou trip2

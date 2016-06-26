@@ -387,7 +387,7 @@ public class Page0 extends Fragment {
         if (array0[20]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.totcharged_0);
             //double temp = ((double) array0[20]) / 10.0;
-            view.setText("Ageing Counter: " + array0[20] /*+ "kWh"*/);
+            view.setText("Totalizer: " + array0[20] + "kWh");
         }
 
         //calculo de potencia e seta de fluxo de corrente
@@ -458,24 +458,27 @@ public class Page0 extends Fragment {
 
 
         if (array0[21]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.desconhecido2_0);
-            view.setText("\n"+
-                            "Unknown RAW Data\n"+
-                            "79B/7BB/2101/18/22: " + array0[21] + "\n" +
-                            "79B/7BB/2101/76/80: " + array0[22] + "\n" +
-                            "79B/7BB/2101/82/86: " + array0[23] + "\n" +
-                            "79B/7BB/2101/86/90: " + array0[24] + "\n" +
-                            "79B/7BB/2101/118/120: " + array0[26] + "\n" +
-                            "79B/7BB/2101/120/122: " + array0[29] + "\n" +
-                            "79B/7BB/2101/122/124: " + array0[30]
+            TextView view = (TextView) getView().findViewById(R.id.bat_data_0);
+            view.setText(""+
+                            "IR: " + array0[23] + "m\u2126\n" +
+                            "Ah Degradation: " + String.format("%3.2f",(((float)array0[91])/100.0) )  +"%\n"+
+                            "IR Degradation: " + String.format("%3.2f",(((float)array0[92])/100.0) )  +"%\n"+
+                            "Normal Charges: " + array0[29]   +"\n"+
+                            "Full Charges: " + array0[30]   +"\n"+
+                            "Partial Charges: " + array0[39]   +"\n"+
+                            "Quick Charges: " + array0[26]   +
+                            ""
+
             );
         }
 
 
         if (array0[8]!= invalido) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
-            view.setText("42E/44/50: " + array0[8] +"\n"+
-                    "42E/20/24: " + array0[88] + ""
+            view.setText("\nUnknown RAW Data\n"+
+                            "42E/44/50: " + array0[8] +"\n"+
+                            "42E/20/24: " + array0[88] +
+                            ""
 
             );
         }
@@ -484,7 +487,10 @@ public class Page0 extends Fragment {
         if (array0[90]!= invalido ) {
 
             TextView view = (TextView) getView().findViewById(R.id.desconhecido4_0);
-            view.setText("744/764/2121/34/36:" + array0[90]+"\n");
+            view.setText("744/764/2121/34/36:" + array0[90]+"\n"
+
+
+            );
 
         }
 
@@ -568,12 +574,14 @@ public class Page0 extends Fragment {
 
         }
 
+        /*
         //weak cells
         if ( array0[38]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.xptcellvolt_0);
             view.setText("Weak Cell threshold:"  + array0[38] + "mV");
 
         }
+        */
 
 
 

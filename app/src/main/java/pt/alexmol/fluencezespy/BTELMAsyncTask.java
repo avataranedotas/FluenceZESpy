@@ -1115,7 +1115,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(116, (int) longo);
                                 }
 
-                                //desconhecido 1
+                                //current sensor offset?
                                 longo = processalinha(resposta.substring(18, 22), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(121, (int) longo);
@@ -1127,13 +1127,13 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(122, (int) longo);
                                 }
 
-                                //desconhecido 3
+                                //resistencia interna
                                 longo = processalinha(resposta.substring(82, 86), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(123, (int) longo);
                                 }
 
-                                //desconhecido 4
+                                //degradação IR
                                 longo = processalinha(resposta.substring(86, 90), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(124, (int) longo);
@@ -1145,6 +1145,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(125, (int) longo);
                                 }
 
+                                /*
                                 //desconhecido 6
                                 longo = processalinha(resposta.substring(118, 120), 0, 7, false);
                                 if (longo != Long.MAX_VALUE) {
@@ -1163,10 +1164,11 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(130, (int) longo);
                                 }
 
+                                */
 
 
                                 //battery current x1.6 ????
-                                longo = processalinha(resposta.substring(8, 16), 0, 31, true) * -1L;
+                                longo = processalinha(resposta.substring(8, 16), 0, 15, true) * -1L;
                                 if (longo != Long.MAX_VALUE) {
                                     //if (Math.abs(longo) < 500) longo = 0;
                                     publishProgress(189, (int) longo);
@@ -1363,14 +1365,30 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(118, (int) longo);
                                 }
 
+                                //degradation
+                                longo = processalinha(resposta.substring(12, 16), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(191, (int) longo);
+                                }
+
+
+
+                                //degradation of internal resistance
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(192, (int) longo);
+                                }
+
+
+
                                 //bat mileage 2ª e 3ª linha
-                                longo = processalinha(resposta.substring(30, 32) + resposta.substring(34, 38), 0, 23, false);
+                                longo = processalinha(resposta.substring(28, 32) + resposta.substring(34, 38), 0, 31, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(119, (int) longo);
                                 }
 
                                 //bat total provided kwh  3ª linha
-                                longo = processalinha(resposta.substring(32, 48), 40, 55, false);
+                                longo = processalinha(resposta.substring(38, 46), 0, 31, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(120, (int) longo);
                                 }
@@ -1629,6 +1647,49 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
+
+
+                            //este id só precisa de ser lido de minuto a minuto
+                            resposta = getisoframe("79b", "7bb", "022166", 200, 2);
+
+
+                            if (resposta != null && (resposta.length() == 32)) {
+
+                                //quick charge
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                        publishProgress(126, (int) longo);
+                                    }
+
+                                //normal charge
+                                longo = processalinha(resposta.substring(12, 16), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(129, (int) longo);
+                                }
+
+                                //full charges
+                                longo = processalinha(resposta.substring(18, 22), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(130, (int) longo);
+                                }
+
+                                //partial charges
+                                longo = processalinha(resposta.substring(22, 26), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(139, (int) longo);
+                                }
+
+
+
+
+                            }
+
+
+
+
+
+
+
                         }
 
 
@@ -1743,11 +1804,13 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(138, (int) longo);
                                 }
 
+                                /*
                                 //desconhecido 10
                                 longo = processalinha(resposta.substring(12, 16), 0, 15, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(139, (int) longo);
                                 }
+                                */
 
                                 //temperatura da bateria C x10
                                 longo = processalinha(resposta.substring(18, 22), 0, 15, true);
@@ -1756,9 +1819,12 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
 
+
+
+
                             }
 
-                            /*
+
                             resposta = getisoframe("79b", "7bb", "022105", 200, 11);
 
                             if (resposta != null && (resposta.length() == 176)) {
@@ -1779,8 +1845,17 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
 
 
+                                /*
+                                // testes
+                                longo = processalinha(resposta.substring(12, 16), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(126, (int) longo);
+                                }
+                                */
+
+
                             }
-                            */
+
 
 
 

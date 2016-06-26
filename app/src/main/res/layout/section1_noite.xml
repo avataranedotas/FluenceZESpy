@@ -435,7 +435,7 @@
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:id="@+id/tempinside_1"
                                 android:textColor="#ffffff"
-                                android:textSize="@dimen/fonte_muitopequena"
+                                android:textSize="@dimen/fonte_pequena"
                                 android:singleLine="false"
                                 android:layout_alignParentBottom="true"
                                 android:text="C"
