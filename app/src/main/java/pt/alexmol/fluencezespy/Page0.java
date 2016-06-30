@@ -448,13 +448,7 @@ public class Page0 extends Fragment {
             else image.setVisibility(View.VISIBLE);
         }
 
-        if (array0[87]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.hvbatfail_0);
 
-            if (array0[87]!=1 && array0[87]!=2) view.setText("Battery Fail: " + array0[87]);
-            if (array0[87]==1) view.setText("Battery Fail: No");
-            if (array0[87]==2) view.setText("Battery Fail: Yes");
-        }
 
 
         if (array0[21]!= invalido) {
@@ -472,18 +466,31 @@ public class Page0 extends Fragment {
             );
         }
 
+        if (array0[87]!= invalido && array0[93]!= invalido) {
+            TextView view = (TextView) getView().findViewById(R.id.hvbatfail_0);
+
+            view.setText("");
+            if (array0[93]>0) view.setText("Isolation Fault Level:"+ (array0[93]) );
+            if (array0[87]==2) view.setText("Battery Fail Alarm");
+        }
+
 
         if (array0[8]!= invalido) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
-            view.setText("\nUnknown RAW Data\n"+
+            view.setText("Unknown RAW Data\n"+
+                            "7E4/7EC/223430: " + array0[97]+"C\n"+
                             "42E/44/50: " + array0[8] +"\n"+
                             "42E/20/24: " + array0[88] +
+                            "\n"+
+                            //"ukn: " + (array0[94])  +"/"+(array0[94])  +   "\n"+
+                            //"motortemp" + (array0[96])  +"/"+(array0[96]-40)  +   ""+
                             ""
 
             );
         }
 
 
+        /*
         if (array0[90]!= invalido ) {
 
             TextView view = (TextView) getView().findViewById(R.id.desconhecido4_0);
@@ -494,6 +501,7 @@ public class Page0 extends Fragment {
 
         }
 
+        */
 
          /*   view = (TextView) getView().findViewById(R.id.desconhecido4_0);
             //view.setText("79B/7BB/2101/86/90: " + array0[24]);
@@ -585,6 +593,19 @@ public class Page0 extends Fragment {
 
 
 
+        //ventoinha da bateria
+
+        if (array0[95]!=invalido) {
+
+            ImageView image = (ImageView) getView().findViewById(R.id.ventax);
+
+            if (array0[95]==1) image.setVisibility(View.VISIBLE);
+            else image.setVisibility(View.INVISIBLE);
+
+
+        }
+
+        /*
         // corrente conversor DCDC
         if ( (array0[84]!= invalido) && (array0[14]!= invalido) &&  (array0[5]!= invalido)) {
 
@@ -609,6 +630,7 @@ public class Page0 extends Fragment {
 
         }
 
+        */
 
 
         /*

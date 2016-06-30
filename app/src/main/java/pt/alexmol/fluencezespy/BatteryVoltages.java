@@ -122,7 +122,7 @@ public class BatteryVoltages extends AppCompatActivity {
             coresbarras[i] = azul;
             if ( MainActivity.shuntscelulas[i] == true) coresbarras[i] = verde;
             //if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[76]) coresbarras[i] = amarelo;
-            if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[38]) coresbarras[i] = laranja;
+            //if ( MainActivity.tensoesdascelulas[i] < MainActivity.valoresmemorizados[38]) coresbarras[i] = laranja;
             if ( MainActivity.tensoesdascelulas[i] < jv && MainActivity.tensoesdascelulas[i] < 3.7) coresbarras[i] = vermelho;
 
         }

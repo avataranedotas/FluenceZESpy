@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //135, average kWh/100km x10
     //136 highest cell voltage  mV
     //137 lowest cell voltage mV
-    //138 weak cell voltage mV (unknow9)   ---- REMOVER NAO FAZ SENTIDO
+    //138 isolation resistance Ohm /100
     //139 partial charges
     //140 temperatura da bateria C x10
     //141 dashboard iluminated
@@ -181,8 +181,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //157 heater water pump, 10=stopped 20=speed 0? 41.. speed  - SUSPENSO
     //158 heater pump requested speed 10=stopped 20=speed 0? 41.. speed - SUSPENSO
     //159 partial energy spent by car kWh x1000
-    //160 DCDC converter temperature ??????
-    //161 inverter temperature  ????
+    //160 DCDC converter temperature
+    //161 inverter temperature
     //162 battery cooling fans - SUSPENSO
     //163 battery fan external speed - SUSPENSO
     //164 battery fan internal speed - SUSPENSO
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //168 wiper stalk buttons 1=Down 2=Up 0=nothing - SUSPENSO
     //169 a/c key pressed - SUSPENSO
     //170 DCDC converter temperature % ???
-    //171 inverter temperature % ??? - SUSPENSO
+    //171 inverter temperature % ???
     //172 peb current x4 - SUSPENSO
     //173 PEB 1E - SUSPENSO
     //174 PEB 1F - SUSPENSO
@@ -211,9 +211,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //187 HVBAT Status 1=OK 2=Failure
     //188 desconhecido, motor fan speed??
     //189 battery current x1.44 ?????
-    //190 desconhecido clima??
+    //190 12V battery x10 clima
     //191 degradation of Ah % x100
     //192 degradation of internal resistance
+    //193 isolation fault level
+    //194 dimmer x2.5 %
+    //195 battery cooling fans active
+    //196 motor temperature +40C
+    //197 testes
 
 
     //295 Autonomia carro, trip1 ou trip2

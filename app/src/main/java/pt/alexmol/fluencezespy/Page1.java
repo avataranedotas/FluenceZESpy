@@ -470,6 +470,20 @@ public class Page1 extends Fragment {
 
         }
 
+
+
+
+        //total km
+        if (array1[38]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.isolation_1);
+
+            double tempt = array1[38] / 10000.0;
+            view.setText(String.format("%3.2f", tempt) + "MΩ");
+        }
+
+
+
         //evse current
         if (array1[6]!= invalido) {
             view = (TextView) getView().findViewById(R.id.evse_1);
@@ -564,7 +578,7 @@ public class Page1 extends Fragment {
 
 
 
-        //temperatura do conversor DCDC ??
+        //temperatura do conversor DCDC
         if (array1[60]!= invalido && array1[70]!= invalido) {
             view = (TextView) getView().findViewById(R.id.dcdctemp_1);
             if (array1[27]==2) {
@@ -574,8 +588,8 @@ public class Page1 extends Fragment {
                 view.setText(String.format("%3.0f", temp)+"C");
 
 
-                if (array1[27] >= 3200) view.setTextColor(getResources().getColor(R.color.laranja));
-                if (array1[27] >= 3520) view.setTextColor(Color.RED);
+                if (array1[60] >= 3200) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[60] >= 3520) view.setTextColor(Color.RED);
                 else {
                     if (MainActivity.noite) view.setTextColor(Color.WHITE);
                     else view.setTextColor(Color.BLACK);

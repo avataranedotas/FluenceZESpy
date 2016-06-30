@@ -57,7 +57,7 @@
                         android:scaleType="fitEnd"
                         android:layout_below="@+id/odokm_1"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp" />
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:layout_width="@dimen/largura_range"
@@ -90,7 +90,7 @@
                         android:singleLine="true"
                         android:layout_below="@+id/range_1"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp" />
+                        android:layout_marginTop="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,6 +114,31 @@
                         android:alpha="0.3"
                         android:layout_marginTop="-5dp"
                         android:layout_marginBottom="-5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Isol."
+                        android:id="@+id/textView13"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/vin_1"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="MΩ"
+                        android:id="@+id/isolation_1"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fonte_normal"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textView13"
+                        android:layout_centerHorizontal="true" />
                 </RelativeLayout>
 
                 <RelativeLayout
