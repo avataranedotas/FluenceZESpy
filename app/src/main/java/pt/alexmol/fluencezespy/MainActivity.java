@@ -218,7 +218,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //194 dimmer x2.5 %
     //195 battery cooling fans active
     //196 motor temperature +40C
-    //197 testes
+    //197 stator temperature
+    //198 testes
+    //199 testes
+
 
 
     //295 Autonomia carro, trip1 ou trip2

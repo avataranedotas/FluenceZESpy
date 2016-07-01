@@ -477,14 +477,11 @@ public class Page0 extends Fragment {
 
         if (array0[8]!= invalido) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
-            view.setText("Unknown RAW Data\n"+
-                            "7E4/7EC/223430: " + array0[97]+"C\n"+
-                            "42E/44/50: " + array0[8] +"\n"+
-                            "42E/20/24: " + array0[88] +
-                            "\n"+
-                            //"ukn: " + (array0[94])  +"/"+(array0[94])  +   "\n"+
-                            //"motortemp" + (array0[96])  +"/"+(array0[96]-40)  +   ""+
-                            ""
+            view.setText(
+
+                    //"Unknown RAW Data\n"+
+
+                            "..."
 
             );
         }

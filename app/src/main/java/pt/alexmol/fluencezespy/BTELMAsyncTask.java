@@ -1782,20 +1782,47 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                            //temperatura motor?
-                            resposta = getisoframe("7E4", "7EC", "03223430",200 ,1);
+                            //stator temperature
+                            resposta = getisoframe("75A", "77E", "0322302C",200 ,1);
 
 
                             if (resposta != null && (resposta.length() == 16)) {
                                 //tostax("Reposta:"+resposta);
 
-                                longo = processalinha(resposta.substring(8, 16), 0, 7, false);
+                                longo = processalinha(resposta.substring(8, 16), 0, 15, true);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(197, (int) longo);
                                     //tostax("Total:" + longo);
                                 }
                             }
 
+
+                            //dcdc converter temperature
+                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(160, (int) longo);
+                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
+                                }
+                            }
+
+
+                            //inverter temperature
+                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+                                //tostax("sub:"+resposta.substring(8, 12));
+                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(161, (int) longo);
+                                    //tostax("INVtemp:" + (longo*100/64));
+                                }
+                            }
 
 
 
@@ -1809,22 +1836,26 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         if (ciclo10s & !hsm) {
 
 
-                            resposta = getisoframe("75A", "77E", "0322302B",200 ,1);
 
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
+
+                            /*
+                            //testes
+                            resposta = getisoframe("75A", "77E", "03223036",200 ,1);
 
 
                             if (resposta != null && (resposta.length() == 16)) {
                                 //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 15, true);
                                 if (longo != Long.MAX_VALUE) {
-                                    publishProgress(161, (int) longo);
-                                    //tostax("INVtemp:" + (longo*100/64));
+                                    publishProgress(199, (int) longo);
+                                    //tostax("Total:" + longo);
                                 }
                             }
+                            */
+
+
+
 
 
 
@@ -1848,22 +1879,6 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                            resposta = getisoframe("75A", "77E", "03223018",200 ,1);
-
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
-
-
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
-                                //tostax("sub:"+resposta.substring(8, 12));
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(160, (int) longo);
-                                    //tostax("DCDCtemp:" + (longo * 100 / 64));
-                                }
-                            }
 
 
 

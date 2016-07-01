@@ -588,12 +588,14 @@ public class Page1 extends Fragment {
                 view.setText(String.format("%3.0f", temp)+"C");
 
 
-                if (array1[60] >= 3200) view.setTextColor(getResources().getColor(R.color.laranja));
-                if (array1[60] >= 3520) view.setTextColor(Color.RED);
-                else {
-                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
-                    else view.setTextColor(Color.BLACK);
-                }
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+
+
+
+                if (temp >= 50.0) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (temp >= 60.0) view.setTextColor(Color.RED);
+
 
 
 
@@ -611,12 +613,12 @@ public class Page1 extends Fragment {
             double tempt = array1[40] / 10.0;
             view.setText(String.format("%2.0f", tempt) + "C");
 
+            if (MainActivity.noite) view.setTextColor(Color.WHITE);
+            else view.setTextColor(Color.BLACK);
+
             if (array1[40] >= 270) view.setTextColor(getResources().getColor(R.color.laranja));
             if (array1[40] >= 280) view.setTextColor(Color.RED);
-            else {
-                if (MainActivity.noite) view.setTextColor(Color.WHITE);
-                else view.setTextColor(Color.BLACK);
-            }
+
 
 
         }
@@ -631,12 +633,14 @@ public class Page1 extends Fragment {
                 view.setText(String.format("%3.0f", temp)+"C");
 
 
-                if (array1[77] >= 3200) view.setTextColor(getResources().getColor(R.color.laranja));
-                if (array1[77] >= 3520) view.setTextColor(Color.RED);
-                else {
-                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
-                    else view.setTextColor(Color.BLACK);
-                }
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+
+
+                if (temp >= 50.0) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (temp >= 60.0) view.setTextColor(Color.RED);
+
+
 
 
 
@@ -645,6 +649,26 @@ public class Page1 extends Fragment {
 
         }
 
+
+        //temperatura do estator
+        if (array1[97]!= invalido && array1[77]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.motortemp_1);
+            if (array1[77]==1) {
+                view.setVisibility(View.VISIBLE);
+                double temp = ((double) array1[97]) /64.0;
+                view.setText(String.format("%3.0f", temp)+"C");
+
+
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+
+
+                if (temp >= 70.0) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (temp >= 90.0) view.setTextColor(Color.RED);
+            }
+            else view.setVisibility(View.INVISIBLE);
+
+        }
 
 
 
@@ -782,7 +806,8 @@ public class Page1 extends Fragment {
             if (array1[77]==1) {
                 view.setVisibility(View.VISIBLE);
                 double temp = (array1[67] / 32.0) / 1.44;
-                view.setText(String.format("%3.1f", temp) + "kW");
+                double temp2 = (array1[67] / 32.0) * (array1[12]/100.0) / 1000.0;
+                view.setText(String.format("%3.1f", temp) + "kW\n"+String.format("%3.1f", temp2) + "kW"         );
             }
             else view.setVisibility(View.INVISIBLE);
 
