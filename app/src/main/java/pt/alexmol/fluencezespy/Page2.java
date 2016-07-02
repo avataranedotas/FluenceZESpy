@@ -357,7 +357,9 @@ public class Page2 extends Fragment {
         if (array2[67]!=invalido ) {
             // x10
 
-            double temp = (array2[67] / 32.0) / 1.44; //em kW
+            //double temp = (array2[67] / 32.0) / 1.44; //em kW
+            double temp = (array2[67] / 16.0) *  (array2[99]/32.0) / 1000.0 * 1.0;
+
             potenciaactual = (int) (temp * 10.0);
             if (potenciaactual>800) potenciaactual = 800;
             if (potenciaactual<-400) potenciaactual = -400;
@@ -575,7 +577,9 @@ public class Page2 extends Fragment {
         //consumo instantaneo
         if (array2[67]!=invalido && array2[78]!=invalido ) {
             // potencia motor
-            double temppotmot = (array2[67] / 32.0) / 1.44; //em kW
+            //double temppotmot = (array2[67] / 32.0) / 1.44; //em kW
+
+            double temppotmot = (array2[67] / 16.0) *  (array2[99]/32.0) / 1000.0 * 1.0;
 
             //potencia auxiliar
             double temppotaux = 0.0;

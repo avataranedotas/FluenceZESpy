@@ -477,9 +477,13 @@ public class Page0 extends Fragment {
 
         if (array0[8]!= invalido) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
+
+
+
             view.setText(
 
-                    //"Unknown RAW Data\n"+
+                    "Unknown RAW Data\n"+
+                    //"Pack:"+ (array0[12] / 100.0) + "/" + String.format("%3.2f",(array0[99]/32.0))+"/"+ String.format("%1.2f",  ((array0[12] / 100.0) - (array0[99]/32.0)))+"\n"+
 
                             "..."
 

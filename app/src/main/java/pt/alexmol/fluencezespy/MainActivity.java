@@ -219,8 +219,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //195 battery cooling fans active
     //196 motor temperature +40C
     //197 stator temperature
-    //198 testes
-    //199 testes
+    //198 testes                     ----------------TESTES------------
+    //199 HV voltage at the inverter
 
 
 

@@ -200,17 +200,31 @@
                         android:layout_centerHorizontal="true" />
 
 
+                    <ImageView
+                        android:layout_width="@dimen/largura_bat12v"
+                        android:layout_height="@dimen/largura_bat12v"
+                        android:id="@+id/sol"
+                        android:src="@drawable/sun"
+                        android:scaleType="fitCenter"
+                        android:layout_alignParentTop="false"
+                        android:layout_centerHorizontal="true"
+                        android:layout_above="@+id/sunshine_1" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="SUN"
                         android:id="@+id/sunshine_1"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/fonte_normal"
-                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/fonte_pequena"
+                        android:singleLine="false"
                         android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_centerHorizontal="true"
+                        android:textAlignment="center"
+                        android:foregroundGravity="center_vertical|center_horizontal"
+                        android:gravity="center_vertical|center_horizontal" />
+
 
 
                 </RelativeLayout>
@@ -385,6 +399,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/dcdctemp_1"
                         android:textColor="#ffffff"
+                        android:background="#64000000"
                         android:textSize="@dimen/fonte_pequena"
                         android:singleLine="false"
                         android:text="C"
@@ -433,18 +448,6 @@
                         android:background="#64000000"
                          />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="SUN"
-                        android:id="@+id/sunshine_1"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/fonte_normal"
-                        android:singleLine="true"
-                        android:layout_alignParentBottom="false"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true" />
 
 
 

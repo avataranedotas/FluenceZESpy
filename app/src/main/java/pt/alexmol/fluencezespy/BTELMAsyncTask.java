@@ -1034,6 +1034,40 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+                        /*
+                        //testes
+                        resposta = getisoframe("7E4", "7EC", "03223042",200 ,1);
+
+
+                        if (resposta != null && (resposta.length() == 16)) {
+                            //tostax("Reposta:"+resposta);
+
+                            longo = processalinha(resposta.substring(8, 16), 0, 15, true);
+                            if (longo != Long.MAX_VALUE) {
+                                publishProgress(198, (int) longo);
+                                //tostax("Total:" + longo);
+                            }
+                        }
+                        */
+
+
+
+
+                        //tensão HV no inversor
+                        resposta = getisoframe("75A", "77E", "0322300E",200 ,1);
+
+
+                        if (resposta != null && (resposta.length() == 16)) {
+                            //tostax("Reposta:"+resposta);
+
+                            longo = processalinha(resposta.substring(8, 16), 0, 15, true);
+                            if (longo != Long.MAX_VALUE) {
+                                publishProgress(199, (int) longo);
+                                //tostax("Total:" + longo);
+                            }
+                        }
+
+
                         //wiper stalk buttons
 
                         /*
@@ -1838,21 +1872,12 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                            /*
-                            //testes
-                            resposta = getisoframe("75A", "77E", "03223036",200 ,1);
 
 
-                            if (resposta != null && (resposta.length() == 16)) {
-                                //tostax("Reposta:"+resposta);
 
-                                longo = processalinha(resposta.substring(8, 16), 0, 15, true);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(199, (int) longo);
-                                    //tostax("Total:" + longo);
-                                }
-                            }
-                            */
+
+
+
 
 
 

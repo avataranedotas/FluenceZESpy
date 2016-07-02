@@ -678,9 +678,22 @@ public class Page1 extends Fragment {
         if (array1[46]!= invalido && array1[47]!= invalido) {
 
             view = (TextView) getView().findViewById(R.id.sunshine_1);
+            view2 = (ImageView) getView().findViewById(R.id.sol);
 
-            if (array1[46]>0 && array1[47]>0) view.setText("Sun:"+(array1[46]+ array1[47]));
-            else view.setText("");
+            if (array1[46]>0 && array1[47]>0) {
+                view.setText(/*"Sun\n"+*/(((array1[46]*50)+ (array1[47]*50))/2  )+"W/m\u00b2");
+                view2.setVisibility(View.VISIBLE);
+            }
+            else {
+                view.setText("");
+                view2.setVisibility(View.INVISIBLE);
+            }
+
+
+
+
+
+
         }
 
 
@@ -805,9 +818,9 @@ public class Page1 extends Fragment {
 
             if (array1[77]==1) {
                 view.setVisibility(View.VISIBLE);
-                double temp = (array1[67] / 32.0) / 1.44;
-                double temp2 = (array1[67] / 32.0) * (array1[12]/100.0) / 1000.0;
-                view.setText(String.format("%3.1f", temp) + "kW\n"+String.format("%3.1f", temp2) + "kW"         );
+                //double temp = (array1[67] / 32.0) / 1.44;
+                double temp2 = (array1[67] / 16.0) *  (array1[99]/32.0) / 1000.0 * 1.0;
+                view.setText(/*String.format("%3.1f", temp) + "kW\n"+*/String.format("%3.1f", temp2) + "kW"         );
             }
             else view.setVisibility(View.INVISIBLE);
 
