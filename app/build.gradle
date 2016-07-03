@@ -6,7 +6,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
-        applicationId "pt.alexmol.testeswipe4"
+        applicationId 'pt.alexmol.fluencezespy'
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 27
