@@ -457,10 +457,11 @@ public class Page0 extends Fragment {
                             "IR: " + array0[23] + "m\u2126\n" +
                             "Ah Degradation: " + String.format("%3.2f",(((float)array0[91])/100.0) )  +"%\n"+
                             "IR Degradation: " + String.format("%3.2f",(((float)array0[92])/100.0) )  +"%\n"+
-                            "Normal Charges: " + array0[29]   +"\n"+
+                            "Slow Charges: " + array0[29]   +"\n"+
+                            "Quick Charges: " + array0[26]   +"\n"+
                             "Full Charges: " + array0[30]   +"\n"+
-                            "Partial Charges: " + array0[39]   +"\n"+
-                            "Quick Charges: " + array0[26]   +
+                            "Partial Charges: " + array0[39]   +""+
+
                             ""
 
             );
