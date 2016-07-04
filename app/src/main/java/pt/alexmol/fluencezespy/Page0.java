@@ -294,9 +294,9 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[5]!= invalido) {
+        if (/*array0[5]!= invalido && */array0[100]!=invalido) {
             ImageView view = (ImageView) getView().findViewById(R.id.plug_0);
-            if (array0[5]!=0 && array0[13]<0) view.setVisibility(View.VISIBLE);
+            if (/*array0[5]!=0 &&*/ (array0[100]==1 || array0[100]==2) ) view.setVisibility(View.VISIBLE);
             else view.setVisibility(View.INVISIBLE);
 
         }
@@ -451,7 +451,7 @@ public class Page0 extends Fragment {
 
 
 
-        if (array0[21]!= invalido) {
+        if (array0[23]!= invalido && array0[91]!= invalido && array0[92]!= invalido && array0[29]!= invalido && array0[26]!= invalido && array0[30]!= invalido && array0[39]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.bat_data_0);
             view.setText(""+
                             "IR: " + array0[23] + "m\u2126\n" +
@@ -476,16 +476,26 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[8]!= invalido) {
+        if (true) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
 
+            String texto="";
+
+
+            if (array0[101]==0) texto="Not Active";
+            if (array0[101]==1) texto="Slow charge";
+            if (array0[101]==2) texto="Zero Amps mode";
+            if (array0[101]==3) texto="Quick charge";
 
 
             view.setText(
 
-                    "Unknown RAW Data\n"+
-                    //"Pack:"+ (array0[12] / 100.0) + "/" + String.format("%3.2f",(array0[99]/32.0))+"/"+ String.format("%1.2f",  ((array0[12] / 100.0) - (array0[99]/32.0)))+"\n"+
-
+                    "==Beta testing Data==\n" +
+                            "Quick drops?: " + array0[98] + "\n" +
+                            //"Pack:"+ (array0[12] / 100.0) + "/" + String.format("%3.2f",(array0[99]/32.0))+"/"+ String.format("%1.2f",  ((array0[12] / 100.0) - (array0[99]/32.0)))+"\n"+
+                            //"Charging:"+array0[100]+"\n"+
+                            "Charger Mode: "+array0[101]+"/"+ texto + "\n"+
+                            "Peltier temp: "+(array0[102]-40)+"C"+ "\n"+
                             "..."
 
             );

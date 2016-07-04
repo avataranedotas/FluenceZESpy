@@ -485,7 +485,7 @@ public class Page1 extends Fragment {
 
 
         //evse current
-        if (array1[6]!= invalido) {
+        if (array1[6]!= invalido ) {
             view = (TextView) getView().findViewById(R.id.evse_1);
             if (array1[6]!=0 && array1[6]<48 && array1[5]!=0 && array1[5] != invalido && !(MainActivity.TABLET ^ MainActivity.reverseModeMain ) ) {
                 view.setVisibility(View.VISIBLE);

@@ -1034,21 +1034,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
-                        /*
-                        //testes
-                        resposta = getisoframe("7E4", "7EC", "03223042",200 ,1);
 
-
-                        if (resposta != null && (resposta.length() == 16)) {
-                            //tostax("Reposta:"+resposta);
-
-                            longo = processalinha(resposta.substring(8, 16), 0, 15, true);
-                            if (longo != Long.MAX_VALUE) {
-                                publishProgress(198, (int) longo);
-                                //tostax("Total:" + longo);
-                            }
-                        }
-                        */
 
 
 
@@ -1870,14 +1856,64 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                         if (ciclo10s & !hsm) {
 
 
+                            //testes quick drop
+                            resposta = getisoframe("7E4", "7EC", "0322336C", 200, 1);
 
 
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(198, (int) longo);
+
+                                }
+                            }
 
 
+                            //testes zamode?
+                            resposta = getisoframe("7E4", "7EC", "032233B6", 200, 1);
 
 
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(201, (int) longo);
+
+                                }
+                            }
 
 
+                            //testes peltier temps
+                            resposta = getisoframe("7E4", "7EC", "03223422", 200, 1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(202, (int) longo);
+
+                                }
+                            }
+
+
+                            //charging
+                            resposta = getisoframe("7E4", "7EC", "03223101", 200, 1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(200, (int) longo);
+
+                                }
+                            }
 
 
 
