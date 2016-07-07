@@ -303,7 +303,9 @@ public class Page0 extends Fragment {
 
         if (array0[6]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
-            if (array0[6]>=0 && array0[6]<48 && array0[5]!=0 && array0[5] != invalido && array0[13]<0) {
+
+
+            if (array0[6]>=0 && array0[6]<48 && array0[5]!=0 && array0[5] != invalido &&  (array0[100]==1 || array0[100]==2)  ) {
                 view.setText(array0[6] + "A");
                 view.setVisibility(View.VISIBLE);
             }
@@ -471,31 +473,42 @@ public class Page0 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.hvbatfail_0);
 
             view.setText("");
-            if (array0[93]>0) view.setText("Isolation Fault Level:"+ (array0[93]) );
-            if (array0[87]==2) view.setText("Battery Fail Alarm");
+            view.setVisibility(View.GONE);
+            if (array0[93]>0) {
+                view.setText("Isolation Fault Level:" + (array0[93]));
+                view.setVisibility(View.VISIBLE);
+            }
+            if (array0[87]==2) {
+                view.setText("Battery Fail Alarm");
+                view.setVisibility(View.VISIBLE);
+            }
         }
 
 
-        if (true) {
+
+        if (array0[98]!=invalido    ) {
+
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
 
-            String texto="";
+
+                view.setText("Battery Swaps: " + array0[98]);
+
+        }
 
 
-            if (array0[101]==0) texto="Not Active";
-            if (array0[101]==1) texto="Slow charge";
-            if (array0[101]==2) texto="Zero Amps mode";
-            if (array0[101]==3) texto="Quick charge";
 
+
+        if (true) {
+            TextView view= (TextView) getView().findViewById(R.id.desconhecido4_0);
 
             view.setText(
 
                     "==Beta testing Data==\n" +
-                            "Quick drops?: " + array0[98] + "\n" +
                             //"Pack:"+ (array0[12] / 100.0) + "/" + String.format("%3.2f",(array0[99]/32.0))+"/"+ String.format("%1.2f",  ((array0[12] / 100.0) - (array0[99]/32.0)))+"\n"+
                             //"Charging:"+array0[100]+"\n"+
-                            "Charger Mode: "+array0[101]+"/"+ texto + "\n"+
-                            "Peltier temp: "+(array0[102]-40)+"C"+ "\n"+
+                            //"Total power: "+ ((array0[103]*25)/*-(array0[105]*25)*/) + "W\n"+   //heat = total - cold
+                            //"Cold power: "+ (array0[105]*25) + "W\n"+
+
                             "..."
 
             );

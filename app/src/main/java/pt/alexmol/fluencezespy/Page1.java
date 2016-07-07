@@ -376,6 +376,19 @@ public class Page1 extends Fragment {
         }
 
 
+
+        if (array1[104]!= invalido) {
+            view = (TextView) getView().findViewById(R.id.soc12v_1);
+            double temp = ((double) array1[104]) / 1000.0;
+            view.setText(String.format("%3.1f", temp) + "%");
+
+
+        }
+
+
+
+
+
         if (array1[86]!= invalido) {
             view2 = (ImageView) getView().findViewById(R.id.ventaxrad);
 
@@ -425,15 +438,28 @@ public class Page1 extends Fragment {
 
 
 
-        if (array1[28]!= invalido) {
+        if (array1[28]!= invalido && array1[103]!=invalido && array1[105]!=invalido) {
             view = (TextView) getView().findViewById(R.id.hvcons);
-            double temp = ((double) array1[28]) / 100.0;
-            view.setText(String.format("%1.1f", temp) + "kW");
+
+            //double temp = ((double) array1[28]) / 100.0;
+
+            double tempt;
+
+            if (array1[27]==2) tempt = ((double) array1[84])/64.0;
+            else tempt = 0.0;
+            double dcdc = tempt * (((double) array1[14])/1000.0) * 1.10 /1000.0; //dcdc
+            double clim = (((double) array1[103])*0.025);  // climate power
+            double temp3;
+
+            if (clim>0 && clim <6.350) temp3 =dcdc + clim;
+            else temp3 = 0.0;
+
+            view.setText(String.format("%1.1f", temp3) + "kW");
 
             ImageView image = (ImageView) getView().findViewById(R.id.aux_hv);
 
             //se o valor for zero ou o contactor principal não estiver ligado
-            if (temp==0.0 || array1[27]!=2 ) {
+            if (temp3<= 0.0 || array1[27]!=2 ) {
                 view.setVisibility(View.INVISIBLE);
                 image.setVisibility(View.INVISIBLE);
             }

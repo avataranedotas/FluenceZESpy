@@ -1845,6 +1845,20 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
+                            //12v soc
+                            resposta = getisoframe("7E4", "7EC", "03223303", 200, 1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(204, (int) longo);
+
+                                }
+                            }
+
 
 
 
@@ -1870,7 +1884,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
                             }
 
-
+                            /*
                             //testes zamode?
                             resposta = getisoframe("7E4", "7EC", "032233B6", 200, 1);
 
@@ -1884,8 +1898,11 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                                 }
                             }
+                            */
 
 
+
+                            /*
                             //testes peltier temps
                             resposta = getisoframe("7E4", "7EC", "03223422", 200, 1);
 
@@ -1899,6 +1916,41 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                                 }
                             }
+                            */
+
+
+                            //total climate power
+                            resposta = getisoframe("7E4", "7EC", "03223347", 200, 1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(203, (int) longo);
+
+                                }
+                            }
+
+
+
+
+                            //a/c compressor power
+                            resposta = getisoframe("7E4", "7EC", "032233A7", 200, 1);
+
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 16), 0, 7, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(205, (int) longo);
+
+                                }
+                            }
+
+
 
 
                             //charging
@@ -1914,6 +1966,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                                 }
                             }
+
 
 
 
