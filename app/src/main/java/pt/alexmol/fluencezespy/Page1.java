@@ -452,7 +452,7 @@ public class Page1 extends Fragment {
             double temp3;
 
             if (clim>0 && clim <6.350) temp3 =dcdc + clim;
-            else temp3 = 0.0;
+            else temp3 = dcdc;
 
             view.setText(String.format("%1.1f", temp3) + "kW");
 
@@ -746,6 +746,10 @@ public class Page1 extends Fragment {
 
             double tempt = array1[65] - 40.0;
             view.setText(String.format("%2.0f", tempt) + "C");
+
+            if (tempt < -39.0 || tempt > 213) view.setVisibility(View.INVISIBLE);
+            else view.setVisibility(View.VISIBLE);
+
         }
 
 

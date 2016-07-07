@@ -546,6 +546,10 @@ public class Page2 extends Fragment {
 
             double tempt = array2[65] - 40.0;
             view.setText(String.format("%2.0f", tempt) + "C");
+
+            if (tempt < -39.0 || tempt > 213) view.setVisibility(View.INVISIBLE);
+            else view.setVisibility(View.VISIBLE);
+
         }
 
 
