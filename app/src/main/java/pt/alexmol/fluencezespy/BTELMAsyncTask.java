@@ -1844,7 +1844,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
                             }
 
-
+                            /*
                             //12v soc
                             resposta = getisoframe("7E4", "7EC", "03223303", 200, 1);
 
@@ -1858,6 +1858,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
                                 }
                             }
+                            */
 
 
 

@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     static boolean backgroundMain = false;
     static boolean keepscreenMain= false;
     static boolean reverseModeMain = false;
+    static boolean SimplePointerModeMain = false;
     public static int ELMREADY = 0;
     private boolean sair = false;
     public static int[] valoresmemorizados;
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //201 BCB mode status
     //202 Peltier cell temps
     //203 total climate power /25W
-    //204 SOC bateria 12V
+    //204 SOC bateria 12V   ------------SUSPENSO ----------------
     //205 a/c compressor power /25W
 
 
@@ -645,6 +646,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         backgroundMain = settings.getBoolean("backgroundmodeon", false);
         keepscreenMain = settings.getBoolean("keepscreenon",false);
         reverseModeMain = settings.getBoolean("reversemodeon", false);
+        SimplePointerModeMain = settings.getBoolean("simplepointeron", false);
         autonightmode = settings.getBoolean("autonightmode", false);
         noite = settings.getBoolean("night", false);
 

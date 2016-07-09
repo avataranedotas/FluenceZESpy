@@ -341,7 +341,7 @@
                         android:layout_centerInParent="true" />
 
 
-                    <TextView
+                  <!--  <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -351,7 +351,7 @@
                         android:textSize="@dimen/fonte_pequena"
                         android:singleLine="true"
                         android:layout_above="@+id/battery12v_1"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_centerHorizontal="true" />-->
 
                     <TextView
                         android:layout_width="wrap_content"

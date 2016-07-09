@@ -625,7 +625,7 @@
                     android:layout_marginTop="8px" />
 
                 <ProgressBar
-                    android:id="@+id/yourId"
+                    android:id="@+id/anel_power"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="200px"
                     android:layout_height="200px"
@@ -639,7 +639,7 @@
                     android:layout_gravity="center_horizontal|top" />
 
                 <ProgressBar
-                    android:id="@+id/yourId2"
+                    android:id="@+id/anel_regen"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="200px"
                     android:layout_height="200px"

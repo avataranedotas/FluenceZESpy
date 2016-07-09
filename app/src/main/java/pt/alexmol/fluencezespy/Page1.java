@@ -376,7 +376,7 @@ public class Page1 extends Fragment {
         }
 
 
-
+        /*
         if (array1[104]!= invalido) {
             view = (TextView) getView().findViewById(R.id.soc12v_1);
             double temp = ((double) array1[104]) / 1000.0;
@@ -384,6 +384,7 @@ public class Page1 extends Fragment {
 
 
         }
+        */
 
 
 

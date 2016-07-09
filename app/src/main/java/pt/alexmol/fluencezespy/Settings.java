@@ -28,6 +28,7 @@ public class Settings extends AppCompatActivity {
     private boolean debugmodeon;
     private boolean backgroundmodeon;
     private boolean reversemodeon;
+    private boolean simplepointeron;
 
     protected static boolean nightmodeautomatic;
     protected static boolean forcenightmode;
@@ -64,12 +65,18 @@ public class Settings extends AppCompatActivity {
             backgroundmodeon=settings.getBoolean("backgroundmodeon",false);
             debugmodeon=settings.getBoolean("debugmodeon",false);
             reversemodeon=settings.getBoolean("reversemodeon",false);
+            simplepointeron=settings.getBoolean("simplepointeron",false);
+
 
             CheckBox keep = (CheckBox) findViewById(R.id.checkBoxScreen);
             keep.setChecked(keepscreenon);
 
             CheckBox back = (CheckBox) findViewById(R.id.checkBoxBackground);
             back.setChecked(backgroundmodeon);
+
+            CheckBox simple = (CheckBox) findViewById(R.id.checkBoxSimple);
+            simple.setChecked(simplepointeron);
+
 
             CheckBox debug = (CheckBox) findViewById(R.id.checkBoxDebug);
             debug.setChecked(debugmodeon);
@@ -218,6 +225,10 @@ public class Settings extends AppCompatActivity {
             editor.putBoolean("debugmodeon",debugmodeon);
             MainActivity.debugModeMain = debugmodeon;
             editor.putBoolean("reversemodeon",reversemodeon);
+
+            MainActivity.SimplePointerModeMain = simplepointeron;
+            editor.putBoolean("simplepointeron",simplepointeron);
+
             //MainActivity.reverseModeMain = reversemodeon;
 
 
@@ -250,9 +261,16 @@ public class Settings extends AppCompatActivity {
             case R.id.checkBoxBackground:
                 backgroundmodeon = checked;
                 break;
+
             case R.id.checkBoxDebug:
                 debugmodeon = checked;
                 break;
+
+
+            case R.id.checkBoxSimple:
+                simplepointeron = checked;
+                break;
+            
 
             case R.id.checkBoxScreen:
                 keepscreenon = checked;

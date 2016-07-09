@@ -4,27 +4,14 @@ package pt.alexmol.fluencezespy;
  * Created by alexandre.moleiro on 15-10-2015.
  */
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LightingColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +19,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -631,6 +617,7 @@ public class Page2 extends Fragment {
     private int cnt = 0;
     private int velocidade = 0;
     private int velocanterior = 0;
+    private int incre = 1;
 
     private Handler handler = new Handler();
 
@@ -640,8 +627,7 @@ public class Page2 extends Fragment {
 
         @Override
         public void run() {
-            //cnt=cnt+1;
-            //if (cnt>250) cnt = -250;
+
 
 
             //velocidade
@@ -656,6 +642,22 @@ public class Page2 extends Fragment {
                 TextView textoveloc = (TextView) getView().findViewById(R.id.vel_2);
                 textoveloc.setText(""+velocanterior/10);
             }
+
+
+
+
+            if (MainActivity.debugModeMain) {
+
+                //testes
+
+                cnt = cnt + incre;
+                if (cnt >= 250) incre = -1;
+                if (cnt <= -250) incre = 1;
+
+            }
+            else
+
+            {
 
 
 
@@ -709,12 +711,15 @@ public class Page2 extends Fragment {
 
 
 
+
+            }
+
             //first draw
             if (largura !=-123 && !scaledone) {
 
                 float factor = MainActivity.densidade/160f;
 
-                ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+                ProgressBar pb = (ProgressBar) getView().findViewById(R.id.anel_power);
 
                 pb.setScaleX(largura/200f);
                 pb.setScaleY(largura / 200f);
@@ -723,15 +728,18 @@ public class Page2 extends Fragment {
                 pb.setProgress(0);
 
 
-                ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
+                ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.anel_regen);
                 //pb2.setRotation((-cnt / 1000f * 360f) - 0f);
                 //pb2.setTranslationX(-100);
                 //pb2.setTranslationY(cnt/5);
 
-                pb2.setScaleX(largura/200f);
+                pb2.setScaleX(largura / 200f);
                 pb2.setScaleY(largura / 200f);
-                pb2.setTranslationY((largura-200f)/2f);
+                pb2.setTranslationY((largura - 200f) / 2f);
                 pb2.setProgress(0);
+
+                if (MainActivity.SimplePointerModeMain) pb2.setVisibility(View.INVISIBLE);
+                else pb2.setVisibility(View.VISIBLE);
 
                 //} catch (Exception e) {
 
@@ -919,7 +927,7 @@ public class Page2 extends Fragment {
 
 
 
-                ProgressBar pb = (ProgressBar) getView().findViewById(R.id.yourId);
+                ProgressBar pb = (ProgressBar) getView().findViewById(R.id.anel_power);
                     if (cnt>0) {
 
                         //pb.setRotation((-cnt / 1000f * 360f) - 90f);
@@ -930,7 +938,7 @@ public class Page2 extends Fragment {
                 //pb.setVisibility(View.INVISIBLE);
 
 
-                    ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.yourId2);
+                    ProgressBar pb2 = (ProgressBar) getView().findViewById(R.id.anel_regen);
                 if (cnt<0) {
                     pb2.setRotation((cnt / 1000f * 360f) - 0f);
                     //pb2.setTranslationX(-100);
@@ -947,7 +955,11 @@ public class Page2 extends Fragment {
                 ImageView ponte = (ImageView)  getView().findViewById(R.id.ponteiro_2);
                 ponte.setPivotX(ponte.getWidth() / 2);
                 ponte.setPivotY(ponte.getHeight());
+
+
+
                 ponte.setRotation(cnt / 250f * 89.5f);
+
 
 
                 Drawable background = ponte.getBackground();
@@ -958,11 +970,17 @@ public class Page2 extends Fragment {
                         // cast to 'ShapeDrawable'
                         ShapeDrawable shapeDrawable = (ShapeDrawable) background;
                         shapeDrawable.getPaint().setColor(getResources().getColor(R.color.verdep));
+                        //shapeDrawable.getPaint().setStrokeWidth(10);
+
                     } else if (background instanceof GradientDrawable) {
                         // cast to 'GradientDrawable'
                         GradientDrawable gradientDrawable = (GradientDrawable) background;
                         gradientDrawable.setColor(getResources().getColor(R.color.verdep));
+                        //gradientDrawable.setStroke(10,getResources().getColor(R.color.verdep));
+
                     }
+                    if (MainActivity.SimplePointerModeMain) ponte.setScaleX(largura / 150f);
+
                 }
                 else {
                     if (background instanceof ShapeDrawable) {
@@ -974,6 +992,8 @@ public class Page2 extends Fragment {
                         GradientDrawable gradientDrawable = (GradientDrawable) background;
                         gradientDrawable.setColor(getResources().getColor(R.color.laranjap));
                     }
+                    if (MainActivity.SimplePointerModeMain) ponte.setScaleX(largura / 200f);
+
                 }
 
 

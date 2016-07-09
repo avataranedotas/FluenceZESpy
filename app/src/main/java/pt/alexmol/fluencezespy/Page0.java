@@ -490,8 +490,15 @@ public class Page0 extends Fragment {
 
             TextView view= (TextView) getView().findViewById(R.id.desconhecido3_0);
 
+            int trocas;
 
-                view.setText("Battery Swaps: " + array0[98]);
+            if (array0[98] == 16383) trocas = 0;
+            else trocas = array0[98];
+
+
+
+
+                view.setText("Battery Swaps: " + trocas);
 
         }
 
