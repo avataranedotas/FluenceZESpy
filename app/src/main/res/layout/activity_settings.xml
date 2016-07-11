@@ -65,14 +65,15 @@
             android:layout_height="wrap_content"
             android:background="#f1eed2"
             android:onClick="onCheckboxClicked"
-            android:text="Debug mode" />
+            android:text="Debug mode"
+            android:visibility="gone" />
 
 
         <CheckBox
             android:id="@+id/checkBoxSimple"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#d7e2e2"
+            android:background="#f1eed2"
             android:onClick="onCheckboxClicked"
             android:text="Simple Regen Needle" />
 
@@ -81,7 +82,7 @@
             android:id="@+id/checkboxreversemode"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#f1eed2"
+            android:background="#d7e2e2"
             android:onClick="onCheckboxClicked"
             android:text="Switch mode" />
 
@@ -93,7 +94,7 @@
         android:text="Select Day/Night Mode"
         android:id="@+id/textdaynightmode"
         android:textColor="#000000"
-            android:background="#d7e2e2"
+            android:background="#f1eed2"
         android:layout_below="@+id/checkboxreversemode"/>
 
 

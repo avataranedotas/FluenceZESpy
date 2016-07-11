@@ -273,8 +273,9 @@ public class Page0 extends Fragment {
 
 
                 //tamanho do risco,
-                double temp = array0[17] / 35.0 * 52.0;
+                double temp = array0[17] / 40.0 * 52.0;
                 if  (temp >52.0) temp = 52.0;
+                if  (temp <0.0) temp = 0.0;
 
 
                 ImageView image2 = (ImageView) getView().findViewById(R.id.contemrisco);

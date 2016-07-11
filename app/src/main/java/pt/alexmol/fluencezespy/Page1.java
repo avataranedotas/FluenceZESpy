@@ -439,7 +439,7 @@ public class Page1 extends Fragment {
 
 
 
-        if (array1[28]!= invalido && array1[103]!=invalido && array1[105]!=invalido) {
+        if (array1[84]!= invalido && array1[103]!=invalido && array1[105]!=invalido) {
             view = (TextView) getView().findViewById(R.id.hvcons);
 
             //double temp = ((double) array1[28]) / 100.0;

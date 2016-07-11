@@ -542,17 +542,55 @@ public class Page2 extends Fragment {
 
         //consumo auxiliar HV
 
+
+
+        if (array2[84]!= invalido && array2[103]!=invalido && array2[105]!=invalido) {
+            view = (TextView) getView().findViewById(R.id.aux_cons_2);
+            ProgressBar pb5 = (ProgressBar) getView().findViewById(R.id.progress_aux_2);
+
+
+            double tempt;
+
+            if (array2[27]==2) tempt = ((double) array2[84])/64.0;
+            else tempt = 0.0;
+            double dcdc = tempt * (((double) array2[14])/1000.0) * 1.10 /1000.0; //dcdc
+            double clim = (((double) array2[103])*0.025);  // climate power
+            double temp3;
+
+            if (clim>0 && clim <6.350) temp3 =dcdc + clim;
+            else temp3 = dcdc;
+
+            view.setText(String.format("%1.1f", temp3) + "kW");
+
+
+
+            double temp = temp3 * 100 / 6.0;  //converte 0 a 100%
+            if (temp >100.0) temp = 100.0;  //limita 100%
+            pb5.setProgress((int) temp);
+
+
+            //se o valor for zero ou o contactor principal não estiver ligado
+            if (temp3<= 0.0 || array2[27]!=2 ) {
+                view.setVisibility(View.INVISIBLE);
+                pb5.setVisibility(View.INVISIBLE);
+            }
+            else {
+                view.setVisibility(View.VISIBLE);
+                pb5.setVisibility(View.VISIBLE);
+            }
+
+
+        }
+
+
+        /*
+
         if (array2[28]!= invalido && array2[27]==2) {
             view = (TextView) getView().findViewById(R.id.aux_cons_2);
             view.setVisibility(View.VISIBLE);
             double temp = ((double) array2[28]) / 100.0;
             view.setText(String.format("%1.1f", temp) + "kW");
 
-            ProgressBar pb5 = (ProgressBar) getView().findViewById(R.id.progress_aux_2);
-            pb5.setVisibility(View.VISIBLE);
-            temp = temp * 100 / 6.0;  //converte 0 a 100%
-            if (temp >100.0) temp = 100.0;  //limita 100%
-            pb5.setProgress((int) temp);
 
 
         }
@@ -563,6 +601,7 @@ public class Page2 extends Fragment {
             pb5.setVisibility(View.INVISIBLE);
         }
 
+        */
 
         //consumo instantaneo
         if (array2[67]!=invalido && array2[78]!=invalido ) {
