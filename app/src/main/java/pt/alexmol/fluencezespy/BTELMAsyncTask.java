@@ -2187,7 +2187,18 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
                             }
 
+                            resposta = getisoframe("7E4", "7EC", "032233DD",200 ,1);
 
+
+                            if (resposta != null && (resposta.length() == 16)) {
+                                //tostax("Reposta:"+resposta);
+
+                                longo = processalinha(resposta.substring(8, 14), 0, 23, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(206, (int) longo);
+                                    //tostax("Total:" + longo);
+                                }
+                            }
 
 
 

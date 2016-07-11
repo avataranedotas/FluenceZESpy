@@ -200,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="DC/DC"
-                android:id="@+id/textView10"
+                android:id="@+id/DC1"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/fonte_normal"
                 android:layout_alignParentTop="true"
@@ -215,7 +215,7 @@
                 android:textColor="#ffffff"
                 android:textSize="@dimen/fonte_normal"
                 android:singleLine="true"
-                android:layout_below="@+id/textView10"
+                android:layout_below="@+id/DC1"
                 android:layout_centerHorizontal="true" />
 
             <TextView

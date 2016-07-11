@@ -523,6 +523,34 @@ public class Page2 extends Fragment {
         }
 
 
+
+        //total kwh
+
+        if (array2[59]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.totaltrip2);
+
+            double tempt = array2[59] / 1000.0;
+            view.setText(String.format("%6.2f", tempt) );
+
+        }
+
+
+        //partial kwh
+
+        if (array2[106]!= invalido) {
+
+            view = (TextView) getView().findViewById(R.id.partrip2);
+
+            double tempt = array2[106] / 1000.0;
+            view.setText(String.format("%6.2f", tempt) );
+
+        }
+
+
+
+
+
         //temperatura exterior
 
         //temperatura externa

@@ -459,8 +459,10 @@ public class Page1 extends Fragment {
 
             ImageView image = (ImageView) getView().findViewById(R.id.aux_hv);
 
-            //se o valor for zero ou o contactor principal não estiver ligado
-            if (temp3<= 0.0 || array1[27]!=2 ) {
+            //se o valor for zero ou o contactor principal não estiver ligado ou for modo tablet
+
+
+            if (temp3<= 0.0 || array1[27]!=2 || (MainActivity.TABLET ^ MainActivity.reverseModeMain) ) {
                 view.setVisibility(View.INVISIBLE);
                 image.setVisibility(View.INVISIBLE);
             }
@@ -759,28 +761,33 @@ public class Page1 extends Fragment {
         if ( (array1[84]!= invalido) && (array1[14]!= invalido) ) {
 
             view = (TextView) getView().findViewById(R.id.Dcc);
+            TextView view3 = (TextView) getView().findViewById(R.id.dcdcw);
+            TextView view4 = (TextView) getView().findViewById(R.id.DC1);
 
             double tempt;
 
             if (array1[27]==2) tempt = ((double) array1[84])/64.0;
             else tempt = 0.0;
-
-            view.setText(String.format("%3.1f", tempt) + "A");
-
-            view = (TextView) getView().findViewById(R.id.dcdcw);
-
             double tempt2 = tempt * (((double) array1[14])/1000.0);
 
-            view.setText(String.format("%4.0f", tempt2) + "W");
 
+            if (tempt!=0.0) {
+                view.setText(String.format("%3.1f", tempt) + "A");
+                view3.setText(String.format("%4.0f", tempt2) + "W");
+                if (tempt2 >= 1000.0) view3.setTextColor(getResources().getColor(R.color.laranja));
+                if (tempt2 >= 1500.0) view3.setTextColor(Color.RED);
+                else {
+                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                    else view3.setTextColor(Color.BLACK);
+                }
+                view4.setVisibility(View.VISIBLE);
 
-            if (tempt2 >= 1000.0) view.setTextColor(getResources().getColor(R.color.laranja));
-            if (tempt2 >= 1500.0) view.setTextColor(Color.RED);
-            else {
-                if (MainActivity.noite) view.setTextColor(Color.WHITE);
-                else view.setTextColor(Color.BLACK);
             }
-
+            else {
+                view.setText("");
+                view3.setText("");
+                view4.setVisibility(View.INVISIBLE);
+            }
 
 
         }

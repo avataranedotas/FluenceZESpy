@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     static boolean keepscreenMain= false;
     static boolean reverseModeMain = false;
     static boolean SimplePointerModeMain = false;
+    static boolean AltTripModeMain = false;
     public static int ELMREADY = 0;
     private boolean sair = false;
     public static int[] valoresmemorizados;
@@ -228,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //203 total climate power /25W
     //204 SOC bateria 12V   ------------SUSPENSO ----------------
     //205 a/c compressor power /25W
+    //206 reset partial energy spent by car kWh x1000
 
 
 
@@ -647,6 +649,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         keepscreenMain = settings.getBoolean("keepscreenon",false);
         reverseModeMain = settings.getBoolean("reversemodeon", false);
         SimplePointerModeMain = settings.getBoolean("simplepointeron", false);
+        AltTripModeMain =  settings.getBoolean("alttripon", false);
         autonightmode = settings.getBoolean("autonightmode", false);
         noite = settings.getBoolean("night", false);
 

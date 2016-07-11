@@ -29,6 +29,7 @@ public class Settings extends AppCompatActivity {
     private boolean backgroundmodeon;
     private boolean reversemodeon;
     private boolean simplepointeron;
+    private boolean alttripon;
 
     protected static boolean nightmodeautomatic;
     protected static boolean forcenightmode;
@@ -66,7 +67,7 @@ public class Settings extends AppCompatActivity {
             debugmodeon=settings.getBoolean("debugmodeon",false);
             reversemodeon=settings.getBoolean("reversemodeon",false);
             simplepointeron=settings.getBoolean("simplepointeron",false);
-
+            alttripon=settings.getBoolean("alttripon",false);
 
             CheckBox keep = (CheckBox) findViewById(R.id.checkBoxScreen);
             keep.setChecked(keepscreenon);
@@ -76,6 +77,9 @@ public class Settings extends AppCompatActivity {
 
             CheckBox simple = (CheckBox) findViewById(R.id.checkBoxSimple);
             simple.setChecked(simplepointeron);
+
+            CheckBox trip = (CheckBox) findViewById(R.id.checkboxalttrip);
+            trip.setChecked(alttripon);
 
 
             CheckBox debug = (CheckBox) findViewById(R.id.checkBoxDebug);
@@ -229,6 +233,10 @@ public class Settings extends AppCompatActivity {
             MainActivity.SimplePointerModeMain = simplepointeron;
             editor.putBoolean("simplepointeron",simplepointeron);
 
+            MainActivity.AltTripModeMain = alttripon;
+            editor.putBoolean("alttripon",alttripon);
+
+
             //MainActivity.reverseModeMain = reversemodeon;
 
 
@@ -270,7 +278,11 @@ public class Settings extends AppCompatActivity {
             case R.id.checkBoxSimple:
                 simplepointeron = checked;
                 break;
-            
+
+            case R.id.checkboxalttrip:
+                alttripon = checked;
+                break;
+
 
             case R.id.checkBoxScreen:
                 keepscreenon = checked;
