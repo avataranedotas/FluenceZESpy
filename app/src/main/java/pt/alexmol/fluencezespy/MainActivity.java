@@ -19,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -688,14 +689,20 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         //tamanho do ecran utilizável, dimensão mínima em dp
         smallestwidthdp = this.getResources().getConfiguration().smallestScreenWidthDp;
-        densidade = this.getResources().getConfiguration().densityDpi;
+
+        //DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        Configuration config = this.getResources().getConfiguration();
+        //densidade = config.densityDpi;
+        //densidade = displayMetrics.densityDpi;
+
+        //densidade = this.getResources().getConfiguration().densityDpi;
+        densidade = this.getResources().getDisplayMetrics().densityDpi;
 
 
 
 
-
+        //landscape = this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         landscape = this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-
 
 
         // se o swdp for superior a 580 estamos num tablet

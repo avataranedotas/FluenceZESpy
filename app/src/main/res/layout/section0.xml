@@ -272,7 +272,8 @@
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
-                        android:id="@+id/layoutContaineresq" android:orientation="vertical">
+                        android:id="@+id/layoutContaineresq" android:orientation="vertical"
+                        android:background="#00ffffff">
 
 
                         <RelativeLayout
@@ -565,7 +566,8 @@
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
-                        android:id="@+id/layoutContainerB" android:orientation="vertical">
+                        android:id="@+id/layoutContainerB" android:orientation="vertical"
+                        android:background="#00ffffff">
 
 
                         <RelativeLayout

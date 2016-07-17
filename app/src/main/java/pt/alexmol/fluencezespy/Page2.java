@@ -531,7 +531,7 @@ public class Page2 extends Fragment {
             view = (TextView) getView().findViewById(R.id.totaltrip2);
 
             double tempt = array2[59] / 1000.0;
-            view.setText(String.format("%6.2f", tempt) );
+            view.setText(String.format("%3.3f", tempt) );
 
         }
 
