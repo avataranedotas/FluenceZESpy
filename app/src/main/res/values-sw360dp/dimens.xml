@@ -4,7 +4,7 @@
     <dimen name="fonte_normal">18sp</dimen>
     <dimen name="fonte_normal2">20sp</dimen>
     <dimen name="fonte_grande">28sp</dimen>
-    <dimen name="fonte_pequena">15sp</dimen>
+    <dimen name="fonte_pequena">14sp</dimen>
     <dimen name="fonte_muitopequena">10sp</dimen>
     <dimen name="altura_seta">25dp</dimen>
 

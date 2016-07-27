@@ -533,7 +533,8 @@
                         android:textColor="#ffffff"
                         android:textSize="@dimen/fonte_normal2"
                         android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_centerHorizontal="true"
+                        android:visibility="invisible" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -545,7 +546,8 @@
                         android:textSize="@dimen/fonte_normal2"
                         android:layout_alignParentBottom="false"
                         android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/totaltrip2" />
+                        android:layout_below="@+id/totaltrip2"
+                        android:visibility="invisible" />
 
 
                 </RelativeLayout>

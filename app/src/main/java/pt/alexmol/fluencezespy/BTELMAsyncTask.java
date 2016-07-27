@@ -2180,7 +2180,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             if (resposta != null && (resposta.length() == 16)) {
                                 //tostax("Reposta:"+resposta);
 
-                                longo = processalinha(resposta.substring(8, 14), 0, 23, false);
+                                longo = processalinha(resposta.substring(8, 16), 0, 31, false);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(159, (int) longo);
                                     //tostax("Total:" + longo);
@@ -2193,7 +2193,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             if (resposta != null && (resposta.length() == 16)) {
                                 //tostax("Reposta:"+resposta);
 
-                                longo = processalinha(resposta.substring(8, 14), 0, 23, false);
+                                longo = processalinha(resposta.substring(8, 14), 0, 23, true);
                                 if (longo != Long.MAX_VALUE) {
                                     publishProgress(206, (int) longo);
                                     //tostax("Total:" + longo);

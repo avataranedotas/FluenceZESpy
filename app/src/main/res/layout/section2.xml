@@ -331,24 +331,26 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:text="0000.00"
+                                android:text="000000.00"
                                 android:id="@+id/totaltrip2"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/fonte_normal2"
                                 android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true" />
+                                android:layout_centerHorizontal="true"
+                                android:visibility="invisible" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:text="0000.00"
+                                android:text="000000.00"
                                 android:id="@+id/partrip2"
                                 android:textColor="#000000"
                                 android:textSize="@dimen/fonte_normal2"
                                 android:layout_alignParentBottom="false"
                                 android:layout_centerHorizontal="true"
-                                android:layout_below="@+id/totaltrip2" />
+                                android:layout_below="@+id/totaltrip2"
+                                android:visibility="invisible" />
 
 
                         </RelativeLayout>
