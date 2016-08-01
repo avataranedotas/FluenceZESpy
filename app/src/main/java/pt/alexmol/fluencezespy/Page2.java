@@ -31,6 +31,8 @@ public class Page2 extends Fragment {
 
     private boolean hsm_mode = false;
 
+    private boolean section_land =false;
+
     public Page2(){
 
     }
@@ -76,6 +78,24 @@ public class Page2 extends Fragment {
             }
 
         }
+
+        //flag section_land
+
+        if (!MainActivity.landscape) {
+            if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                section_land = true;   //vista portrait tablet
+            else
+                section_land = false; //vista portrait phone
+        } else {
+            if (MainActivity.TABLET ^ MainActivity.reverseModeMain)
+                section_land = false; //vista landscape tablet
+            else
+                section_land = true; //vista landscape phone
+        }
+
+
+
+
 
 
         Button botaoreset1 = (Button) v.findViewById(R.id.button1t);
@@ -559,6 +579,7 @@ public class Page2 extends Fragment {
 
         }
 
+        /*
 
 
         //total kwh
@@ -584,7 +605,7 @@ public class Page2 extends Fragment {
 
         }
 
-
+        */
 
 
 
@@ -610,9 +631,16 @@ public class Page2 extends Fragment {
 
 
         if (array2[84]!= invalido && array2[103]!=invalido && array2[105]!=invalido) {
-            view = (TextView) getView().findViewById(R.id.aux_cons_2);
-            ProgressBar pb5 = (ProgressBar) getView().findViewById(R.id.progress_aux_2);
+            //view = (TextView) getView().findViewById(R.id.aux_cons_2);
+            TextView view2 = (TextView) getView().findViewById(R.id.aux_consn_2);
+            TextView heat2 = (TextView) getView().findViewById(R.id.heat_2);
+            TextView cold2 = (TextView) getView().findViewById(R.id.cold_2);
 
+            //ProgressBar pb5 = (ProgressBar) getView().findViewById(R.id.progress_aux_2);
+            ProgressBar pb6 = (ProgressBar) getView().findViewById(R.id.progress_auxn_2);
+
+            ProgressBar heatpb = (ProgressBar) getView().findViewById(R.id.progress_heat_2);
+            ProgressBar coldpb = (ProgressBar) getView().findViewById(R.id.progress_cold_2);
 
             double tempt;
 
@@ -620,29 +648,87 @@ public class Page2 extends Fragment {
             else tempt = 0.0;
             double dcdc = tempt * (((double) array2[14])/1000.0) * 1.10 /1000.0; //dcdc
             double clim = (((double) array2[103])*0.025);  // climate power
+            double cold = (((double) array2[105])*0.025);  // cold power
+            double heat = clim - cold;
             double temp3;
+
+
+
+            //if (section_land) {
+            heat2.setText(String.format("%1.1f", heat) + "kW");
+            cold2.setText(String.format("%1.1f", cold) + "kW");
+            //}
+            //else {
+            //    heat2.setText(String.format("%1.1f", heat) + "\nkW");
+            //    cold2.setText(String.format("%1.1f", cold) + "\nkW");
+            //}
+
 
             if (clim>0 && clim <6.350) temp3 =dcdc + clim;
             else temp3 = dcdc;
 
-            view.setText(String.format("%1.1f", temp3) + "kW");
+            //view.setText(String.format("%1.1f", temp3) + "kW");
+
+            //if (section_land)
+                view2.setText(String.format("%1.1f", dcdc) + "kW");
+            //else view2.setText(String.format("%1.1f", dcdc) + "\nkW");
+
+            if (heat >0.0) {
+                heat2.setVisibility(View.VISIBLE);
+                heatpb.setVisibility(View.VISIBLE);
+            }
+            else {
+                heat2.setVisibility(View.INVISIBLE);
+                heatpb.setVisibility(View.INVISIBLE);
+            }
+
+
+            if (cold >0.0) {
+                cold2.setVisibility(View.VISIBLE);
+                coldpb.setVisibility(View.VISIBLE);
+            }
+            else {
+                cold2.setVisibility(View.INVISIBLE);
+                coldpb.setVisibility(View.INVISIBLE);
+            }
 
 
 
-            double temp = temp3 * 100 / 6.0;  //converte 0 a 100%
-            if (temp >100.0) temp = 100.0;  //limita 100%
-            pb5.setProgress((int) temp);
 
+            //double temp = temp3 * 100 / 6.0;  //converte 0 a 100%
+            //if (temp >100.0) temp = 100.0;  //limita 100%
+            double temp2 = dcdc * 100 / 6.0;  //converte 0 a 100%
+            if (temp2 >100.0) temp2 = 100.0;  //limita 100%
+            //pb5.setProgress((int) temp);
+            pb6.setProgress((int) temp2);
 
             //se o valor for zero ou o contactor principal não estiver ligado
             if (temp3<= 0.0 || array2[27]!=2 ) {
-                view.setVisibility(View.INVISIBLE);
-                pb5.setVisibility(View.INVISIBLE);
+                //view.setVisibility(View.INVISIBLE);
+                //pb5.setVisibility(View.INVISIBLE);
+                view2.setVisibility(View.INVISIBLE);
+                pb6.setVisibility(View.INVISIBLE);
             }
             else {
-                view.setVisibility(View.VISIBLE);
-                pb5.setVisibility(View.VISIBLE);
+                //view.setVisibility(View.VISIBLE);
+                //pb5.setVisibility(View.VISIBLE);
+                view2.setVisibility(View.VISIBLE);
+                pb6.setVisibility(View.VISIBLE);
             }
+
+            double tempheat = heat * 100 / 6.0;  //converte 0 a 100%
+            if (tempheat >100.0) tempheat = 100.0;  //limita 100%
+            heatpb.setProgress((int) tempheat);
+
+            double tempcold = cold * 100 / 6.0;  //converte 0 a 100%
+            if (tempcold >100.0) tempcold = 100.0;  //limita 100%
+            coldpb.setProgress((int) tempcold);
+
+
+
+
+
+
 
 
         }

@@ -258,100 +258,228 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+
+
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
 
                             <LinearLayout
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1">
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.4">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:textAppearance="?android:attr/textAppearanceSmall"
-                                        android:text="kW"
-                                        android:id="@+id/aux_cons_2"
-                                        android:textColor="#000000"
-                                        android:textSize="@dimen/fonte_grande"
-                                        android:layout_above="@+id/progress_aux_2"
-                                        android:layout_centerHorizontal="true" />
 
-                                    <ProgressBar
-                                        style="?android:attr/progressBarStyleHorizontal"
-                                        android:id="@+id/progress_aux_2"
+                                    <LinearLayout
+                                        android:orientation="vertical"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal|top"
-                                        android:max="100"
-                                        android:progressDrawable="@drawable/progressbar_aux2"
-                                        android:indeterminate="false"
-                                        android:progress="0"
-                                        android:layout_alignParentBottom="true"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_marginLeft="5dp"
-                                        android:layout_alignParentRight="true" />
+                                        android:layout_height="match_parent">
+
+                                        <RelativeLayout
+                                            android:layout_height="0dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_weight="0.33">
+
+
+                                            <TextView
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="fill_parent"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:text="AUX"
+                                                android:id="@+id/textView7"
+                                                android:textColor="#000000"
+                                                android:textSize="@dimen/fonte_normal"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true"
+                                                android:background="#ffffff"
+                                                android:gravity="center" />
+                                        </RelativeLayout>
+
+
+
+                                        <RelativeLayout
+                                            android:layout_height="0dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_weight="0.33">
+
+
+                                            <TextView
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="fill_parent"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:text="HEAT"
+                                                android:id="@+id/textView10"
+                                                android:textColor="#000000"
+                                                android:textSize="@dimen/fonte_normal"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true"
+                                                android:background="#6bff0000"
+                                                android:gravity="center" />
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_height="0dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_weight="0.33">
+
+
+                                            <TextView
+                                                android:layout_width="fill_parent"
+                                                android:layout_height="fill_parent"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:text="COLD"
+                                                android:id="@+id/textView14"
+                                                android:textColor="#000000"
+                                                android:textSize="@dimen/fonte_normal"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true"
+                                                android:background="#5b008eff"
+                                                android:gravity="center" />
+                                        </RelativeLayout>
+
+
+
+
+
+                                    </LinearLayout>
+
+
+
                                 </RelativeLayout>
 
                                 <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="0dp"
-                                    android:layout_weight="1">
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.6">
 
-                                    <ImageView
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:id="@+id/imageView6"
-                                        android:src="@drawable/aux_cons"
-                                        android:scaleType="fitCenter"
-                                        android:alpha="0.75"
-                                        android:layout_alignParentBottom="true"
+                                        android:layout_height="match_parent">
 
-                                        android:layout_centerInParent="true"
-                                        android:layout_marginBottom="5dp" />
+                                        <RelativeLayout
+                                            android:layout_height="0dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_weight="0.33">
+
+
+                                            <ProgressBar
+                                                style="?android:attr/progressBarStyleHorizontal"
+                                                android:id="@+id/progress_auxn_2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="fill_parent"
+                                                android:layout_gravity="center_horizontal|top"
+                                                android:max="100"
+                                                android:progressDrawable="@drawable/progressbar_aux2"
+                                                android:indeterminate="false"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:text="0,0kW"
+                                                android:id="@+id/aux_consn_2"
+                                                android:textColor="#000000"
+                                                android:textSize="@dimen/fonte_normal2"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true" />
+                                        </RelativeLayout>
+
+
+
+                                        <RelativeLayout
+                                            android:layout_height="0dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_weight="0.33">
+
+
+                                            <ProgressBar
+                                                style="?android:attr/progressBarStyleHorizontal"
+                                                android:id="@+id/progress_heat_2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="fill_parent"
+                                                android:layout_gravity="center_horizontal|top"
+                                                android:max="100"
+                                                android:progressDrawable="@drawable/progressbar_aux2"
+                                                android:indeterminate="false"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:text="0,0kW"
+                                                android:id="@+id/heat_2"
+                                                android:textColor="#000000"
+                                                android:textSize="@dimen/fonte_normal2"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true" />
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_height="0dp"
+                                            android:layout_width="match_parent"
+                                            android:layout_weight="0.33">
+
+
+                                            <ProgressBar
+                                                style="?android:attr/progressBarStyleHorizontal"
+                                                android:id="@+id/progress_cold_2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="fill_parent"
+                                                android:layout_gravity="center_horizontal|top"
+                                                android:max="100"
+                                                android:progressDrawable="@drawable/progressbar_aux2"
+                                                android:indeterminate="false"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                                android:text="0,0kW"
+                                                android:id="@+id/cold_2"
+                                                android:textColor="#000000"
+                                                android:textSize="@dimen/fonte_normal2"
+                                                android:layout_centerVertical="true"
+                                                android:layout_centerHorizontal="true" />
+                                        </RelativeLayout>
+
+
+
+
+
+                                    </LinearLayout>
+
+
+
+
                                 </RelativeLayout>
                             </LinearLayout>
+
+
+
+
+
+
                         </RelativeLayout>
+
 
                         <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1">
-
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:text="000000.00"
-                                android:id="@+id/totaltrip2"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/fonte_normal2"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                android:visibility="invisible" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:text="000000.00"
-                                android:id="@+id/partrip2"
-                                android:textColor="#000000"
-                                android:textSize="@dimen/fonte_normal2"
-                                android:layout_alignParentBottom="false"
-                                android:layout_centerHorizontal="true"
-                                android:layout_below="@+id/totaltrip2"
-                                android:visibility="invisible" />
-
 
                         </RelativeLayout>
 
