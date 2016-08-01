@@ -1,5 +1,6 @@
 package pt.alexmol.fluencezespy;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.SharedPreferences;
@@ -281,6 +282,33 @@ public class Settings extends AppCompatActivity {
 
             case R.id.checkboxalttrip:
                 alttripon = checked;
+
+
+                if (alttripon) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                    // set title
+                    alertDialogBuilder.setTitle("Alternative Trip Meter Mode");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("To get correct results on the Fluence ZE Spy Trip Meters DO NOT RESET the dashboard partial meters.")
+                            .setCancelable(true);
+
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+
+
+
+
+
+
+
                 break;
 
 

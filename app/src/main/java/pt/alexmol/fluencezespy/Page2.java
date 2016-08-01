@@ -254,8 +254,11 @@ public class Page2 extends Fragment {
         double parkm1 = 0.0;
         double media1 = 0.0;
 
+        //199 = ponto 0
+        //106 = parcial perpetuo
+
         //parcial kwh = total - ponto 0
-        if (array2[199]!=invalido && array2[59]!= invalido) {
+        if (array2[199]!=invalido && array2[59]!= invalido && !MainActivity.AltTripModeMain) {
             view = (TextView) getView().findViewById(R.id.t1_kwh);
 
             parkwh1 = (array2[59] / 1000.0) - (array2[199] / 1000.0);
@@ -268,9 +271,31 @@ public class Page2 extends Fragment {
             view.setText(String.format("%3.2f", parkwh1));
         }
 
+        //199 = ponto 0
+        //106 = parcial resetable
+
+        //o 106 vai chegar com valores inferiores ao actual, quando for feito o reset
+        //nesses casos é porque o utilizador fez o reset no dash
+
+        if (array2[199]!=invalido && array2[106]!= invalido && MainActivity.AltTripModeMain) {
+            view = (TextView) getView().findViewById(R.id.t1_kwh);
+
+            parkwh1 = (array2[106] / 1000.0) - (array2[199] / 1000.0);
+
+            //float densidade = MainActivity.densidade;
+
+            //se der negativo algo correu mal ou o contador deu a volta ou o utilizador fez reset, faz reset
+            if (parkwh1<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3001));
+
+            view.setText(String.format("%3.2f", parkwh1));
+        }
+
+
+
+
 
         //parcial km = total - ponto 0
-        if (array2[198]!=invalido && array2[66]!= invalido) {
+        if (array2[198]!=invalido && array2[66]!= invalido ) {
             view = (TextView) getView().findViewById(R.id.t1_km);
 
             parkm1 = (array2[66] / 100.0) - (array2[198] / 100.0);
@@ -299,7 +324,7 @@ public class Page2 extends Fragment {
         double media2 = 0.0;
 
         //parcial kwh = total - ponto 0
-        if (array2[197]!=invalido && array2[59]!= invalido) {
+        if (array2[197]!=invalido && array2[59]!= invalido && !MainActivity.AltTripModeMain) {
             view = (TextView) getView().findViewById(R.id.t2_kwh);
 
             parkwh2 = (array2[59] / 1000.0) - (array2[197] / 1000.0);
@@ -309,6 +334,18 @@ public class Page2 extends Fragment {
 
             view.setText(String.format("%3.2f", parkwh2));
         }
+
+        if (array2[197]!=invalido && array2[106]!= invalido && MainActivity.AltTripModeMain) {
+            view = (TextView) getView().findViewById(R.id.t2_kwh);
+
+            parkwh2 = (array2[106] / 1000.0) - (array2[197] / 1000.0);
+
+            //se der negativo algo correu mal ou o contador deu a volta ou o utilizador fez reset, faz reset
+            if (parkwh2<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3002));
+
+            view.setText(String.format("%3.2f", parkwh2));
+        }
+
 
 
         //parcial km = total - ponto 0

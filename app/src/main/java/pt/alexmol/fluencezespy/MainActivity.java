@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //203 total climate power /25W
     //204 SOC bateria 12V   ------------SUSPENSO ----------------
     //205 a/c compressor power /25W
-    //206 reset partial energy spent by car kWh x1000
+    //206 resetable partial energy spent by car kWh x1000
 
 
 
@@ -440,7 +440,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
             //acertar kWh
-            valoresmemorizados[199]=valoresmemorizados[59];
+            if (!AltTripModeMain)  valoresmemorizados[199]=valoresmemorizados[59];
+            else valoresmemorizados[199]=valoresmemorizados[106];
+
             actualizarpaginas(valoresmemorizados);
 
             //acertar km
@@ -468,8 +470,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
             //acertar kWh
-            valoresmemorizados[197]=valoresmemorizados[59];
-            actualizarpaginas(valoresmemorizados);
+            if (!AltTripModeMain)  valoresmemorizados[197]=valoresmemorizados[59];
+            else valoresmemorizados[197]=valoresmemorizados[106];
 
             //acertar km
             valoresmemorizados[196]=valoresmemorizados[66];
@@ -574,38 +576,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             alertDialogBuilder
                     .setMessage(""+e+d3+c3+b3+a3+d2+c2+b2+a2+d1+c1+b1+a1+d+c+b+a)
                     .setCancelable(true);
-                    /*
-                    .setPositiveButton("I accept", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // if this button is clicked, close
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putBoolean("disclaimer", true);
-                            editor.apply();
 
-                            if (!( tarefa.getStatus()==AsyncTask.Status.RUNNING || tarefa.getStatus()==AsyncTask.Status.PENDING  )) {
-                                tarefa = new BTELMAsyncTask(instance);
-                                tarefa.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-                            }
-
-
-                            // current activity
-                            dialog.cancel();
-                        }
-                    })
-                    .setNegativeButton("I don't understand",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // if this button is clicked, just close
-                                    // the dialog box and do nothing
-                                    dialog.cancel();
-                                    //MainActivity.this.finishAffinity(); requires API16
-                                    finish();
-                                    //android.os.Process.killProcess(android.os.Process.myPid());
-                                    //System.exit(0);
-                                }
-                            });
-                      */
 
             // create alert dialog
             AlertDialog alertDialog = alertDialogBuilder.create();
