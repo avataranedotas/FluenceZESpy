@@ -649,7 +649,9 @@ public class Page2 extends Fragment {
             double dcdc = tempt * (((double) array2[14])/1000.0) * 1.10 /1000.0; //dcdc
             double clim = (((double) array2[103])*0.025);  // climate power
             double cold = (((double) array2[105])*0.025);  // cold power
+            if (cold > 6.375 ) cold = 0.0;
             double heat = clim - cold;
+            if (heat > 6.375 ) heat = 0.0;
             double temp3;
 
 
@@ -673,7 +675,7 @@ public class Page2 extends Fragment {
                 view2.setText(String.format("%1.1f", dcdc) + "kW");
             //else view2.setText(String.format("%1.1f", dcdc) + "\nkW");
 
-            if (heat >0.0) {
+            if (heat >0.0 && array2[27]==2) {
                 heat2.setVisibility(View.VISIBLE);
                 heatpb.setVisibility(View.VISIBLE);
             }
@@ -683,7 +685,7 @@ public class Page2 extends Fragment {
             }
 
 
-            if (cold >0.0) {
+            if (cold >0.0 && array2[27]==2) {
                 cold2.setVisibility(View.VISIBLE);
                 coldpb.setVisibility(View.VISIBLE);
             }
