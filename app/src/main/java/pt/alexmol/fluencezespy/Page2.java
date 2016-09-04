@@ -275,7 +275,7 @@ public class Page2 extends Fragment {
         double media1 = 0.0;
 
         //199 = ponto 0
-        //106 = parcial perpetuo
+        //59 = parcial perpetuo
 
         //parcial kwh = total - ponto 0
         if (array2[199]!=invalido && array2[59]!= invalido && !MainActivity.AltTripModeMain) {
