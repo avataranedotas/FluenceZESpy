@@ -14,8 +14,8 @@
         android:xlargeScreens="true" />
 
     <application
-        android:versionCode="44"
-        android:versionName="0.8.9"
+        android:versionCode="45"
+        android:versionName="0.9.0"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Fluence ZE Spy"
