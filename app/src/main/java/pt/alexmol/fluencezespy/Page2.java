@@ -228,6 +228,16 @@ public class Page2 extends Fragment {
         if  (MainActivity.TABLET ^ MainActivity.reverseModeMain) visivel = true;
         //else visivel = false;
 
+        //milhas ou km
+
+
+        TextView distancia = (TextView) getView().findViewById(R.id.distpar2);
+
+        if (!MainActivity.MilesModeMain) distancia.setText("km");
+        else  distancia.setText("mi");
+
+
+
         handler.post(timedTask);
 
         final FrameLayout myLayout;
@@ -246,6 +256,8 @@ public class Page2 extends Fragment {
                 //largura = 200;
             }
         });
+
+
 
 
     }
@@ -288,7 +300,9 @@ public class Page2 extends Fragment {
             //se der muito negativo algo correu mal ou o contador deu a volta, faz reset
             if (parkwh1<-20.0) MyBus.getInstance().post(new Page2TaskResultEvent(3001));
 
-            view.setText(String.format("%3.2f", parkwh1));
+            view.setText(String.format("%3.1f", parkwh1));
+            if (parkwh1 <100.0)  view.setText(String.format("%3.2f", parkwh1));
+            if (parkwh1 >=1000.0) view.setText(String.format("%4.0f", parkwh1));
         }
 
         //199 = ponto 0
@@ -307,7 +321,9 @@ public class Page2 extends Fragment {
             //se der negativo algo correu mal ou o contador deu a volta ou o utilizador fez reset, faz reset
             if (parkwh1<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3001));
 
-            view.setText(String.format("%3.2f", parkwh1));
+            view.setText(String.format("%3.1f", parkwh1));
+            if (parkwh1 <100.0)  view.setText(String.format("%3.2f", parkwh1));
+            if (parkwh1 >=1000.0) view.setText(String.format("%4.0f", parkwh1));
         }
 
 
@@ -319,7 +335,15 @@ public class Page2 extends Fragment {
             view = (TextView) getView().findViewById(R.id.t1_km);
 
             parkm1 = (array2[66] / 100.0) - (array2[198] / 100.0);
-            view.setText(String.format("%3.1f", parkm1));
+
+            if (!MainActivity.MilesModeMain) {
+                view.setText(String.format("%3.1f", parkm1));
+                if (parkm1 > 999.9) view.setText(String.format("%3.0f", parkm1));
+            }
+            else {
+                view.setText(String.format("%3.1f", parkm1/1.609344));
+                if ((parkm1/1.609344) > 999.9) view.setText(String.format("%3.0f", parkm1/1.609344));
+            }
         }
 
 
@@ -352,7 +376,9 @@ public class Page2 extends Fragment {
             //se der muito negativo algo correu mal ou o contador deu a volta, faz reset
             if (parkwh2<-20.0) MyBus.getInstance().post(new Page2TaskResultEvent(3002));
 
-            view.setText(String.format("%3.2f", parkwh2));
+            view.setText(String.format("%3.1f", parkwh2));
+            if (parkwh2 <100.0)  view.setText(String.format("%3.2f", parkwh2));
+            if (parkwh2 >=1000.0) view.setText(String.format("%4.0f", parkwh2));
         }
 
         if (array2[197]!=invalido && array2[106]!= invalido && MainActivity.AltTripModeMain) {
@@ -363,7 +389,9 @@ public class Page2 extends Fragment {
             //se der negativo algo correu mal ou o contador deu a volta ou o utilizador fez reset, faz reset
             if (parkwh2<0.0) MyBus.getInstance().post(new Page2TaskResultEvent(3002));
 
-            view.setText(String.format("%3.2f", parkwh2));
+            view.setText(String.format("%3.1f", parkwh2));
+            if (parkwh2 <100.0)  view.setText(String.format("%3.2f", parkwh2));
+            if (parkwh2 >=1000.0) view.setText(String.format("%4.0f", parkwh2));
         }
 
 
@@ -373,7 +401,17 @@ public class Page2 extends Fragment {
             view = (TextView) getView().findViewById(R.id.t2_km);
 
             parkm2 = (array2[66] / 100.0) - (array2[196] / 100.0);
-            view.setText(String.format("%3.1f", parkm2));
+
+            if (!MainActivity.MilesModeMain) {
+                view.setText(String.format("%3.1f", parkm2));
+                if (parkm2 > 999.9) view.setText(String.format("%3.0f", parkm2));
+            }
+            else {
+                view.setText(String.format("%3.1f", parkm2/1.609344));
+                if ((parkm2/1.609344) > 999.9) view.setText(String.format("%3.0f", parkm2/1.609344));
+            }
+
+
         }
 
 
@@ -453,7 +491,9 @@ public class Page2 extends Fragment {
             //se for para usar a autonomia do carro
             if (array2[195]==0) {
                 if (array2[33]!= invalido && array2[33]>9) {
-                    view.setText(array2[33] + "km");
+
+                    if (!MainActivity.MilesModeMain ) view.setText(array2[33] + "km");
+                    else view.setText( (int)(((double)array2[33])/1.609344) + "mi");
                 }
                 else view.setText("- - -");
 
@@ -471,7 +511,10 @@ public class Page2 extends Fragment {
             //se for para usar o Trip 1
             if (array2[195]==1) {
                 double autonomia = restante / media1 / 10.0;
-                view.setText((int) autonomia + "km");
+
+                if (!MainActivity.MilesModeMain) view.setText((int) autonomia + "km");
+                else  view.setText((int) (autonomia / 1.609344) + "mi");
+
                 view.setTextColor(Color.BLUE);
                 if (!MainActivity.noite) {
                     t1.setTextColor(Color.BLUE);
@@ -487,7 +530,8 @@ public class Page2 extends Fragment {
             //se for para usar o Trip 2
             if (array2[195]==2) {
                 double autonomia = restante / media2 / 10.0;
-                view.setText((int) autonomia + "km");
+                if (!MainActivity.MilesModeMain) view.setText((int) autonomia + "km");
+                else  view.setText((int) (autonomia/1.609344) + "mi");
                 view.setTextColor(Color.BLUE);
                 if (!MainActivity.noite) {
                     t2.setTextColor(Color.BLUE);
@@ -768,7 +812,10 @@ public class Page2 extends Fragment {
             if (array2[28]!= invalido && array2[27]==2) temppotaux = ((double) array2[28]) / 100.0; //em kW
 
             // velocidade
-            double tempvel = (array2[78] / 100.0); //em km/h
+            double tempvel;
+
+            if (!MainActivity.MilesModeMain) tempvel = (array2[78] / 100.0); //em km/h
+            else tempvel = (array2[78] / 160.9344); //em mph
 
             double instant = (temppotmot+temppotaux)/tempvel*100.0;
             if (instant >99.9) instant = 99.9;

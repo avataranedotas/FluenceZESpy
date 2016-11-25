@@ -383,8 +383,19 @@ public class Page0 extends Fragment {
 
         if (array0[19]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.batkm_0);
-            //double temp = ((double) array0[19]) / 1.0;
-            view.setText(array0[19] +"km");
+            double temp;
+            if (!MainActivity.MilesModeMain)
+            {
+                temp = ((double) array0[19]) / 1.0;
+                if (array0[19]<65535) view.setText((int)temp +"km");
+                else view.setText(">65535km");
+            }
+            else {
+                temp = ((double) array0[19]) / 1.609344;
+                if (array0[19]<65535) view.setText((int)temp +"mi");
+                else view.setText(">40721mi");
+            }
+
         }
 
         if (array0[20]!= invalido) {

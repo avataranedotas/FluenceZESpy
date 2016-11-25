@@ -95,7 +95,22 @@
             android:onClick="onCheckboxClicked"
             android:text="Alternative Trip Meter Mode" />
 
+        <CheckBox
+            android:id="@+id/checkboxmiles"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#d7e2e2"
+            android:onClick="onCheckboxClicked"
+            android:text="Distance/Speed in miles" />
 
+
+        <CheckBox
+            android:id="@+id/checkboxreserve"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#f1eed2"
+            android:onClick="onCheckboxClicked"
+            android:text="Reserved for future use" />
 
         <TextView
         android:layout_width="fill_parent"

@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public static float densidade;
     public static boolean TABLET = false;
     public static boolean landscape;
+    public static boolean MilesModeMain;
 
     public Intent starterIntent;
 
@@ -190,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //163 battery fan external speed - SUSPENSO
     //164 battery fan internal speed - SUSPENSO
     //165 external temperature +40C
-    //166 odometer km x100
+    //166 odometer_km km x100
     //167 motor current x32 A                           ===HSM===
     //168 wiper stalk buttons 1=Down 2=Up 0=nothing - SUSPENSO
     //169 a/c key pressed - SUSPENSO
@@ -622,6 +623,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         reverseModeMain = settings.getBoolean("reversemodeon", false);
         SimplePointerModeMain = settings.getBoolean("simplepointeron", false);
         AltTripModeMain =  settings.getBoolean("alttripon", false);
+        MilesModeMain = settings.getBoolean("milesmodeon",false);
         autonightmode = settings.getBoolean("autonightmode", false);
         noite = settings.getBoolean("night", false);
 

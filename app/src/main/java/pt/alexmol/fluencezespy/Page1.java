@@ -269,6 +269,14 @@ public class Page1 extends Fragment {
 
         }
 
+        //icon odometer_km milhas ou km
+
+        ImageView image = (ImageView) getView().findViewById(R.id.imageodo);
+        if (!MainActivity.MilesModeMain) image.setImageDrawable(getResources().getDrawable(R.drawable.odometer_km));
+        else image.setImageDrawable(getResources().getDrawable(R.drawable.odometer_mi));
+
+
+
         handler.post(timedTask);
 
 
@@ -477,8 +485,19 @@ public class Page1 extends Fragment {
         view = (TextView) getView().findViewById(R.id.range_1);
 
         if (array1[33]!= invalido && array1[33]>9) {
-            //double temp = ((double) array1[14]) / 1000.0;
-            view.setText(array1[33]+ "km");
+
+            double temp;
+            if (!MainActivity.MilesModeMain)
+            {
+                temp = ((double) array1[33]) / 1.0;
+                view.setText((int)temp +"km");
+            }
+            else {
+                temp = ((double) array1[33]) / 1.609344;
+                view.setText((int)temp +"mi");
+            }
+
+            //view.setText(array1[33]+ "km");
         }
         else view.setText("- - -");
 
@@ -502,7 +521,7 @@ public class Page1 extends Fragment {
 
 
 
-        //total km
+        //isolation
         if (array1[38]!= invalido) {
 
             view = (TextView) getView().findViewById(R.id.isolation_1);
@@ -828,8 +847,19 @@ public class Page1 extends Fragment {
 
             view = (TextView) getView().findViewById(R.id.odokm_1);
 
-            double tempt = array1[66] / 100.0;
-            view.setText(String.format("%6.0f", tempt)/* + "km"*/);
+            double temp;
+            if (!MainActivity.MilesModeMain)
+            {
+                temp = array1[66] / 100.0;
+            }
+            else
+            {
+                temp = array1[66] / 160.9344;;
+            }
+            view.setText(String.format("%6.0f", temp));
+
+            //double tempt = array1[66] / 100.0;
+            //view.setText(String.format("%6.0f", tempt)/* + "km"*/);
         }
 
 

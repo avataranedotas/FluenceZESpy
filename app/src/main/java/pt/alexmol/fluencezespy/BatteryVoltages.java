@@ -452,8 +452,22 @@ public class BatteryVoltages extends AppCompatActivity {
         }
 
         //odoBat km
-        if (MainActivity.valoresmemorizados[19]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoBat:"+arrayv[19]+ "km / ";
+        if (MainActivity.valoresmemorizados[19] != Integer.MAX_VALUE) {
+            texto = texto + "OdoBat:";
+            double temp;
+            if (!MainActivity.MilesModeMain)
+            {
+                temp = ((double) MainActivity.valoresmemorizados[19]) / 1.0;
+                if (MainActivity.valoresmemorizados[19]<65535) texto = texto + ((int) temp) + "km / ";
+                else texto = texto + ">65535km / ";
+            }
+            else {
+                temp = ((double) MainActivity.valoresmemorizados[19]) / 1.609344;
+                if (MainActivity.valoresmemorizados[19]<65535) texto = texto + ((int) temp) + "mi / ";
+                else texto = texto + (">40721mi / ");
+            }
+
+
         }
 
         //Ageing counter
@@ -464,7 +478,9 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //odoCar
         if (MainActivity.valoresmemorizados[66]!=Integer.MAX_VALUE) {
-            texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km";
+
+            if (!MainActivity.MilesModeMain) texto = texto + "OdoCar:" + (arrayv[66] / 100) + "km";
+            else  texto = texto + "OdoCar:" + (int)( ((double)arrayv[66]) / 160.9344) + "mi";
         }
 
 

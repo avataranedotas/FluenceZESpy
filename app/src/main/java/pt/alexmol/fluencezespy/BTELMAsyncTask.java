@@ -948,7 +948,7 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             if (resposta != null) {  //resposta correcta
 
 
-                                //odometer x100
+                                //odometer_km x100
                                 longo = processalinha(resposta, 16, 43, false);  //processa a resposta
                                 if (longo != Long.MAX_VALUE) { //resposta bem processada
                                     publishProgress(166, (int) longo);

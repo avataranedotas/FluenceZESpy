@@ -15,8 +15,6 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -30,6 +28,7 @@ public class Settings extends AppCompatActivity {
     private boolean backgroundmodeon;
     private boolean reversemodeon;
     private boolean simplepointeron;
+    private boolean milesmodeon;
     private boolean alttripon;
 
     protected static boolean nightmodeautomatic;
@@ -69,6 +68,7 @@ public class Settings extends AppCompatActivity {
             reversemodeon=settings.getBoolean("reversemodeon",false);
             simplepointeron=settings.getBoolean("simplepointeron",false);
             alttripon=settings.getBoolean("alttripon",false);
+            milesmodeon=settings.getBoolean("milesmodeon",false);
 
             CheckBox keep = (CheckBox) findViewById(R.id.checkBoxScreen);
             keep.setChecked(keepscreenon);
@@ -82,6 +82,8 @@ public class Settings extends AppCompatActivity {
             CheckBox trip = (CheckBox) findViewById(R.id.checkboxalttrip);
             trip.setChecked(alttripon);
 
+            CheckBox miles = (CheckBox) findViewById(R.id.checkboxmiles);
+            miles.setChecked(milesmodeon);
 
             CheckBox debug = (CheckBox) findViewById(R.id.checkBoxDebug);
             debug.setChecked(debugmodeon);
@@ -237,6 +239,9 @@ public class Settings extends AppCompatActivity {
             MainActivity.AltTripModeMain = alttripon;
             editor.putBoolean("alttripon",alttripon);
 
+            MainActivity.MilesModeMain = milesmodeon;
+            editor.putBoolean("milesmodeon", milesmodeon);
+
 
             //MainActivity.reverseModeMain = reversemodeon;
 
@@ -278,6 +283,10 @@ public class Settings extends AppCompatActivity {
 
             case R.id.checkBoxSimple:
                 simplepointeron = checked;
+                break;
+
+            case R.id.checkboxmiles:
+                milesmodeon = checked;
                 break;
 
             case R.id.checkboxalttrip:
