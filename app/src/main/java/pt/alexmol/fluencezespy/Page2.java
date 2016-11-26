@@ -236,6 +236,29 @@ public class Page2 extends Fragment {
         if (!MainActivity.MilesModeMain) distancia.setText("km");
         else  distancia.setText("mi");
 
+        //unidades de consumo
+
+        TextView unidades = (TextView) getView().findViewById(R.id.units_2);
+        TextView unidades2 = (TextView) getView().findViewById(R.id.unitsm_2);
+        String texto = "";
+        switch (MainActivity.tipounidades) {
+            case 0: texto="kWh/100km";
+                break;
+            case 1: texto="kWh/100mi";
+                break;
+            case 2: texto="Wh/km";
+                break;
+            case 3: texto="Wh/mi";
+                break;
+            case 4: texto="MPGe";
+                break;
+            default: texto="kWh/100km";
+                break;
+        }
+
+        unidades.setText(texto);
+        unidades2.setText(texto);
+
 
         //dashboard
 
@@ -363,16 +386,37 @@ public class Page2 extends Fragment {
 
 
         //media
+        double mediampge1;
         if (parkm1 >0.0) {
             media1 = parkwh1 / (parkm1 / 100.0);
+            mediampge1 = 2094.021 / media1;
             if (media1 > 99.99) media1 = 99.99;
         }
-        else media1 = 99.99;
+        else {
+            media1 = 99.99;
+            mediampge1 = 0.0;
+        }
 
-        //float densidade = MainActivity.densidade;
+        if (mediampge1 >999.0)  mediampge1=999.0;
+        if (mediampge1 <-999.0) mediampge1=-999.0;
 
         view = (TextView) getView().findViewById(R.id.t1_avg);
-        view.setText(String.format("%2.2f", media1));
+
+        switch (MainActivity.tipounidades) {
+            case 1: view.setText(String.format("%2.2f", media1*1.609344));
+                break;
+            case 2: view.setText(String.format("%3.0f", media1*10.0));
+                break;
+            case 3: view.setText(String.format("%3.0f", media1*16.09344));
+                break;
+            case 4: view.setText(String.format("%3.0f", mediampge1));
+                break;
+            default: view.setText(String.format("%2.2f", media1));
+                break;
+        }
+
+
+        //view.setText(String.format("%2.2f", media1));
 
 
 
@@ -431,14 +475,42 @@ public class Page2 extends Fragment {
 
 
         //media
+        double mediampge2;
         if (parkm2 >0.0) {
             media2 = parkwh2 / (parkm2 / 100.0);
+            mediampge2 = 2094.021 / media2;
             if (media2 > 99.99) media2 = 99.99;
         }
-        else media2 = 99.99;
+        else {
+            media2 = 99.99;
+            mediampge2 = 0.0;
+        }
+
+        if (mediampge2 >999.0)  mediampge2=999.0;
+        if (mediampge2 <-999.0) mediampge2=-999.0;
+
 
         view = (TextView) getView().findViewById(R.id.t2_avg);
-        view.setText(String.format("%2.2f", media2));
+
+        switch (MainActivity.tipounidades) {
+            case 1: view.setText(String.format("%2.2f", media2*1.609344));
+                break;
+            case 2: view.setText(String.format("%3.0f", media2*10.0));
+                break;
+            case 3: view.setText(String.format("%3.0f", media2*16.09344));
+                break;
+            case 4: view.setText(String.format("%3.0f", mediampge2));
+                break;
+            default: view.setText(String.format("%2.2f", media2));
+                break;
+        }
+
+
+        //view.setText(String.format("%2.2f", media1));
+
+
+
+
 
 
         //velocidade
@@ -449,6 +521,10 @@ public class Page2 extends Fragment {
             if (!MainActivity.MilesModeMain)   velocidade = array2[78]/10;
             //milhas
             else velocidade = (int) ((double)array2[78]/16.09344);
+
+            /*if (!MainActivity.MilesModeMain)   velocidade = 5000/10;
+                //milhas
+            else velocidade = (int) ((double)5000/16.09344);*/
 
         }
 
@@ -833,17 +909,41 @@ public class Page2 extends Fragment {
             // velocidade
             double tempvel;
 
-            if (!MainActivity.MilesModeMain) tempvel = (array2[78] / 100.0); //em km/h
-            else tempvel = (array2[78] / 160.9344); //em mph
+            /*if (!MainActivity.MilesModeMain)*/ tempvel = (array2[78] / 100.0); //em km/h
+            //else tempvel = (array2[78] / 160.9344); //em mph
 
             double instant = (temppotmot+temppotaux)/tempvel*100.0;
+            double mpge = 2094.021/instant;
+            if (mpge >999.0)  mpge=999.0;
+            if (mpge <-999.0) mpge=-999.0;
+            if (tempvel==0.0) mpge=0.0;
+
             if (instant >99.9) instant = 99.9;
             if (instant <-99.9) instant = -99.9;
             if (temppotmot==0.0 && temppotaux==0.0) instant = 0.0;
 
+
+
+
+
+
             view = (TextView) getView().findViewById(R.id.inst_2);
             view.setVisibility(View.VISIBLE);
-            view.setText(String.format("%2.1f", instant));
+
+
+            switch (MainActivity.tipounidades) {
+                case 1: view.setText(String.format("%2.1f", instant*1.609344));
+                    break;
+                case 2: view.setText(String.format("%3.0f", instant*10.0));
+                    break;
+                case 3: view.setText(String.format("%3.0f", instant*16.09344));
+                    break;
+                case 4: view.setText(String.format("%3.0f", mpge));
+                    break;
+                default: view.setText(String.format("%2.1f", instant));
+                    break;
+            }
+            //view.setText(String.format("%2.1f", instant));
 
         }
         else {

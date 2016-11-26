@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     public static int ecran;
 
+    public static int tipounidades = 0;
+
     /**
      * The android.support.v4.view.PagerAdapter that will provide fragments for
      * each of the sections. We use a
@@ -626,6 +628,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         MilesModeMain = settings.getBoolean("milesmodeon",false);
         autonightmode = settings.getBoolean("autonightmode", false);
         noite = settings.getBoolean("night", false);
+        tipounidades = settings.getInt("tipounidades",0);
 
 
         // Check whether we're recreating a previously destroyed instance

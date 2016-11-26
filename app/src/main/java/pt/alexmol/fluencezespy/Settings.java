@@ -34,6 +34,8 @@ public class Settings extends AppCompatActivity {
     protected static boolean nightmodeautomatic;
     protected static boolean forcenightmode;
 
+    protected static int tipounidades;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,7 @@ public class Settings extends AppCompatActivity {
             simplepointeron=settings.getBoolean("simplepointeron",false);
             alttripon=settings.getBoolean("alttripon",false);
             milesmodeon=settings.getBoolean("milesmodeon",false);
+            tipounidades=settings.getInt("tipounidades",0);
 
             CheckBox keep = (CheckBox) findViewById(R.id.checkBoxScreen);
             keep.setChecked(keepscreenon);
@@ -145,6 +148,11 @@ public class Settings extends AppCompatActivity {
             // Apply the adapter to the spinner
             spinnernight.setAdapter(adapternight);
 
+
+
+
+
+
             int modonoite = 0;
 
             if (!MainActivity.autonightmode) {
@@ -159,6 +167,21 @@ public class Settings extends AppCompatActivity {
             spinnernight.setOnItemSelectedListener(new NightModeOnItemSelectedListener());
 
 
+
+            //spinner unidades
+
+            Spinner spinnerunits = (Spinner) findViewById(R.id.unitsspinner);
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapterunits = ArrayAdapter.createFromResource(this, R.array.units_array, android.R.layout.simple_list_item_1);
+            // Specify the layout to use when the list of choices appears
+            adapterunits.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+            spinnerunits.setAdapter(adapterunits);
+
+
+            spinnerunits.setSelection(tipounidades);
+
+            spinnerunits.setOnItemSelectedListener(new UnitsOnItemSelectedListener());
         }
 
         String versionName = BuildConfig.VERSION_NAME;
@@ -241,6 +264,9 @@ public class Settings extends AppCompatActivity {
 
             MainActivity.MilesModeMain = milesmodeon;
             editor.putBoolean("milesmodeon", milesmodeon);
+
+            MainActivity.tipounidades = tipounidades;
+            editor.putInt("tipounidades", tipounidades);
 
 
             //MainActivity.reverseModeMain = reversemodeon;

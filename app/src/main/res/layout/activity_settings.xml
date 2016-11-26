@@ -104,13 +104,37 @@
             android:text="Distance/Speed in miles" />
 
 
-        <CheckBox
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Consumption Units"
+            android:id="@+id/textunits"
+            android:textColor="#000000"
+            android:background="#f1eed2"
+            android:layout_below="@+id/checkboxmiles"/>
+
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/unitsspinner"
+            android:layout_below="@+id/textunits"
+
+            android:prompt="@string/spinner_night"
+            android:background="#f1eed2"
+            android:popupTheme="@android:color/holo_blue_light"
+
+            android:spinnerMode="dialog" />
+
+
+      <!--  <CheckBox
             android:id="@+id/checkboxreserve"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#f1eed2"
             android:onClick="onCheckboxClicked"
-            android:text="Reserved for future use" />
+            android:text="Reserved for future use" />-->
 
         <TextView
         android:layout_width="fill_parent"

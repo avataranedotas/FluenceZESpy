@@ -45,5 +45,14 @@
         <item>Night</item>
     </string-array>
 
+    <string-array name="units_array">
+        <item>kWh/100km</item>
+        <item>kWh/100mi</item>
+        <item>Wh/km</item>
+        <item>Wh/mi</item>
+        <item>MPGe</item>
+    </string-array>
+
+
 
 </resources>
