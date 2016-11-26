@@ -237,6 +237,21 @@ public class Page2 extends Fragment {
         else  distancia.setText("mi");
 
 
+        //dashboard
+
+        ImageView image = (ImageView) getView().findViewById(R.id.dash_2);
+
+        //day
+        if (!MainActivity.noite) {
+            if (!MainActivity.MilesModeMain)
+                image.setImageDrawable(getResources().getDrawable(R.drawable.dash));
+            else image.setImageDrawable(getResources().getDrawable(R.drawable.dash_mi));
+        } else {
+            //night
+            if (!MainActivity.MilesModeMain)
+                image.setImageDrawable(getResources().getDrawable(R.drawable.dash_noite));
+            else image.setImageDrawable(getResources().getDrawable(R.drawable.dash_noite_mi));
+        }
 
         handler.post(timedTask);
 
@@ -428,8 +443,12 @@ public class Page2 extends Fragment {
 
         //velocidade
         if (array2[78]!=invalido ) {
-            // cheg x100, divide-se por 10 para ficar x10
-            velocidade = array2[78]/10;
+
+
+            //km cheg x100, divide-se por 10 para ficar x10
+            if (!MainActivity.MilesModeMain)   velocidade = array2[78]/10;
+            //milhas
+            else velocidade = (int) ((double)array2[78]/16.09344);
 
         }
 
