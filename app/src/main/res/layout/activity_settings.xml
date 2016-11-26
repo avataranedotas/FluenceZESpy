@@ -121,7 +121,7 @@
             android:id="@+id/unitsspinner"
             android:layout_below="@+id/textunits"
 
-            android:prompt="@string/spinner_night"
+            android:prompt="@string/spinner_units"
             android:background="#f1eed2"
             android:popupTheme="@android:color/holo_blue_light"
 

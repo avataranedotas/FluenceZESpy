@@ -26,6 +26,7 @@
 
     <string name="spinner_elm">Choose ELM327 Bluetooth Device</string>
     <string name="spinner_night">Night Mode</string>
+    <string name="spinner_units">Consumption Units</string>
     <string name="no_bt_support">This device does not seem to have bluetooth support. Sorry&#8230;</string>
     <string name="pse_turnon_bt">Please turn on Bluetooth.</string>
     <string name="bt_conn_lost">Bluetooth connection lost!</string>
