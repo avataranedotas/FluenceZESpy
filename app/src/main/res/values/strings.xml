@@ -52,8 +52,12 @@
         <item>Wh/km</item>
         <item>Wh/mi</item>
         <item>MPGe</item>
+        <item>km/kWh</item>
+        <item>mi/kWh</item>
+
     </string-array>
 
 
+    <string name="infinity">&#8734;</string>
 
 </resources>

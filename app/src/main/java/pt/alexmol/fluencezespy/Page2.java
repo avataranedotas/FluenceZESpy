@@ -252,6 +252,11 @@ public class Page2 extends Fragment {
                 break;
             case 4: texto="MPGe";
                 break;
+            case 5: texto="km/kWh";
+                break;
+            case 6: texto="mi/kWh";
+                break;
+
             default: texto="kWh/100km";
                 break;
         }
@@ -387,13 +392,20 @@ public class Page2 extends Fragment {
 
         //media
         double mediampge1;
+        double mediakmkwh1;
         if (parkm1 >0.0) {
             media1 = parkwh1 / (parkm1 / 100.0);
             mediampge1 = 2094.021 / media1;
+            mediakmkwh1 = 1.0/(media1/100.0);
+
             if (media1 > 99.99) media1 = 99.99;
+            if (media1 < -99.99) media1 = -99.99;
+            if (mediakmkwh1 > 99.99) mediakmkwh1 = 99.99;
+            if (mediakmkwh1 < -99.99) mediakmkwh1 = -99.99;
         }
         else {
             media1 = 99.99;
+            mediakmkwh1 = 0.0;
             mediampge1 = 0.0;
         }
 
@@ -411,6 +423,11 @@ public class Page2 extends Fragment {
                 break;
             case 4: view.setText(String.format("%3.0f", mediampge1));
                 break;
+            case 5: view.setText(String.format("%2.2f", mediakmkwh1  ));
+                break;
+            case 6: view.setText(String.format("%2.2f", mediakmkwh1/1.609344 ));
+                break;
+
             default: view.setText(String.format("%2.2f", media1));
                 break;
         }
@@ -476,13 +493,20 @@ public class Page2 extends Fragment {
 
         //media
         double mediampge2;
+        double mediakmkwh2;
         if (parkm2 >0.0) {
             media2 = parkwh2 / (parkm2 / 100.0);
             mediampge2 = 2094.021 / media2;
+            mediakmkwh2 = 1.0/(media2/100.0);
+
             if (media2 > 99.99) media2 = 99.99;
+            if (media2 < -99.99) media2 = -99.99;
+            if (mediakmkwh2 > 99.99) mediakmkwh2 = 99.99;
+            if (mediakmkwh2 < -99.99) mediakmkwh2 = -99.99;
         }
         else {
             media2 = 99.99;
+            mediakmkwh2 = 0.0;
             mediampge2 = 0.0;
         }
 
@@ -501,6 +525,11 @@ public class Page2 extends Fragment {
                 break;
             case 4: view.setText(String.format("%3.0f", mediampge2));
                 break;
+            case 5: view.setText(String.format("%2.2f", mediakmkwh2  ));
+                break;
+            case 6: view.setText(String.format("%2.2f", mediakmkwh2/1.609344 ));
+                break;
+
             default: view.setText(String.format("%2.2f", media2));
                 break;
         }
@@ -605,12 +634,21 @@ public class Page2 extends Fragment {
 
             //se for para usar o Trip 1
             if (array2[195]==1) {
-                double autonomia = restante / media1 / 10.0;
 
-                if (!MainActivity.MilesModeMain) view.setText((int) autonomia + "km");
-                else  view.setText((int) (autonomia / 1.609344) + "mi");
+                double autonomia;
+
+                if (media1 > 0.0) {
+                    autonomia = restante / media1 / 10.0;
+                    if (!MainActivity.MilesModeMain) view.setText((int) autonomia + "km");
+                    else view.setText((int) (autonomia / 1.609344) + "mi");
+                }
+                    else {
+                    view.setText( getString(R.string.infinity));
+                }
+
 
                 view.setTextColor(Color.BLUE);
+
                 if (!MainActivity.noite) {
                     t1.setTextColor(Color.BLUE);
                     t2.setTextColor(Color.BLACK);
@@ -624,9 +662,17 @@ public class Page2 extends Fragment {
 
             //se for para usar o Trip 2
             if (array2[195]==2) {
-                double autonomia = restante / media2 / 10.0;
-                if (!MainActivity.MilesModeMain) view.setText((int) autonomia + "km");
-                else  view.setText((int) (autonomia/1.609344) + "mi");
+                double autonomia;
+
+                if (media2 > 0.0) {
+                    autonomia = restante / media2 / 10.0;
+                    if (!MainActivity.MilesModeMain) view.setText((int) autonomia + "km");
+                    else view.setText((int) (autonomia / 1.609344) + "mi");
+                }
+                else {
+                    view.setText( getString(R.string.infinity));
+                }
+
                 view.setTextColor(Color.BLUE);
                 if (!MainActivity.noite) {
                     t2.setTextColor(Color.BLUE);
@@ -914,9 +960,14 @@ public class Page2 extends Fragment {
 
             double instant = (temppotmot+temppotaux)/tempvel*100.0;
             double mpge = 2094.021/instant;
+            double kmkwh = 1.0/(instant/100.0);
             if (mpge >999.0)  mpge=999.0;
             if (mpge <-999.0) mpge=-999.0;
             if (tempvel==0.0) mpge=0.0;
+
+            if (kmkwh > 99.99) kmkwh = 99.99;
+            if (kmkwh < -99.99) kmkwh = -99.99;
+            if (tempvel==0.0) kmkwh=0.0;
 
             if (instant >99.9) instant = 99.9;
             if (instant <-99.9) instant = -99.9;
@@ -939,6 +990,10 @@ public class Page2 extends Fragment {
                 case 3: view.setText(String.format("%3.0f", instant*16.09344));
                     break;
                 case 4: view.setText(String.format("%3.0f", mpge));
+                    break;
+                case 5: view.setText(String.format("%2.1f", kmkwh  ));
+                    break;
+                case 6: view.setText(String.format("%2.1f", kmkwh/1.609344 ));
                     break;
                 default: view.setText(String.format("%2.1f", instant));
                     break;
