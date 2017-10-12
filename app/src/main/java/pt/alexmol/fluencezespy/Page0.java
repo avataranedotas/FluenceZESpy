@@ -378,6 +378,15 @@ public class Page0 extends Fragment {
             TextView view = (TextView) getView().findViewById(R.id.health_0);
             double temp = ((double) array0[18]) / 2.0;
             view.setText(String.format("%3.1f", temp) + "%");
+
+            if (temp < 72.0) view.setTextColor(getResources().getColor(R.color.laranja));
+            if (temp < 70.0) view.setTextColor(Color.RED);
+            else {
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+            }
+
+
         }
 
 
@@ -387,6 +396,7 @@ public class Page0 extends Fragment {
             if (!MainActivity.MilesModeMain)
             {
                 temp = ((double) array0[19]) / 1.0;
+                //if (array0[19]<65535) view.setText((int)temp +"km");
                 if (array0[19]<65535) view.setText((int)temp +"km");
                 else view.setText(">65535km");
             }
@@ -517,21 +527,61 @@ public class Page0 extends Fragment {
 
 
 
-        if (true) {
+        if ((array0[107] != invalido) &&  (array0[108] != invalido) &&  (array0[109] != invalido)
+                 && (array0[110] != invalido)&&  (array0[111] != invalido)&&  (array0[112] != invalido)
+                && (array0[113] != invalido)&&  (array0[114] != invalido)&&  (array0[115] != invalido)
+
+                ) {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido4_0);
 
+
+            char a = (char) (array0[107] & 255);
+            char b = (char) (array0[107] >> 8 & 255);
+            char c = (char) (array0[107] >> 16 & 255);
+            char d = (char) (array0[107] >> 24 & 255);
+            char e = (char) (array0[108] & 255);
+
+            char f = (char) (array0[110] & 255);
+            char g = (char) (array0[110] >> 8 & 255);
+            char h = (char) (array0[110] >> 16 & 255);
+
+            char i = (char) (array0[111] & 255);
+            char j = (char) (array0[111] >> 8 & 255);
+            char k = (char) (array0[112] & 255);
+            char l = (char) (array0[112] >> 8 & 255);
+            char m = (char) (array0[112] >> 16 & 255);
+
+
             view.setText(
-
-                    "==Beta testing Data==\n" +
-                            //"Pack:"+ (array0[12] / 100.0) + "/" + String.format("%3.2f",(array0[99]/32.0))+"/"+ String.format("%1.2f",  ((array0[12] / 100.0) - (array0[99]/32.0)))+"\n"+
-                            //"Charging:"+array0[100]+"\n"+
-                            //"Total power: "+ ((array0[103]*25)/*-(array0[105]*25)*/) + "W\n"+   //heat = total - cold
-                            //"Cold power: "+ (array0[105]*25) + "W\n"+
-
-                            "..."
+                    "LBC Version: "+a+b+c+d+e+" "+array0[109]+" "+f+g+h+" "+i+j+k+l+m+" "+array0[113]+" "+array0[114]+" "+array0[115]
 
             );
         }
+
+
+
+        if ((array0[116] != invalido)                ) {
+            TextView view= (TextView) getView().findViewById(R.id.desconhecido6_0);
+
+            double temp = ((double) array0[116]) / 100.0;
+            //view.setText("Start of Beta testing Data\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+ String.format("%2f",(temp/8.333333))+"/12 bars");
+            view.setText("=== Start of Beta testing Data ===\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+ (int)(temp/8.333333)+"/12 bars");
+
+        }
+
+
+        if ((array0[117] != invalido)                ) {
+            TextView view= (TextView) getView().findViewById(R.id.desconhecido7_0);
+
+            double temp = ((double) array0[117]) / 100.0;
+            view.setText("KCAPL: " + String.format("%3.2f", temp) + "%");
+
+
+        }
+
+
+
+
 
 
         /*

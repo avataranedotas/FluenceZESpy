@@ -234,7 +234,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //204 SOC bateria 12V   ------------SUSPENSO ----------------
     //205 a/c compressor power /25W
     //206 resetable partial energy spent by car kWh x1000
-
+    //207 LBC MPR reference 4 MSB
+    //208 LBC MPR reference 1 LSB
+    //209 LBC Vdiag
+    //210 LBC Supplier
+    //211 LBC version 2 MSB
+    //212 LBC version 3 LSB
+    //213 LBC Program number
+    //214 LBC Software version
+    //215 LBC Calibration number
+    //216 Meter degradation ???
+    //217 kacpl ???
 
 
 

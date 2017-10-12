@@ -756,7 +756,7 @@ public class Page2 extends Fragment {
             view.setText(String.format("%2.1f", tempt) + "C");
 
             if (array2[40] >= 270) view.setTextColor(getResources().getColor(R.color.laranja));
-            if (array2[40] >= 280) view.setTextColor(Color.RED);
+            if (array2[40] >= 350) view.setTextColor(Color.RED);
             else {
                 if (MainActivity.noite) view.setTextColor(Color.WHITE);
                 else view.setTextColor(Color.BLACK);

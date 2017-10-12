@@ -185,13 +185,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Wait"
+                        android:text="BMS Version: Wait"
                         android:id="@+id/desconhecido4_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/desconhecido3_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_pequena"
+                        android:textSize="@dimen/fonte_normal"
                         />
 
 
@@ -199,40 +199,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Wait"
                         android:id="@+id/desconhecido6_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/desconhecido4_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_pequena"
-                        android:singleLine="true" />
+                        android:singleLine="false" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Wait"
                         android:id="@+id/desconhecido7_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/desconhecido6_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:textSize="@dimen/fonte_pequena"
-                        />
+                        android:textSize="@dimen/fonte_pequena" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Wait"
                         android:id="@+id/desconhecido8_0"
                         android:textColor="#000000"
                         android:layout_below="@+id/desconhecido7_0"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:textSize="@dimen/fonte_pequena"
-                        android:singleLine="true" />
+                        android:singleLine="false" />
 
 
 

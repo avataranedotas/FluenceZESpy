@@ -1450,8 +1450,107 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     publishProgress(120, (int) longo);
                                 }
 
+                                //meter degradation
+                                longo = processalinha(resposta.substring(46, 48) + resposta.substring(50, 52), 0, 15, false);
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(216, (int) longo);
+                                }
+
+                                //kcapl
+                                //longo = processalinha(resposta.substring(46, 48) + resposta.substring(50, 52), 0, 15, false);
+                                longo = processalinha(resposta.substring(52, 56), 0, 15, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(217, (int) longo);
+                                }
+
+
 
                             }
+
+
+
+
+                            //Read LBC version
+
+                            resposta = getisoframe("79b", "7bb", "022180",200 ,4);
+
+                            if (resposta != null && (resposta.length() == 64)) {
+
+                                //4 digitos esquerda MPR
+                                longo = processalinha(resposta.substring(8, 16), 0, 31, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(207, (int) longo);
+                                }
+
+                                //digito final MPR
+                                longo = processalinha(resposta.substring(18, 20), 0, 7, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(208, (int) longo);
+                                }
+
+                                //vdiag
+                                longo = processalinha(resposta.substring(20, 22), 0, 7, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(209, (int) longo);
+                                }
+
+                                //supplier ascii
+                                longo = processalinha(resposta.substring(22, 28), 0, 23, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(210, (int) longo);
+                                }
+
+                                //2 digitos esquerda version
+                                longo = processalinha(resposta.substring(28, 32), 0, 15, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(211, (int) longo);
+                                }
+
+                                //3 digitos direita version
+                                longo = processalinha(resposta.substring(34, 40), 0, 23, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(212, (int) longo);
+                                }
+
+                                //program number
+                                longo = processalinha(resposta.substring(40, 44), 0, 15, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(213, (int) longo);
+                                }
+
+
+                                //software version
+                                longo = processalinha(resposta.substring(44, 48), 0, 15, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(214, (int) longo);
+                                }
+
+                                //calibration
+                                longo = processalinha(resposta.substring(50, 54), 0, 15, false);
+
+                                if (longo != Long.MAX_VALUE) {
+                                    publishProgress(215, (int) longo);
+                                }
+
+
+
+                            }
+
+
+
+
+
+
+
 
                             //tensoes das células parte 1
                             resposta = getisoframe("79b", "7bb", "022141", 200, 19);
