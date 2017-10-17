@@ -36,6 +36,8 @@ public class Settings extends AppCompatActivity {
 
     protected static int tipounidades;
 
+    protected static int tipobateria;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +72,9 @@ public class Settings extends AppCompatActivity {
             reversemodeon=settings.getBoolean("reversemodeon",false);
             simplepointeron=settings.getBoolean("simplepointeron",false);
             alttripon=settings.getBoolean("alttripon",false);
-            milesmodeon=settings.getBoolean("milesmodeon",false);
-            tipounidades=settings.getInt("tipounidades",0);
+            milesmodeon=settings.getBoolean("milesmodeon", false);
+            tipounidades=settings.getInt("tipounidades", 0);
+            tipobateria=settings.getInt("tipobateria",0);
 
             CheckBox keep = (CheckBox) findViewById(R.id.checkBoxScreen);
             keep.setChecked(keepscreenon);
@@ -182,6 +185,26 @@ public class Settings extends AppCompatActivity {
             spinnerunits.setSelection(tipounidades);
 
             spinnerunits.setOnItemSelectedListener(new UnitsOnItemSelectedListener());
+
+
+
+            //spinner tipo de bateria
+
+            Spinner spinnerbattery = (Spinner) findViewById(R.id.batteryspinner);
+            // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapterbattery = ArrayAdapter.createFromResource(this, R.array.battery_array, android.R.layout.simple_list_item_1);
+            // Specify the layout to use when the list of choices appears
+            adapterbattery.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+            spinnerbattery.setAdapter(adapterbattery);
+
+
+            spinnerbattery.setSelection(tipobateria);
+
+            spinnerbattery.setOnItemSelectedListener(new BatteryOnItemSelectedListener());
+
+
+
         }
 
         String versionName = BuildConfig.VERSION_NAME;
@@ -268,6 +291,8 @@ public class Settings extends AppCompatActivity {
             MainActivity.tipounidades = tipounidades;
             editor.putInt("tipounidades", tipounidades);
 
+            MainActivity.tipobateria = tipobateria;
+            editor.putInt("tipobateria", tipobateria);
 
             //MainActivity.reverseModeMain = reversemodeon;
 

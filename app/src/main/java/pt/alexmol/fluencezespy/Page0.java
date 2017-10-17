@@ -553,7 +553,7 @@ public class Page0 extends Fragment {
 
 
             view.setText(
-                    "LBC Version: "+a+b+c+d+e+" "+array0[109]+" "+f+g+h+" "+i+j+k+l+m+" "+array0[113]+" "+array0[114]+" "+array0[115]
+                    "LBC Version: "+a+b+c+d+e+" "+array0[109]+" "+f+g+h+" "+i+j+k+l+m//+" "+array0[113]+" "+array0[114]+" "+array0[115]
 
             );
         }
@@ -564,8 +564,14 @@ public class Page0 extends Fragment {
             TextView view= (TextView) getView().findViewById(R.id.desconhecido6_0);
 
             double temp = ((double) array0[116]) / 100.0;
+
+            //cálculo do numero de barras
+            int barras = 0;
+            if (temp >85.0) barras = 12;
+            if (temp <=85.0) barras = (int) (temp/(85.0/11.0));
+
             //view.setText("Start of Beta testing Data\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+ String.format("%2f",(temp/8.333333))+"/12 bars");
-            view.setText("=== Start of Beta testing Data ===\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+ (int)(temp/8.333333)+"/12 bars");
+            view.setText("=== Start of Beta testing Data ===\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+barras+"/12 bars");
 
         }
 

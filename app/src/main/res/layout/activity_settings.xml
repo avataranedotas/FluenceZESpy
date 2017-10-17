@@ -136,6 +136,7 @@
             android:onClick="onCheckboxClicked"
             android:text="Reserved for future use" />-->
 
+
         <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -144,10 +145,9 @@
         android:id="@+id/textdaynightmode"
         android:textColor="#000000"
             android:background="#d7e2e2"
-        android:layout_below="@+id/checkboxreversemode"/>
+        android:layout_below="@+id/unitsspinner"/>
 
-
-    <Spinner
+        <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nightmodespinner"
@@ -158,6 +158,34 @@
         android:popupTheme="@android:color/holo_blue_light"
 
         android:spinnerMode="dialog" />
+
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Battery type"
+            android:id="@+id/batterytypetext"
+            android:textColor="#000000"
+            android:background="#f1eed2"
+            android:layout_below="@+id/textdaynightmode"/>
+
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/batteryspinner"
+            android:layout_below="@+id/batterytype"
+
+            android:prompt="@string/spinner_battery"
+            android:background="#f1eed2"
+            android:popupTheme="@android:color/holo_blue_light"
+
+            android:spinnerMode="dialog" />
+
+
+
 
 
 

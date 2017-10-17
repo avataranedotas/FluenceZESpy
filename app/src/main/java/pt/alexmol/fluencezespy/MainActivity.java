@@ -62,9 +62,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     private boolean hsm = false;
     private boolean hsm_anterior = false;
 
+
+
     public static int ecran;
 
     public static int tipounidades = 0;
+    public static int tipobateria = 0;  //0=original 1=zoe
 
     /**
      * The android.support.v4.view.PagerAdapter that will provide fragments for
@@ -249,6 +252,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
 
 
+
     //295 Autonomia carro, trip1 ou trip2
     //296 Ponto 0 do parcial 2 km
     //297 Ponto 0 do parcial 2 kWh
@@ -320,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
 
         //evento actualização de páginas
-        if (event.getResult()[0]==3 && event.getResult()[1]==0 ) {
+        if (event.getResult()[0] == 3 && event.getResult()[1]==0 ) {
             actualizarpaginas(valoresmemorizados);
         }
 
@@ -352,8 +356,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 hsm_anterior = true;
             }
         }
-
-
 
 
         /*
@@ -639,6 +641,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         autonightmode = settings.getBoolean("autonightmode", false);
         noite = settings.getBoolean("night", false);
         tipounidades = settings.getInt("tipounidades",0);
+        tipobateria = settings.getInt("tipobateria",0);
 
 
         // Check whether we're recreating a previously destroyed instance
