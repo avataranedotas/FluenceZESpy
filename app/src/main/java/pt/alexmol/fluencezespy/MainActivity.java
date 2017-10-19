@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //104, tempbat4 C
     //105, cableplugged 0=disconnected 1=inserted and ready 2=inserted release pressed
     //106, evse current pilot A
-    //107, Pack voltage x2 V
+    //107, Pack voltage x2 V   //usar este com a bateria 2017
     //108, hv battery temp ?
     //109, maxchargingpower x10 kW
     //110, batterymaxinput x100 kW
@@ -248,6 +248,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //215 LBC Calibration number
     //216 Meter degradation ???
     //217 kacpl ???
+    //218 tempbat min 2017
+    //219 tempbat avg 2017
+    //220 tempbat max 2017
+
 
 
 

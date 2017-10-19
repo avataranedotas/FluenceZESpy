@@ -1451,65 +1451,49 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             if (tipobateria==1) {
 
                                 //este id só precisa de ser lido de minuto a minuto
-                                resposta = getisoframe("79b", "7bb", "022104", 200, 3);
+                                resposta = getisoframe("79b", "7bb", "022104", 200, 12);
 
 
-                                if (resposta != null && (resposta.length() == 48)) {
+                                if (resposta != null && (resposta.length() == 192)) {
 
-                                    //temperatura1, obtem-se na primeira linha
+                                    //temperatura minima
 
-                                    longo = processalinha(resposta.substring(0, 16), 48, 55, true);
+                                    longo = processalinha(resposta.substring(172, 174), 0, 7, true);
                                     if (longo != Long.MAX_VALUE) {
                                         //validação
                                         if (longo >= -50 && longo <= 127) {
                                             //publica valor
                                             //tempbat1 é o indice 101
                                             //ultimavalida = true;
-                                            publishProgress(101, (int) (longo-40));
+                                            publishProgress(218, (int) (longo-40));
                                         }
 
                                     }
 
-                                    //temperatura2, obtem-se na segunda linha
-                                    longo = processalinha(resposta.substring(16, 32), 16, 23, true);
+                                    //temperatura média
+                                    longo = processalinha(resposta.substring(174, 176), 0, 7, true);
                                     //longo = processalinha("FA", 0, 7, true);
                                     if (longo != Long.MAX_VALUE) {
                                         //validação
                                         if (longo >= -50 && longo <= 127) {
                                             //publica valor
                                             //tempbat2 é o indice 102
-                                            publishProgress(102, (int) (longo-40));
+                                            publishProgress(219, (int) (longo-40));
                                         }
 
                                     }
 
-                                    //temperatura3, obtem-se na segunda linha
-                                    longo = processalinha(resposta.substring(16, 32), 40, 47, true);
+                                    //temperatura maxima
+                                    longo = processalinha(resposta.substring(178, 180), 0, 7, true);
                                     if (longo != Long.MAX_VALUE) {
                                         //validação
                                         if (longo >= -50 && longo <= 127) {
                                             //publica valor
                                             //tempbat3 é o indice 103
-                                            publishProgress(103, (int) (longo-40));
+                                            publishProgress(220, (int) (longo-40));
                                         }
 
                                     }
-
-
-                                    //temperatura4, obtem-se na 3ª linha
-                                    longo = processalinha(resposta.substring(32, 48), 8, 15, true);
-                                    if (longo != Long.MAX_VALUE) {
-                                        //validação
-                                        if (longo >= -50 && longo <= 127) {
-                                            //publica valor
-                                            //tempbat4 é o indice 104
-                                            publishProgress(104, (int) (longo-40));
-                                        }
-
-                                    }
-
-
-
 
                                 }
 
@@ -2223,30 +2207,30 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
 
 
 
+                            if (tipobateria==0) {
 
+                                resposta = getisoframe("79b", "7bb", "022103", 200, 6);
 
-                            resposta = getisoframe("79b", "7bb", "022103", 200, 6);
+                                //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                                //else tostax("Resposta null");
+                                //SystemClock.sleep(3000);
 
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
+                                if (resposta != null && (resposta.length() == 96)) {
 
-                            if (resposta != null && (resposta.length() == 96)) {
+                                    //tostax("obtido correctamento 022103");
+                                    //SystemClock.sleep(2000);
 
-                                //tostax("obtido correctamento 022103");
-                                //SystemClock.sleep(2000);
+                                    //highest cell
+                                    longo = processalinha(resposta.substring(30, 32) + resposta.substring(34, 36), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(136, (int) longo);
+                                    }
 
-                                //highest cell
-                                longo = processalinha(resposta.substring(30, 32) + resposta.substring(34, 36), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(136, (int) longo);
-                                }
-
-                                //lowest cell
-                                longo = processalinha(resposta.substring(36, 40), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(137, (int) longo);
-                                }
+                                    //lowest cell
+                                    longo = processalinha(resposta.substring(36, 40), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(137, (int) longo);
+                                    }
 
 
 
@@ -2258,20 +2242,53 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                 }
                                 */
 
-                                //temperatura da bateria C x10
-                                longo = processalinha(resposta.substring(18, 22), 0, 15, true);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(140, (int) longo);
+                                    //temperatura da bateria C x10
+                                    longo = processalinha(resposta.substring(18, 22), 0, 15, true);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(140, (int) longo);
+                                    }
+
+
                                 }
-
-
-
 
 
                             }
 
 
+                            if (tipobateria==1) {
 
+                                resposta = getisoframe("79b", "7bb", "022103", 200, 3);
+
+                                if (resposta != null && (resposta.length() == 48)) {
+
+                                    //tostax("obtido correctamento 022103");
+                                    //SystemClock.sleep(2000);
+
+                                    //highest cell
+                                    longo = processalinha(resposta.substring(30, 32) + resposta.substring(34, 36), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(136, (int) longo);
+                                    }
+
+                                    //lowest cell
+                                    longo = processalinha(resposta.substring(36, 40), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(137, (int) longo);
+                                    }
+
+                                    /*
+                                    //temperatura da bateria C x10
+                                    longo = processalinha(resposta.substring(18, 22), 0, 15, true);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(140, (int) longo);
+                                    }
+                                    */
+
+
+                                }
+
+
+                            }
 
 
 

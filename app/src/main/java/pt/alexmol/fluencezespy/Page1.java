@@ -653,23 +653,51 @@ public class Page1 extends Fragment {
 
         }
 
-        //temperatura da bateria
-        if (array1[40]!= invalido) {
+        if (MainActivity.tipobateria==0) {
 
-            view = (TextView) getView().findViewById(R.id.battemp_1);
+            //temperatura da bateria
+            if (array1[40] != invalido) {
 
-            double tempt = array1[40] / 10.0;
-            view.setText(String.format("%2.0f", tempt) + "C");
+                view = (TextView) getView().findViewById(R.id.battemp_1);
 
-            if (MainActivity.noite) view.setTextColor(Color.WHITE);
-            else view.setTextColor(Color.BLACK);
+                double tempt = array1[40] / 10.0;
+                view.setText(String.format("%2.0f", tempt) + "C");
 
-            if (array1[40] >= 270) view.setTextColor(getResources().getColor(R.color.laranja));
-            if (array1[40] >= 280) view.setTextColor(Color.RED);
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
 
+                if (array1[40] >= 280) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[40] >= 350) view.setTextColor(Color.RED);
+
+
+            }
 
 
         }
+
+
+        if (MainActivity.tipobateria==1) {
+
+            //temperatura da bateria
+            if (array1[119] != invalido) {
+
+                view = (TextView) getView().findViewById(R.id.battemp_1);
+
+                double tempt = array1[119] / 1.0;
+                view.setText(String.format("%2.0f", tempt) + "C");
+
+                if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                else view.setTextColor(Color.BLACK);
+
+                if (array1[119] >= 280) view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[119] >= 350) view.setTextColor(Color.RED);
+
+
+            }
+
+
+        }
+
 
 
         //temperatura do inversor
