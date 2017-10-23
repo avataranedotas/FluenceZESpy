@@ -112,7 +112,19 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //calcular JV
 
-        int jv = (int) ((2.5*MainActivity.valoresmemorizados[12]/100 - 0.144*MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+        int jv = 0;
+
+        if (MainActivity.tipobateria==0) {
+
+            jv = (int) ((2.5 * MainActivity.valoresmemorizados[12] / 100 - 0.144 * MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+        }
+
+        if (MainActivity.tipobateria==1) {
+
+            jv = (int) ((2.5 * MainActivity.valoresmemorizados[7] / 2 - 1.44 * MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+        }
+
+
 
         //criar uma array de ints com as 96 cores
 
@@ -333,7 +345,20 @@ public class BatteryVoltages extends AppCompatActivity {
 
         //calcular JV
 
-        int jv = (int) ((2.5*MainActivity.valoresmemorizados[12]/100 - 0.144*MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+        int jv = 0;
+
+        if (MainActivity.tipobateria==0) {
+
+            jv = (int) ((2.5 * MainActivity.valoresmemorizados[12] / 100 - 0.144 * MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+        }
+
+        if (MainActivity.tipobateria==1) {
+
+            jv = (int) ((2.5 * MainActivity.valoresmemorizados[7] / 2 - 1.44 * MainActivity.valoresmemorizados[36]) / 96.0 * 1000.0);
+        }
+
+
+
 
         //criar uma array de ints com as 96 cores
 
@@ -505,19 +530,42 @@ public class BatteryVoltages extends AppCompatActivity {
         view = (TextView) findViewById(R.id.cell_information);
         texto = "";
 
-        if (MainActivity.valoresmemorizados[37]!=Integer.MAX_VALUE && MainActivity.valoresmemorizados[36]!=Integer.MAX_VALUE && MainActivity.valoresmemorizados[12]!=Integer.MAX_VALUE) {
-            double temp = ((double) arrayv[37]) / 1000.0;
-            texto = texto + String.format("%1.3f", temp) + "V      ";
+        if (MainActivity.tipobateria==0) {
 
-            temp = ((double) arrayv[12]) / 100.0 / 96.0;
-            texto = texto + String.format("%1.3f", temp) + "V      ";
+            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[12] != Integer.MAX_VALUE) {
+                double temp = ((double) arrayv[37]) / 1000.0;
+                texto = texto + String.format("%1.3f", temp) + "V      ";
 
-            temp = ((double) arrayv[36]) / 1000.0;
-            texto = texto + String.format("%1.3f", temp) + "V      ";
+                temp = ((double) arrayv[12]) / 100.0 / 96.0;
+                texto = texto + String.format("%1.3f", temp) + "V      ";
 
-            texto = texto + (arrayv[36] - arrayv[37]) + "mV";
+                temp = ((double) arrayv[36]) / 1000.0;
+                texto = texto + String.format("%1.3f", temp) + "V      ";
 
+                texto = texto + (arrayv[36] - arrayv[37]) + "mV";
+
+            }
         }
+
+
+        if (MainActivity.tipobateria==1) {
+
+            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[7] != Integer.MAX_VALUE) {
+                double temp = ((double) arrayv[37]) / 100.0;
+                texto = texto + String.format("%1.3f", temp) + "V      ";
+
+                temp = ((double) arrayv[7]) / 2.0 / 96.0;
+                texto = texto + String.format("%1.3f", temp) + "V      ";
+
+                temp = ((double) arrayv[36]) / 100.0;
+                texto = texto + String.format("%1.3f", temp) + "V      ";
+
+                texto = texto + ((arrayv[36] - arrayv[37])*10) + "mV";
+
+            }
+        }
+
+
         view.setText(texto);
 
 
@@ -529,11 +577,32 @@ public class BatteryVoltages extends AppCompatActivity {
 
     private void obtemintervalo() {
 
-        //células alta e baixa
-        if (MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE) maisalta = (float) (MainActivity.valoresmemorizados[36])  / 1000.0f ;
-        else maisalta = 4.0f;
-        if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE) maisbaixa = (float) (MainActivity.valoresmemorizados[37])  / 1000.0f ;
-        else maisbaixa = 3.9f;
+        if (MainActivity.tipobateria==0) {
+
+            //células alta e baixa
+            if (MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE)
+                maisalta = (float) (MainActivity.valoresmemorizados[36]) / 1000.0f;
+            else maisalta = 4.0f;
+            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE)
+                maisbaixa = (float) (MainActivity.valoresmemorizados[37]) / 1000.0f;
+            else maisbaixa = 3.9f;
+
+        }
+
+
+        if (MainActivity.tipobateria==1) {
+
+            //células alta e baixa
+            if (MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE)
+                maisalta = (float) (MainActivity.valoresmemorizados[36]) / 100.0f;
+            else maisalta = 4.0f;
+            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE)
+                maisbaixa = (float) (MainActivity.valoresmemorizados[37]) / 100.0f;
+            else maisbaixa = 3.9f;
+
+        }
+
+
 
         //calculo do inicio e fim de escala para dar 500mV de gama excepto em casos expeciais
 

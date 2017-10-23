@@ -264,15 +264,15 @@ public class Page0 extends Fragment {
                         oval.getPaint().setColor(Color.BLUE);
                         rectangulo.getPaint().setColor(Color.BLUE);
                     }
-                    if (array0[17] >= 15 && array0[17] < 22) {
+                    if (array0[17] >= 15 && array0[17] < 26) {
                         oval.getPaint().setColor(Color.GREEN);
                         rectangulo.getPaint().setColor(Color.GREEN);
                     }
-                    if (array0[17] >= 26 && array0[17] < 25) {
+                    if (array0[17] >= 26 && array0[17] < 28) {
                         oval.getPaint().setColor(getResources().getColor(R.color.amarelo));
                         rectangulo.getPaint().setColor(getResources().getColor(R.color.amarelo));
                     }
-                    if (array0[17] >= 28 && array0[17] < 28) {
+                    if (array0[17] >= 28 && array0[17] < 35) {
                         oval.getPaint().setColor(Color.rgb(255, 128, 0));
                         rectangulo.getPaint().setColor(Color.rgb(255, 128, 0));
                     }
@@ -339,15 +339,15 @@ public class Page0 extends Fragment {
                         oval.getPaint().setColor(Color.BLUE);
                         rectangulo.getPaint().setColor(Color.BLUE);
                     }
-                    if (array0[119] >= 15 && array0[17] < 22) {
+                    if (array0[119] >= 15 && array0[17] < 26) {
                         oval.getPaint().setColor(Color.GREEN);
                         rectangulo.getPaint().setColor(Color.GREEN);
                     }
-                    if (array0[119] >= 26 && array0[17] < 25) {
+                    if (array0[119] >= 26 && array0[17] < 28) {
                         oval.getPaint().setColor(getResources().getColor(R.color.amarelo));
                         rectangulo.getPaint().setColor(getResources().getColor(R.color.amarelo));
                     }
-                    if (array0[119] >= 28 && array0[17] < 28) {
+                    if (array0[119] >= 28 && array0[17] < 35) {
                         oval.getPaint().setColor(Color.rgb(255, 128, 0));
                         rectangulo.getPaint().setColor(Color.rgb(255, 128, 0));
                     }
@@ -823,7 +823,12 @@ public class Page0 extends Fragment {
         //highest cell voltage
         if (array0[36]!= invalido ) {
             TextView view = (TextView) getView().findViewById(R.id.cellmax_0);
-            double temp = ((double) array0[36]) / 1000.0;
+            double temp = 0.0;
+
+            if (MainActivity.tipobateria==0) temp = ((double) array0[36]) / 1000.0;
+            if (MainActivity.tipobateria==1) temp = ((double) array0[36]) / 100.0;
+
+
             view.setText(String.format("%1.3f", temp));
 
         }
@@ -832,12 +837,15 @@ public class Page0 extends Fragment {
         //lowest cell voltage
         if (array0[37]!= invalido ) {
             TextView view = (TextView) getView().findViewById(R.id.cellmin_0);
-            double temp = ((double) array0[37]) / 1000.0;
+            double temp = 0.0;
+
+            if (MainActivity.tipobateria==0) temp = ((double) array0[37]) / 1000.0;
+            if (MainActivity.tipobateria==1) temp = ((double) array0[37]) / 100.0;
             view.setText(String.format("%1.3f", temp));
 
             //diference
             view  = (TextView) getView().findViewById(R.id.dif_0);
-            view.setText("Dif:"+ (array0[36] - array0[37]) + "mV");
+            view.setText("Dif:"+ ((array0[36] - array0[37])*10) + "mV");
 
         }
 
@@ -864,10 +872,10 @@ public class Page0 extends Fragment {
 
             if (array0[36] != invalido && array0[7] != invalido) {
                 TextView view = (TextView) getView().findViewById(R.id.jv_0);
-                double temp = (2.5 * array0[7] / 2.0 - 0.144 * array0[36]) / 96.0;
+                double temp = (2.5 * array0[7] / 2.0 - 1.44 * array0[36] ) / 96.0;
                 view.setText("JV:" + String.format("%1.3f", temp));
                 //só mostrar o JV se a célula mais alta estiver abaixo de 3,71V
-                if (array0[36] < 3710) view.setVisibility(View.VISIBLE);
+                if (array0[36] < 371) view.setVisibility(View.VISIBLE);
                 else view.setVisibility(View.INVISIBLE);
 
             }

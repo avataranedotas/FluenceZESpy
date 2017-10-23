@@ -1266,6 +1266,18 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                         publishProgress(111, (int) longo);
                                     }
 
+
+                                    //REAL SOC
+                                    longo = processalinha(resposta.substring(89, 94) , 0, 19, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(115, (int) longo);
+                                    }
+
+
+
+
+
+
                                 }
 
 
@@ -1500,63 +1512,104 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                             }
 
 
-                            resposta = getisoframe("79b", "7bb", "022161", 200, 4);
 
-                            //if (resposta!=null) tostax("Tamanho:"+resposta.length());
-                            //else tostax("Resposta null");
-                            //SystemClock.sleep(3000);
+                            if (tipobateria==0) {
 
-                            if (resposta != null && (resposta.length() == 64)) {
+                                resposta = getisoframe("79b", "7bb", "022161", 200, 4);
 
-                                //pack health obtem-se na 2ª linha
-                                longo = processalinha(resposta.substring(16, 32), 40, 47, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(118, (int) longo);
+                                //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                                //else tostax("Resposta null");
+                                //SystemClock.sleep(3000);
+
+                                if (resposta != null && (resposta.length() == 64)) {
+
+                                    //pack health obtem-se na 2ª linha
+                                    longo = processalinha(resposta.substring(16, 32), 40, 47, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(118, (int) longo);
+                                    }
+
+                                    //degradation
+                                    longo = processalinha(resposta.substring(12, 16), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(191, (int) longo);
+                                    }
+
+
+                                    //degradation of internal resistance
+                                    longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(192, (int) longo);
+                                    }
+
+
+                                    //bat mileage 2ª e 3ª linha
+                                    longo = processalinha(resposta.substring(28, 32) + resposta.substring(34, 38), 0, 31, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(119, (int) longo);
+                                    }
+
+                                    //bat total provided kwh  3ª linha
+                                    longo = processalinha(resposta.substring(38, 46), 0, 31, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(120, (int) longo);
+                                    }
+
+                                    //meter degradation
+                                    longo = processalinha(resposta.substring(46, 48) + resposta.substring(50, 52), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(216, (int) longo);
+                                    }
+
+                                    //kcapl
+                                    //longo = processalinha(resposta.substring(46, 48) + resposta.substring(50, 52), 0, 15, false);
+                                    longo = processalinha(resposta.substring(52, 56), 0, 15, false);
+
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(217, (int) longo);
+                                    }
+
+
                                 }
 
-                                //degradation
-                                longo = processalinha(resposta.substring(12, 16), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(191, (int) longo);
+                            }
+
+
+
+                            if (tipobateria==1) {
+
+                                resposta = getisoframe("79b", "7bb", "022161", 200, 3);
+
+                                //if (resposta!=null) tostax("Tamanho:"+resposta.length());
+                                //else tostax("Resposta null");
+                                //SystemClock.sleep(3000);
+
+                                if (resposta != null && (resposta.length() == 48)) {
+
+
+                                    //bat mileage
+                                    longo = processalinha(resposta.substring(28, 32) + resposta.substring(34, 38), 0, 31, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(119, (int) longo);
+                                    }
+
+                                    //bat total provided kwh
+                                    longo = processalinha(resposta.substring(38, 46), 0, 31, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(120, (int) longo);
+                                    }
+
+                                    //pack health
+                                    longo = processalinha(resposta.substring(24, 26), 0, 7, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(118, (int) longo);
+                                    }
+
+
+
+
+
                                 }
-
-
-
-                                //degradation of internal resistance
-                                longo = processalinha(resposta.substring(8, 12), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(192, (int) longo);
-                                }
-
-
-
-                                //bat mileage 2ª e 3ª linha
-                                longo = processalinha(resposta.substring(28, 32) + resposta.substring(34, 38), 0, 31, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(119, (int) longo);
-                                }
-
-                                //bat total provided kwh  3ª linha
-                                longo = processalinha(resposta.substring(38, 46), 0, 31, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(120, (int) longo);
-                                }
-
-                                //meter degradation
-                                longo = processalinha(resposta.substring(46, 48) + resposta.substring(50, 52), 0, 15, false);
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(216, (int) longo);
-                                }
-
-                                //kcapl
-                                //longo = processalinha(resposta.substring(46, 48) + resposta.substring(50, 52), 0, 15, false);
-                                longo = processalinha(resposta.substring(52, 56), 0, 15, false);
-
-                                if (longo != Long.MAX_VALUE) {
-                                    publishProgress(217, (int) longo);
-                                }
-
-
 
                             }
 
