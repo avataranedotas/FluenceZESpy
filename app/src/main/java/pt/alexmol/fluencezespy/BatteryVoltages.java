@@ -31,6 +31,9 @@ public class BatteryVoltages extends AppCompatActivity {
     private float inicio;
     private float fim;
     private int intervalo;
+    private int lowest = 9999;
+    private int highest = 0;
+
 
     private static BarChart mBarChart;
 
@@ -94,7 +97,21 @@ public class BatteryVoltages extends AppCompatActivity {
             else tensao = 0.0f;
             BarEntry dado = new BarEntry(tensao,i);
             tensoescelulas.add(dado);
+
         }
+
+
+        for (int i=0; i<=95;i++) {
+             //encontrar highest
+            if (MainActivity.tensoesdascelulas[i] > highest) highest = MainActivity.tensoesdascelulas[i];
+            //encontrar lowest
+            if (MainActivity.tensoesdascelulas[i] < lowest) lowest = MainActivity.tensoesdascelulas[i];
+
+        }
+
+
+
+
 
         int azul = getResources().getColor(R.color.azul);
         int vermelho = getResources().getColor(R.color.vermelho);
@@ -530,9 +547,11 @@ public class BatteryVoltages extends AppCompatActivity {
         view = (TextView) findViewById(R.id.cell_information);
         texto = "";
 
+
+
         if (MainActivity.tipobateria==0) {
 
-            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[12] != Integer.MAX_VALUE) {
+            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[7] != Integer.MAX_VALUE) {
                 double temp = ((double) arrayv[37]) / 1000.0;
                 texto = texto + String.format("%1.3f", temp) + "V      ";
 
@@ -547,23 +566,36 @@ public class BatteryVoltages extends AppCompatActivity {
             }
         }
 
-
         if (MainActivity.tipobateria==1) {
 
-            if (MainActivity.valoresmemorizados[37] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[36] != Integer.MAX_VALUE && MainActivity.valoresmemorizados[7] != Integer.MAX_VALUE) {
-                double temp = ((double) arrayv[37]) / 100.0;
+
+            for (int i=0; i<=95;i++) {
+                //encontrar highest
+                if (MainActivity.tensoesdascelulas[i] > highest) highest = MainActivity.tensoesdascelulas[i];
+                //encontrar lowest
+                if (MainActivity.tensoesdascelulas[i] < lowest) lowest = MainActivity.tensoesdascelulas[i];
+
+            }
+
+            if (MainActivity.valoresmemorizados[7] != Integer.MAX_VALUE) {
+                double temp = ((double) lowest) / 1000.0;
                 texto = texto + String.format("%1.3f", temp) + "V      ";
 
                 temp = ((double) arrayv[7]) / 2.0 / 96.0;
                 texto = texto + String.format("%1.3f", temp) + "V      ";
 
-                temp = ((double) arrayv[36]) / 100.0;
+                temp = ((double) highest) / 1000.0;
                 texto = texto + String.format("%1.3f", temp) + "V      ";
 
-                texto = texto + ((arrayv[36] - arrayv[37])*10) + "mV";
+                texto = texto + ((highest - lowest)) + "mV";
 
             }
         }
+
+
+
+
+
 
 
         view.setText(texto);

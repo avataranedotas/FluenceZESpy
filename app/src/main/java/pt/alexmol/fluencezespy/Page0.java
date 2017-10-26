@@ -198,6 +198,9 @@ public class Page0 extends Fragment {
     public void actpag0(int[] array0) {
         int invalido = Integer.MAX_VALUE;
 
+        int lowest = 9999;
+        int highest = 0;
+
         if (array0[0] != invalido) {
             TextView view = (TextView) getView().findViewById(R.id.socx475_0);
             double temp = ((double) array0[0]) / 100.0;
@@ -473,11 +476,28 @@ public class Page0 extends Fragment {
         }
 
 
-        if (array0[16] != invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.ah_0);
-            double temp = ((double) array0[16]) / 10000.0;
-            view.setText(String.format("%2.3f", temp) + "Ah");
+        if (MainActivity.tipobateria==0) {
+
+            if (array0[16] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.ah_0);
+                double temp = ((double) array0[16]) / 10000.0;
+                view.setText(String.format("%2.3f", temp) + "Ah");
+            }
+
+
         }
+
+        if (MainActivity.tipobateria==1) {
+
+            if (array0[18] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.ah_0);
+                double temp =  ((double) array0[18]) / 2.0 / 1.69 ;
+                view.setText("≈"+String.format("%2.1f", temp) + "Ah");
+            }
+
+
+        }
+
 
         if (array0[18] != invalido) {
             TextView view = (TextView) getView().findViewById(R.id.health_0);
@@ -644,23 +664,48 @@ public class Page0 extends Fragment {
 
 
 
+        if (MainActivity.tipobateria==0) {
+
+            if (array0[23] != invalido && array0[91] != invalido && array0[92] != invalido && array0[29] != invalido && array0[26] != invalido && array0[30] != invalido && array0[39] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.bat_data_0);
+                view.setText("" +
+                                "IR: " + array0[23] + "m\u2126\n" +
+                                "Ah Degradation: " + String.format("%3.2f", (((float) array0[91]) / 100.0)) + "%\n" +
+                                "IR Degradation: " + String.format("%3.2f", (((float) array0[92]) / 100.0)) + "%\n" +
+                                "Slow Charges: " + array0[29] + "\n" +
+                                "Quick Charges: " + array0[26] + "\n" +
+                                "Full Charges: " + array0[30] + "\n" +
+                                "Partial Charges: " + array0[39] + "" +
+
+                                ""
+
+                );
+            }
 
 
-        if (array0[23]!= invalido && array0[91]!= invalido && array0[92]!= invalido && array0[29]!= invalido && array0[26]!= invalido && array0[30]!= invalido && array0[39]!= invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.bat_data_0);
-            view.setText(""+
-                            "IR: " + array0[23] + "m\u2126\n" +
-                            "Ah Degradation: " + String.format("%3.2f",(((float)array0[91])/100.0) )  +"%\n"+
-                            "IR Degradation: " + String.format("%3.2f",(((float)array0[92])/100.0) )  +"%\n"+
-                            "Slow Charges: " + array0[29]   +"\n"+
-                            "Quick Charges: " + array0[26]   +"\n"+
-                            "Full Charges: " + array0[30]   +"\n"+
-                            "Partial Charges: " + array0[39]   +""+
-
-                            ""
-
-            );
         }
+
+
+        if (MainActivity.tipobateria==1) {
+
+            if (array0[29] != invalido && array0[26] != invalido && array0[30] != invalido && array0[39] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.bat_data_0);
+                view.setText("" +
+                                "Slow Charges: " + array0[29] + "\n" +
+                                "Quick Charges: " + array0[26] + "\n" +
+                                "Full Charges: " + array0[30] + "\n" +
+                                "Partial Charges: " + array0[39] + "" +
+
+                                ""
+
+                );
+            }
+
+
+        }
+
+
+
 
         if (array0[87]!= invalido && array0[93]!= invalido) {
             TextView view = (TextView) getView().findViewById(R.id.hvbatfail_0);
@@ -729,32 +774,45 @@ public class Page0 extends Fragment {
             );
         }
 
+        if (MainActivity.tipobateria==0) {
+
+            if ((array0[116] != invalido)) {
+                TextView view = (TextView) getView().findViewById(R.id.desconhecido6_0);
+
+                double temp = ((double) array0[116]) / 100.0;
+
+                //cálculo do numero de barras
+                int barras = 0;
+                if (temp > 85.0) barras = 12;
+                if (temp <= 85.0) barras = (int) (temp / (85.0 / 11.0));
+
+                //view.setText("Start of Beta testing Data\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+ String.format("%2f",(temp/8.333333))+"/12 bars");
+                view.setText("=== Start of Beta testing Data ===\nCapacity Meter: " + String.format("%3.2f", temp) + "% " + barras + "/12 bars");
+
+            }
 
 
-        if ((array0[116] != invalido)                ) {
-            TextView view= (TextView) getView().findViewById(R.id.desconhecido6_0);
+            if ((array0[117] != invalido)) {
+                TextView view = (TextView) getView().findViewById(R.id.desconhecido7_0);
 
-            double temp = ((double) array0[116]) / 100.0;
+                double temp = ((double) array0[117]) / 100.0;
+                view.setText("KCAPL: " + String.format("%3.2f", temp) + "%");
 
-            //cálculo do numero de barras
-            int barras = 0;
-            if (temp >85.0) barras = 12;
-            if (temp <=85.0) barras = (int) (temp/(85.0/11.0));
 
-            //view.setText("Start of Beta testing Data\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+ String.format("%2f",(temp/8.333333))+"/12 bars");
-            view.setText("=== Start of Beta testing Data ===\nCapacity Meter: " + String.format("%3.2f", temp) + "% "+barras+"/12 bars");
+            }
+
+        }
+
+        if (MainActivity.tipobateria==1) {
+
+
+                TextView view = (TextView) getView().findViewById(R.id.desconhecido6_0);
+
+                view.setText("");
 
         }
 
 
-        if ((array0[117] != invalido)                ) {
-            TextView view= (TextView) getView().findViewById(R.id.desconhecido7_0);
-
-            double temp = ((double) array0[117]) / 100.0;
-            view.setText("KCAPL: " + String.format("%3.2f", temp) + "%");
-
-
-        }
 
 
 
@@ -820,13 +878,25 @@ public class Page0 extends Fragment {
         */
 
 
+        //percorre tensões para encontrar máximo e mínimo
+        for (int i=0; i<=95;i++) {
+            //encontrar highest
+            if (MainActivity.tensoesdascelulas[i] > highest) highest = MainActivity.tensoesdascelulas[i];
+            //encontrar lowest
+            if (MainActivity.tensoesdascelulas[i] < lowest) lowest = MainActivity.tensoesdascelulas[i];
+
+        }
+
+
+
+
         //highest cell voltage
         if (array0[36]!= invalido ) {
             TextView view = (TextView) getView().findViewById(R.id.cellmax_0);
             double temp = 0.0;
 
             if (MainActivity.tipobateria==0) temp = ((double) array0[36]) / 1000.0;
-            if (MainActivity.tipobateria==1) temp = ((double) array0[36]) / 100.0;
+            if (MainActivity.tipobateria==1) temp = ((double) highest) / 1000.0;
 
 
             view.setText(String.format("%1.3f", temp));
@@ -840,18 +910,29 @@ public class Page0 extends Fragment {
             double temp = 0.0;
 
             if (MainActivity.tipobateria==0) temp = ((double) array0[37]) / 1000.0;
-            if (MainActivity.tipobateria==1) temp = ((double) array0[37]) / 100.0;
+            if (MainActivity.tipobateria==1) temp = ((double) lowest) / 1000.0;
             view.setText(String.format("%1.3f", temp));
 
-            //diference
-            view  = (TextView) getView().findViewById(R.id.dif_0);
-            view.setText("Dif:"+ ((array0[36] - array0[37])*10) + "mV");
+
+
+        }
+
+
+        //Difference
+        if (array0[36]!= invalido && array0[37]!= invalido) {
+
+            TextView view  = (TextView) getView().findViewById(R.id.dif_0);
+
+            if (MainActivity.tipobateria==0) view.setText("Dif:"+ ((array0[36] - array0[37])) + "mV");
+            if (MainActivity.tipobateria==1) view.setText("Dif:"+ (highest - lowest) + "mV");
 
         }
 
 
 
-        //JV
+
+
+            //JV
 
         if (MainActivity.tipobateria==0) {
 
