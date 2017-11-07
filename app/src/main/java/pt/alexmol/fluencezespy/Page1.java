@@ -368,17 +368,43 @@ public class Page1 extends Fragment {
         }
         */
 
-        if (array1[14]!= invalido) {
-            view = (TextView) getView().findViewById(R.id.battery12v_1);
-            double temp = ((double) array1[14]) / 1000.0;
-            view.setText(String.format("%2.2f", temp) + "V");
+        if (MainActivity.tipobateria==0) {
+
+            if (array1[14] != invalido) {
+                view = (TextView) getView().findViewById(R.id.battery12v_1);
+                double temp = ((double) array1[14]) / 1000.0;
+                view.setText(String.format("%2.2f", temp) + "V");
 
 
-            if (array1[14] <= 11700) view.setTextColor(getResources().getColor(R.color.laranja));
-            if (array1[14] <= 10500) view.setTextColor(Color.RED);
-            else {
-                if (MainActivity.noite) view.setTextColor(Color.WHITE);
-                else view.setTextColor(Color.BLACK);
+                if (array1[14] <= 11700)
+                    view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[14] <= 10500) view.setTextColor(Color.RED);
+                else {
+                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                    else view.setTextColor(Color.BLACK);
+                }
+
+            }
+
+        }
+
+
+        if (MainActivity.tipobateria==1) {
+
+            if (array1[14] != invalido) {
+                view = (TextView) getView().findViewById(R.id.battery12v_1);
+                double temp = ((double) array1[14]) / 1000.0;
+                view.setText(String.format("%2.2f", temp) + "V");
+
+
+                if (array1[14] <= 11700)
+                    view.setTextColor(getResources().getColor(R.color.laranja));
+                if (array1[14] <= 10500) view.setTextColor(Color.RED);
+                else {
+                    if (MainActivity.noite) view.setTextColor(Color.WHITE);
+                    else view.setTextColor(Color.BLACK);
+                }
+
             }
 
         }

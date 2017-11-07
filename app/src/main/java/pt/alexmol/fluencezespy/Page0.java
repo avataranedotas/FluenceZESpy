@@ -342,15 +342,15 @@ public class Page0 extends Fragment {
                         oval.getPaint().setColor(Color.BLUE);
                         rectangulo.getPaint().setColor(Color.BLUE);
                     }
-                    if (array0[119] >= 15 && array0[17] < 26) {
+                    if (array0[119] >= 15 && array0[119] < 26) {
                         oval.getPaint().setColor(Color.GREEN);
                         rectangulo.getPaint().setColor(Color.GREEN);
                     }
-                    if (array0[119] >= 26 && array0[17] < 28) {
+                    if (array0[119] >= 26 && array0[119] < 28) {
                         oval.getPaint().setColor(getResources().getColor(R.color.amarelo));
                         rectangulo.getPaint().setColor(getResources().getColor(R.color.amarelo));
                     }
-                    if (array0[119] >= 28 && array0[17] < 35) {
+                    if (array0[119] >= 28 && array0[119] < 35) {
                         oval.getPaint().setColor(Color.rgb(255, 128, 0));
                         rectangulo.getPaint().setColor(Color.rgb(255, 128, 0));
                     }

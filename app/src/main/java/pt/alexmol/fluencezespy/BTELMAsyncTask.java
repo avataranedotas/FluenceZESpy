@@ -1274,6 +1274,11 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     }
 
 
+                                    //12V voltage
+                                    longo = processalinha(resposta.substring(68, 72), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(114, (int) longo);
+                                    }
 
 
 
