@@ -395,16 +395,32 @@ public class Page0 extends Fragment {
 
         }
 
-        if (array0[6] != invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
+        if (MainActivity.tipobateria == 0) {
+            if (array0[6] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
 
 
-            if (array0[6] >= 0 && array0[6] < 48 && array0[5] != 0 && array0[5] != invalido && (array0[100] == 1 || array0[100] == 2)) {
-                view.setText(array0[6] + "A");
-                view.setVisibility(View.VISIBLE);
-            } else view.setVisibility(View.INVISIBLE);
+                if (array0[6] >= 0 && array0[6] < 48 && array0[5] != 0 && array0[5] != invalido && (array0[100] == 1 || array0[100] == 2)) {
+                    view.setText(array0[6] + "A");
+                    view.setVisibility(View.VISIBLE);
+                } else view.setVisibility(View.INVISIBLE);
 
+            }
         }
+
+        if (MainActivity.tipobateria == 1) {
+            if (array0[6] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.evsepilot_0);
+
+
+                if (array0[6] >= 0 && array0[6] < 48 && array0[5] != 0 && array0[5] != invalido /*&& (array0[100] == 1 || array0[100] == 2)*/) {
+                    view.setText(array0[6] + "A");
+                    view.setVisibility(View.VISIBLE);
+                } else view.setVisibility(View.INVISIBLE);
+
+            }
+        }
+
 
 
         if (array0[9] != invalido) {
@@ -459,17 +475,34 @@ public class Page0 extends Fragment {
 
         }
 
+        if (MainActivity.tipobateria == 0) {
 
-        if (array0[13] != invalido) {
-            TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
-            double temp = Math.abs(((double) array0[13]) / 1000.0);
-            view.setText(String.format("%3.2f", temp) + "A");
-            if (temp == 0.0) view.setVisibility(View.INVISIBLE);
-            else view.setVisibility(View.VISIBLE);
+            if (array0[13] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
+                double temp = Math.abs(((double) array0[13]) / 1000.0);
+                view.setText(String.format("%3.2f", temp) + "A");
+                if (temp == 0.0) view.setVisibility(View.INVISIBLE);
+                else view.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if (MainActivity.tipobateria == 1) {
+
+            // Se não resultar usar o 7E4 22 32 04
+
+
+            if (array0[13] != invalido) {
+                TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
+                double temp = array0[13];
+                view.setText(String.format("%6.1f", temp) + "A");
+                //if (temp == 0.0) view.setVisibility(View.INVISIBLE);
+                /*else*/ view.setVisibility(View.VISIBLE);
+            }
         }
 
 
-        if (array0[15] != invalido) {
+
+            if (array0[15] != invalido) {
             TextView view = (TextView) getView().findViewById(R.id.realsoc_0);
             double temp = ((double) array0[15]) / 10000.0;
             view.setText("REAL: " + String.format("%3.3f", temp) + "%");

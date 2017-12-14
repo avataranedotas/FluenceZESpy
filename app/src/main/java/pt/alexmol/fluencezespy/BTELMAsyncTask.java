@@ -1281,10 +1281,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     }
 
                                     //battery current
-                                    longo = processalinha(resposta.substring(8, 12), 0, 15, true) * -1L;
+                                    longo = processalinha(resposta.substring(8, 12), 0, 15, true);
                                     if (longo != Long.MAX_VALUE) {
                                         //if (Math.abs(longo) < 500) longo = 0;
-                                        publishProgress(113, (int) (longo*5)  );
+                                        publishProgress(113, (int) (longo)  );
                                     }
 
 
