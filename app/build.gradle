@@ -4,13 +4,13 @@ android {
     signingConfigs {
     }
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId 'pt.alexmol.fluencezespy'
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
-        versionCode 49
-        versionName '0.9.5'
+        versionCode 60
+        versionName '1.0.6'
     }
     buildTypes {
         release {

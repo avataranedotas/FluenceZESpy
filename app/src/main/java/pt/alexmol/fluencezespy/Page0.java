@@ -493,7 +493,7 @@ public class Page0 extends Fragment {
 
             if (array0[13] != invalido) {
                 TextView view = (TextView) getView().findViewById(R.id.batcurrent_0);
-                double temp = array0[13];
+                double temp = array0[13] / 1000.0;
                 view.setText(String.format("%6.1f", temp) + "A");
                 //if (temp == 0.0) view.setVisibility(View.INVISIBLE);
                 /*else*/ view.setVisibility(View.VISIBLE);
@@ -639,7 +639,7 @@ public class Page0 extends Fragment {
             //calculo de potencia e seta de fluxo de corrente
             if (array0[13] != invalido && array0[7] != invalido) {
                 TextView view = (TextView) getView().findViewById(R.id.kwbat_0);
-                double temp = ((double) array0[13]) / 1000.0 * ((double) array0[7]) / 2.0 / 1000.0;
+                double temp = ((double) array0[13]) / 1000.0 * ((double) array0[7]) / 2.0 / 1000.0 * -1.0;
                 view.setText(String.format("%2.1f", Math.abs(temp)) + "kW");
                 if (temp == 0.0) view.setVisibility(View.INVISIBLE);
                 else view.setVisibility(View.VISIBLE);
