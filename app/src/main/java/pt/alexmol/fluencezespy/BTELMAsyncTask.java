@@ -1287,8 +1287,44 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                         publishProgress(113, (int) (longo)  );
                                     }
 
+                                    //battery current da bateria antiga
+                                    //longo = processalinha(resposta.substring(16, 32), 24, 55, true) * -1L;
+                                    //if (longo != Long.MAX_VALUE) {
+                                    //    //if (Math.abs(longo) < 500) longo = 0;
+                                    //    publishProgress(113, (int) longo);
+                                    //}
+
+
+
+
+
 
                                 }
+
+                                resposta = getisoframe("7E4", "7EC", "03223204",200 ,1);
+
+
+                                if (resposta != null && (resposta.length() == 16)) {
+                                    //tostax("Reposta:"+resposta);
+
+                                    longo = processalinha(resposta.substring(8, 12), 0, 15, false);
+                                    if (longo != Long.MAX_VALUE) {
+                                        publishProgress(221, (int) longo);
+                                        //tostax("Total:" + longo);
+                                    }
+                                }
+
+
+
+                            }
+
+
+                            //batcurrent nova bateria tipo 1, ir buscar ao EVC
+                            //corrente = (valor - 32768) /4.0
+                            //valores negativos estão a entrar na bateria
+                            //valores positivos são carga
+
+                            if (tipobateria==1) {
 
 
                             }
@@ -2479,6 +2515,10 @@ class BTELMAsyncTask extends AsyncTask<Void, Integer, Void> {
                                     //tostax("Total:" + longo);
                                 }
                             }
+
+
+
+
 
                             resposta = getisoframe("7E4", "7EC", "032233DD",200 ,1);
 

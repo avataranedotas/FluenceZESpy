@@ -9,8 +9,8 @@ android {
         applicationId 'pt.alexmol.fluencezespy'
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 61
-        versionName '1.0.7'
+        versionCode 62
+        versionName '1.0.8'
     }
     buildTypes {
         release {

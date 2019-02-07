@@ -69,6 +69,7 @@ public class Settings extends AppCompatActivity {
             keepscreenon=settings.getBoolean("keepscreenon",false);
             backgroundmodeon=settings.getBoolean("backgroundmodeon",false);
             debugmodeon=settings.getBoolean("debugmodeon",false);
+            debugmodeon=false;
             reversemodeon=settings.getBoolean("reversemodeon",false);
             simplepointeron=settings.getBoolean("simplepointeron",false);
             alttripon=settings.getBoolean("alttripon",false);

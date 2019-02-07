@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     //218 tempbat min 2017
     //219 tempbat avg 2017
     //220 tempbat max 2017
+    //221 battery current type1 battery
 
 
 
